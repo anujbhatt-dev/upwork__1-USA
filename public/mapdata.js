@@ -3,10 +3,12 @@
 // simplemaps_worldmap.hooks.click_state = function(id){
 //   alert(simplemaps_worldmap_mapdata.state_specific[id].name);
 
-// import MapController from "./mapControl";
+//import MapController from "./mapControl";
 
 
 // }
+
+ //var a=require("./mapControl")
 var simplemaps_worldmap_mapdata={
   main_settings: {
     //General settings
@@ -19,7 +21,7 @@ var simplemaps_worldmap_mapdata={
 		state_description: "State description",
     state_color: "black",
     state_hover_color: "cyan",
-     state_url: "javascript:new A().func('Diuy')",
+     state_url: "",
     border_size: .5,
     border_color: "#ffffff",
     all_states_inactive: "no",
@@ -1584,12 +1586,6 @@ var simplemaps_worldmap_mapdata={
   labels: {}
 };
 
+ 
+ 
 
-
-
-  class A{
-     func=(m)=>{
-      alert(m);
-     new MapController().fun();
-     }
-  }

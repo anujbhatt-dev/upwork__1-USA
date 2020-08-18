@@ -26,7 +26,10 @@ import "aos/dist/aos.css"
               <div id="div1" className="landing__item landing__item--1">
                    <img className="landing__item-image" src={landscape1} alt="landscape"/>
                    <div data-aos="fade-down" className="landing__item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, amet!</div>
-                   <Link data-aos="fade-down" to="/map" className="landing__item-button">Sign petition</Link>
+
+                   {/* <Link to="/map" className="landing__item-button">Sign the petition</Link> */}
+                   <button data-aos="fade-down" onClick={()=>{window.location="http://localhost:3001/map"}} className="landing__item-button">Sign the petition</button>
+
               </div>
               <div id="div2" className="landing__item landing__item--2">
                   <img className="landing__item-image" src={landscape2} alt="person swimming"/>

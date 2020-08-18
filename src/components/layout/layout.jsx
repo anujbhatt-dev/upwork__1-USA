@@ -5,6 +5,10 @@ import NavigationDots from "./navigation-dots/navigation-dots"
 import  Map from "./map/map"
 import {Switch,Route} from "react-router-dom"
 
+document.addEventListener('popstate', function (event) {
+  this.alert("changed")}
+  );
+  
  class Layout extends Component{
 
 
@@ -18,9 +22,10 @@ import {Switch,Route} from "react-router-dom"
                   <Landing />
                   <NavigationDots/>
               </Route>
-              <Route exact path="/map">
+              <Route exact  path="/map">
                   <Map/>
               </Route>
+              
            </Switch>
         </div>
      )
