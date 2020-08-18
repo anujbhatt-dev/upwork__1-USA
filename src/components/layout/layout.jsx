@@ -2,6 +2,7 @@
 import Landing from "./landing/landing"
 import Header from "./header/header"
 import NavigationDots from "./navigation-dots/navigation-dots"
+import  Map from "./map/map"
 
  class Layout extends Component{
 
@@ -13,6 +14,7 @@ import NavigationDots from "./navigation-dots/navigation-dots"
            <NavigationDots />
            <Header />
            <Landing />
+           <Map/>
         </div>
      )
    }
