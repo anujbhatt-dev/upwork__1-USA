@@ -3,7 +3,7 @@
 // simplemaps_worldmap.hooks.click_state = function(id){
 //   alert(simplemaps_worldmap_mapdata.state_specific[id].name);
 
-// import MapController from "./mapControl";
+//import MapController from "./mapControl";
 
 
 // }
@@ -11,7 +11,7 @@ var simplemaps_worldmap_mapdata={
   main_settings: {
     //General settings
 		width: "1500", //or 'responsive'
-    background_color: "#FFFFFF",
+    background_color: "blue",
     background_transparent: "yes",
     popups: "detect",
     
@@ -1584,12 +1584,6 @@ var simplemaps_worldmap_mapdata={
   labels: {}
 };
 
-
+ 
  
 
-  class A{
-     func=(m)=>{
-      alert(m);
-     new MapController().fun();
-     }
-  }
