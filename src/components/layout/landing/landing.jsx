@@ -1,7 +1,8 @@
- import React, {Component} from "react"
+import React, {Component} from "react"
 import landscape1 from "../../../assets/images/landscape1.jpg"
 import landscape2 from "../../../assets/images/landscape2.jpg"
 import landscape3 from "../../../assets/images/landscape3.jpg"
+import {Link} from "react-router-dom"
 import Aos from "aos"
 import "aos/dist/aos.css"
 
@@ -22,6 +23,7 @@ import "aos/dist/aos.css"
               <div id="div1" className="landing__item landing__item--1">
                    <img className="landing__item-image" src={landscape1} alt="landscape"/>
                    <div data-aos="fade-down" className="landing__item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, amet!</div>
+                   <Link to="/map" className="landing__item-button">Sign the petition</Link>
               </div>
               <div id="div2" className="landing__item landing__item--2">
                   <img className="landing__item-image" src={landscape2} alt="person swimming"/>

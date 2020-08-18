@@ -3,6 +3,7 @@ import Landing from "./landing/landing"
 import Header from "./header/header"
 import NavigationDots from "./navigation-dots/navigation-dots"
 import  Map from "./map/map"
+import {Switch,Route} from "react-router-dom"
 
  class Layout extends Component{
 
@@ -11,10 +12,16 @@ import  Map from "./map/map"
 
      return (
         <div className="Layout">
-           <NavigationDots />
            <Header />
-           <Landing />
-           <Map/>
+           <Switch>
+              <Route exact path="/">
+                  <Landing />
+                  <NavigationDots/>
+              </Route>
+              <Route exact path="/map">
+                  <Map/>
+              </Route>
+           </Switch>
         </div>
      )
    }

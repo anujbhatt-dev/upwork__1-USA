@@ -18,6 +18,31 @@
        z-index: -1;
        animation: zoomout 2s ease-out;
      }
+     &-button{
+       text-decoration: none;
+       position: absolute;
+       top:70%;
+       left:6.5%;
+       font-size: 2rem;
+       padding: 2rem 4rem;
+       margin: 2rem;
+       background: $color-postman-background;
+       border:none;
+       color: $color-white;
+       left: 50%;
+       transform: translateX(-50%);
+       text-transform: uppercase;
+       letter-spacing: 2px;
+       font-family: 'Roboto', sans-serif;
+       font-weight: 100;
+       transition: all .5s;
+       z-index: 100;
+       &:hover{
+           background: rgba($color-postman-background,.5);
+           border: 1px solid $color-grey;
+           color: $color-white;
+       }
+     }
      &--1{
         background: rgba($color-black,.555);
         & .landing__item-text{

@@ -6,13 +6,13 @@ class Map extends Component {
 
     render(){
   return (
-    <div id="main" >
+    <>
       <ScripletTag src="mapdata.js"></ScripletTag>
       <ScripletTag src="worldmap.js"></ScripletTag>
-     <div>
-			<div id="map"></div>
-		</div>
-    </div>
+      <div className="map__wrapper">
+      <div id="map"></div>
+      </div>
+    </>
   );
     }
 }
