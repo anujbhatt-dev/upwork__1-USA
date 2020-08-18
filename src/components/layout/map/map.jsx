@@ -1,18 +1,36 @@
 import React, { Component } from 'react';
 import ScripletTag from 'react-script-tag'
 import {Link} from "react-router-dom"
+import Modal from "../../../UI/modal/modal"
+import Backdrop from "../../../UI/backdrop/backdrop"
+import {withRouter} from "react-router-dom"
 
 
 
 class Map extends Component {
 
      state={
-         s:""
+         s:"",
+         show:true
         }
 
+   modaltoggleHandler=()=>{
+     if(this.state.show){
+       this.setState({
+         show:false,
+         s:""
+       })
+       this.props.history.push("/map")
+     }else{
+       this.setState({
+         show:true
+       })
+     }
+   }
 
     selectHandler=(val)=>{
-this.setState({s:val});
+        this.setState({s:val});
+        this.modaltoggleHandler();
     }
 
     componentDidMount(){
@@ -25,21 +43,29 @@ this.setState({s:val});
             );
     }
 
-    render(){
-  return (
+  render(){
+       let modal = [
+                  <Modal clicked={this.modaltoggleHandler} show={this.state.show}>
+                      {this.state.s}
+                   </Modal>,
+                   <Backdrop clicked={this.modaltoggleHandler} show={this.state.show} />
+                 ]
 
-    <>
-      selected= {this.state.s}
+        // let   selected= {this.state.s}
 
-      <div className="map__wrapper">
-      <div style={{position:"relative"}} id="map">
-          <Link className="backButton" to="/"><i className="fa fa-arrow-circle-left" aria-hidden="true"></i></Link>
-          <div className="branding__remove"> </div>
-      </div>
-      </div>
-    </>
-  );
+
+        return (
+          <>
+
+            <div className="map__wrapper">
+            <div style={{position:"relative"}} id="map">
+                <div className="branding__remove"> </div>
+            </div>
+            </div>
+            {modal}
+          </>
+        );
     }
 }
 
-export default Map;
+export default withRouter(Map);
