@@ -26,21 +26,30 @@
        font-size: 2rem;
        padding: 2rem 4rem;
        margin: 2rem;
-       background: $color-postman-background;
-       border:none;
        color: $color-white;
-       left: 50%;
-       transform: translateX(-50%);
-       text-transform: uppercase;
-       letter-spacing: 2px;
+       // left: 50%;
+       // transform: translateX(-50%);
+       // margin: 0 auto;
+       text-transform: capitalize;
+       letter-spacing: 5px;
        font-family: 'Roboto', sans-serif;
        font-weight: 100;
-       transition: all .5s;
-       z-index: 100;
+       transition: all 1s;
+       z-index: 10;
+       background: rgba($color-postman-background,.5);
+       border: 1px solid $color-grey;
+       border-radius: 3px;
        &:hover{
-           background: rgba($color-postman-background,.5);
-           border: 1px solid $color-grey;
+           background: rgba($color-primary-blue,.5);
+           border: 1px solid transparent;
            color: $color-white;
+       }
+       @include respond(tab-land){
+         left: 0rem;
+         top: 60%;
+         margin: 1rem;
+         font-size: 2rem;
+         padding: 1.5rem 3rem;
        }
      }
      &--1{
@@ -55,8 +64,9 @@
           right: 35rem;
           line-height: 1.5;
           @include respond(tab-land){
-            right: 0rem;
+            right: 10rem;
             font-size: 2.5rem;
+            width: 60%;
           }
         }
      }
