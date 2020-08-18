@@ -1,0 +1,25 @@
+.nav{
+    position: fixed;
+    z-index: 100;
+    top:45%;
+    right:2%;
+    // height: 20rem;
+    width:2.5rem;
+    // background: rgba($color-grey,.2);
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 18px;
+    @include respond(tab-port){
+      right: 8%;
+    }
+  &__dots{
+    height: 1rem;
+    width: 1rem;
+    margin-bottom: 1rem;
+    background: rgba($color-grey,.8);
+    border-radius: 100px;
+    cursor: pointer;
+  }
+}

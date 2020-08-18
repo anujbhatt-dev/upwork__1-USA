@@ -1,0 +1,33 @@
+header{
+   width: 100vw;
+   height: 3rem;
+   position: fixed;
+   top:0;
+   background: transparent;
+   color: $color-white;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   font-size: 2rem;
+   padding: 4rem;
+   z-index: 100;
+   @include respond(tab-port){
+     background: $color-black;
+     padding: 4rem 1rem;
+   }
+}
+.socialMedia{
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  & a{
+    color:$color-black;
+    margin: 0 2rem;
+    padding: 1rem 1.4rem;
+    // height: 1rem;
+    // width: 2rem;
+    background: $color-white;
+    border-radius: 100px;
+  }
+}
