@@ -21,14 +21,11 @@ document.addEventListener('popstate', function (event) {
               <Route exact path="/">
                   <Landing />
                   <NavigationDots/>
-                  <Map/>
               </Route>
               <Route exact  path="/map">
                   <Map/>
               </Route>
-              <Route  path="/map" >
-                  <Map/>
-              </Route>
+              
            </Switch>
         </div>
      )

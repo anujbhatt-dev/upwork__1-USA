@@ -13,7 +13,8 @@ header{
    z-index: 100;
    @include respond(tab-port){
      background: $color-black;
-     padding: 4rem 1rem;
+     font-size: 2.5rem;
+     padding: 4rem 2rem;
    }
 }
 .socialMedia{
@@ -29,5 +30,8 @@ header{
     // width: 2rem;
     background: $color-white;
     border-radius: 100px;
+  }
+  @include respond(tab-port){
+    font-size: 2rem;
   }
 }

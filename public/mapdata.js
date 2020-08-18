@@ -20,8 +20,8 @@ var simplemaps_worldmap_mapdata={
 		//State defaults
 		state_description: "State description",
     state_color: "black",
-    state_hover_color: "blue",
-     state_url: "javascript:new A().func('Diuy')",
+    state_hover_color: "cyan",
+     state_url: "",
     border_size: .5,
     border_color: "#ffffff",
     all_states_inactive: "no",

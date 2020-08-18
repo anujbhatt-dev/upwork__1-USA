@@ -51,6 +51,7 @@ body{
 }
 a{
   color:black;
+  transition: all .5s;
 }
 a:focus,a:hover{
   color: $color-primary-blue;

@@ -1,0 +1,17 @@
+.backButton{
+  position: absolute;
+  font-size: 4.5rem;
+  z-index: 10;
+  color: $color-white;
+}
+
+.branding__remove{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 5rem;
+  z-index: 100;
+  width: 25rem;
+  height: 4rem;
+  background: $color-postman-background;
+}

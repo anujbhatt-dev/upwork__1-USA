@@ -9,18 +9,15 @@
            name="description"
            content="Web site created using create-react-app"
          />
+         
          <script src="mapdata.js"></script>
          <script src="worldmap.js"></script>
-         
          <script type="text/javascript"> 
-           simplemaps_worldmap.hooks.click_state = function(id){
-             //alert(simplemaps_worldmap_mapdata.state_specific[id].name);
-            // window.location="http://localhost:3001/map?name="+simplemaps_worldmap_mapdata.state_specific[id].name;
-         // window.history.({id:30},"p",simplemaps_worldmap_mapdata.state_specific[id].name)
-         window.location.hash="#"+ simplemaps_worldmap_mapdata.state_specific[id].name;
-        // console.log(window);
-            }
-        </script>
+          simplemaps_worldmap.hooks.click_state = function(id){
+ // alert(simplemaps_worldmap_mapdata.state_specific[id].name);
+          window.location.hash="#"+ simplemaps_worldmap_mapdata.state_specific[id].name;
+         }
+     </script>
          <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
          <title>God's believer</title>
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
