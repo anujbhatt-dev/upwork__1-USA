@@ -40,7 +40,7 @@ import notABeliever from "../../../../assets/images/not-a-believer.jpg"
     }
 
     onSubmitHandler=(e)=>{
-      
+
        e.preventDefault()
     }
 
@@ -50,7 +50,7 @@ import notABeliever from "../../../../assets/images/not-a-believer.jpg"
        this.props.believer?
        <>
        <div className="query__item query__beliver">
-           <div className="query__item-text query__beliver-text">Believer</div>
+           <div className="query__item-text query__beliver-text">I AM A BELIEVER</div>
            <img className="query__item-image query__beliver-image" src={believer} alt=""/>
        </div>
        <form className="form query__item query__beliver">
@@ -64,10 +64,11 @@ import notABeliever from "../../../../assets/images/not-a-believer.jpg"
        </>:
        <>
        <div className="query__item query__non-beliver">
-           <div className="query__item-text query__non-beliver-text">Not a Believer</div>
+           <div className="query__item-text query__non-beliver-text">I AM NOT A BELIEVER</div>
            <img className="query__item-image query__non-beliver-image" src={notABeliever} alt=""/>
        </div>
        <form className="form query__item query__non-beliver">
+         
          <input value={this.state.notABeliever.firstName} name="firstName" placeholder="First Name" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input value={this.state.notABeliever.lastName} name="lastName" placeholder="Last Name" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input value={this.state.notABeliever.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>

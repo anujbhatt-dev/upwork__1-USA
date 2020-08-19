@@ -1,0 +1,21 @@
+.adminVerification{
+    min-height: 100vh;
+    padding-top: 10rem;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    justify-content: center;
+    // background: $color-primary-blue;
+  &__form{
+     // background: $color-primary-blue;
+     width:50%;
+     height: 30vh;
+     & .form__input{
+       // background: $color-primary-blue;
+       margin-bottom: 1rem;
+     }
+  }
+  & h1{
+    font-size: 3rem;
+  }
+}

@@ -7,7 +7,7 @@ class NotABeliever extends Component{
 
     return (
        <div className="query__item query__non-beliver" onClick={this.props.clicked}>
-       <div className="query__item-text query__non-beliver-text">Not a Believer</div>
+       <div className="query__item-text query__non-beliver-text">I AM NOT A BELIEVER</div>
        <img className="query__item-image query__non-beliver-image" src={notABeliever} alt=""/>
        </div>
     )

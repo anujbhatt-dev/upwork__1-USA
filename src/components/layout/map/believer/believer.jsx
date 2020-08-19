@@ -7,7 +7,7 @@ import believer from "../../../../assets/images/believer.jpg"
 
      return (
         <div className="query__item query__beliver" onClick={this.props.clicked}>
-          <div className="query__item-text query__beliver-text">Believer</div>
+          <div className="query__item-text query__beliver-text">I AM A BELIEVER</div>
           <img className="query__item-image query__beliver-image" src={believer} alt=""/>
         </div>
      )

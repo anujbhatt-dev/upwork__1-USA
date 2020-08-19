@@ -3,12 +3,13 @@ import Landing from "./landing/landing"
 import Header from "./header/header"
 import NavigationDots from "./navigation-dots/navigation-dots"
 import  Map from "./map/map"
+import Admin from "./admin/admin"
 import {Switch,Route} from "react-router-dom"
 
 document.addEventListener('popstate', function (event) {
   this.alert("changed")}
   );
-  
+
  class Layout extends Component{
 
 
@@ -25,7 +26,10 @@ document.addEventListener('popstate', function (event) {
               <Route exact  path="/map">
                   <Map/>
               </Route>
-              
+              <Route exact  path="/admin">
+                  <Admin/>
+              </Route>
+
            </Switch>
         </div>
      )
