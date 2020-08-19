@@ -48,6 +48,7 @@ class Admin extends Component{
         </div>:this.state.stage===2?<div className="adminVerification choice">
              <Link className="choice__item" to="/admin/believer">Go to Believer</Link>
              <Link className="choice__item" to="/admin/notABeliever">Go to Non-Believer</Link>
+             <Link className="choice__item" to="/admin/undecided">Go to don't know</Link>
         </div>:null
      )
    }

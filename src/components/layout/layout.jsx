@@ -5,6 +5,7 @@ import NavigationDots from "./navigation-dots/navigation-dots"
 import  Map from "./map/map"
 import Admin from "./admin/admin"
 import BelieverList from "./admin/believer-list/believer-list"
+import UndecidedList from "./admin/undecided-list/undecided-list"
 import NotABelieverList from "./admin/not-a-believer-list/not-a-believer-list"
 import {Switch,Route} from "react-router-dom"
 
@@ -45,6 +46,9 @@ document.addEventListener('popstate', function (event) {
               </Route>
               <Route exact  path="/admin/notABeliever">
                   <NotABelieverList adminVerified={this.state.adminVerified} />
+              </Route>
+              <Route exact  path="/admin/undecided">
+                  <UndecidedList adminVerified={this.state.adminVerified} />
               </Route>
 
            </Switch>

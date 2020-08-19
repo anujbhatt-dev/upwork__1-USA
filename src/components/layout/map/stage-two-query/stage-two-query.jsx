@@ -1,5 +1,6 @@
  import React, {Component} from "react"
 import believer from "../../../../assets/images/believer.jpg"
+import undecided from "../../../../assets/images/undecided.jpg"
 import notABeliever from "../../../../assets/images/not-a-believer.jpg"
 
  class StageTwoQuery extends Component{
@@ -47,7 +48,7 @@ import notABeliever from "../../../../assets/images/not-a-believer.jpg"
    render(){
 
      return (
-       this.props.believer?
+       this.props.believer==="yes"?
        <>
        <div className="query__item query__beliver">
            <div className="query__item-text query__beliver-text">I AM A BELIEVER</div>
@@ -62,13 +63,9 @@ import notABeliever from "../../../../assets/images/not-a-believer.jpg"
          <button type="submit" className="form__btn" onSubmit={this.onSubmitHandler}>Submit</button>
        </form>
        </>:
+       this.props.believer==="no"?
        <>
-       <div className="query__item query__non-beliver">
-           <div className="query__item-text query__non-beliver-text">I AM NOT A BELIEVER</div>
-           <img className="query__item-image query__non-beliver-image" src={notABeliever} alt=""/>
-       </div>
        <form className="form query__item query__non-beliver">
-         
          <input value={this.state.notABeliever.firstName} name="firstName" placeholder="First Name" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input value={this.state.notABeliever.lastName} name="lastName" placeholder="Last Name" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input value={this.state.notABeliever.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
@@ -76,7 +73,26 @@ import notABeliever from "../../../../assets/images/not-a-believer.jpg"
          <input value={this.state.notABeliever.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <button type="submit" className="form__btn" onSubmit={this.onSubmitHandler}>Submit</button>
        </form>
-       </>
+       <div className="query__item query__non-beliver">
+           <div className="query__item-text query__non-beliver-text">I AM NOT A BELIEVER</div>
+           <img className="query__item-image query__non-beliver-image" src={notABeliever} alt=""/>
+       </div>
+       </>:
+       this.props.believer==="undecided"?
+       <>
+       <div className="query__item query__non-beliver">
+           <div className="query__item-text query__non-beliver-text">WOULD YOU LIKE TO LEARN MORE?</div>
+           <img className="query__item-image query__non-beliver-image" src={undecided} alt=""/>
+       </div>
+       <form className="form query__item query__non-beliver">
+         <input value={this.state.notABeliever.firstName} name="firstName" placeholder="First Name" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
+         <input value={this.state.notABeliever.lastName} name="lastName" placeholder="Last Name" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
+         <input value={this.state.notABeliever.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
+         <input value={this.state.notABeliever.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
+         <input value={this.state.notABeliever.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
+         <button type="submit" className="form__btn" onSubmit={this.onSubmitHandler}>Submit</button>
+       </form>
+       </>:null
      )
    }
  }
