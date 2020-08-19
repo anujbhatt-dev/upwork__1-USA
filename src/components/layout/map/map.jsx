@@ -6,7 +6,7 @@ import Backdrop from "../../../UI/backdrop/backdrop"
 import {withRouter} from "react-router-dom"
 import Believer from "./believer/believer"
 import NotABeliever from "./not-a-believer/not-a-believer"
-
+import StageTwoQuery from "./stage-two-query/stage-two-query"
 
 class Map extends Component {
 
@@ -17,11 +17,7 @@ class Map extends Component {
          believer:null
         }
 
-  componentDidUpdate=()=>{
-      console.log(this.state);
-  }
-
-   modaltoggleHandler=()=>{
+    modaltoggleHandler=()=>{
      if(this.state.show){
        this.setState({
          show:false,
@@ -61,7 +57,7 @@ class Map extends Component {
                      </div>:null}
                      {this.state.stage===2?
                          <div className="query query--2">
-                             {this.state.believer?"believer":"not a believer"}
+                             <StageTwoQuery believer={this.state.believer}/>
                          </div>:
                          null
                        }

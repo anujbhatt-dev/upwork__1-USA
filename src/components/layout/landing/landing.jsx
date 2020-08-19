@@ -25,7 +25,7 @@ import "aos/dist/aos.css"
           <div className="landing">
               <div id="div1" className="landing__item landing__item--1">
                    <img className="landing__item-image" src={landscape1} alt="landscape"/>
-                   <div data-aos="fade-down" className="landing__item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, amet!</div>
+                   <div data-aos="fade-down" className="landing__item-text">There is one single question that is fundamental to how you live your life</div>
 
                    {/* <Link to="/map" className="landing__item-button">Sign the petition</Link> */}
                    <button data-aos="fade-down" onClick={()=>{window.location="https://ancient-woodland-30225.herokuapp.com/map"}} className="landing__item-button">Sign petition</button>
@@ -33,7 +33,7 @@ import "aos/dist/aos.css"
               </div>
               <div id="div2" className="landing__item landing__item--2">
                   <img className="landing__item-image" src={landscape2} alt="person swimming"/>
-                  <div data-aos="fade-down" className="landing__item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, amet!</div>
+                  <div data-aos="fade-down" className="landing__item-text">Avoiding it is the easy and lazy choice but is a decision to ignore your very existence and the meaning of your life</div>
               </div>
               <div id="div11" className="landing__item landing__item--11">
                    <div data-aos="fade-down" className="landing__item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, amet!</div>
@@ -43,14 +43,15 @@ import "aos/dist/aos.css"
               </div>
               <div id="div3" className="landing__item landing__item--3">
                   <img className="landing__item-image" src={landscape4} alt="foggy river"/>
-                  <div data-aos="fade-down" className="landing__item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, amet!</div>
+                  <div data-aos="fade-down" className="landing__item-text">Facing it is harder and requires thought and courage. But it gives your life clarity and definition.</div>
               </div>
               <div id="div33" className="landing__item landing__item--33">
                    <div data-aos="fade-down" className="landing__item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, amet!</div>
               </div>
               <div id="div4" className="landing__item landing__item--4">
                   <img className="landing__item-image" src={landscape5} alt="foggy river"/>
-                  <div data-aos="fade-down" className="landing__item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, amet!</div>
+                  <div data-aos="fade-down" className="landing__item-text">Ask yourself the question</div>
+                  <button data-aos="fade-down" onClick={()=>{window.location="https://ancient-woodland-30225.herokuapp.com/map"}} className="landing__item-button landing__item-button-2">Sign petition</button>
               </div>
           </div>
      )

@@ -28,33 +28,47 @@
        margin: 2rem;
        color: $color-white;
        // left: 50%;
-       // transform: translateX(-50%);
+       // transform: translateX(0%);
        // margin: 0 auto;
        text-transform: capitalize;
        letter-spacing: 5px;
        font-family: 'Roboto', sans-serif;
-       font-weight: 100;
+       display: inline-block;
+       font-weight: 800;
        transition: all 1s;
        z-index: 10;
        background: rgba($color-postman-background,.5);
        border: 1px solid $color-grey;
        border-radius: 3px;
+       &:focus{
+         outline: none;
+         border: none;
+       }
+       &-2{
+         left:51%;
+         top : 52%;
+       }
        &:hover{
            background: rgba($color-primary-blue,.5);
            border: 1px solid transparent;
            color: $color-white;
        }
        @include respond(tab-land){
-         left: 0rem;
-         top: 60%;
+         left: 5rem;
+         top: 65%;
          margin: 1rem;
          font-size: 2rem;
          padding: 1.5rem 3rem;
+         &-2{
+           left:9%;
+           top : 55%;
+         }
        }
      }
      &--1{
         background: rgba($color-primary-blue,.2);
         & .landing__item-text{
+          padding: 1rem;
           color: $color-white;
           font-size: 4.5rem;
           width: 40%;
@@ -64,15 +78,16 @@
           right: 35rem;
           line-height: 1.5;
           @include respond(tab-land){
-            right: 10rem;
+            right: 0rem;
             font-size: 2.5rem;
-            width: 55%;
+            width: 80%;
           }
         }
      }
      &--11{
        background: rgba($color-primary-blue,1);
        & .landing__item-text{
+         padding: 1rem;
          color: $color-white;
          font-size: 4.5rem;
          width: 40%;
@@ -82,6 +97,7 @@
          left: 35rem;
          line-height: 1.5;
          @include respond(tab-land){
+           width:80%;
            left: 0rem;
            font-size: 2.5rem;
          }
@@ -90,6 +106,7 @@
      &--2{
         background: rgba($color-primary-blue,.555);
         & .landing__item-text{
+          padding: 1rem;
           color: $color-white;
           font-size: 4.5rem;
           width: 40%;
@@ -99,6 +116,7 @@
           left: 0rem;
           line-height: 1.5;
           @include respond(tab-land){
+            width:80%;
             left: 0rem;
             font-size: 2.5rem;
           }
@@ -107,6 +125,7 @@
      &--22{
        background: rgba($color-white,1);
        & .landing__item-text{
+         padding: 1rem;
          color: $color-black;
          font-size: 4.5rem;
          width: 40%;
@@ -116,6 +135,7 @@
          right: 0rem;
          line-height: 1.5;
          @include respond(tab-land){
+           width:80%;
            right: 0rem;
            font-size: 2.5rem;
          }
@@ -124,6 +144,7 @@
      &--3{
         background: rgba($color-primary-blue,.2);
         & .landing__item-text{
+          padding: 1rem;
           color: $color-white;
           font-size: 4.5rem;
           width: 40%;
@@ -133,6 +154,7 @@
           right: 35rem;
           line-height: 1.5;
           @include respond(tab-land){
+            width:80%;
             right: 0rem;
             font-size: 2.5rem;
           }
@@ -141,6 +163,7 @@
      &--33{
        background: rgba($color-white,1);
        & .landing__item-text{
+         padding: 1rem;
          color: $color-black;
          font-size: 4.5rem;
          width: 40%;
@@ -150,6 +173,7 @@
          right: 0rem;
          line-height: 1.5;
          @include respond(tab-land){
+           width:80%;
            right: 0rem;
            font-size: 2.5rem;
          }
@@ -158,8 +182,10 @@
      &--4{
         background: rgba($color-primary-blue,.1);
         & .landing__item-text{
+          padding: 1rem;
           color: $color-white;
           font-size: 4.5rem;
+          font-weight: bold;
           width: 40%;
           // font-weight: 100;
           letter-spacing: 5px;
@@ -167,6 +193,7 @@
           left: 35rem;
           line-height: 1.5;
           @include respond(tab-land){
+            width:80%;
             left: 0rem;
             font-size: 2.5rem;
           }
