@@ -4,21 +4,30 @@ import {Link} from "react-router-dom"
 import Modal from "../../../UI/modal/modal"
 import Backdrop from "../../../UI/backdrop/backdrop"
 import {withRouter} from "react-router-dom"
-
+import Believer from "./believer/believer"
+import NotABeliever from "./not-a-believer/not-a-believer"
 
 
 class Map extends Component {
 
      state={
          s:"",
-         show:true
+         show:false,
+         stage:1,
+         believer:null
         }
+
+  componentDidUpdate=()=>{
+      console.log(this.state);
+  }
 
    modaltoggleHandler=()=>{
      if(this.state.show){
        this.setState({
          show:false,
-         s:""
+         s:"",
+         stage:1,
+         believer:null
        })
        this.props.history.push("/map")
      }else{
@@ -46,7 +55,16 @@ class Map extends Component {
   render(){
        let modal = [
                   <Modal clicked={this.modaltoggleHandler} show={this.state.show}>
-                      {this.state.s}
+                     {this.state.stage===1?<div className="query query--1">
+                         <Believer clicked={()=>this.setState({believer:true,stage:2})}/>
+                         <NotABeliever clicked={()=>this.setState({believer:false,stage:2})}/>
+                     </div>:null}
+                     {this.state.stage===2?
+                         <div className="query query--2">
+                             {this.state.believer?"believer":"not a believer"}
+                         </div>:
+                         null
+                       }
                    </Modal>,
                    <Backdrop clicked={this.modaltoggleHandler} show={this.state.show} />
                  ]

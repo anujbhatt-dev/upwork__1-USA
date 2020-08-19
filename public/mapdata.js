@@ -13,13 +13,13 @@ var simplemaps_worldmap_mapdata={
   main_settings: {
     //General settings
 		width: "responsive", //or 'responsive'
-    background_color: "black",
-    background_transparent: "yes",
+    background_color: "#b2ebf2",
+    background_transparent: "no",
     popups: "detect",
 
 		//State defaults
 		state_description: "State description",
-    state_color: "black",
+    state_color: "#00bcd4",
     state_hover_color: "cyan",
      state_url: "",
     border_size: .5,
@@ -1585,7 +1585,3 @@ var simplemaps_worldmap_mapdata={
   locations: {},
   labels: {}
 };
-
- 
- 
-

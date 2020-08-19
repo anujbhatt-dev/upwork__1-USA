@@ -28,7 +28,7 @@ import "aos/dist/aos.css"
                    <div data-aos="fade-down" className="landing__item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, amet!</div>
 
                    {/* <Link to="/map" className="landing__item-button">Sign the petition</Link> */}
-                   <button data-aos="fade-down" onClick={()=>{window.location="http://localhost:3000/map"}} className="landing__item-button">Sign petition</button>
+                   <button data-aos="fade-down" onClick={()=>{window.location="https://ancient-woodland-30225.herokuapp.com/map"}} className="landing__item-button">Sign petition</button>
 
               </div>
               <div id="div2" className="landing__item landing__item--2">

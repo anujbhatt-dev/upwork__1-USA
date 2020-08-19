@@ -35,3 +35,12 @@ header{
     font-size: 2rem;
   }
 }
+.logo{
+  font-size: 2.5rem;
+  text-decoration:none;
+  color:$color-white;
+  &:hover,&:focus{
+    text-decoration:none;
+    color:$color-white;
+  }
+}

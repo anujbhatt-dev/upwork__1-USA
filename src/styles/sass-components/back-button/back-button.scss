@@ -7,11 +7,14 @@
 
 .branding__remove{
   position: absolute;
-  bottom: 0;
+  bottom: 3px;
   right: 0;
   font-size: 5rem;
   z-index: 100;
-  width: 25rem;
+  width: 50rem;
   height: 4rem;
-  background: $color-postman-background;
+  background: #b2ebf2;
+  @include respond(phone){
+    width: 30rem;
+  }
 }
