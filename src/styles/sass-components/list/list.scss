@@ -1,0 +1,103 @@
+.list{
+  display:flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 10rem;
+  flex-wrap: wrap;
+  &__h1{
+    font-size: 3rem;
+    flex-basis: 100%;
+    text-align: center;
+    padding: 1rem;
+  }
+  &__table{
+    width: 90%;
+    &-head{
+      font-size: 1.5rem;
+      font-weight: bolder;
+      &-row{
+
+        &-cell{
+          padding: 1.5rem 1rem;
+
+        }
+      }
+    }
+    &-body{
+      font-size: 1.5rem;
+      font-weight: ligher;
+      &-row{
+
+        &-cell{
+          padding: .5rem 1rem;
+          &--delete{
+            color:$color-red;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.choice{
+  display: flex;
+  justify-content: space-around;
+  font-size: 3rem;
+  flex-flow: row;
+  width: 60vw;
+  margin: 0 auto;
+  @include respond(phone){
+    width: 100vw;
+  }
+  &__item{
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border: 1px solid $color-grey;
+    color: $color-white;
+    background: $color-primary-blue;
+    outline: none;
+    &:hover,&:active{
+       color: $color-white;
+       background: rgba($color-primary-blue,.5);
+       color: $color-black;
+       box-shadow: 0rem 0rem 8rem rgba($color-grey,.8)
+    }
+    &:focus{
+      outline: none;
+    }
+  }
+}
