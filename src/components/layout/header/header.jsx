@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
    render(){
 
      return (
-        <header>
+        <header className="header">
             <Link to="/" className="logo">logo</Link>
             <div className="socialMedia">
                 <div className="instagram"> <a target="_blank" href="https://www.google.com">{""}<i className="fa fa-instagram" aria-hidden="true"></i></a> </div>

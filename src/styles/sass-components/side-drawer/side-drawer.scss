@@ -1,0 +1,96 @@
+.sideDrawer{
+  &__backdrop{
+    background: rgba($color-black,.5);
+    z-index: 99;
+  }
+  &__container{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    &-cross{
+      position: absolute;
+      top: 1rem;
+      right:1rem;
+      font-size: 2.5rem;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sideDrawer{
+  position:fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $color-primary-blue;
+  z-index: 100;
+  top:0;
+  left: 0;
+  &__open{
+    height: 100vh;
+    width: 40rem;
+    font-size: 1.5rem;
+    // transform: rotate(-90deg);
+    animation: open .5s ease-out;
+  }
+  &__close{
+    height: 100vh;
+    width: 0;
+    font-size: 0;
+    animation: close .5s ease-out;
+  }
+}
+@keyframes open {
+   from{
+      height: 100vh;
+      width: 0;
+      font-size: 0;
+   }to{
+     height: 100vh;
+     width: 40rem;
+     font-size: 1.5rem;
+   }
+}
+@keyframes close {
+   from{
+     height: 100vh;
+     width: 40rem;
+     font-size: 1.5rem;
+   }to{
+     height: 100vh;
+     width: 0;
+     font-size: 0;
+   }
+}

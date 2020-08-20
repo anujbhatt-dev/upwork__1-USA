@@ -1,0 +1,29 @@
+.adminHeader{
+   width: 100vw;
+   height: 3rem;
+   position: sticky;
+   top:0;
+   // background: transparent;
+   color: $color-white;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   font-size: 2rem;
+   padding: 4rem;
+   z-index: 100;
+   background: $color-primary-blue;
+   @include respond(tab-port){
+     font-size: 2.5rem;
+     padding: 4rem 2rem;
+   }
+   &__logo{
+     color: $color-white;
+   }
+   &__menuIcon{
+     color: $color-white;
+     margin: 1rem 4rem;
+     margin-left: .5rem;
+     font-size: 2rem;
+     cursor: pointer;
+   }
+}

@@ -46,9 +46,9 @@
       & strong{
         font-size: 2.5rem
       }
-      &:hover ~ .query__item-image{
-         opacity: 1;
-      }
+      // &:hover ~ .query__item-image{
+      //    opacity: 1;
+      // }
       // font-style: italic;
     }
     @include respond(tab-port){
@@ -65,38 +65,65 @@
        opacity: .8;
        transition: all .5s;
        cursor: pointer;
-       &:hover{
-         opacity: 1;
-       }
+       // &:hover{
+       //   opacity: 1;
+       // }
     }
     &-text{
       padding: 2rem;
       text-align: center;
       cursor: pointer;
       z-index: 1;
-      &:hover ~ .query__item-image{
-         opacity: 1;
-      }
+      // &:hover ~ .query__item-image{
+      //    opacity: 1;
+      // }
     }
   }
+  &__believer{
+     background: $color-white;
+     color:$color-black;
+     opacity: .8;
+     transition: all .3s;
+     &:hover{
+       opacity: 1;
+     }
+  }
+  &__non-believer{
+     background: $color-black;
+     color: $color-white;
+     opacity: .8;
+     transition: all .3s;
+     &:hover{
+       opacity: 1;
+     }
+  }
   &__undecided{
+    background: $color-lightblue;
      position: absolute;
      z-index: 0;
      bottom: 0;
      height: 5rem;
      width: 45rem;
      cursor: pointer;
+     opacity: .8;
+     transition: all .3s;
+     &:hover{
+       opacity: 1;
+     }
      & div{
        padding: 1rem;
        cursor: pointer;
        z-index: 3;
        font-size: 2.5rem;
-       color: $color-white;
+       color: $color-primary-blue;
        font-weight: bolder;
-       &:hover ~ .query__item-image{
-          opacity: 1;
-       }
+       // &:hover ~ .query__item-image{
+       //    opacity: 1;
+       // }
      }
+  }
+  &__fixer{
+    opacity: 1;
   }
   @include respond(tab-port){
      flex-flow: column;
