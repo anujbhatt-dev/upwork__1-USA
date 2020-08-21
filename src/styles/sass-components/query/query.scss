@@ -1,10 +1,12 @@
 .query{
+  perspective: 1000px;
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   border-radius: 8px;
+  position: relative;
   // animation-fill-mode: forwards;
   &--1{
     animation: query--1 1s ease-out;
@@ -13,6 +15,14 @@
     transform-origin: bottom;
     animation: query--2 1s ease-out;
   }
+  &--3{
+    transform-origin: bottom;
+    animation: query--3 1s ease-out;
+  }
+  &--4{
+    transform-origin: bottom;
+    animation: query--4 1s ease-out;
+  }
   &__item{
     height: 100%;
     width: 50%;
@@ -20,6 +30,27 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    flex-flow: column;
+    letter-spacing: 2px;
+    color: $color-grey-light-2;
+    & p{
+      margin-top: 2rem;
+      padding: 0 10rem;
+      z-index: 1;
+      text-align: center;
+      font-size: 2rem;
+      cursor: pointer;
+      @include respond(tab-port){
+         padding: 0 2rem;
+      }
+      & strong{
+        font-size: 2.5rem
+      }
+      // &:hover ~ .query__item-image{
+      //    opacity: 1;
+      // }
+      // font-style: italic;
+    }
     @include respond(tab-port){
        width: 100%;
     }
@@ -34,17 +65,65 @@
        opacity: .8;
        transition: all .5s;
        cursor: pointer;
-       &:hover{
-         opacity: 1;
-       }
+       // &:hover{
+       //   opacity: 1;
+       // }
     }
     &-text{
+      padding: 2rem;
+      text-align: center;
       cursor: pointer;
       z-index: 1;
-      &:hover + .query__item-image{
-         opacity: 1;
-      }
+      // &:hover ~ .query__item-image{
+      //    opacity: 1;
+      // }
     }
+  }
+  &__believer{
+     background: $color-white;
+     color:$color-black;
+     opacity: .8;
+     transition: all .3s;
+     &:hover{
+       opacity: 1;
+     }
+  }
+  &__non-believer{
+     background: $color-black;
+     color: $color-white;
+     opacity: .8;
+     transition: all .3s;
+     &:hover{
+       opacity: 1;
+     }
+  }
+  &__undecided{
+    background: $color-lightblue;
+     position: absolute;
+     z-index: 0;
+     bottom: 0;
+     height: 5rem;
+     width: 45rem;
+     cursor: pointer;
+     opacity: .8;
+     transition: all .3s;
+     &:hover{
+       opacity: 1;
+     }
+     & div{
+       padding: 1rem;
+       cursor: pointer;
+       z-index: 3;
+       font-size: 2.5rem;
+       color: $color-primary-blue;
+       font-weight: bolder;
+       // &:hover ~ .query__item-image{
+       //    opacity: 1;
+       // }
+     }
+  }
+  &__fixer{
+    opacity: 1;
   }
   @include respond(tab-port){
      flex-flow: column;
@@ -69,11 +148,31 @@
 }
 @keyframes query--2 {
     from{
+      transform: rotate(-180deg);
+      opacity: 0;
+    }
+    to{
+      transform: rotate(0deg);
+      opacity: 1;
+    }
+}
+@keyframes query--3 {
+    from{
       transform: rotate(180deg);
       opacity: 0;
     }
     to{
       transform: rotate(0deg);
+      opacity: 1;
+    }
+}
+@keyframes query--4 {
+    from{
+      transform: rotateY(-180deg);
+      opacity: 0;
+    }
+    to{
+      transform: rotateY(0deg);
       opacity: 1;
     }
 }
