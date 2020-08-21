@@ -8,6 +8,7 @@ import Believer from "./believer/believer"
 import Undecided from "./undecided/undecided"
 import NotABeliever from "./not-a-believer/not-a-believer"
 import StageTwoQuery from "./stage-two-query/stage-two-query"
+import MapDiv from "./map-div/map-div"
 
 class Map extends Component {
 
@@ -88,8 +89,9 @@ class Map extends Component {
           <>
 
             <div className="map__wrapper">
-            <div style={{position:"relative"}} id="map">
+            <div id="map">
                 <div className="branding__remove"> </div>
+                <MapDiv />
             </div>
             </div>
             <div className="landing__item landing__item--11">
