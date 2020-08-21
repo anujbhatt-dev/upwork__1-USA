@@ -52,6 +52,9 @@ import axios from "axios"
        })
 
 
+       let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}`;
+
+axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email);
 
        // send email verification
 
@@ -147,7 +150,7 @@ import axios from "axios"
            render="explicit"
            verifyCallback={this.verifyCallback}
            onloadCallback={this.callback}
-         />  
+         />
          <button type="submit" className="form__btn" >Submit</button>
        </form>
        </>:null

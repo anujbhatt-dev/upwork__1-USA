@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import fireDb from '../../../firebase config/firebase-config'
+import axios from 'axios';
 
 
  class Verified extends Component {
@@ -24,14 +25,15 @@ import fireDb from '../../../firebase config/firebase-config'
          category:category,
      }
 
+    
 
-
-     let key=email.replace('.','DOT');     
-     fireDb.child("client/"+key).on('value',res=>{
+    //  let key=email.replace('.','DOT');     
+    //  fireDb.child("client/"+key).on('value',res=>{
       
-        fireDb.child("client").child(key).set(client);
-     
-     })
+    //     fireDb.child("client").child(key).set(client);
+     //}
+
+       axios.post("/v1/client",client);
 
          }
 

@@ -3,6 +3,11 @@
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
+  &__wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
   &__h1{
     font-size: 3rem;
     flex-basis: 100%;
@@ -10,12 +15,17 @@
     padding: 1rem;
   }
   &__table{
-    width: 90%;
+    // width: 90%;
+    padding: 0 1rem;
     &-head{
-      font-size: 1.5rem;
+      font-size: 1rem;
       font-weight: bolder;
       &-row{
-
+        &-head{
+          text-align: center;
+          font-size: 2rem;
+          font-weight: bolder;
+        }
         &-cell{
           padding: 1.5rem 1rem;
 
@@ -23,11 +33,13 @@
       }
     }
     &-body{
-      font-size: 1.5rem;
+      font-size: 1rem;
       font-weight: ligher;
       &-row{
 
         &-cell{
+          max-width: 20rem;
+          overflow-x: auto;
           padding: .5rem 1rem;
           &--delete{
             color:$color-red;

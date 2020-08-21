@@ -42,16 +42,46 @@ this.setState({data:newData})
           <AdminHeader/>
           <div className="list">
              <div className="list__h1">List</div>
+             <div className="list__wrapper">
              <table className="list__table">
                  <thead className="list__table-head">
+                    <tr className="list__table-head-row" ><td className="list__table-head-row-head" colspan={6}>Believers</td></tr>
                     <tr className="list__table-head-row">
-                    <td  className="list__table-head-row-cell"></td>
-
                         <td  className="list__table-head-row-cell">First Name</td>
                         <td  className="list__table-head-row-cell">Last Name</td>
                         <td  className="list__table-head-row-cell">Email</td>
                         <td  className="list__table-head-row-cell">City</td>
-                        <td  className="list__table-head-row-cell">Country</td>
+                        <td  className="list__table-head-row-cell">Added On</td>
+                        <td  className="list__table-head-row-cell"></td>
+                    </tr>
+                 </thead>
+                 <tbody className="list__table-body">
+
+                 {this.state.data?Object.keys(this.state.data).map(key=>{
+
+                    let val=this.state.data[key];
+
+                    return (
+                     <tr className="list__table-body-row">
+                         <td  className="list__table-body-row-cell">{val.firstName}</td>
+                        <td  className="list__table-body-row-cell">{val.lastName}</td>
+                        <td  className="list__table-body-row-cell">{val.email}</td>
+                        <td  className="list__table-body-row-cell">{val.city}</td>
+                        <td  className="list__table-body-row-cell">{val.date}</td>
+                        <td onClick={()=>this.deleteHandler(key)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
+                    </tr>)}
+                    ):null}
+                 </tbody>
+             </table>
+             <table className="list__table">
+                 <thead className="list__table-head">
+                 <tr className="list__table-head-row" ><td className="list__table-head-row-head" colspan={6}>Non Believers</td></tr>
+                    <tr className="list__table-head-row">
+                        <td  className="list__table-head-row-cell">First Name</td>
+                        <td  className="list__table-head-row-cell">Last Name</td>
+                        <td  className="list__table-head-row-cell">Email</td>
+                        <td  className="list__table-head-row-cell">City</td>
+
                         <td  className="list__table-head-row-cell">Added On</td>
 
                         <td  className="list__table-head-row-cell"></td>
@@ -65,19 +95,48 @@ this.setState({data:newData})
 
                     return (
                      <tr className="list__table-body-row">
-                         <td  className="list__table-body-row-cell">{val.category}</td>
                          <td  className="list__table-body-row-cell">{val.firstName}</td>
                         <td  className="list__table-body-row-cell">{val.lastName}</td>
                         <td  className="list__table-body-row-cell">{val.email}</td>
                         <td  className="list__table-body-row-cell">{val.city}</td>
-                        <td  className="list__table-body-row-cell">{val.country}</td>
                         <td  className="list__table-body-row-cell">{val.date}</td>
-
-                        <td onClick={()=>this.deleteHandler(key)} className="list__table-body-row-cell list__table-body-row-cell--delete">remove</td>
+                        <td onClick={()=>this.deleteHandler(key)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
                     </tr>)}
                     ):null}
                  </tbody>
              </table>
+             <table className="list__table">
+                 <thead className="list__table-head">
+                    <tr className="list__table-head-row"><td className="list__table-head-row-head" colspan={6}>Undecided</td></tr>
+                    <tr className="list__table-head-row">
+                        <td  className="list__table-head-row-cell">First Name</td>
+                        <td  className="list__table-head-row-cell">Last Name</td>
+                        <td  className="list__table-head-row-cell">Email</td>
+                        <td  className="list__table-head-row-cell">City</td>
+                        <td  className="list__table-head-row-cell">Added On</td>
+                        <td  className="list__table-head-row-cell"></td>
+                    </tr>
+                 </thead>
+                 <tbody className="list__table-body">
+
+                 {this.state.data?Object.keys(this.state.data).map(key=>{
+
+                    let val=this.state.data[key];
+
+                    return (
+                     <tr className="list__table-body-row">
+
+                         <td  className="list__table-body-row-cell">{val.firstName}</td>
+                        <td  className="list__table-body-row-cell">{val.lastName}</td>
+                        <td  className="list__table-body-row-cell">{val.email}</td>
+                        <td  className="list__table-body-row-cell">{val.city}</td>
+                        <td  className="list__table-body-row-cell">{val.date}</td>
+                        <td onClick={()=>this.deleteHandler(key)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
+                    </tr>)}
+                    ):null}
+                 </tbody>
+             </table>
+             </div>
           </div>
         </>
      )
