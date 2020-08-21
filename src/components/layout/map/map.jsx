@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ScripletTag from 'react-script-tag'
-import {Link} from "react-router-dom"
+
+// import {Link} from "react-router-dom"
 import Modal from "../../../UI/modal/modal"
 import Backdrop from "../../../UI/backdrop/backdrop"
 import {withRouter} from "react-router-dom"
@@ -25,7 +25,8 @@ class Map extends Component {
          show:false,
          s:"",
          stage:1,
-         believer:null
+         believer:null,
+         hover:null
        })
        this.props.history.push("/map")
      }else{
@@ -39,14 +40,24 @@ class Map extends Component {
         this.setState({s:val});
         this.modaltoggleHandler();
     }
+   
+    hoverHandler=(val)=>{
+   this.setState({hover:val});
+    }
+
+
 
     componentDidMount(){
         console.log(123);
         this.props.history.push("/map")
         window.addEventListener('hashchange',(event) =>{
-            console.log(window.location.hash.substring(1));
+         //   console.log(window.location.hash.substring(1));
            // alert(decodeURI(window.location.hash.substring(1)))
-              this.selectHandler(decodeURI(window.location.hash.substring(1)));
+           
+           if(window.location.hash.charAt(1)!=='#')
+           this.selectHandler(decodeURI(window.location.hash.substring(1)));
+           else
+           this.hoverHandler(decodeURI(window.location.hash.substring(2)));
         }
             );
     }
@@ -90,6 +101,8 @@ class Map extends Component {
             <div className="map__wrapper">
             <div style={{position:"relative"}} id="map">
                 <div className="branding__remove"> </div>
+                {this.state.hover}
+
             </div>
             </div>
             <div className="landing__item landing__item--11">

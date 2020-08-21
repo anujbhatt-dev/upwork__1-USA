@@ -32,9 +32,9 @@ import AdminBackdrop from "./admin-backdrop/admin-backdrop"
            <SideDrawer clicked={this.sideDrawerToggleHandler} toggler={this.state.open?"sideDrawer__open":"sideDrawer__close"}/>
            </div>
            <div className="socialMedia">
-               <div className="instagram"> <a target="_blank" href="https://www.google.com">{""}<i className="fa fa-instagram" aria-hidden="true"></i></a> </div>
-               <div className="facebook"> <a target="_blank" href="https://www.google.com">{""}<i className="fa fa-facebook" aria-hidden="true"></i></a> </div>
-               <div className="twitter"> <a target="_blank" href="https://www.google.com">{""}<i className="fa fa-twitter" aria-hidden="true"></i></a> </div>
+               <div className="instagram"> <a rel="noopener noreferrer" target="_blank" href="https://www.google.com">{""}<i className="fa fa-instagram" aria-hidden="true"></i></a> </div>
+               <div className="facebook"> <a rel="noopener noreferrer" target="_blank" href="https://www.google.com">{""}<i className="fa fa-facebook" aria-hidden="true"></i></a> </div>
+               <div className="twitter"> <a rel="noopener noreferrer" target="_blank" href="https://www.google.com">{""}<i className="fa fa-twitter" aria-hidden="true"></i></a> </div>
            </div>
        </header>
      )
