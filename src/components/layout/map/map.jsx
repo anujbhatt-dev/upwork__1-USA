@@ -8,6 +8,7 @@ import Believer from "./believer/believer"
 import Undecided from "./undecided/undecided"
 import NotABeliever from "./not-a-believer/not-a-believer"
 import StageTwoQuery from "./stage-two-query/stage-two-query"
+import MapDiv from "./map-div/map-div"
 
 class Map extends Component {
 
@@ -15,7 +16,8 @@ class Map extends Component {
          s:"",
          show:false,
          stage:1,
-         believer:null
+         believer:null,
+         hover:"Country Name"
         }
 
 
@@ -40,9 +42,9 @@ class Map extends Component {
         this.setState({s:val});
         this.modaltoggleHandler();
     }
-   
+
     hoverHandler=(val)=>{
-   this.setState({hover:val});
+      this.setState({hover:val});
     }
 
 
@@ -53,7 +55,7 @@ class Map extends Component {
         window.addEventListener('hashchange',(event) =>{
          //   console.log(window.location.hash.substring(1));
            // alert(decodeURI(window.location.hash.substring(1)))
-           
+
            if(window.location.hash.charAt(1)!=='#')
            this.selectHandler(decodeURI(window.location.hash.substring(1)));
            else
@@ -93,16 +95,15 @@ class Map extends Component {
                  ]
 
         // let   selected= {this.state.s}
-
+// {this.state.hover}
 
         return (
           <>
 
             <div className="map__wrapper">
-            <div style={{position:"relative"}} id="map">
+            <div id="map">
                 <div className="branding__remove"> </div>
-                {this.state.hover}
-
+                <MapDiv country={this.state.hover}/>
             </div>
             </div>
             <div className="landing__item landing__item--11">
