@@ -13,16 +13,16 @@ var simplemaps_worldmap_mapdata={
   main_settings: {
     //General settings
 		width: "responsive", //or 'responsive'
-    background_color: "#b2ebf2",
+    background_color: "#00BFFF",
     background_transparent: "no",
     popups: "detect",
 
 		//State defaults
-		state_description: "State description",
-    state_color: "#00bcd4",
-    state_hover_color: "cyan",
+		state_description: "",
+    state_color: "#00FF00",
+    state_hover_color: "#006400",
      state_url: "",
-    border_size: .5,
+    border_size: .8,
     border_color: "#ffffff",
     all_states_inactive: "no",
     all_states_zoomable: "no",
@@ -33,7 +33,7 @@ var simplemaps_worldmap_mapdata={
     location_opacity: 0.8,
     location_hover_opacity: 1,
     location_url: "",
-    location_size: 25,
+    location_size: 22,
     location_type: "square",
     location_border_color: "#FFFFFF",
     location_border: 2,
@@ -49,9 +49,9 @@ var simplemaps_worldmap_mapdata={
     hide_labels: "no",
 
 		//Zoom settings
-		manual_zoom: "no",
+		manual_zoom: "yes",
     back_image: "no",
-    arrow_box: "no",
+    arrow_box: "yes",
     navigation_size: "40",
     navigation_color: "#f7f7f7",
     navigation_border_color: "#636363",
@@ -65,10 +65,10 @@ var simplemaps_worldmap_mapdata={
     zoom_time: 0.5,
 
 		//Popup settings
-		popup_color: "white",
+		popup_color: "cyan",
     popup_opacity: 0.9,
     popup_shadow: 1,
-    popup_corners: 5,
+    popup_corners: 0,
     popup_font: "12px/1.5 Verdana, Arial, Helvetica, sans-serif",
     popup_nocss: "no",
 
@@ -546,7 +546,7 @@ var simplemaps_worldmap_mapdata={
       url: "default"
     },
     IN: {
-      name: "India Great",
+      name: "India",
       description: "default",
       color: "default",
       hover_color: "default",

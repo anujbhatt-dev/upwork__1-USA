@@ -12,7 +12,7 @@ toast.configure()
    }
 
    componentDidMount(){
-      
+
       fireDb.child('client').on('value',res=>{
           this.setState({data:res.val()});
           console.log(this.state.data);
@@ -24,7 +24,7 @@ toast.configure()
    deleteHandler=(key)=>{
 
       let client=this.state.data[key];
-      let email=client.email; 
+      let email=client.email;
 alert("delete "+key)
 let newData={... this.state.data};
 delete newData[key];
@@ -33,15 +33,15 @@ this.setState({data:newData})
    }
 
    render(){
-    if(!this.props.adminVerified){
-      window.location.href= "http://localhost:3000/admin"//"https://ancient-woodland-30225.herokuapp.com/admin"
-    }
+    // if(!this.props.adminVerified){
+    //   window.location.href= "http://localhost:3000/admin"//"https://ancient-woodland-30225.herokuapp.com/admin"
+    // }
 
      return (
        <>
           <AdminHeader/>
           <div className="list">
-             <div className="list__h1">Believer List</div>
+             <div className="list__h1">List</div>
              <table className="list__table">
                  <thead className="list__table-head">
                     <tr className="list__table-head-row">
@@ -60,7 +60,7 @@ this.setState({data:newData})
                  <tbody className="list__table-body">
 
                  {this.state.data?Object.keys(this.state.data).map(key=>{
-                    
+
                     let val=this.state.data[key];
 
                     return (

@@ -2,7 +2,9 @@
 // import believer from "../../../../assets/images/believer.jpg"
 // import undecided from "../../../../assets/images/undecided.jpg"
 // import notABeliever from "../../../../assets/images/not-a-believer.jpg"
+import emailjs from 'emailjs-com'
 
+import Recaptcha from "react-recaptcha"
 import fireDb from '../../../../firebase config/firebase-config'
 import axios from "axios"
  class StageTwoQuery extends Component{
@@ -15,7 +17,7 @@ import axios from "axios"
         city:"",
         country:""
       },
-     
+       isVerified:false
     }
 
     componentDidMount(){
@@ -23,47 +25,61 @@ import axios from "axios"
     }
 
     onChangeHandler=(e,identifier)=>{
-      
+
       let newState = {...this.state}
       const name = e.target.name
       const value = e.target.value
-        
+
            newState.client[name]=value;
            this.setState({
              ...newState
            })
-         
+
     }
 
      onSubmitHandler=(e)=>{
       e.preventDefault();
       e.preventDefault();
- 
+
       let client={...this.state.client}
-       client.category= this.props.believer;       
+       client.category= this.props.believer;
        client.date=new Date().toLocaleDateString();
-       
+
        let uri="http://localhost:3000/verified";
 
        Object.keys(client).map(k=>{
                client[k]=`${btoa(client[k])}`;
        })
-      
+
 
 
        // send email verification
-          
-       alert(`mailing  http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}`);
 
-      //  let key=this.state.client.email.replace('.','DOT');     
+       // alert(`mailing  http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}`);
+
+      //  let key=this.state.client.email.replace('.','DOT');
       //  fireDb.child("client/"+key).on('value',res=>{
-        
+
       //     fireDb.child("client").child(key).set(client);
-       
+
       //  })
 
+      // emailjs.send("","","").then(res=>{
+      //   alert("send")
+      // }).catch(err=>{
+      //   alert("failed")
+      // })
 
+    }
 
+    callback=()=>{
+      console.log("loaded");
+    }
+
+    verifyCallback=()=>{
+      this.setState({
+        isVerified:true
+      })
     }
 
    render(){
@@ -86,6 +102,12 @@ import axios from "axios"
          <input value={this.state.client.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
          <input disabled value={this.state.client.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
+         <Recaptcha
+           sitekey="6LesvMEZAAAAAGxm_vMtt_AhG4YHZ0XObuwqhPui"
+           render="explicit"
+           verifyCallback={this.verifyCallback}
+           onloadCallback={this.callback}
+         />
          <button   type="submit" className="form__btn" >Submit</button>
        </form>
        </>:
@@ -97,6 +119,12 @@ import axios from "axios"
          <input value={this.state.client.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
+         <Recaptcha
+           sitekey="6LesvMEZAAAAAGxm_vMtt_AhG4YHZ0XObuwqhPui"
+           render="explicit"
+           verifyCallback={this.verifyCallback}
+           onloadCallback={this.callback}
+         />
          <button type="submit" className="form__btn" onSubmit={this.onSubmitHandler}>Submit</button>
        </form>
        <div className="query__item query__fixer query__non-believer">
@@ -114,6 +142,12 @@ import axios from "axios"
          <input value={this.state.client.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
+         <Recaptcha
+           sitekey="6LesvMEZAAAAAGxm_vMtt_AhG4YHZ0XObuwqhPui"
+           render="explicit"
+           verifyCallback={this.verifyCallback}
+           onloadCallback={this.callback}
+         />  
          <button type="submit" className="form__btn" >Submit</button>
        </form>
        </>:null
