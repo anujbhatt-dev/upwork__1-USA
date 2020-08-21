@@ -17,7 +17,7 @@ class Map extends Component {
          show:false,
          stage:1,
          believer:null,
-         hover:"Country Name"
+         hover:""
         }
 
 
