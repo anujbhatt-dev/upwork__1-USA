@@ -16,7 +16,8 @@ class Map extends Component {
          s:"",
          show:false,
          stage:1,
-         believer:null
+         believer:null,
+         hover:"Country Name"
         }
 
 
@@ -26,7 +27,8 @@ class Map extends Component {
          show:false,
          s:"",
          stage:1,
-         believer:null
+         believer:null,
+         hover:null
        })
        this.props.history.push("/map")
      }else{
@@ -41,13 +43,23 @@ class Map extends Component {
         this.modaltoggleHandler();
     }
 
+    hoverHandler=(val)=>{
+      this.setState({hover:val});
+    }
+
+
+
     componentDidMount(){
         console.log(123);
         this.props.history.push("/map")
         window.addEventListener('hashchange',(event) =>{
-            console.log(window.location.hash.substring(1));
+         //   console.log(window.location.hash.substring(1));
            // alert(decodeURI(window.location.hash.substring(1)))
-              this.selectHandler(decodeURI(window.location.hash.substring(1)));
+
+           if(window.location.hash.charAt(1)!=='#')
+           this.selectHandler(decodeURI(window.location.hash.substring(1)));
+           else
+           this.hoverHandler(decodeURI(window.location.hash.substring(2)));
         }
             );
     }
@@ -83,7 +95,7 @@ class Map extends Component {
                  ]
 
         // let   selected= {this.state.s}
-
+// {this.state.hover}
 
         return (
           <>
@@ -91,7 +103,7 @@ class Map extends Component {
             <div className="map__wrapper">
             <div id="map">
                 <div className="branding__remove"> </div>
-                <MapDiv />
+                <MapDiv country={this.state.hover}/>
             </div>
             </div>
             <div className="landing__item landing__item--11">

@@ -7,7 +7,7 @@
 
      return (
          <div className="map__div">
-             <div className="map__div-country">Country Name</div>
+             <div className="map__div-country">{this.props.country}</div>
                <div className="map__div-believer">
                      <div className="map__div-believer-text">Total Believers</div>
                      <div className="map__div-believer-number">1234562</div>
