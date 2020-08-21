@@ -49,7 +49,9 @@ import axios from "axios"
                client[k]=`${btoa(client[k])}`;
        })
 
-       let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}`;
+       
+
+       let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${code}`;
       
 axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email);
 

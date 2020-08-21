@@ -9,6 +9,8 @@ import Undecided from "./undecided/undecided"
 import NotABeliever from "./not-a-believer/not-a-believer"
 import StageTwoQuery from "./stage-two-query/stage-two-query"
 import MapDiv from "./map-div/map-div"
+import axios from 'axios';
+
 
 class Map extends Component {
 
@@ -17,7 +19,8 @@ class Map extends Component {
          show:false,
          stage:1,
          believer:null,
-         hover:"Country Name"
+         hover:"Country Name",
+         count:null,
         }
 
 
@@ -50,6 +53,13 @@ class Map extends Component {
 
 
     componentDidMount(){
+
+      
+      axios.get("/v1/client/country/count").then(res=>{
+                      this.setState({count:res.data})
+      })
+
+
         console.log(123);
         this.props.history.push("/map")
         window.addEventListener('hashchange',(event) =>{
@@ -103,7 +113,7 @@ class Map extends Component {
             <div className="map__wrapper">
             <div id="map">
                 <div className="branding__remove"> </div>
-                <MapDiv country={this.state.hover}/>
+                <MapDiv count={this.state.count} country={this.state.hover}/>
             </div>
             </div>
             <div className="landing__item landing__item--11">
