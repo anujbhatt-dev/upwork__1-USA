@@ -84,6 +84,9 @@
      color:$color-black;
      opacity: .8;
      transition: all .3s;
+     background: $color-grey-light;
+     &-1{
+     }
      &:hover{
        opacity: 1;
      }
@@ -98,7 +101,7 @@
      }
   }
   &__undecided{
-    background: $color-lightblue;
+    background: $color-white;
      position: absolute;
      z-index: 0;
      bottom: 0;

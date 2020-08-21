@@ -41,7 +41,7 @@ this.setState({data:newData})
        <>
           <AdminHeader/>
           <div className="list">
-             <div className="list__h1">List</div>
+             <div className="list__h1">Do you believe in God?</div>
              <div className="list__wrapper">
              <table className="list__table">
                  <thead className="list__table-head">

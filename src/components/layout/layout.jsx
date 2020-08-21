@@ -7,7 +7,7 @@ import Admin from "./admin/admin"
 import List from "./admin/list/list"
 import {Switch,Route} from "react-router-dom"
 import Verified from "./verified/verified"
-
+import EmailCheck from "./email-check/email-check"
 
 
 document.addEventListener('popstate', function (event) {
@@ -50,7 +50,9 @@ document.addEventListener('popstate', function (event) {
               <Route exact  path="/verified/:email/:firstName/:lastName/:date/:city/:country/:category">
                  <Verified/>
               </Route>
-
+              <Route exact  path="/checkEmail">
+                 <EmailCheck/>
+              </Route>
            </Switch>
         </div>
      )

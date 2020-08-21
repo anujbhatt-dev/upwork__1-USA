@@ -110,7 +110,7 @@ class Map extends Component {
                 <MapDiv code={this.state.code} country={this.state.hover}/>
             </div>
             </div>
-            <div className="landing__item landing__item--11">
+            <div className="landing__item landing__item--11 landing__item--11-1">
                  <div style={{left:"0"}} className="landing__item-text"><i className="quote-left fa fa-quote-left" aria-hidden="true"></i>
                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem at quam repudiandae! Repellendus, neque provident. Laborum in ad consequuntur officia.
                  <i className="quote-left fa fa-quote-right" aria-hidden="true"></i></div>

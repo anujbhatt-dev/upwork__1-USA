@@ -10,11 +10,16 @@
   }
   &__h1{
     font-size: 3rem;
+    font-weight: bold;
     flex-basis: 100%;
     text-align: center;
     padding: 1rem;
   }
   &__table{
+    @include respond(tab-port){
+      max-height: 500vh;
+      overflow: auto;
+    }
     // width: 90%;
     padding: 0 1rem;
     &-head{

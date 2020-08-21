@@ -12,7 +12,7 @@
      padding: 0rem 0rem;
      flex-grow: 1;
   }
-  &__input{
+  &__input,&__captcha{
     height: 4rem;
     width: 60%;
     border: none;
@@ -21,6 +21,7 @@
     font-family: "Roboto", sans-sarif;
     transition: all .5s;
     border-bottom: 1px solid $color-black;
+    margin-bottom: .5rem;
     &:hover,&:active{
        border-bottom: 1px solid $color-primary-blue;
     }
@@ -32,6 +33,7 @@
     }
   }
   &__btn{
+    margin-top: 1rem;
     cursor: pointer;
     height: 4rem;
     // width: 90%;

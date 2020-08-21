@@ -1,12 +1,17 @@
  import React, {Component} from "react"
+ import Recaptcha from "react-recaptcha"
+ import fireDb from '../../../../firebase config/firebase-config'
+ import axios from "axios"
 // import believer from "../../../../assets/images/believer.jpg"
 // import undecided from "../../../../assets/images/undecided.jpg"
 // import notABeliever from "../../../../assets/images/not-a-believer.jpg"
 import emailjs from 'emailjs-com'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { withRouter } from 'react-router-dom';
+toast.configure();
 
-import Recaptcha from "react-recaptcha"
-import fireDb from '../../../../firebase config/firebase-config'
-import axios from "axios"
+
  class StageTwoQuery extends Component{
 
     state={
@@ -54,7 +59,15 @@ import axios from "axios"
 
        let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}`;
 
-axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email);
+        if(this.state.isVerified){
+          axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email)
+          // .then(res=>{
+          //   toast.success("done");
+          // });
+          this.props.history.push("/checkEmail")
+        }else{
+          toast.warning("Complete the form")
+        }
 
        // send email verification
 
@@ -96,7 +109,7 @@ axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email);
      return (
        this.props.believer==="yes"?
        <>
-       <div className="query__item query__fixer query__believer">
+       <div className="query__item query__fixer query__believer query__believer-1">
            <div className="query__item-text query__believer-text">I AM A BELIEVER</div>
        </div>
        <form onSubmit={this.onSubmitHandler} className="form query__item query__fixer query__believer">
@@ -106,6 +119,7 @@ axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email);
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
          <input disabled value={this.state.client.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
          <Recaptcha
+           className="form__captcha"
            sitekey="6LesvMEZAAAAAGxm_vMtt_AhG4YHZ0XObuwqhPui"
            render="explicit"
            verifyCallback={this.verifyCallback}
@@ -123,6 +137,7 @@ axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email);
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <Recaptcha
+           className="form__captcha"
            sitekey="6LesvMEZAAAAAGxm_vMtt_AhG4YHZ0XObuwqhPui"
            render="explicit"
            verifyCallback={this.verifyCallback}
@@ -146,6 +161,7 @@ axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email);
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <Recaptcha
+           className="form__captcha"
            sitekey="6LesvMEZAAAAAGxm_vMtt_AhG4YHZ0XObuwqhPui"
            render="explicit"
            verifyCallback={this.verifyCallback}
@@ -159,4 +175,4 @@ axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email);
  }
 
 
-export default StageTwoQuery;
+export default withRouter(StageTwoQuery);
