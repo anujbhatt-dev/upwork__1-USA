@@ -18,6 +18,7 @@ class Map extends Component {
          believer:null
         }
 
+
     modaltoggleHandler=()=>{
      if(this.state.show){
        this.setState({
@@ -60,19 +61,19 @@ class Map extends Component {
                      </div>:null}
                      {this.state.stage===2?
                          <div className="query query--2">
-                             <StageTwoQuery believer={this.state.believer}/>
+                             <StageTwoQuery country={this.state.s} believer={this.state.believer}/>
                          </div>:
                          null
                        }
                        {this.state.stage===3?
                            <div className="query query--3">
-                               <StageTwoQuery believer={this.state.believer}/>
+                               <StageTwoQuery country={this.state.s} believer={this.state.believer}/>
                            </div>:
                            null
                          }
                          {this.state.stage===4?
                              <div className="query query--4">
-                                 <StageTwoQuery believer={this.state.believer}/>
+                                 <StageTwoQuery country={this.state.s} believer={this.state.believer}/>
                              </div>:
                              null
                            }
