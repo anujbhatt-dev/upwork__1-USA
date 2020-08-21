@@ -1,5 +1,4 @@
  import React, {Component} from "react"
- import * as scroll from "react-scroll"
  import {Link} from "react-scroll"
 
 

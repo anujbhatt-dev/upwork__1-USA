@@ -7,6 +7,8 @@ import Admin from "./admin/admin"
 import List from "./admin/list/list"
 import {Switch,Route} from "react-router-dom"
 
+
+
 document.addEventListener('popstate', function (event) {
   this.alert("changed")}
   );

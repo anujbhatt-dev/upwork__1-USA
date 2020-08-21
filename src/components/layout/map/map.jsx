@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ScripletTag from 'react-script-tag'
-import {Link} from "react-router-dom"
+
+// import {Link} from "react-router-dom"
 import Modal from "../../../UI/modal/modal"
 import Backdrop from "../../../UI/backdrop/backdrop"
 import {withRouter} from "react-router-dom"
