@@ -42,16 +42,25 @@ import axios from "axios"
       let client={...this.state.client}
        client.category= this.props.believer;       
        client.date=new Date().toLocaleDateString();
-       console.log(client);
-       let key=this.state.client.email.replace('.','DOT');
-
-       //axios.post("https://god-s-plan-60b86.firebaseio.com/client.json",{test:"234"}).then(d=>alert(d)).catch(er=>alert("23"+er));
-     
-       fireDb.child("client/"+key).on('value',res=>{
-        
-          fireDb.child("client").child(key).set(client);
        
+       let uri="http://localhost:3000/verified";
+
+       Object.keys(client).map(k=>{
+               client[k]=`${btoa(client[k])}`;
        })
+      
+
+
+       // send email verification
+          
+       alert(`mailing  http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}`);
+
+      //  let key=this.state.client.email.replace('.','DOT');     
+      //  fireDb.child("client/"+key).on('value',res=>{
+        
+      //     fireDb.child("client").child(key).set(client);
+       
+      //  })
 
 
 
