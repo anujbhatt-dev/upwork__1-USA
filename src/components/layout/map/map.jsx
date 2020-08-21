@@ -17,6 +17,7 @@ class Map extends Component {
          believer:null
         }
 
+
     modaltoggleHandler=()=>{
      if(this.state.show){
        this.setState({
