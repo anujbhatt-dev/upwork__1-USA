@@ -23,7 +23,6 @@ class Admin extends Component{
    onSubmitHandler=(e)=>{
      if(this.state.adminId==="adminid" && this.state.adminSecret==="123"){
        this.props.verify();
-       toast.success("VERIFIED");
        this.props.history.push("/admin/list")
      }else{
        toast.error("INVALID CREDENTIALS")

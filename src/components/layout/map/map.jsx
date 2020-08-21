@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 // import {Link} from "react-router-dom"
 import Modal from "../../../UI/modal/modal"
 import Backdrop from "../../../UI/backdrop/backdrop"
@@ -19,8 +18,10 @@ class Map extends Component {
          show:false,
          stage:1,
          believer:null,
-         hover:"Country Name",
+
          count:null,
+         hover:"",
+         code:""
         }
 
 
@@ -66,10 +67,14 @@ class Map extends Component {
          //   console.log(window.location.hash.substring(1));
            // alert(decodeURI(window.location.hash.substring(1)))
 
+        let code=window.location.hash.substring(window.location.hash.indexOf('#',2)+1);
+           this.setState({
+             code:code
+           })
            if(window.location.hash.charAt(1)!=='#')
-           this.selectHandler(decodeURI(window.location.hash.substring(1)));
+           this.selectHandler(decodeURI(window.location.hash.substring(1,window.location.hash.indexOf('#',2))));
            else
-           this.hoverHandler(decodeURI(window.location.hash.substring(2)));
+           this.hoverHandler(decodeURI(window.location.hash.substring(2,window.location.hash.indexOf('#',2))));
         }
             );
     }
@@ -84,19 +89,19 @@ class Map extends Component {
                      </div>:null}
                      {this.state.stage===2?
                          <div className="query query--2">
-                             <StageTwoQuery country={this.state.s} believer={this.state.believer}/>
+                             <StageTwoQuery code={this.state.code} country={this.state.s} believer={this.state.believer}/>
                          </div>:
                          null
                        }
                        {this.state.stage===3?
                            <div className="query query--3">
-                               <StageTwoQuery country={this.state.s} believer={this.state.believer}/>
+                               <StageTwoQuery code={this.state.code} country={this.state.s} believer={this.state.believer}/>
                            </div>:
                            null
                          }
                          {this.state.stage===4?
                              <div className="query query--4">
-                                 <StageTwoQuery country={this.state.s} believer={this.state.believer}/>
+                                 <StageTwoQuery code={this.state.code} country={this.state.s} believer={this.state.believer}/>
                              </div>:
                              null
                            }
@@ -113,7 +118,10 @@ class Map extends Component {
             <div className="map__wrapper">
             <div id="map">
                 <div className="branding__remove"> </div>
-                <MapDiv count={this.state.count} country={this.state.hover}/>
+
+
+                <MapDiv count={this.state.count} code={this.state.code} country={this.state.hover}/>
+
             </div>
             </div>
             <div className="landing__item landing__item--11">

@@ -1,4 +1,7 @@
  import React, {Component} from "react"
+ import Aos from "aos"
+ import "aos/dist/aos.css"
+import Flag from "react-world-flags"
 
 
  class MapDiv extends Component{
@@ -13,7 +16,7 @@
 
 
   componentDidMount(){
-    
+    Aos.init({duration:500,delay:100})
     let f=0;
 
     let b=0,nb=0;
@@ -35,7 +38,7 @@
 
 
 componentDidUpdate(prevProps, prevState){
-
+  Aos.init({duration:500,delay:100})
   if(prevProps.country===this.props.country)
   return ;
 
@@ -68,8 +71,11 @@ componentDidUpdate(prevProps, prevState){
    render(){
 
      return (
-         <div className="map__div">
-             <div className="map__div-country">{this.props.country}</div>
+         this.props.country?<div data-aos="fade-right" className="map__div">
+             <div className="map__div-country"><div>{this.props.country}</div>
+                 <Flag height="26" code={this.props.code}/>
+             </div>
+
                <div className="map__div-believer">
                      <div className="map__div-believer-text">Total Believers</div>
      <div className="map__div-believer-number">{this.state.b}</div>
@@ -78,8 +84,7 @@ componentDidUpdate(prevProps, prevState){
                      <div className="map__div-nonBeliever-text">Total Non Believers</div>
                      <div className="map__div-nonBeliever-number">{this.state.nb}</div>
                </div>
-
-         </div>
+         </div>: null
      )
    }
  }
