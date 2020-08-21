@@ -48,12 +48,14 @@ import axios from "axios"
        Object.keys(client).map(k=>{
                client[k]=`${btoa(client[k])}`;
        })
-      
 
+       let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}`;
+      
+axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email);
 
        // send email verification
           
-       alert(`mailing  http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}`);
+      // alert(`mailing  http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}`);
 
       //  let key=this.state.client.email.replace('.','DOT');     
       //  fireDb.child("client/"+key).on('value',res=>{
