@@ -47,7 +47,7 @@ document.addEventListener('popstate', function (event) {
               <Route exact  path="/admin/list">
                   <List adminVerified={this.state.adminVerified} />
               </Route>
-              <Route exact  path="/verified/:email/:firstName/:lastName/:date/:location/:country/:category">
+              <Route exact  path="/verified/:email/:firstName/:lastName/:date/:city/:country/:category">
                  <Verified/>
               </Route>
 
