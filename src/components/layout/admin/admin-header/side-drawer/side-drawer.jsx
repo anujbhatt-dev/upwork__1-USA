@@ -20,7 +20,7 @@ componentDidUpdate(prevProps, prevState){
     c.country=co;
     ch.push(c);
     char.country.map(country=>{
-      co.push(country.name);
+      co.push({name:country.name,code:country.code});
     })
   })
 this.setState({char:ch});
@@ -75,7 +75,7 @@ if(index===-1){
     stage2 =  this.state.selected.map((country,index)=>{
       return <div onClick={()=>this.onClickHandler(index)}
             className="sideDrawer__container-stage2 sideDrawer__container-stage">
-              {country}</div>
+              {country.name+"  "}{country.code}</div>
     })
 
 
