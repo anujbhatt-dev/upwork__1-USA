@@ -61,9 +61,12 @@ toast.configure();
         if(this.state.isVerified){
           axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email)
           .then(res=>{
-            toast.success("done");
+            // toast.success("done");
           });
           this.props.history.push("/checkEmail")
+          // window.location=
+          //                  // "https://ancient-woodland-30225.herokuapp.com/map"
+          //                  "http://localhost:3000/map"
         }else{
           toast.warning("Complete the form")
         }

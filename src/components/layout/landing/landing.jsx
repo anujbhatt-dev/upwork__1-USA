@@ -72,8 +72,8 @@ import "aos/dist/aos.css"
                       <span data-aos="fade-down" data-aos-delay={1500} className="landing__item-text-span2">DO YOU BELEIVE IN GOD ?</span>
                   </div>
                   <button data-aos="fade-up"  data-aos-delay={3000} onClick={()=>{window.location=
-                                   // "https://ancient-woodland-30225.herokuapp.com/map"
-                                   "http://localhost:3000/map"
+                                   "https://ancient-woodland-30225.herokuapp.com/map"
+                                   // "http://localhost:3000/map"
                               }} className="landing__item-button">Decide Here</button>
               </div>
           </div>

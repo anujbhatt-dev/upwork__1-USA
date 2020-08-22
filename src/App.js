@@ -2,7 +2,6 @@ import React from 'react';
 import './App.scss';
 import ErrorBoundary from "./error-boundary/error-boundary"
 import Layout from "./components/layout/layout"
-import axios from 'axios';
 
 // import ScriptTag from 'react-script-tag';
 // const Demo = props => (
@@ -14,8 +13,8 @@ import axios from 'axios';
 
 class App extends React.Component {
 
- 
-  
+
+
 
   render(){
     // <Demo/>

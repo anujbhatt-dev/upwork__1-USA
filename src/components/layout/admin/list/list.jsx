@@ -159,7 +159,7 @@ this.setState({data:data,modifiedData:data});
                     <td  className="list__table-head-row-cell">Email</td>
                     <td  className="list__table-head-row-cell">City</td>
                     <td  className="list__table-head-row-cell">Added On</td>
-                    <td  className="list__table-head-row-cell"></td>
+                    <td  className="list__table-head-row-cell list__table-body-row-cell--delete"></td>
                 </tr>
              </thead>
              <tbody className="list__table-body">
@@ -168,7 +168,7 @@ this.setState({data:data,modifiedData:data});
                  <tr className="list__table-body-row">
                    <td  className="list__table-body-row-cell">{client.firstName}</td>
                     <td  className="list__table-body-row-cell">{client.lastName}</td>
-                    <td  className="list__table-body-row-cell">{client.email}</td>
+                    <td  className="list__table-body-row-cell list__table-body-row-cell--email">{client.email}</td>
                     <td  className="list__table-body-row-cell">{client.city}</td>
                     <td  className="list__table-body-row-cell">{client.createdOn}</td>
                     <td onClick={()=>this.deleteHandler(chari,countryi,"yes",clienti)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
@@ -183,10 +183,10 @@ this.setState({data:data,modifiedData:data});
                     <tr className="list__table-head-row">
                     <td  className="list__table-head-row-cell">First Name</td>
                     <td  className="list__table-head-row-cell">Last Name</td>
-                    <td  className="list__table-head-row-cell">Email</td>
+                    <td  className="list__table-head-row-cell list__table-body-row-cell--email">Email</td>
                     <td  className="list__table-head-row-cell">City</td>
                    <td  className="list__table-head-row-cell">Added On</td>
-                   <td  className="list__table-head-row-cell"></td>
+                   <td  className="list__table-head-row-cell list__table-body-row-cell--delete"></td>
                 </tr>
               </thead>
              <tbody className="list__table-body">
@@ -194,7 +194,7 @@ this.setState({data:data,modifiedData:data});
                   <tr className="list__table-body-row">
                   <td  className="list__table-body-row-cell">{client.firstName}</td>
                     <td  className="list__table-body-row-cell">{client.lastName}</td>
-                    <td  className="list__table-body-row-cell">{client.email}</td>
+                    <td  className="list__table-body-row-cell list__table-body-row-cell--email">{client.email}</td>
                     <td  className="list__table-body-row-cell">{client.city}</td>
                     <td  className="list__table-body-row-cell">{client.createdOn}</td>
                     <td onClick={()=>this.deleteHandler(chari,countryi,"no",clienti)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
@@ -209,10 +209,10 @@ this.setState({data:data,modifiedData:data});
                 <tr className="list__table-head-row">
                     <td  className="list__table-head-row-cell">First Name</td>
                     <td  className="list__table-head-row-cell">Last Name</td>
-                    <td  className="list__table-head-row-cell">Email</td>
+                    <td  className="list__table-head-row-cell list__table-body-row-cell--email">Email</td>
                     <td  className="list__table-head-row-cell">City</td>
                     <td  className="list__table-head-row-cell">Added On</td>
-                    <td  className="list__table-head-row-cell"></td>
+                    <td  className="list__table-head-row-cell list__table-body-row-cell--delete"></td>
                 </tr>
              </thead>
              <tbody className="list__table-body">
@@ -221,7 +221,7 @@ this.setState({data:data,modifiedData:data});
                  <tr className="list__table-body-row">
                    <td  className="list__table-body-row-cell">{client.firstName}</td>
                     <td  className="list__table-body-row-cell">{client.lastName}</td>
-                    <td  className="list__table-body-row-cell">{client.email}</td>
+                    <td  className="list__table-body-row-cell list__table-body-row-cell--email">{client.email}</td>
                     <td  className="list__table-body-row-cell">{client.city}</td>
                     <td  className="list__table-body-row-cell">{client.createdOn}</td>
                     <td onClick={()=>this.deleteHandler(chari,countryi,"notDecided",clienti)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
