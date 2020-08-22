@@ -5,12 +5,11 @@
 // import believer from "../../../../assets/images/believer.jpg"
 // import undecided from "../../../../assets/images/undecided.jpg"
 // import notABeliever from "../../../../assets/images/not-a-believer.jpg"
-import emailjs from 'emailjs-com'
+
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
 toast.configure();
-
 
  class StageTwoQuery extends Component{
 
@@ -57,8 +56,9 @@ toast.configure();
        })
 
 
-       let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}`;
 
+       let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${this.props.code}`;
+       alert(url);
         if(this.state.isVerified){
           axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email)
           // .then(res=>{

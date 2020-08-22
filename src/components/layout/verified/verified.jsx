@@ -14,6 +14,7 @@ import axios from 'axios';
      var city = atob(this.props.match.params.city);
      var country = atob(this.props.match.params.country);
      var category = atob(this.props.match.params.category);
+     var  code=this.props.match.params.code;
 
      let client={
          email:email,
@@ -23,6 +24,7 @@ import axios from 'axios';
          city:city,
          country:country,
          category:category,
+         code:code,
      }
 
 

@@ -7,12 +7,65 @@ import Flag from "react-world-flags"
  class MapDiv extends Component{
 
 
-   componentDidMount=()=>{
-    Aos.init({duration:500,delay:100})
+  state={
+    b:0,
+    nb:0
   }
-  componentDidUpdate=()=>{
+
+
+
+
+  componentDidMount(){
     Aos.init({duration:500,delay:100})
-  }
+    let f=0;
+
+    let b=0,nb=0;
+    
+    if(this.props.count)
+   this.props.count.map(data=>{
+     console.log(data);
+         if(f===2)
+         return ;
+              if(data[1]===this.props.country){
+                if(data[2]==="yes")
+                  b=data[0];
+                 else
+                 nb=data[0];
+                 f++; 
+              }
+       })
+}
+
+
+componentDidUpdate(prevProps, prevState){
+  Aos.init({duration:500,delay:100})
+  if(prevProps.country===this.props.country)
+  return ;
+
+  let f=0;
+
+    let b=0,nb=0;
+    
+    if(this.props.count)
+   this.props.count.map(data=>{
+     console.log(data);
+         if(f===2)
+         return ;
+              if(data[1]===this.props.country){
+                if(data[2]==="yes")
+                  b=data[0];
+                 else
+                 nb=data[0];
+                 f++; 
+              }
+       })
+
+       this.setState({
+         b:b,
+         nb:nb
+       })
+}
+  
 
 
    render(){
@@ -24,12 +77,12 @@ import Flag from "react-world-flags"
              </div>
 
                <div className="map__div-believer">
-                     <div className="map__div-believer-number">1234562</div>
-                     <div className="map__div-believer-text">believers</div>
+                     <div className="map__div-believer-text">Total Believers</div>
+     <div className="map__div-believer-number">{this.state.b}</div>
                </div>
                <div className="map__div-nonBeliever">
-               <div className="map__div-nonBeliever-number">432104</div>
-                     <div className="map__div-nonBeliever-text">non believers</div>
+                     <div className="map__div-nonBeliever-text">Total Non Believers</div>
+                     <div className="map__div-nonBeliever-number">{this.state.nb}</div>
                </div>
          </div>: null
      )
