@@ -10,6 +10,7 @@ toast.configure()
    state={
       data:[],
       actualData:[],
+      modifiedData:[],
    }
 
    currentIndex=null;
@@ -61,10 +62,26 @@ toast.configure()
       }
 
     console.log(data);
-this.setState({data:data});
+this.setState({data:data,modifiedData:data});
    })
 
       }
+
+
+      selectHandler=(charIndex,countryIndex)=>{
+           // alert(charIndex+"- "+countryIndex)
+         let data=[];
+         let char={value:this.state.modifiedData[charIndex].value.charAt(0),country:[]};
+         let country={name:this.state.modifiedData[charIndex].country[countryIndex].name};
+         let clients=this.state.modifiedData[charIndex].country[countryIndex].clients
+         country.clients=clients;
+         char.country.push(country);
+         data.push(char);
+         console.log(data);
+         this.setState({data:data});
+      }
+
+
 
    deleteHandler=(chari, countryi,category,clienti)=>{
 
@@ -94,7 +111,7 @@ this.setState({data:data});
 
     let perCountry=
       <>
-      <AdminHeader/>
+      <AdminHeader  selectHandler={this.selectHandler}  data={this.state.modifiedData}/>
       <div className="list">
          <div className="list__h1">List</div>
  
