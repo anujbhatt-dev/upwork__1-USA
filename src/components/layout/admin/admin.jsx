@@ -2,6 +2,7 @@
 import {withRouter} from "react-router-dom"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 toast.configure()
 
 
@@ -9,7 +10,7 @@ class Admin extends Component{
 
    state={
      adminId:"",
-     adminSecret:""
+     adminSecret:"",
    }
 
    onChangeHandler=(e)=>{
@@ -21,13 +22,16 @@ class Admin extends Component{
    }
 
    onSubmitHandler=(e)=>{
-     if(this.state.adminId==="adminid" && this.state.adminSecret==="123"){
-       this.props.verify();
-       this.props.history.push("/admin/list")
-     }else{
-       toast.error("INVALID CREDENTIALS")
-     }
-     e.preventDefault();
+    e.preventDefault();
+
+     axios.post("/v1/admin/authenticate",{adminId:this.state.adminId,adminSecret:this.state.adminSecret}).
+        then(res=>{
+                    toast.info("verified");
+                   // console.log(this.props.history);
+                    this.props.history.push("/admin/list")}).
+        catch(err=>
+       toast.error("invalid credentials")
+        )
    }
 
 

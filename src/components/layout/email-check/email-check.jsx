@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
-import fireDb from '../../../firebase config/firebase-config'
-import axios from 'axios';
 
 
  class EmailCheck extends Component {
