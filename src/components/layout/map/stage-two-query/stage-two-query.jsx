@@ -58,9 +58,9 @@ toast.configure();
 
 
        let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${this.props.code}`;
-       alert(url);
+       console.log(url);
         if(this.state.isVerified){
-          axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email)
+          //axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email)
           // .then(res=>{
           //   toast.success("done");
           // });

@@ -1,46 +1,107 @@
 .list{
-    position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 0 2rem;
+  margin-bottom: 5rem;
+  &__char{
+    flex-basis: 100%;
+    font-size: 4rem;
+    background: rgba($color-grey-light,1);
+    padding-left: 2rem;
+    position: sticky;
+    z-index: 1;
+    // backface-visibility:hidden;
+    top:8.1rem;
+    &:not(:first-of-type){
+      margin-top: 2rem;
+    }
+  }
+  &__country{
+    font-size: 3rem;
+    flex-basis: 100%;
+    &:not(:first-of-type){
+      margin-top: 1rem;
+    }
+  }
+  &__wrapper{
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
-    padding: 0 5rem;
-    &__char{
-      flex-basis: 100%;
-      font-size: 5rem;
+    padding: 0 2rem;
+    overflow-y: auto;
+    max-height: 200vh;
+    @include respond(tab-port){
+      justify-content: center;
     }
-    &__country{
-      flex-basis: 100%;
-      font-size: 3rem;
-    }
-    &__category{
-       display: flex;
-       flex-wrap: wrap;
-       text-align: center;
-       flex-basis: 30%;
-       &--believer{
-         margin-left: 3%;
-       }
-       &--notABeliever{
-         margin: 0 2%;
-       }
-       &--undecided{
-         margin-left: 3%;
-       }
-      &-head{
-        flex-basis: 100%;
-        font-size:1.8rem;
-        font-weight: bolder;
+  }
+  &__h1{
+    font-size: 4rem;
+    font-weight: bolder;
+    flex-basis: 100%;
+    text-align: center;
+    padding: 1rem;
+  }
+  &__table{
+    height: 1rem;
+    overflow-y: auto;
+    // border: 1px solid $color-black;
+    // width: 90%;
+    border-collapse:collapse;
+    // margin: 0 4rem;
+    &-head{
+
+      font-size: 1rem;
+      font-weight: bolder;
+      &-row{
+        &-head{
+          text-align: center;
+          font-size: 2rem;
+          font-weight: bolder;
+          background: $color-black;
+          color: $color-white;
+          letter-spacing: 2px;
+        }
+        &-cell{
+          // width: 5rem;
+
+          border: 1px solid $color-black;
+          padding: 1.5rem 1rem;
+
+        }
       }
-      &-division{
-        flex-grow: 1;
-        font-size: 1.5rem;
-        font-weight: bold;
-        // width: 10rem;
-        text-align: center;
+    }
+    &-body{
+      font-size: 1rem;
+      font-weight: ligher;
+      &-row{
+
+        &-cell{
+          // width: 5rem;
+
+          border: 1px solid $color-black;
+          max-width: 16rem;
+          overflow-x: auto;
+          padding: .5rem 1rem;
+
+          &--delete{
+            color:$color-red;
+            cursor: pointer;
+          }
+        }
       }
     }
+  }
 }
 
 
+.charBox{
+  margin-bottom: 2rem;
+}
+.countryBox{
+   margin-bottom: 1rem;
+}
 
 
 
