@@ -58,12 +58,20 @@ if(index===-1){
    render(){
      let stage1 = null
      let stage2 = null
-    stage1 =  this.state.char.map((char,index)=>{
-      return <div onClick={()=>this.stageHandler(index)}
+    stage1 =<>
+       <div onClick={()=>{this.props.selectHandler(-1,-1);this.props.clicked();}}
+       className="sideDrawer__container-stage1 sideDrawer__container-stage">
+         ALL
+         <i className="fa fa-angle-right" aria-hidden="true"></i></div>
+          
+          {this.state.char.map((char,index)=>{
+              return  <div onClick={()=>this.stageHandler(index)}
              className="sideDrawer__container-stage1 sideDrawer__container-stage">
                 {char.value} 
                 <i className="fa fa-angle-right" aria-hidden="true"></i></div>
-    })
+                })}</>
+
+
     stage2 =  this.state.selected.map((country,index)=>{
       return <div onClick={()=>this.onClickHandler(index)}
             className="sideDrawer__container-stage2 sideDrawer__container-stage">

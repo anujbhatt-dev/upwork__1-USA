@@ -70,7 +70,14 @@ this.setState({data:data,modifiedData:data});
 
       selectHandler=(charIndex,countryIndex)=>{
            // alert(charIndex+"- "+countryIndex)
-         let data=[];
+        if(countryIndex===-1){
+           let data=[... this.state.modifiedData]
+           console.log(data);
+         this.setState({data:data});
+         return ;
+        }
+
+        let data=[];
          let char={value:this.state.modifiedData[charIndex].value.charAt(0),country:[]};
          let country={name:this.state.modifiedData[charIndex].country[countryIndex].name};
          let clients=this.state.modifiedData[charIndex].country[countryIndex].clients
@@ -109,7 +116,10 @@ this.setState({data:data,modifiedData:data});
     //   window.location.href= "http://localhost:3000/admin"//"https://ancient-woodland-30225.herokuapp.com/admin"
     // }
 
-    let perCountry=
+    let perCountry=null;
+
+    if(this.state.data)
+     perCountry=
       <>
       <AdminHeader  selectHandler={this.selectHandler}  data={this.state.modifiedData}/>
       <div className="list">
