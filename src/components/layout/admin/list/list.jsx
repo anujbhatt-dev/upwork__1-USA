@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 import Flag from "react-world-flags"
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import LayoutContext from "../../../layoutcontext";
+
 toast.configure()
 
 
@@ -15,6 +17,8 @@ toast.configure()
       modifiedData:[],
    }
 
+   static contextType=LayoutContext;
+
    currentIndex=null;
    currentChar=null;
    currentCountry=null;
@@ -22,6 +26,7 @@ toast.configure()
    componentDidMount(){
 
       axios.get("/v1/admin/data").then(res=>{
+        console.log(res)
            this.setState({actualData:res.data});
 
 
@@ -68,7 +73,7 @@ toast.configure()
 
     console.log(data);
 this.setState({data:data,modifiedData:data});
-   })
+   }).catch(err=>{alert("error")})
 
       }
 
@@ -110,20 +115,19 @@ this.setState({data:data,modifiedData:data});
          cat=country.clients.no;
        else
          cat=country.clients.notDecided;
-
-       cat.splice(clienti,1);
-       console.log(cat[clienti].email);
-       axios.delete("/v1/admin/client",{params:{email:cat[clienti].email}}).then(res=>{this.setState({data:data});
+       //console.log(category+"  "+cat+"   "+clienti+"   "+chari+"   "+countryi);
+       axios.delete("/v1/admin/client",{params:{email:cat[clienti].email}}).then(res=>{       cat.splice(clienti,1);
+;         this.setState({data:data});
               })
 
    }
 
 
    render(){
-     console.log(this.state.data);
-    // if(!this.props.adminVerified){
-    //   window.location.href= "http://localhost:3000/admin"//"https://ancient-woodland-30225.herokuapp.com/admin"
-    // }
+   //   console.log(this.state.data);
+    if(!this.context.authenticated){
+      window.location.href= "http://localhost:3000/admin"//"https://ancient-woodland-30225.herokuapp.com/admin"
+    }
 
     let perCountry=null;
 

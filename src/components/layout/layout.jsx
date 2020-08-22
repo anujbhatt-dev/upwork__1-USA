@@ -8,6 +8,8 @@ import List from "./admin/list/list"
 import {Switch,Route} from "react-router-dom"
 import Verified from "./verified/verified"
 import EmailCheck from "./email-check/email-check"
+import LayoutContext from "../layoutcontext"
+import axios from "axios"
 
 
 document.addEventListener('popstate', function (event) {
@@ -17,18 +19,28 @@ document.addEventListener('popstate', function (event) {
  class Layout extends Component{
 
     state={
-      adminVerified:false
+      authenticated:false,
+    }
+  
+    componentDidMount=()=>{
+      axios.interceptors.response.use(response =>{
+        let authorization=response.headers.authorization;
+      //  console.log
+        if(authorization){
+           console.log("Auth")
+        axios.defaults.headers.common['authorization'] = authorization;
+      this.setState({authenticated:true});
+         }
+         return response;
+      } )
     }
 
-    verificationHandler=()=>{
-      this.setState({
-        adminVerified:true
-      })
-    }
 
    render(){
 
      return (
+
+      <LayoutContext.Provider value={{authenticated:this.state.authenticated}}>
         <div className="Layout">
            <Switch>
               <Route exact path="/">
@@ -42,7 +54,7 @@ document.addEventListener('popstate', function (event) {
               </Route>
               <Route exact  path="/admin">
                   <Header />
-                  <Admin verify={this.verificationHandler}/>
+                  <Admin/>
               </Route>
               <Route exact  path="/admin/list">
                   <List adminVerified={this.state.adminVerified} />
@@ -55,6 +67,7 @@ document.addEventListener('popstate', function (event) {
               </Route>
            </Switch>
         </div>
+        </LayoutContext.Provider>
      )
    }
  }

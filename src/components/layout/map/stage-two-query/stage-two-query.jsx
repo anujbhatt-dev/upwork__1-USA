@@ -1,7 +1,5 @@
  import React, {Component} from "react"
  import Recaptcha from "react-recaptcha"
- import fireDb from '../../../../firebase config/firebase-config'
- import axios from "axios"
 // import believer from "../../../../assets/images/believer.jpg"
 // import undecided from "../../../../assets/images/undecided.jpg"
 // import notABeliever from "../../../../assets/images/not-a-believer.jpg"
@@ -9,6 +7,7 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
+import axios from "axios";
 toast.configure();
 
  class StageTwoQuery extends Component{
@@ -60,10 +59,10 @@ toast.configure();
        let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${this.props.code}`;
        console.log(url);
         if(this.state.isVerified){
-          //axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email)
-          // .then(res=>{
-          //   toast.success("done");
-          // });
+          axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email)
+          .then(res=>{
+            toast.success("done");
+          });
           this.props.history.push("/checkEmail")
         }else{
           toast.warning("Complete the form")
