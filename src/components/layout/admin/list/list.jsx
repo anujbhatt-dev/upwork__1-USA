@@ -115,10 +115,9 @@ this.setState({data:data,modifiedData:data});
          cat=country.clients.no;
        else
          cat=country.clients.notDecided;
-
-       cat.splice(clienti,1);
-       console.log(cat[clienti].email);
-       axios.delete("/v1/admin/client",{params:{email:cat[clienti].email}}).then(res=>{this.setState({data:data});
+       //console.log(category+"  "+cat+"   "+clienti+"   "+chari+"   "+countryi);
+       axios.delete("/v1/admin/client",{params:{email:cat[clienti].email}}).then(res=>{       cat.splice(clienti,1);
+;         this.setState({data:data});
               })
 
    }

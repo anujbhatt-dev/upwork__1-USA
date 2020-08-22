@@ -7,6 +7,7 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
+import axios from "axios";
 toast.configure();
 
  class StageTwoQuery extends Component{
