@@ -29,7 +29,7 @@ import AdminBackdrop from "./admin-backdrop/admin-backdrop"
             <div><i onClick={this.sideDrawerToggleHandler} className="fa fa-bars adminHeader__menuIcon" aria-hidden="true"></i>
            <Link to="/" className="logo adminHeader__logo">logo</Link>
            <AdminBackdrop show={this.state.open} clicked={this.sideDrawerToggleHandler}/>
-           <SideDrawer clicked={this.sideDrawerToggleHandler} toggler={this.state.open?"sideDrawer__open":"sideDrawer__close"}/>
+           <SideDrawer selectHandler={this.props.selectHandler} data={this.props.data} clicked={this.sideDrawerToggleHandler} toggler={this.state.open?"sideDrawer__open":"sideDrawer__close"}/>
            </div>
            <div className="socialMedia">
                <div className="instagram"> <a rel="noopener noreferrer" target="_blank" href="https://www.google.com">{""}<i className="fa fa-instagram" aria-hidden="true"></i></a> </div>
