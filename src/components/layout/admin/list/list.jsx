@@ -2,7 +2,6 @@ import React, {Component} from "react"
 import AdminHeader from "../admin-header/admin-header"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import fireDb from '../../../../firebase config/firebase-config'
 import axios from "axios";
 toast.configure()
 
@@ -67,15 +66,24 @@ this.setState({data:data});
 
       }
 
-   deleteHandler=(key)=>{
+   deleteHandler=(chari, countryi,category,clienti)=>{
 
-      let client=this.state.data[key];
-      let email=client.email;
-alert("delete "+key)
-let newData={... this.state.data};
-delete newData[key];
-this.setState({data:newData})
-      fireDb.child(`client/${key}`).remove(res=>toast.info(`removed ${email}`));
+      let data=[... this.state.data];
+      let char=data[chari];
+      console.log(char.value);
+       let country=char.country[countryi];
+       console.log(country.name);
+       let cat;
+       if(category==="yes")
+         cat=country.clients.yes;
+       else if(category==="no")
+         cat=country.clients.no;
+       else
+         cat=country.clients.notDecided;
+
+       console.log(cat);
+       cat.splice(clienti,1);
+       this.setState({data:data});
    }
 
   
@@ -90,12 +98,12 @@ this.setState({data:newData})
       <div className="list">
          <div className="list__h1">List</div>
  
-          {this.state.data.map(char=>
+          {this.state.data.map((char,chari)=>
           <>
           <h1>{char.value}</h1>
           <div className="list__wrapper">
         
-        {char.country.map(country=>
+        {char.country.map((country,countryi)=>
         <>
         <h2>{country.name}</h2>
          <table className="list__table">
@@ -112,14 +120,14 @@ this.setState({data:newData})
              </thead>
              <tbody className="list__table-body">
                
-               {country.clients.yes.map(client=>
+               {country.clients.yes.map((client,clienti)=>
                  <tr className="list__table-body-row">
                    <td  className="list__table-body-row-cell">{client.firstName}</td>
                     <td  className="list__table-body-row-cell">{client.lastName}</td>
                     <td  className="list__table-body-row-cell">{client.email}</td>
                     <td  className="list__table-body-row-cell">{client.city}</td>
                     <td  className="list__table-body-row-cell">{client.date}</td>
-                    <td onClick={()=>this.deleteHandler(1)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
+                    <td onClick={()=>this.deleteHandler(chari,countryi,"yes",clienti)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
                 </tr>
                 )}
 
@@ -138,14 +146,14 @@ this.setState({data:newData})
                 </tr>
               </thead>
              <tbody className="list__table-body">
-             {country.clients.no.map(client=>
+             {country.clients.no.map((client,clienti)=>
                   <tr className="list__table-body-row">
                   <td  className="list__table-body-row-cell">{client.firstName}</td>
                     <td  className="list__table-body-row-cell">{client.lastName}</td>
                     <td  className="list__table-body-row-cell">{client.email}</td>
                     <td  className="list__table-body-row-cell">{client.city}</td>
                     <td  className="list__table-body-row-cell">{client.date}</td>
-                    <td onClick={()=>this.deleteHandler(1)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
+                    <td onClick={()=>this.deleteHandler(chari,countryi,"no",clienti)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
                 </tr>
              )}
   
@@ -165,14 +173,14 @@ this.setState({data:newData})
              </thead>
              <tbody className="list__table-body">
                 
-             {country.clients.no.map(client=>
+             {country.clients.notDecided.map((client,clienti)=>
                  <tr className="list__table-body-row">
                    <td  className="list__table-body-row-cell">{client.firstName}</td>
                     <td  className="list__table-body-row-cell">{client.lastName}</td>
                     <td  className="list__table-body-row-cell">{client.email}</td>
                     <td  className="list__table-body-row-cell">{client.city}</td>
                     <td  className="list__table-body-row-cell">{client.date}</td>
-                    <td onClick={()=>this.deleteHandler(1)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
+                    <td onClick={()=>this.deleteHandler(chari,countryi,"notDecided",clienti)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
                 </tr>
              )}
 
