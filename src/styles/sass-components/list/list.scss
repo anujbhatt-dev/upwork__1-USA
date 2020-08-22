@@ -19,11 +19,17 @@
     }
   }
   &__country{
-    font-size: 3rem;
+    font-size: 2.3rem;
     flex-basis: 100%;
     display: flex;
+    align-items: center;
+    padding: 1rem 0rem;
+    // justify-content: center;
+    & div{
+      padding: 0 1rem;
+    }
     &:not(:first-of-type){
-      margin-top: 1rem;
+      // margin-top: 5rem;
     }
   }
   &__wrapper{
@@ -109,7 +115,10 @@ user-select: text; /* Standard */
    margin-bottom: 1rem;
 }
 
-
+hr{
+  flex-basis: 100%;
+  margin: 2.5rem 0;
+}
 
 
 

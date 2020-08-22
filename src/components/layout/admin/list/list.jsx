@@ -40,6 +40,7 @@ toast.configure()
           while(count<actualData.length && actualData[count].country.charAt(0)===char.value){
              let country={
                 name:'',
+                code:'',
                 clients:{
                    yes:[],
                    no:[],
@@ -48,6 +49,8 @@ toast.configure()
              }
              char.country.push(country);
              country.name=actualData[count].country;
+             country.code=actualData[count].code;
+
               while(count<actualData.length && actualData[count].country===country.name){
                   let client={... actualData[count]};
                   if(client.category==="yes")
@@ -81,7 +84,8 @@ this.setState({data:data,modifiedData:data});
 
         let data=[];
          let char={value:this.state.modifiedData[charIndex].value.charAt(0),country:[]};
-         let country={name:this.state.modifiedData[charIndex].country[countryIndex].name};
+         let country={name:this.state.modifiedData[charIndex].country[countryIndex].name,
+                      code:this.state.modifiedData[charIndex].country[countryIndex].code};
          let clients=this.state.modifiedData[charIndex].country[countryIndex].clients
          country.clients=clients;
          char.country.push(country);
@@ -135,12 +139,14 @@ this.setState({data:data,modifiedData:data});
 
         {char.country.map((country,countryi)=>
         <>
-        <h2  className="list__country">{country.name} <div> flag </div> <div>Believer: <starog>123456 </starog></div> <div>Non Believer: <starog>12345 </starog></div> <div>Undecided: <starog>123456</starog></div>
-             <Flag code={char.code}/>
+        <h2 className="list__country">
+              <div>{country.name}</div>
+             <Flag height={32} code={country.code}/>
+             <div> #{country.clients.yes.length+country.clients.no.length+country.clients.notDecided.length}</div>
         </h2>
          <table className="list__table">
              <thead className="list__table-head">
-                <tr className="list__table-head-row" ><td className="list__table-head-row-head" colspan={6}>Believers</td></tr>
+                <tr className="list__table-head-row" ><td className="list__table-head-row-head" colspan={6}>Believers #{country.clients.yes.length}</td></tr>
                 <tr className="list__table-head-row">
                     <td  className="list__table-head-row-cell">First Name</td>
                     <td  className="list__table-head-row-cell">Last Name</td>
@@ -167,7 +173,7 @@ this.setState({data:data,modifiedData:data});
          </table>
          <table className="list__table">
              <thead className="list__table-head">
-             <tr className="list__table-head-row" ><td className="list__table-head-row-head" colspan={6}>Non Believers</td></tr>
+             <tr className="list__table-head-row" ><td className="list__table-head-row-head" colspan={6}>Non Believers #{country.clients.no.length}</td></tr>
                     <tr className="list__table-head-row">
                     <td  className="list__table-head-row-cell">First Name</td>
                     <td  className="list__table-head-row-cell">Last Name</td>
@@ -193,7 +199,7 @@ this.setState({data:data,modifiedData:data});
          </table>
          <table className="list__table">
              <thead className="list__table-head">
-                <tr className="list__table-head-row"><td className="list__table-head-row-head" colspan={6}>Undecided</td></tr>
+                <tr className="list__table-head-row"><td className="list__table-head-row-head" colspan={6}>Undecided #{country.clients.notDecided.length}</td></tr>
                 <tr className="list__table-head-row">
                     <td  className="list__table-head-row-cell">First Name</td>
                     <td  className="list__table-head-row-cell">Last Name</td>
@@ -218,6 +224,7 @@ this.setState({data:data,modifiedData:data});
 
              </tbody>
          </table>
+         <hr/>
          </>
          )}
 
