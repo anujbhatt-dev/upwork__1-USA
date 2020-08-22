@@ -40,6 +40,10 @@
       &2{
         transform: translateX(0%);
         animation: stage2 .8s ease-out;
+        border-left: 1px solid rgba($color-black,1);
+        &:hover{
+          background: rgba($color-grey,.2);
+        }
       }
     }
   }

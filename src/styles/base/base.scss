@@ -9,17 +9,19 @@
 
 }
 
-::-webkit-scrollbar{
-   // width: 2rem;
-}
-
-::-webkit-scrollbar-track{
-}
-
-::-webkit-scrollbar-thumb{
-  // background: $color-primary-blue;
-  // border-radius: 1000px;
-}
+// ::-webkit-scrollbar{
+//    width: .5rem;
+//    // position: absolute;
+// }
+// //
+// // ::-webkit-scrollbar-track{
+// //   background: transparent;
+// // }
+// //
+// ::-webkit-scrollbar-thumb{
+//   background: $color-primary-blue;
+//   // border-radius: 1000px;
+// }
 
 html{
   // 1 rem
@@ -28,7 +30,7 @@ html{
   font-family: sans-serif;
   letter-spacing: .5px;
   font-family: 'Roboto', sans-serif;
-
+  // overflow-y: scroll;
   @include respond(tab-land){
     font-size: 56.25%;
   }
@@ -58,4 +60,10 @@ a:focus,a:hover{
 }
 input{
   font-family:'Montserrat', sans-serif;
+}
+.App{
+  -webkit-user-select: none; /* Safari */
+   -moz-user-select: none; /* Firefox */  
+-ms-user-select: none; /* IE10+/Edge */
+user-select: none; /* Standard */
 }

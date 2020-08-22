@@ -26,6 +26,10 @@
     }
   }
   &__wrapper{
+    -webkit-user-select: text; /* Safari */
+-moz-user-select: text; /* Firefox */
+-ms-user-select: text; /* IE10+/Edge */
+user-select: text; /* Standard */
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -44,6 +48,7 @@
     padding: 1rem;
   }
   &__table{
+
     height: 1rem;
     overflow-y: auto;
     // border: 1px solid $color-black;
