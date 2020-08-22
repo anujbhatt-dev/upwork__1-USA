@@ -30,16 +30,17 @@
       padding: 1rem 3rem;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       text-transform: uppercase;
       &1{
-        animation: stage1 .8s ease-out;
+        animation: stage1 .5s ease-out;
         &:hover{
           background: rgba($color-grey,.2);
         }
       }
       &2{
         transform: translateX(0%);
-        animation: stage2 .8s ease-out;
+        animation: stage2 .5s ease-out;
         border-left: 1px solid rgba($color-black,1);
         &:hover{
           background: rgba($color-grey,.2);

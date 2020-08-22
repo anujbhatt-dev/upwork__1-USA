@@ -111,7 +111,6 @@ this.setState({data:data,modifiedData:data});
        else
          cat=country.clients.notDecided;
 
-       console.log(cat);
        cat.splice(clienti,1);
        this.setState({data:data});
    }

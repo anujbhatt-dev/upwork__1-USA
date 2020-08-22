@@ -1,5 +1,5 @@
  import React, {PureComponent} from "react"
-
+import Flag from "react-world-flags"
 
  class SideDrawer extends PureComponent{
 
@@ -26,7 +26,7 @@ componentDidUpdate(prevProps, prevState){
 this.setState({char:ch});
   //console.log("123"+JSON.stringify(ch[0]));
 }
-   
+
 
 
    stageHandler=(index)=>{
@@ -63,11 +63,11 @@ if(index===-1){
        className="sideDrawer__container-stage1 sideDrawer__container-stage">
          ALL
          <i className="fa fa-angle-right" aria-hidden="true"></i></div>
-          
+
           {this.state.char.map((char,index)=>{
               return  <div onClick={()=>this.stageHandler(index)}
              className="sideDrawer__container-stage1 sideDrawer__container-stage">
-                {char.value} 
+                {char.value}
                 <i className="fa fa-angle-right" aria-hidden="true"></i></div>
                 })}</>
 
@@ -75,7 +75,7 @@ if(index===-1){
     stage2 =  this.state.selected.map((country,index)=>{
       return <div onClick={()=>this.onClickHandler(index)}
             className="sideDrawer__container-stage2 sideDrawer__container-stage">
-              {country.name+"  "}{country.code}</div>
+              <div>{country.name}</div><div><Flag code={country.code} height={32}/></div></div>
     })
 
 
