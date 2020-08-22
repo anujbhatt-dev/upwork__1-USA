@@ -10,6 +10,7 @@ toast.configure()
 
    state={
       data:[],
+      actualData:[],
    }
 
    currentIndex=null;
@@ -19,12 +20,51 @@ toast.configure()
    componentDidMount(){
 
       axios.get("/v1/admin/data").then(res=>{
-           
-           if(res.data)
-           { 
-               current:res.data[0].country.charAt(0)}
-             this.setState({data:res.data});
-      })
+           this.setState({actualData:res.data});
+      
+        
+       let data=[];
+       let actualData=this.state.actualData;
+       let count=0;
+       console.log(this.state.actualData)
+      while(count<actualData.length){
+       let char={
+          value:'',
+          country:[],
+       };
+       data.push(char);
+       console.log("added char "+data);
+       char.value=actualData[count].country.charAt(0);
+          while(count<actualData.length && actualData[count].country.charAt(0)===char.value){
+             let country={
+                name:'',
+                clients:{
+                   yes:[],
+                   no:[],
+                  notDecided:[]
+                },
+             }
+             char.country.push(country);
+             country.name=actualData[count].country;
+              while(count<actualData.length && actualData[count].country===country.name){
+                  let client={... actualData[count]};
+                  if(client.category==="yes")
+                    country.clients.yes.push(client);
+                  else if(client.category==="no")
+                    country.clients.no.push(client);
+                  else            
+                    country.clients.notDecided.push(client);
+
+                     count++;  
+                                  
+              }
+          }
+      }
+
+    console.log(data);
+this.setState({data:data});
+   })
+
       }
 
    deleteHandler=(key)=>{
@@ -38,146 +78,7 @@ this.setState({data:newData})
       fireDb.child(`client/${key}`).remove(res=>toast.info(`removed ${email}`));
    }
 
-   entry=()=>{
-
- return this.state.data.map((client,index)=>{
-   if(this.currentChar!==client.country.charAt(0)){
-      this.currentChar=client.country.charAt(0);
-      this.currentCountry=client.country;
-      return (
-      <div>
-      <h1>{this.currentCountry.charAt(0)}</h1><br></br>
-      <h2>{this.currentCountry}</h2>
-      <h3>Beleiver</h3><h3>Non Beleiver</h3><h3>Not Decided</h3>
-      {client.category==="yes"?client.firstName+" "+client.lastName:
-       client.category==="no"?<>{client.firstName+" "}{client.lastName}</>:
-       <>{client.firstName+" "}{client.lastName}</>}
-      </div>
-         )
-   }else if(this.currentCountry!==client.country){
-      this.currentCountry=client.country;
-      return (
-         <div>
-         <h2>{this.currentCountry}</h2>
-         <h3>Beleiver</h3><h3>Non Beleiver</h3><h3>Not Decided</h3>
-         {client.category==="yes"?client.firstName+" "+client.lastName:
-          client.category==="no"?<>{client.firstName+" "}{client.lastName}</>:
-          <>{client.firstName+" "}{client.lastName}</>}
-         </div>
-            )
-   }
-
-   else{
-      return (
-         <div>
-         {client.category==="yes"?client.firstName+" "+client.lastName:
-          client.category==="no"?<>{client.firstName+" "}{client.lastName}</>:
-          <>{client.firstName+" "}{client.lastName}</>}
-         </div>
-            )
-   }
-})        
-   
-
-   }
-
-   perCountryChar=(char)=>{
-
-   }
-
-   perCountry=(client)=>{
-      return (
-         <div className="list__wrapper">
-         <table className="list__table">
-             <thead className="list__table-head">
-                <tr className="list__table-head-row" ><td className="list__table-head-row-head" colspan={6}>Believers</td></tr>
-                <tr className="list__table-head-row">
-                    <td  className="list__table-head-row-cell">First Name</td>
-                    <td  className="list__table-head-row-cell">Last Name</td>
-                    <td  className="list__table-head-row-cell">Email</td>
-                    <td  className="list__table-head-row-cell">City</td>
-                    <td  className="list__table-head-row-cell">Added On</td>
-                    <td  className="list__table-head-row-cell"></td>
-                </tr>
-             </thead>
-             <tbody className="list__table-body">
-
-             {this.state.data?Object.keys(this.state.data).map(key=>{
-
-                let val=this.state.data[key];
-
-                return (
-                 <tr className="list__table-body-row">
-                     <td  className="list__table-body-row-cell">{val.firstName}</td>
-                    <td  className="list__table-body-row-cell">{val.lastName}</td>
-                    <td  className="list__table-body-row-cell">{val.email}</td>
-                    <td  className="list__table-body-row-cell">{val.city}</td>
-                    <td  className="list__table-body-row-cell">{val.date}</td>
-                    <td onClick={()=>this.deleteHandler(key)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
-                </tr>)}
-                ):null}
-             </tbody>
-         </table>
-         <table className="list__table">
-             <thead className="list__table-head">
-             <tr className="list__table-head-row" ><td className="list__table-head-row-head" colspan={6}>Non Believers</td></tr>
-                <tr className="list__table-head-row">
-                    <td  className="list__table-head-row-cell">First Name</td>
-                    <td  className="list__table-head-row-cell">Last Name</td>
-                    <td  className="list__table-head-row-cell">Email</td>
-                    <td  className="list__table-head-row-cell">City</td>
-
-                    <td  className="list__table-head-row-cell">Added On</td>
-
-                    <td  className="list__table-head-row-cell"></td>
-                </tr>
-             </thead>
-             <tbody className="list__table-body">
-
-             {this.state.data?Object.keys(this.state.data).map(key=>{
-
-                let val=this.state.data[key];
-
-                return (
-                 <tr className="list__table-body-row">
-                     <td  className="list__table-body-row-cell">{val.firstName}</td>
-                    <td  className="list__table-body-row-cell">{val.lastName}</td>
-                    <td  className="list__table-body-row-cell">{val.email}</td>
-                    <td  className="list__table-body-row-cell">{val.city}</td>
-                    <td  className="list__table-body-row-cell">{val.date}</td>
-                    <td onClick={()=>this.deleteHandler(key)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
-                </tr>)}
-                ):null}
-             </tbody>
-         </table>
-         <table className="list__table">
-             <thead className="list__table-head">
-                <tr className="list__table-head-row"><td className="list__table-head-row-head" colspan={6}>Undecided</td></tr>
-                <tr className="list__table-head-row">
-                    <td  className="list__table-head-row-cell">First Name</td>
-                    <td  className="list__table-head-row-cell">Last Name</td>
-                    <td  className="list__table-head-row-cell">Email</td>
-                    <td  className="list__table-head-row-cell">City</td>
-                    <td  className="list__table-head-row-cell">Added On</td>
-                    <td  className="list__table-head-row-cell"></td>
-                </tr>
-             </thead>
-             <tbody className="list__table-body">
-             </tbody>
-       
-         </table>
-         </div>
-         
-      )
-     
-
-   }
-
-   perClient=()=>{
-
-   }
-
-
+  
    render(){
     // if(!this.props.adminVerified){
     //   window.location.href= "http://localhost:3000/admin"//"https://ancient-woodland-30225.herokuapp.com/admin"
@@ -188,7 +89,15 @@ this.setState({data:newData})
       <AdminHeader/>
       <div className="list">
          <div className="list__h1">List</div>
-         <div className="list__wrapper">
+ 
+          {this.state.data.map(char=>
+          <>
+          <h1>{char.value}</h1>
+          <div className="list__wrapper">
+        
+        {char.country.map(country=>
+        <>
+        <h2>{country.name}</h2>
          <table className="list__table">
              <thead className="list__table-head">
                 <tr className="list__table-head-row" ><td className="list__table-head-row-head" colspan={6}>Believers</td></tr>
@@ -202,53 +111,44 @@ this.setState({data:newData})
                 </tr>
              </thead>
              <tbody className="list__table-body">
-
-             {this.state.data?Object.keys(this.state.data).map(key=>{
-
-                let val=this.state.data[key];
-
-                return (
+               
+               {country.clients.yes.map(client=>
                  <tr className="list__table-body-row">
-                     <td  className="list__table-body-row-cell">{val.firstName}</td>
-                    <td  className="list__table-body-row-cell">{val.lastName}</td>
-                    <td  className="list__table-body-row-cell">{val.email}</td>
-                    <td  className="list__table-body-row-cell">{val.city}</td>
-                    <td  className="list__table-body-row-cell">{val.date}</td>
-                    <td onClick={()=>this.deleteHandler(key)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
-                </tr>)}
-                ):null}
+                   <td  className="list__table-body-row-cell">{client.firstName}</td>
+                    <td  className="list__table-body-row-cell">{client.lastName}</td>
+                    <td  className="list__table-body-row-cell">{client.email}</td>
+                    <td  className="list__table-body-row-cell">{client.city}</td>
+                    <td  className="list__table-body-row-cell">{client.date}</td>
+                    <td onClick={()=>this.deleteHandler(1)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
+                </tr>
+                )}
+
              </tbody>
          </table>
          <table className="list__table">
              <thead className="list__table-head">
              <tr className="list__table-head-row" ><td className="list__table-head-row-head" colspan={6}>Non Believers</td></tr>
-                <tr className="list__table-head-row">
+                    <tr className="list__table-head-row">
                     <td  className="list__table-head-row-cell">First Name</td>
                     <td  className="list__table-head-row-cell">Last Name</td>
                     <td  className="list__table-head-row-cell">Email</td>
                     <td  className="list__table-head-row-cell">City</td>
-
-                    <td  className="list__table-head-row-cell">Added On</td>
-
-                    <td  className="list__table-head-row-cell"></td>
+                   <td  className="list__table-head-row-cell">Added On</td>
+                   <td  className="list__table-head-row-cell"></td>
                 </tr>
-             </thead>
+              </thead>
              <tbody className="list__table-body">
-
-             {this.state.data?Object.keys(this.state.data).map(key=>{
-
-                let val=this.state.data[key];
-
-                return (
-                 <tr className="list__table-body-row">
-                     <td  className="list__table-body-row-cell">{val.firstName}</td>
-                    <td  className="list__table-body-row-cell">{val.lastName}</td>
-                    <td  className="list__table-body-row-cell">{val.email}</td>
-                    <td  className="list__table-body-row-cell">{val.city}</td>
-                    <td  className="list__table-body-row-cell">{val.date}</td>
-                    <td onClick={()=>this.deleteHandler(key)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
-                </tr>)}
-                ):null}
+             {country.clients.no.map(client=>
+                  <tr className="list__table-body-row">
+                  <td  className="list__table-body-row-cell">{client.firstName}</td>
+                    <td  className="list__table-body-row-cell">{client.lastName}</td>
+                    <td  className="list__table-body-row-cell">{client.email}</td>
+                    <td  className="list__table-body-row-cell">{client.city}</td>
+                    <td  className="list__table-body-row-cell">{client.date}</td>
+                    <td onClick={()=>this.deleteHandler(1)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
+                </tr>
+             )}
+  
              </tbody>
          </table>
          <table className="list__table">
@@ -264,31 +164,33 @@ this.setState({data:newData})
                 </tr>
              </thead>
              <tbody className="list__table-body">
-
-             {this.state.data?Object.keys(this.state.data).map(key=>{
-
-                let val=this.state.data[key];
-
-                return (
+                
+             {country.clients.no.map(client=>
                  <tr className="list__table-body-row">
+                   <td  className="list__table-body-row-cell">{client.firstName}</td>
+                    <td  className="list__table-body-row-cell">{client.lastName}</td>
+                    <td  className="list__table-body-row-cell">{client.email}</td>
+                    <td  className="list__table-body-row-cell">{client.city}</td>
+                    <td  className="list__table-body-row-cell">{client.date}</td>
+                    <td onClick={()=>this.deleteHandler(1)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
+                </tr>
+             )}
 
-                     <td  className="list__table-body-row-cell">{val.firstName}</td>
-                    <td  className="list__table-body-row-cell">{val.lastName}</td>
-                    <td  className="list__table-body-row-cell">{val.email}</td>
-                    <td  className="list__table-body-row-cell">{val.city}</td>
-                    <td  className="list__table-body-row-cell">{val.date}</td>
-                    <td onClick={()=>this.deleteHandler(key)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
-                </tr>)}
-                ):null}
              </tbody>
          </table>
+         </>
+         )}
+
          </div>
+         </>
+         )}
+
       </div>
     </>
 
     
     return (
-       this.entry()
+       perCountry
          )
    }
  }

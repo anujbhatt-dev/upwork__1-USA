@@ -53,24 +53,8 @@ import axios from "axios"
 
        let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${this.props.code}`;
       
-axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email);
-
-       // send email verification
-
-       // alert(`mailing  http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}`);
-
-      //  let key=this.state.client.email.replace('.','DOT');
-      //  fireDb.child("client/"+key).on('value',res=>{
-
-      //     fireDb.child("client").child(key).set(client);
-
-      //  })
-
-      // emailjs.send("","","").then(res=>{
-      //   alert("send")
-      // }).catch(err=>{
-      //   alert("failed")
-      // })
+       alert(url);
+//axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email);
 
     }
 
