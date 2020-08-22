@@ -21,6 +21,7 @@
   &__country{
     font-size: 3rem;
     flex-basis: 100%;
+    display: flex;
     &:not(:first-of-type){
       margin-top: 1rem;
     }

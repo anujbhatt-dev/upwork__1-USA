@@ -1,9 +1,11 @@
 import React, {Component} from "react"
 import AdminHeader from "../admin-header/admin-header"
 import { toast } from 'react-toastify';
+import Flag from "react-world-flags"
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 toast.configure()
+
 
  class List extends Component{
 
@@ -112,6 +114,7 @@ this.setState({data:data,modifiedData:data});
 
 
    render(){
+     console.log(this.state.data);
     // if(!this.props.adminVerified){
     //   window.location.href= "http://localhost:3000/admin"//"https://ancient-woodland-30225.herokuapp.com/admin"
     // }
@@ -132,7 +135,9 @@ this.setState({data:data,modifiedData:data});
 
         {char.country.map((country,countryi)=>
         <>
-        <h2  className="list__country">{country.name}</h2>
+        <h2  className="list__country">{country.name} <div> flag </div> <div>Believer: <starog>123456 </starog></div> <div>Non Believer: <starog>12345 </starog></div> <div>Undecided: <starog>123456</starog></div>
+             <Flag code={char.code}/>
+        </h2>
          <table className="list__table">
              <thead className="list__table-head">
                 <tr className="list__table-head-row" ><td className="list__table-head-row-head" colspan={6}>Believers</td></tr>
