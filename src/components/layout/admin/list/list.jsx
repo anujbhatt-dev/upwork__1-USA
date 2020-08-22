@@ -111,7 +111,9 @@ this.setState({data:data,modifiedData:data});
 
        console.log(cat);
        cat.splice(clienti,1);
-       this.setState({data:data});
+axios.delete("/v1/admin/client",{params:{email:cat[clienti].email}}).then(res=>{this.setState({data:data});
+})
+
    }
 
   
