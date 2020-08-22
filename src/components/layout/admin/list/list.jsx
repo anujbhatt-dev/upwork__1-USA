@@ -38,6 +38,7 @@ toast.configure()
           while(count<actualData.length && actualData[count].country.charAt(0)===char.value){
              let country={
                 name:'',
+                code:'',
                 clients:{
                    yes:[],
                    no:[],
@@ -46,6 +47,8 @@ toast.configure()
              }
              char.country.push(country);
              country.name=actualData[count].country;
+             country.code=actualData[count].code;
+
               while(count<actualData.length && actualData[count].country===country.name){
                   let client={... actualData[count]};
                   if(client.category==="yes")
@@ -79,7 +82,8 @@ this.setState({data:data,modifiedData:data});
 
         let data=[];
          let char={value:this.state.modifiedData[charIndex].value.charAt(0),country:[]};
-         let country={name:this.state.modifiedData[charIndex].country[countryIndex].name};
+         let country={name:this.state.modifiedData[charIndex].country[countryIndex].name,
+                      code:this.state.modifiedData[charIndex].country[countryIndex].code};
          let clients=this.state.modifiedData[charIndex].country[countryIndex].clients
          country.clients=clients;
          char.country.push(country);
@@ -132,7 +136,7 @@ this.setState({data:data,modifiedData:data});
         
         {char.country.map((country,countryi)=>
         <>
-        <h2>{country.name}</h2>
+        <h2>{country.name}{country.code}</h2>
          <table className="list__table">
              <thead className="list__table-head">
                 <tr className="list__table-head-row" ><td className="list__table-head-row-head" colspan={6}>Believers</td></tr>
