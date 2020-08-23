@@ -55,7 +55,7 @@ class Map extends Component {
 
     componentDidMount(){
 
-      
+
       axios.get("/v1/client/country/count").then(res=>{
                       this.setState({count:res.data})
       })
@@ -64,9 +64,6 @@ class Map extends Component {
         console.log(123);
         this.props.history.push("/map")
         window.addEventListener('hashchange',(event) =>{
-         //   console.log(window.location.hash.substring(1));
-           // alert(decodeURI(window.location.hash.substring(1)))
-
         let code=window.location.hash.substring(window.location.hash.indexOf('#',2)+1);
            this.setState({
              code:code
@@ -109,13 +106,13 @@ class Map extends Component {
                    <Backdrop clicked={this.modaltoggleHandler} show={this.state.show} />
                  ]
 
-        // let   selected= {this.state.s}
-// {this.state.hover}
 
         return (
           <>
 
+
             <div className="map__wrapper">
+              <h2 style={{color:"black",padding:".5rem",textAlign:"center",fontWeight:"bolder",letterSpacing:"2px"}}>choose your country!</h2>
             <div id="map">
                 <div className="branding__remove"> </div>
 
@@ -123,6 +120,7 @@ class Map extends Component {
                 <MapDiv count={this.state.count} code={this.state.code} country={this.state.hover}/>
 
             </div>
+
             </div>
             <div className="landing__item landing__item--11 landing__item--11-1">
                  <div style={{left:"0"}} className="landing__item-text"><i className="quote-left fa fa-quote-left" aria-hidden="true"></i>

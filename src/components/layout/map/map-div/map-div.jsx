@@ -20,7 +20,7 @@ import Flag from "react-world-flags"
     let f=0;
 
     let b=0,nb=0;
-    
+
     if(this.props.count)
    this.props.count.map(data=>{
      console.log(data);
@@ -31,7 +31,7 @@ import Flag from "react-world-flags"
                   b=data[0];
                  else
                  nb=data[0];
-                 f++; 
+                 f++;
               }
        })
 }
@@ -45,7 +45,7 @@ componentDidUpdate(prevProps, prevState){
   let f=0;
 
     let b=0,nb=0;
-    
+
     if(this.props.count)
    this.props.count.map(data=>{
      console.log(data);
@@ -56,7 +56,7 @@ componentDidUpdate(prevProps, prevState){
                   b=data[0];
                  else
                  nb=data[0];
-                 f++; 
+                 f++;
               }
        })
 
@@ -65,7 +65,7 @@ componentDidUpdate(prevProps, prevState){
          nb:nb
        })
 }
-  
+
 
 
    render(){

@@ -126,7 +126,8 @@ this.setState({data:data,modifiedData:data});
    render(){
    //   console.log(this.state.data);
     if(!this.context.authenticated){
-      window.location.href= "http://localhost:3000/admin"//"https://ancient-woodland-30225.herokuapp.com/admin"
+      window.location.href="http://safe-headland-47190.herokuapp.com/admin"
+                           // "http://localhost:3000/admin"//"https://ancient-woodland-30225.herokuapp.com/admin"
     }
 
     let perCountry=null;
