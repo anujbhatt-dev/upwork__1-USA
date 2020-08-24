@@ -30,6 +30,7 @@
     // width: 2rem;
     background: $color-white;
     border-radius: 100px;
+    box-shadow: 0rem 0rem 2rem rgba($color-black,.5);
   }
   @include respond(tab-port){
     font-size: 2rem;

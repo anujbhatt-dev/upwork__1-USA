@@ -16,40 +16,24 @@ import "aos/dist/aos.css"
 
 
    componentDidMount=()=>{
-    // let smoothScroll=(element,duration)=>{
-    //       let target  = document.getElementById(element);
-    //       let targetPositon = target.getBoundingClientRect().top;
-    //       let startingPosition = window.pageYOffset;
-    //       let distance = targetPositon- startingPosition;
-    //       console.log(`${target} ${targetPositon} ${startingPosition} ${distance}`);
-    //       let startTime =null;
-    //       let animation = (currentTime)=>{
-    //         if(startTime===null){
-    //             startTime = currentTime
-    //         }
-    //         let timeElapsed = currentTime -startTime;
-    //         let run = ease(timeElapsed,startingPosition,distance,duration)
-    //         window.scrollTo(0,run);
-    //         if(timeElapsed< duration){
-    //           requestAnimationFrame(animation);
-    //         }
-    //       }
-    //       let ease = (t, b, c, d)=> {
-    //       	t /= d/2;
-    //       	if (t < 1) return c/2*t*t*t*t + b;
-    //       	t -= 2;
-    //       	return -c/2 * (t*t*t*t - 2) + b;
-    //       };
-    //       requestAnimationFrame(animation);
-    //       console.log(targetPositon);
-    //  }
-    // smoothScroll("div2",100)
+     let viewportHeight = window.innerHeight;
+     setTimeout(()=>{
+         window.scrollTo({top:viewportHeight, behavior:"smooth"})
+     }, 6000);
+     setTimeout(()=>{
+         window.scrollTo({top:2*viewportHeight, behavior:"smooth"})
+     }, 12000);
+     setTimeout(()=>{
+         window.scrollTo({top:3*viewportHeight, behavior:"smooth"})
+     }, 18000);
+     setTimeout(()=>{
+         window.scrollTo({top:4*viewportHeight, behavior:"smooth"})
+     }, 24000);
     Aos.init({duration:2000,delay:100})
     let lastScrollTop = 0;
     $(window).scroll(function(e){
        let st = $(this).scrollTop();
        let pageY = null;
-       let viewportHeight = $(window).height()
        if (st > lastScrollTop){
             pageY = window.pageYOffset
             if(pageY>=1&& pageY<=50){
@@ -88,53 +72,33 @@ import "aos/dist/aos.css"
     Aos.init({duration:2000,delay:100})
   }
 
-   scroll=()=>{
-     alert("scrolled")
-   }
-
-
    render(){
 
-     // <button data-aos="fade-down" onClick={()=>{window.location="https://ancient-woodland-30225.herokuapp.com/map"}} className="landing__item-button">Sign petition</button>
-     //
-     //
-     // <div id="div11" className="landing__item landing__item--11">
-     //      <img className="landing__item-image1" src={pic1} alt="foggy river"/>
-     //      <div data-aos="fade-down" className="landing__item-text"><i className="quote-left fa fa-quote-left" aria-hidden="true"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, amet!<i className="quote-left fa fa-quote-right" aria-hidden="true"></i></div>
-     // </div>
-     // <div id="div22" className="landing__item landing__item--22">
-     //      <div data-aos="fade-down" className="landing__item-text"><i className="quote-left fa fa-quote-left" aria-hidden="true"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, amet!<i className="quote-left fa fa-quote-right" aria-hidden="true"></i></div>
-     //      <img className="landing__item-image2" src={pic2} alt="foggy river"/>
-     // </div>
-     //
-     //<img className="landing__item-image3" src={pic3} alt="foggy river"/>
-     //
-     // <span data-aos="fade-down" className="landing__item-text-span1">Ask yourself a question !</span>
-     //
      return (
           <div className="landing">
               <div id="screen1" className="landing__item landing__item--1">
                    <img className="landing__item-image" src={landscape1} alt="landscape"/>
-                   <div data-aos="fade-down" className="landing__item-text"><i className="quote-left fa fa-quote-left" aria-hidden="true"></i>There is one single question that is fundamental to how you live your life<i className="quote-left fa fa-quote-right" aria-hidden="true"></i></div>
+                   <div data-aos="fade-down" className="landing__item-text">There is one single question that is fundamental to how you live your life.</div>
               </div>
               <div id="screen2" className="landing__item landing__item--2">
                   <img className="landing__item-image" src={landscape2} alt="person swimming"/>
                   <div data-aos="fade-down" className="landing__item-text">
-                      <span data-aos="fade-down" className="landing__item-text-span1"><i className="quote-left fa fa-quote-left" aria-hidden="true"></i>Avoiding it is the easy and lazy choice </span><br/>
-                      <span data-aos="fade-up" data-aos-delay={2100} className="landing__item-text-span2">but is a decision to ignore your very existence and the meaning of your life<i className="quote-left fa fa-quote-right" aria-hidden="true"></i></span>
+                      <span data-aos="fade-down" className="landing__item-text-span1">Avoiding it is the easier option...</span><br/>
+                      <span data-aos="fade-up" data-aos-delay={2100} className="landing__item-text-span2">but means ignoring reality, your very existence and the meaning of it all.</span>
                   </div>
               </div>
               <div id="screen3" className="landing__item landing__item--3">
                   <img className="landing__item-image" src={landscape4} alt="foggy river"/>
                   <div data-aos="fade-down" className="landing__item-text">
-                      <span data-aos="fade-down" className="landing__item-text-span1"><i className="quote-left fa fa-quote-left" aria-hidden="true"></i>Facing it is harder and requires thought and courage</span><br/>
-                      <span data-aos="fade-up" data-aos-delay={2100} className="landing__item-text-span2">but it gives your life clarity and definition<i className="quote-left fa fa-quote-right" aria-hidden="true"></i></span>
+                      <span data-aos="fade-down" className="landing__item-text-span1">Facing it is harder choice...</span><br/>
+                      <span data-aos="fade-down" data-aos-delay={1500} className="landing__item-text-span1">it requires thought and courage...</span><br/>
+                      <span data-aos="fade-up" data-aos-delay={2500} className="landing__item-text-span2">but it gives your life clarity and definition.</span>
                   </div>
               </div>
               <div id="screen4" className="landing__item landing__item--33">
                   <div data-aos="fade-down" className="landing__item-text">
-                       <span data-aos="fade-down" className="landing__item-text-span1"><i className="quote-left fa fa-quote-left" aria-hidden="true"></i>Make the right choice</span><br/>
-                       <span data-aos="fade-up" data-aos-delay={2100} className="landing__item-text-span2">Ask yourself a question !<i className="quote-left fa fa-quote-right" aria-hidden="true"></i></span>
+                       <span data-aos="fade-down" className="landing__item-text-span1">Make the right choice...</span><br/>
+                       <span data-aos="fade-up" data-aos-delay={2100} className="landing__item-text-span2">Ask yourself a question !</span>
                   </div>
               </div>
               <div id="screen5" className="landing__item landing__item--4">

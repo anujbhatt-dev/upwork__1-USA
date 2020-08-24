@@ -40,6 +40,7 @@ xhr.onload=()=>{
           color =  "#ff95d5";
         }
         simplemaps_worldmap_mapdata.state_specific[data].color= color
+        simplemaps_worldmap_mapdata.state_specific[data].description= `<div>Believers: <strong>${newData[data][0]}</strong></div> <div>Non Believers: <strong>${newData[data][1]}</strong></div>`;
   })
    simplemaps_worldmap.load()
 }
