@@ -72,9 +72,9 @@ toast.configure();
     }
 
 
-callback=()=>{
-    console.log("loaded");
-}
+    callback=()=>{
+       console.log("loaded");
+    }
 
 
 

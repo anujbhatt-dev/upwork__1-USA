@@ -80,13 +80,13 @@ class Map extends Component {
        let modal = [
                   <Modal clicked={this.modaltoggleHandler} show={this.state.show}>
                      {this.state.stage===1?<div className="query query--1">
-                         <Believer country={this.state.s} clicked={()=>this.setState({believer:"yes",stage:2})}/>
-                         <NotABeliever country={this.state.s} clicked={()=>this.setState({believer:"no",stage:3})}/>
+                         <Believer count={this.state.count} country={this.state.s} clicked={()=>this.setState({believer:"yes",stage:2})}/>
+                         <NotABeliever count={this.state.count} country={this.state.s} clicked={()=>this.setState({believer:"no",stage:3})}/>
                           <Undecided className="query__item" clicked={()=>this.setState({believer:"undecided",stage:4})}/>
                      </div>:null}
                      {this.state.stage===2?
                          <div className="query query--2">
-                             <StageTwoQuery code={this.state.code} country={this.state.s} believer={this.state.believer}/>
+                             <StageTwoQuery  code={this.state.code} country={this.state.s} believer={this.state.believer}/>
                          </div>:
                          null
                        }
