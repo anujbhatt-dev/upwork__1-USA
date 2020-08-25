@@ -74,6 +74,7 @@
 @include respond(tab-port){
 
   .map__div{
+    display: none;
     overflow:visible;
     bottom: none;
     top:100%;

@@ -19,7 +19,12 @@ class Map extends Component {
          show:false,
          stage:1,
          believer:null,
-
+         world:{
+         worldTotal:0,
+         worldTotalBeliever:0,
+         worldTotalNonBeliever:0,
+         worldTotalUndecided:0,
+         },
          count:null,
          hover:"",
          code:""
@@ -52,18 +57,25 @@ class Map extends Component {
       this.setState({hover:val});
     }
 
-
+    worldTotalHandler=(w)=>{
+       let newState = {...this.state}
+       newState.world={...w}
+         this.setState({
+            ...newState
+         })
+    }
 
     componentDidMount(){
 
 
+      this.props.history.push("/map")
       axios.get("/v1/client/country/count").then(res=>{
                       this.setState({count:res.data})
+                      // console.log(this.state.count);
       })
 
 
         console.log(123);
-        this.props.history.push("/map")
         window.addEventListener('hashchange',(event) =>{
         let code=window.location.hash.substring(window.location.hash.indexOf('#',2)+1);
            this.setState({
@@ -81,8 +93,8 @@ class Map extends Component {
        let modal = [
                   <Modal clicked={this.modaltoggleHandler} show={this.state.show}>
                      {this.state.stage===1?<div className="query query--1">
-                         <Believer count={this.state.count} country={this.state.s} clicked={()=>this.setState({believer:"yes",stage:2})}/>
-                         <NotABeliever count={this.state.count} country={this.state.s} clicked={()=>this.setState({believer:"no",stage:3})}/>
+                         <Believer world={this.state.world} count={this.state.count} country={this.state.s} clicked={()=>this.setState({believer:"yes",stage:2})}/>
+                         <NotABeliever  world={this.state.world} count={this.state.count} country={this.state.s} clicked={()=>this.setState({believer:"no",stage:3})}/>
                           <Undecided className="query__item" clicked={()=>this.setState({believer:"undecided",stage:4})}/>
                      </div>:null}
                      {this.state.stage===2?
@@ -123,7 +135,7 @@ class Map extends Component {
             </div>
 
             </div>
-            <Statistics />
+            <Statistics worldHandler={this.worldTotalHandler} count={this.state.count} code={this.state.code} country={this.state.hover}/>
             <div className="landing__item landing__item--11 landing__item--11-1">
                  <div style={{left:"0"}} className="landing__item-text"><i className="quote-left fa fa-quote-left" aria-hidden="true"></i>
                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem at quam repudiandae! Repellendus, neque provident. Laborum in ad consequuntur officia.

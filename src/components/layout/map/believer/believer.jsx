@@ -21,12 +21,12 @@
 
      return (
         <div className="query__item query__believer" onClick={this.props.clicked}>
-          <div className="query__item-text query__believer-text">I AM A BELIEVER</div>
           <p>
-             I Join With all <strong>{this.state.count}</strong> others from <strong>{this.props.country}</strong> on<br/>
-             this list in acknowledging that<br/>
-             the universe was created by an<br/>
-             intelligent being we refer to as God
+             I Join With <strong>{this.state.count}</strong> people in <br/> <strong style={{textTransform:"uppercase"}}>{this.props.country}</strong><br/>
+             and <br/> <strong>{this.props.world.worldTotalBeliever}</strong> people in the <strong>WORLD</strong> <br/>
+             in<br/> <strong>ACKNOWLEDGING</strong><br/>that
+             the <strong>universe was created by</strong> an
+             intelligent being we refer to as <strong>God</strong>
           </p>
         </div>
      )
