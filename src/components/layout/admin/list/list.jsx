@@ -41,8 +41,8 @@ toast.configure()
             if(data.country in chars[data.country.charAt(0)]){
                let temp=chars[data.country.charAt(0)];
                
-                  temp[data.country].[data.category].push(data);
-                  temp[data.country].["all"].push(data);
+                  temp[data.country][data.category].push(data);
+                  temp[data.country]["all"].push(data);
          
             }else{
                ch[data.country.charAt(0)].push([data.country,data.code]);
@@ -97,15 +97,20 @@ toast.configure()
 
    deleteHandler=(email)=>{
          
-
-      let deleted=new Set(this.state.deletedSet);
+axios.delete("/v1/admin/client",{params:{email:email}}).
+then((res)=>{ let deleted=new Set(this.state.deletedSet);
       deleted.add(email);
       console.log(deleted)
-      this.setState({deletedSet:deleted});
+      this.setState({deletedSet:deleted})}).
+catch(err=>alert("an alert occured try again"))      ;
       }
 
       filterHandler=(category,country)=>{
-         let data=[... this.state.modifiedData[country.charAt(0)][country].[category]];
+         let data=[... this.state.modifiedData[country.charAt(0)][country][category]];
+
+         if(data.length===0)
+          alert("no data");
+          else
          this.setState({data:data});
 
       }
@@ -133,12 +138,13 @@ toast.configure()
 
        perCountry =   <>
        <AdminHeader  selectHandler={this.selectHandler}  data={this.state.chars}/>
-       {this.state.data.length>0 && this.state.data.length===this.state.actualData.length?null:
+       {this.state.data.length<=0 || this.state.data.length===this.state.actualData.length?null:
          <div>
-            <h2 onClick={()=>this.filterHandler("all",this.state.data[0].country)}>All</h2>
-            <h2 onClick={()=>this.filterHandler("yes",this.state.data[0].country)}>BEL</h2>
-            <h2 onClick={()=>this.filterHandler("no",this.state.data[0].country)}>NONBEl</h2>
-            <h2 onClick={()=>this.filterHandler("undecided",this.state.data[0].country)}>UnDE</h2></div>
+           <h2 onClick={()=>this.filterHandler("all",this.state.data[0].country)}>All</h2>
+             <h2 onClick={()=>this.filterHandler("yes",this.state.data[0].country)}>BEL</h2>            
+          <h2 onClick={()=>this.filterHandler("no",this.state.data[0].country)}>NONBEl</h2>
+          <h2 onClick={()=>this.filterHandler("undecided",this.state.data[0].country)}>UnDE</h2>
+           </div>
        }
           <div className="list__heading">Do you believe in god ? </div>
           <table className="list">
