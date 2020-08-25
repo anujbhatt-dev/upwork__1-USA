@@ -7,7 +7,8 @@ import Believer from "./believer/believer"
 import Undecided from "./undecided/undecided"
 import NotABeliever from "./not-a-believer/not-a-believer"
 import StageTwoQuery from "./stage-two-query/stage-two-query"
-import MapDiv from "./map-div/map-div"
+import MapDiv from "./map-div/map-div";
+import Statistics from "./statistics/statistics"
 import axios from 'axios';
 
 
@@ -122,6 +123,7 @@ class Map extends Component {
             </div>
 
             </div>
+            <Statistics />
             <div className="landing__item landing__item--11 landing__item--11-1">
                  <div style={{left:"0"}} className="landing__item-text"><i className="quote-left fa fa-quote-left" aria-hidden="true"></i>
                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem at quam repudiandae! Repellendus, neque provident. Laborum in ad consequuntur officia.

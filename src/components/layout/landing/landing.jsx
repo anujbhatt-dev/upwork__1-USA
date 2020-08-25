@@ -18,16 +18,16 @@ import "aos/dist/aos.css"
    componentDidMount=()=>{
      let viewportHeight = window.innerHeight;
      setTimeout(()=>{
-         window.scrollTo({top:viewportHeight, behavior:"smooth"})
+         window.scrollTo({top:viewportHeight,behavior:"smooth"})
      }, 6000);
      setTimeout(()=>{
-         window.scrollTo({top:2*viewportHeight, behavior:"smooth"})
+         window.scrollTo({top:2*viewportHeight,behavior:"smooth"})
      }, 12000);
      setTimeout(()=>{
-         window.scrollTo({top:3*viewportHeight, behavior:"smooth"})
+         window.scrollTo({top:3*viewportHeight,behavior:"smooth"})
      }, 18000);
      setTimeout(()=>{
-         window.scrollTo({top:4*viewportHeight, behavior:"smooth"})
+         window.scrollTo({top:4*viewportHeight,behavior:"smooth"})
      }, 24000);
     Aos.init({duration:2000,delay:100})
     let lastScrollTop = 0;
