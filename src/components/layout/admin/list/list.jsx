@@ -5,7 +5,6 @@ import Flag from "react-world-flags"
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import LayoutContext from "../../../layoutcontext";
-
 toast.configure()
 
 
@@ -14,7 +13,9 @@ toast.configure()
    state={
       data:[],
       actualData:[],
+      chars:[],
       modifiedData:[],
+      deletedSet:new Set(),
    }
 
    static contextType=LayoutContext;
@@ -23,225 +24,153 @@ toast.configure()
    currentChar=null;
    currentCountry=null;
 
-   componentDidMount(){
+   componentDidMount=()=>{
 
       axios.get("/v1/admin/data").then(res=>{
-        console.log(res)
-           this.setState({actualData:res.data});
+                  
+         this.setState({actualData:res.data,data:res.data});
+
+        // console.log()
+         let chars={};
+         let ch={};
+        // let country={};
+           
+        for (let data of res.data){
+           if(data.country.charAt(0) in chars){
+                
+            if(data.country in chars[data.country.charAt(0)]){
+               let temp=chars[data.country.charAt(0)];
+               
+                  temp[data.country].[data.category].push(data);
+                  temp[data.country].["all"].push(data);
+         
+            }else{
+               ch[data.country.charAt(0)].push([data.country,data.code]);
+               let temp=chars[data.country.charAt(0)];
+               temp[data.country]={"yes":[],"no":[],"undecided":[],"all":[]};
+               chars[data.country.charAt(0)][data.country][data.category].push(data);
+               chars[data.country.charAt(0)][data.country]["all"].push(data)
+
+            }
           
-          console.log(res.data);
+           }else{
+              ch[data.country.charAt(0)]=[[data.country,data.code]];
+            chars[data.country.charAt(0)]={
+               [data.country]:{"yes":[],"no":[],"undecided":[],"all":[]}
+            }
+            chars[data.country.charAt(0)][data.country][data.category].push(data)
+            chars[data.country.charAt(0)][data.country]["all"].push(data)
+           }
+        }
+         console.log(chars);
+         console.log(ch);
 
-       let data=[];
-       let actualData=this.state.actualData;
-       let count=0;
-       console.log(this.state.actualData)
-      while(count<actualData.length){
-       let char={
-          value:'',
-          country:[],
-       };
-       data.push(char);
-       console.log("added char "+data);
-       char.value=actualData[count].country.charAt(0);
-          while(count<actualData.length && actualData[count].country.charAt(0)===char.value){
-             let country={
-                name:'',
-                code:'',
-                clients:{
-                   yes:[],
-                   no:[],
-                  notDecided:[]
-                },
-             }
-             char.country.push(country);
-             country.name=actualData[count].country;
-             country.code=actualData[count].code;
 
-              while(count<actualData.length && actualData[count].country===country.name){
-                  let client={... actualData[count]};
-                  if(client.category==="yes")
-                    country.clients.yes.push(client);
-                  else if(client.category==="no")
-                    country.clients.no.push(client);
-                  else
-                    country.clients.notDecided.push(client);
-
-                     count++;
-
-              }
-          }
-      }
-
-    console.log(data);
-this.setState({data:data,modifiedData:data});
-   }).catch(err=>{alert("error")})
+         this.setState({modifiedData:chars,chars:ch});
+         
+      })
+      .catch(err=>{alert("error")})
 
       }
 
 
-      selectHandler=(charIndex,countryIndex)=>{
+      selectHandler=(val)=>{
            // alert(charIndex+"- "+countryIndex)
-        if(countryIndex===-1){
-           let data=[... this.state.modifiedData]
-           console.log(data);
-         this.setState({data:data});
+        if(val===-1){
+         //  let data=[... this.state.actualData]
+         
+         this.setState((state)=>{return {data:state.actualData}});
          return ;
         }
 
-        let data=[];
-         let char={value:this.state.modifiedData[charIndex].value.charAt(0),country:[]};
-         let country={name:this.state.modifiedData[charIndex].country[countryIndex].name,
-                      code:this.state.modifiedData[charIndex].country[countryIndex].code};
-         let clients=this.state.modifiedData[charIndex].country[countryIndex].clients
-         country.clients=clients;
-         char.country.push(country);
-         data.push(char);
-         console.log(data);
-         this.setState({data:data});
+      console.log(val);
+
+        let data=[... this.state.modifiedData[val.charAt(0)][val].["all"]];
+      //   data=data.concat(this.state.modifiedData[val.charAt(0)][val].no);
+      //   data=data.concat(this.state.modifiedData[val.charAt(0)][val].undecided);
+
+        this.setState({data:data});
+
       }
 
 
 
-   deleteHandler=(chari, countryi,category,clienti)=>{
+   deleteHandler=(email)=>{
+         
 
-      let data=[... this.state.data];
-      let char=data[chari];
-      console.log(char.value);
-       let country=char.country[countryi];
-       console.log(country.name);
-       let cat;
-       if(category==="yes")
-         cat=country.clients.yes;
-       else if(category==="no")
-         cat=country.clients.no;
-       else
-         cat=country.clients.notDecided;
-       //console.log(category+"  "+cat+"   "+clienti+"   "+chari+"   "+countryi);
-       axios.delete("/v1/admin/client",{params:{email:cat[clienti].email}}).then(res=>{       cat.splice(clienti,1);
-;         this.setState({data:data});
-              })
+      let deleted=new Set(this.state.deletedSet);
+      deleted.add(email);
+      console.log(deleted)
+      this.setState({deletedSet:deleted});
+      }
 
-   }
+      filterHandler=(category,country)=>{
+         let data=[... this.state.modifiedData[country.charAt(0)][country].[category]];
+         this.setState({data:data});
+
+      }
+  
+
+
+//   selectHandler=(charIndex,countryIndex)=>{
+
+
+
+//   }
+
+
+
+//  deleteHandler=(chari, countryi,category,clienti)=>{
+
+// >>>>>>> 9ea82a55fbab80a95c23ea47ccbaeba6eb0ecf93
+
+//    }
 
 
    render(){
-   //   console.log(this.state.data);
-    if(!this.context.authenticated){
-      window.location.href="http://safe-headland-47190.herokuapp.com/admin"
-                           // "http://localhost:3000/admin"//"https://ancient-woodland-30225.herokuapp.com/admin"
-    }
+     let perCountry = null
+     if(this.state.data){
 
-    let perCountry=null;
-
-    if(this.state.data)
-     perCountry=
-      <>
-      <AdminHeader  selectHandler={this.selectHandler}  data={this.state.modifiedData}/>
-      <div className="list">
-         <div className="list__h1">Do you believe in God ?</div>
-
-          {this.state.data.map((char,chari)=>
-          <>
-          <h1 className="list__char">{char.value}</h1>
-          <div className="list__wrapper">
-
-        {char.country.map((country,countryi)=>
-        <>
-        <h2 className="list__country">
-              <div>{country.name}</div>
-             <Flag height={32} code={country.code}/>
-             <div> #{country.clients.yes.length+country.clients.no.length+country.clients.notDecided.length}</div>
-        </h2>
-         <table className="list__table">
-             <thead className="list__table-head">
-                <tr className="list__table-head-row" ><td className="list__table-head-row-head" colspan={6}>Believers #{country.clients.yes.length}</td></tr>
-                <tr className="list__table-head-row">
-                    <td  className="list__table-head-row-cell">First Name</td>
-                    <td  className="list__table-head-row-cell">Last Name</td>
-                    <td  className="list__table-head-row-cell">Email</td>
-                    <td  className="list__table-head-row-cell">City</td>
-                    <td  className="list__table-head-row-cell">Added On</td>
-                    <td  className="list__table-head-row-cell list__table-body-row-cell--delete"></td>
-                </tr>
-             </thead>
-             <tbody className="list__table-body">
-
-               {country.clients.yes.map((client,clienti)=>
-                 <tr className="list__table-body-row">
-                   <td  className="list__table-body-row-cell">{client.firstName}</td>
-                    <td  className="list__table-body-row-cell">{client.lastName}</td>
-                    <td  className="list__table-body-row-cell list__table-body-row-cell--email">{client.email}</td>
-                    <td  className="list__table-body-row-cell">{client.city}</td>
-                    <td  className="list__table-body-row-cell">{client.createdOn}</td>
-                    <td onClick={()=>this.deleteHandler(chari,countryi,"yes",clienti)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
-                </tr>
-                )}
-
-             </tbody>
-         </table>
-         <table className="list__table">
-             <thead className="list__table-head">
-             <tr className="list__table-head-row" ><td className="list__table-head-row-head" colspan={6}>Non Believers #{country.clients.no.length}</td></tr>
-                    <tr className="list__table-head-row">
-                    <td  className="list__table-head-row-cell">First Name</td>
-                    <td  className="list__table-head-row-cell">Last Name</td>
-                    <td  className="list__table-head-row-cell list__table-body-row-cell--email">Email</td>
-                    <td  className="list__table-head-row-cell">City</td>
-                   <td  className="list__table-head-row-cell">Added On</td>
-                   <td  className="list__table-head-row-cell list__table-body-row-cell--delete"></td>
-                </tr>
+       perCountry =   <>
+       <AdminHeader  selectHandler={this.selectHandler}  data={this.state.chars}/>
+       {this.state.data.length>0 && this.state.data.length===this.state.actualData.length?null:
+         <div>
+            <h2 onClick={()=>this.filterHandler("all",this.state.data[0].country)}>All</h2>
+            <h2 onClick={()=>this.filterHandler("yes",this.state.data[0].country)}>BEL</h2>
+            <h2 onClick={()=>this.filterHandler("no",this.state.data[0].country)}>NONBEl</h2>
+            <h2 onClick={()=>this.filterHandler("undecided",this.state.data[0].country)}>UnDE</h2></div>
+       }
+          <div className="list__heading">Do you believe in god ? </div>
+          <table className="list">
+              <thead className="list__head">
+                   <tr className="list__head-row">
+                       <td className="list__head-row-column">Name</td>
+                       <td className="list__head-row-column">Added On</td>
+                       <td className="list__head-row-column">Email</td>
+                       <td className="list__head-row-column">City</td>
+                       <td className="list__head-row-column">Country</td>
+                       <td className="list__head-row-column">Status</td>
+                       <td className="list__head-row-column list__head-row-coloumn--delete">delete</td>
+                   </tr>
               </thead>
-             <tbody className="list__table-body">
-             {country.clients.no.map((client,clienti)=>
-                  <tr className="list__table-body-row">
-                  <td  className="list__table-body-row-cell">{client.firstName}</td>
-                    <td  className="list__table-body-row-cell">{client.lastName}</td>
-                    <td  className="list__table-body-row-cell list__table-body-row-cell--email">{client.email}</td>
-                    <td  className="list__table-body-row-cell">{client.city}</td>
-                    <td  className="list__table-body-row-cell">{client.createdOn}</td>
-                    <td onClick={()=>this.deleteHandler(chari,countryi,"no",clienti)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
-                </tr>
-             )}
-
-             </tbody>
-         </table>
-         <table className="list__table">
-             <thead className="list__table-head">
-                <tr className="list__table-head-row"><td className="list__table-head-row-head" colspan={6}>Undecided #{country.clients.notDecided.length}</td></tr>
-                <tr className="list__table-head-row">
-                    <td  className="list__table-head-row-cell">First Name</td>
-                    <td  className="list__table-head-row-cell">Last Name</td>
-                    <td  className="list__table-head-row-cell list__table-body-row-cell--email">Email</td>
-                    <td  className="list__table-head-row-cell">City</td>
-                    <td  className="list__table-head-row-cell">Added On</td>
-                    <td  className="list__table-head-row-cell list__table-body-row-cell--delete"></td>
-                </tr>
-             </thead>
-             <tbody className="list__table-body">
-
-             {country.clients.notDecided.map((client,clienti)=>
-                 <tr className="list__table-body-row">
-                   <td  className="list__table-body-row-cell">{client.firstName}</td>
-                    <td  className="list__table-body-row-cell">{client.lastName}</td>
-                    <td  className="list__table-body-row-cell list__table-body-row-cell--email">{client.email}</td>
-                    <td  className="list__table-body-row-cell">{client.city}</td>
-                    <td  className="list__table-body-row-cell">{client.createdOn}</td>
-                    <td onClick={()=>this.deleteHandler(chari,countryi,"notDecided",clienti)} className="list__table-body-row-cell list__table-body-row-cell--delete"><i className="fa fa-trash" aria-hidden="true"></i></td>
-                </tr>
-             )}
-
-             </tbody>
-         </table>
-         <hr/>
-         </>
-         )}
-
-         </div>
-         </>
-         )}
-
-      </div>
-    </>
+              {this.state.data.map((client,i)=>{
+                 if( this.state.deletedSet.has(client.email))
+                 return null;
+                return (<tbody className="list__body">
+                     <tr className="list__body-row">
+              <td className="list__body-row-column">{client.firstName+" "}{client.lastName}</td>
+                         <td className="list__body-row-column">{client.createdOn}</td>
+                         <td className="list__body-row-column">{client.email}</td>
+                         <td className="list__body-row-column">{client.city}</td>
+                         <td className="list__body-row-column">{client.country}</td>
+                         <td className="list__body-row-column">{client.category}</td>
+                         <td className="list__body-row-column list__body-row-column--delete"><i onClick={()=>this.deleteHandler(client.email)} class="fa fa-trash" aria-hidden="true"></i></td>
+                     </tr>
+                </tbody>)
+              })}
+          </table>
+       </>
+     }
 
 
     return (

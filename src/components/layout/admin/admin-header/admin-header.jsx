@@ -2,6 +2,7 @@
 import {Link } from "react-router-dom"
 import SideDrawer from "./side-drawer/side-drawer"
 import AdminBackdrop from "./admin-backdrop/admin-backdrop"
+import logo from "../../../../assets/images/logo.jpg"
 
  class AdminHeader extends Component{
 
@@ -27,7 +28,7 @@ import AdminBackdrop from "./admin-backdrop/admin-backdrop"
      return (
        <header className="adminHeader">
             <div><i onClick={this.sideDrawerToggleHandler} className="fa fa-bars adminHeader__menuIcon" aria-hidden="true"></i>
-           <Link to="/" className="logo adminHeader__logo">logo</Link>
+           <Link to="/" className="logo adminHeader__logo"><img className="logo__img" src={logo} alt=""/></Link>
            <AdminBackdrop show={this.state.open} clicked={this.sideDrawerToggleHandler}/>
            <SideDrawer selectHandler={this.props.selectHandler} data={this.props.data} clicked={this.sideDrawerToggleHandler} toggler={this.state.open?"sideDrawer__open":"sideDrawer__close"}/>
            </div>

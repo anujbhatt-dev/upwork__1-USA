@@ -22,11 +22,11 @@ class NotABeliever extends Component{
 
     return (
        <div className="query__item query__non-believer" onClick={this.props.clicked}>
-       <div className="query__item-text query__non-believer-text">I AM NOT A BELIEVER</div>
        <p>
-          I Join With all <strong>{this.state.count}</strong> others from <strong>{this.props.country}</strong> on <br/>
-          this list in acknowledging that<br/>
-          the universe was not created by God
+          I Join With all <strong>{this.state.count}</strong> people in <br/> <strong style={{textTransform:"uppercase"}}>{this.props.country}</strong><br/>
+          and <br/> <strong>{this.props.world.worldTotalNonBeliever}</strong> people in the <strong>WORLD</strong> <br/>
+          in<br/> <strong>DENYING</strong><br/>that
+          the <strong>universe was created by GOD</strong>
        </p>
        </div>
     )

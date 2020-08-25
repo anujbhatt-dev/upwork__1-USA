@@ -5,51 +5,51 @@ import Flag from "react-world-flags"
 
    state={
      stage:true,
+     data:[],
      char:[],
      selected:[],
-     selectedCharIndex:-1,
+     //selectedCharIndex:-1,
     }
 
 componentDidUpdate(prevProps, prevState){
-  if(prevState.char.length===this.state.char.length && prevProps.data.length===this.props.data.length)
+  let char=Object.keys(this.props.data);
+  //console.log(char)
+
+  if(prevState.char.length===this.state.char.length && Object.keys(prevProps.data).length===char.length)
   return ;
     let ch=[];
-  this.props.data.map(char=>{
-    let c={value:char.value};
-    let co=[];
-    c.country=co;
-    ch.push(c);
-    char.country.map(country=>{
-      co.push({name:country.name,code:country.code});
-    })
-  })
-this.setState({char:ch});
-  //console.log("123"+JSON.stringify(ch[0]));
+        char.sort();
+        console.log(char)
+  
+this.setState({char:char,data:this.props.data});
+  console.log("123"+JSON.stringify(ch[0]));
 }
 
 
 
-   stageHandler=(index)=>{
+   stageHandler=(val)=>{
      // alert("d")
-if(index===-1){
+if(val===-1){
   this.setState({
     stage:!this.state.stage,
   })
   return ;
 }
-     let selected=[... this.state.char[index].country];
+console.log(JSON.stringify(this.props.data[val])+"  "+val)
+     let selected=[... this.props.data[val]];
+
      this.setState({
        stage:!this.state.stage,
        selected:selected,
-       selectedCharIndex:index
+      // selectedCharIndex:index
      })
    }
 
-    onClickHandler=(index)=>{
+    onClickHandler=(val)=>{
       this.setState({
           stage:true
       })
-    this.props.selectHandler(this.state.selectedCharIndex,index);
+    this.props.selectHandler(val);
     this.props.clicked()
 
     }
@@ -59,23 +59,23 @@ if(index===-1){
      let stage1 = null
      let stage2 = null
     stage1 =<>
-       <div onClick={()=>{this.props.selectHandler(-1,-1);this.props.clicked();}}
+       <div onClick={()=>{this.props.selectHandler(-1);this.props.clicked();}}
        className="sideDrawer__container-stage1 sideDrawer__container-stage">
          ALL
          <i className="fa fa-angle-right" aria-hidden="true"></i></div>
 
           {this.state.char.map((char,index)=>{
-              return  <div onClick={()=>this.stageHandler(index)}
+              return  <div onClick={()=>this.stageHandler(char)}
              className="sideDrawer__container-stage1 sideDrawer__container-stage">
-                {char.value}
+                {char}
                 <i className="fa fa-angle-right" aria-hidden="true"></i></div>
                 })}</>
 
 
     stage2 =  this.state.selected.map((country,index)=>{
-      return <div onClick={()=>this.onClickHandler(index)}
+      return <div onClick={()=>this.onClickHandler(country[0])}
             className="sideDrawer__container-stage2 sideDrawer__container-stage">
-              <div>{country.name}</div><div><Flag code={country.code} height={32}/></div></div>
+              <div>{country[0]}</div><div><Flag code={country[1]} height={32}/></div></div>
     })
 
 

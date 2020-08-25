@@ -13,7 +13,7 @@ var simplemaps_worldmap_mapdata={
   main_settings: {
     //General settings
 		width: "responsive", //or 'responsive'
-    background_color: "#00BFFF",
+    background_color: "#FFF",
     background_transparent: "no",
     popups: "detect",
 
@@ -65,7 +65,7 @@ var simplemaps_worldmap_mapdata={
     zoom_time: 0.5,
 
 		//Popup settings
-		popup_color: "cyan",
+		popup_color: "#fff",
     popup_opacity: 0.9,
     popup_shadow: 1,
     popup_corners: 0,
