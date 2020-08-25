@@ -9,6 +9,7 @@
   align-items: center;
   @include respond(tab-port){
      // height: 50%;
+     justify-content: flex-start;
      padding: 0rem 0rem;
      flex-grow: 1;
   }

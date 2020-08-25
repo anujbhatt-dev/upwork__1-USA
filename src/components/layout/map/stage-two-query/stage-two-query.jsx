@@ -1,9 +1,8 @@
- import React, {Component} from "react"
- import Recaptcha from "react-recaptcha"
 // import believer from "../../../../assets/images/believer.jpg"
 // import undecided from "../../../../assets/images/undecided.jpg"
 // import notABeliever from "../../../../assets/images/not-a-believer.jpg"
-
+ import React, {Component} from "react"
+ import Recaptcha from "react-recaptcha"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
@@ -48,7 +47,7 @@ toast.configure();
        client.category= this.props.believer;
        client.date=new Date().toLocaleDateString();
 
-       let uri="http://localhost:3000/verified";
+       let uri="http://safe-headland-47190.herokuapp.com/verified";
 
        Object.keys(client).map(k=>{
                client[k]=`${btoa(client[k])}`;
@@ -56,46 +55,35 @@ toast.configure();
 
 
 
-       let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${this.props.code}`;
+       let url= `http://safe-headland-47190.herokuapp.com/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${this.props.code}`;
        console.log(url);
         if(this.state.isVerified){
           axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email)
           .then(res=>{
-            toast.success("done");
+            // toast.success("done");
           });
           this.props.history.push("/checkEmail")
+          // window.location=
+          //                  // "https://ancient-woodland-30225.herokuapp.com/map"
+          //                  "http://localhost:3000/map"
         }else{
           toast.warning("Complete the form")
         }
-
-       // send email verification
-
-       // alert(`mailing  http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}`);
-
-      //  let key=this.state.client.email.replace('.','DOT');
-      //  fireDb.child("client/"+key).on('value',res=>{
-
-      //     fireDb.child("client").child(key).set(client);
-
-      //  })
-
-      // emailjs.send("","","").then(res=>{
-      //   alert("send")
-      // }).catch(err=>{
-      //   alert("failed")
-      // })
-
     }
+
 
     callback=()=>{
-      console.log("loaded");
+       console.log("loaded");
     }
 
-    verifyCallback=()=>{
-      this.setState({
-        isVerified:true
-      })
-    }
+
+
+verifyCallback=()=>{
+   this.setState({
+      isVerified:true
+   })
+}
+
 
    render(){
      // <img className="query__item-image query__believer-image" src={believer} alt=""/>
@@ -114,12 +102,12 @@ toast.configure();
        <form onSubmit={this.onSubmitHandler} className="form query__item query__fixer query__believer">
          <input value={this.state.client.firstName} name="firstName" placeholder="First Name" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
          <input value={this.state.client.lastName} name="lastName" placeholder="Last Name" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
-         <input value={this.state.client.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
+         <input value={this.state.client.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="email"/>
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
          <input disabled value={this.state.client.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
          <Recaptcha
            className="form__captcha"
-           sitekey="6LesvMEZAAAAAGxm_vMtt_AhG4YHZ0XObuwqhPui"
+           sitekey="6LcqJcIZAAAAAAOKFbP32-bG7HMQCFAxYTgS5kTQ"
            render="explicit"
            verifyCallback={this.verifyCallback}
            onloadCallback={this.callback}
@@ -132,12 +120,12 @@ toast.configure();
        <form onSubmit={this.onSubmitHandler} className="form query__item query__fixer query__non-believer">
          <input value={this.state.client.firstName} name="firstName" placeholder="First Name" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input value={this.state.client.lastName} name="lastName" placeholder="Last Name" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
-         <input value={this.state.client.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
+         <input value={this.state.client.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="email"/>
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <Recaptcha
            className="form__captcha"
-           sitekey="6LesvMEZAAAAAGxm_vMtt_AhG4YHZ0XObuwqhPui"
+           sitekey="6LcqJcIZAAAAAAOKFbP32-bG7HMQCFAxYTgS5kTQ"
            render="explicit"
            verifyCallback={this.verifyCallback}
            onloadCallback={this.callback}
@@ -156,12 +144,12 @@ toast.configure();
        <form onSubmit={this.onSubmitHandler} className="form query__item query__fixer query__non-believer">
          <input  value={this.state.client.firstName} name="firstName" placeholder="First Name" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input  value={this.state.client.lastName} name="lastName" placeholder="Last Name" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
-         <input value={this.state.client.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
+         <input value={this.state.client.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="email"/>
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <Recaptcha
            className="form__captcha"
-           sitekey="6LesvMEZAAAAAGxm_vMtt_AhG4YHZ0XObuwqhPui"
+           sitekey="6LcqJcIZAAAAAAOKFbP32-bG7HMQCFAxYTgS5kTQ"
            render="explicit"
            verifyCallback={this.verifyCallback}
            onloadCallback={this.callback}
