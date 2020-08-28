@@ -16,6 +16,12 @@ toast.configure()
       chars:[],
       modifiedData:[],
       deletedSet:new Set(),
+      totalPages:0,
+      pageNumber:0,
+      loading:true,
+      selectedCountry:"",
+      selectedCategory:"all",
+      countries:[],
    }
 
    static contextType=LayoutContext;
@@ -26,110 +32,90 @@ toast.configure()
 
    componentDidMount=()=>{
 
-      axios.get("/v1/admin/data").then(res=>{
-                  
-         this.setState({actualData:res.data,data:res.data});
+      axios.get("/v1/admin/data/all/0").then(res=>{
+         axios.get("/v1/admin/country").then(res=>{
+            console.log(res.data);
+            this.setState({
+              countries:res.data
+            })        
+         } )
+         .catch(err=>{alert("error")})
 
-        // console.log()
-         let chars={};
-         let ch={};
-        // let country={};
-           
-        for (let data of res.data){
-           if(data.country.charAt(0) in chars){
-                
-            if(data.country in chars[data.country.charAt(0)]){
-               let temp=chars[data.country.charAt(0)];
-               
-                  temp[data.country][data.category].push(data);
-                  temp[data.country]["all"].push(data);
-         
-            }else{
-               ch[data.country.charAt(0)].push([data.country,data.code]);
-               let temp=chars[data.country.charAt(0)];
-               temp[data.country]={"yes":[],"no":[],"undecided":[],"all":[]};
-               chars[data.country.charAt(0)][data.country][data.category].push(data);
-               chars[data.country.charAt(0)][data.country]["all"].push(data)
-
-            }
-          
-           }else{
-              ch[data.country.charAt(0)]=[[data.country,data.code]];
-            chars[data.country.charAt(0)]={
-               [data.country]:{"yes":[],"no":[],"undecided":[],"all":[]}
-            }
-            chars[data.country.charAt(0)][data.country][data.category].push(data)
-            chars[data.country.charAt(0)][data.country]["all"].push(data)
-           }
-        }
-         console.log(chars);
-         console.log(ch);
-
-
-         this.setState({modifiedData:chars,chars:ch});
-         
-      })
+         this.setState({
+            totalPages:res.data.totalPages,
+            data:res.data.content,
+            loading:false,
+         })        
+      } )
       .catch(err=>{alert("error")})
 
       }
 
+      
+
+      componentDidUpdate(){
+         
+         if(this.state.loading==true)
+         if(this.state.selectedCountry.length==0)
+         axios.get(`/v1/admin/data/${this.state.selectedCategory}/${this.state.pageNumber}`).then(res=>{
+            this.setState({
+               totalPages:res.data.totalPages,
+               data:res.data.content,
+               loading:false,
+               
+            }) 
+         }).catch(err=>alert("error"));
+         else 
+         axios.get(`/v1/admin/data/country/${this.state.selectedCountry}/${this.state.selectedCategory}/${this.state.pageNumber}`).then(res=>{
+            this.setState({
+               totalPages:res.data.totalPages,
+               data:res.data.content,
+               loading:false,
+               
+            }) 
+         }).catch(err=>alert("error"));
+
+      }
+
+      pageHandler=(val)=>{
+
+         if(this.state.pageNumber+val<0 || this.state.pageNumber+val>=this.state.totalPages)
+         return ;
+          
+         this.setState((state)=>{
+            return {pageNumber:state.pageNumber+val,loading:true}
+         })
+
+      }
+
+
 
       selectHandler=(val)=>{
-           // alert(charIndex+"- "+countryIndex)
-        if(val===-1){
-         //  let data=[... this.state.actualData]
-         
-         this.setState((state)=>{return {data:state.actualData}});
-         return ;
-        }
-
-      console.log(val);
-
-        let data=[... this.state.modifiedData[val.charAt(0)][val].["all"]];
-      //   data=data.concat(this.state.modifiedData[val.charAt(0)][val].no);
-      //   data=data.concat(this.state.modifiedData[val.charAt(0)][val].undecided);
-
-        this.setState({data:data});
+              if(val==="all")
+               this.setState({selectedCountry:"",selectedCategory:"all",loading:true,pageNumber:0});
+            else
+               this.setState({selectedCountry:val,selectedCategory:"all",loading:true,pageNumber:0});
 
       }
 
 
 
-   deleteHandler=(email)=>{
+   deleteHandler=(index)=>{
          
-axios.delete("/v1/admin/client",{params:{email:email}}).
-then((res)=>{ let deleted=new Set(this.state.deletedSet);
-      deleted.add(email);
-      console.log(deleted)
-      this.setState({deletedSet:deleted})}).
-catch(err=>alert("an alert occured try again"))      ;
+// axios.delete("/v1/admin",{params:{email:this.state.data[i].email}}).
+// then((res)=>{ 
+   let data=[... this.state.data];
+   data.splice(index,1);
+      this.setState({data:data})
+//    }).
+// catch(err=>alert("an alert occured try again"));
       }
 
-      filterHandler=(category,country)=>{
-         let data=[... this.state.modifiedData[country.charAt(0)][country][category]];
-
-         if(data.length===0)
-          alert("no data");
-          else
-         this.setState({data:data});
+      filterHandler=(category)=>{
+         this.setState({selectedCategory:category,loading:true,pageNumber:0});
 
       }
   
-
-
-//   selectHandler=(charIndex,countryIndex)=>{
-
-
-
-//   }
-
-
-
-//  deleteHandler=(chari, countryi,category,clienti)=>{
-
-// >>>>>>> 9ea82a55fbab80a95c23ea47ccbaeba6eb0ecf93
-
-//    }
 
 
    render(){
@@ -137,15 +123,14 @@ catch(err=>alert("an alert occured try again"))      ;
      if(this.state.data){
 
        perCountry =   <>
-       <AdminHeader  selectHandler={this.selectHandler}  data={this.state.chars}/>
-       {this.state.data.length<=0 || this.state.data.length===this.state.actualData.length?null:
+       <AdminHeader  selectHandler={this.selectHandler}  countries={this.state.countries}/>
          <div>
-           <h2 onClick={()=>this.filterHandler("all",this.state.data[0].country)}>All</h2>
-             <h2 onClick={()=>this.filterHandler("yes",this.state.data[0].country)}>BEL</h2>            
-          <h2 onClick={()=>this.filterHandler("no",this.state.data[0].country)}>NONBEl</h2>
-          <h2 onClick={()=>this.filterHandler("undecided",this.state.data[0].country)}>UnDE</h2>
+           <h2 onClick={()=>this.filterHandler("all")}>All</h2>
+             <h2 onClick={()=>this.filterHandler("yes")}>BEL</h2>            
+          <h2 onClick={()=>this.filterHandler("no")}>NONBEl</h2>
+          <h2 onClick={()=>this.filterHandler("undecided")}>UnDE</h2>
            </div>
-       }
+       
           <div className="list__heading">Do you believe in god ? </div>
           <table className="list">
               <thead className="list__head">
@@ -170,17 +155,20 @@ catch(err=>alert("an alert occured try again"))      ;
                          <td className="list__body-row-column">{client.city}</td>
                          <td className="list__body-row-column">{client.country}</td>
                          <td className="list__body-row-column">{client.category}</td>
-                         <td className="list__body-row-column list__body-row-column--delete"><i onClick={()=>this.deleteHandler(client.email)} class="fa fa-trash" aria-hidden="true"></i></td>
+                         <td className="list__body-row-column list__body-row-column--delete"><i onClick={()=>this.deleteHandler(i)} class="fa fa-trash" aria-hidden="true"></i></td>
                      </tr>
                 </tbody>)
               })}
           </table>
-       </>
+{this.state.data.length>0?<><button onClick={()=>this.pageHandler(-1)} >{"<<  "}</button>
+{this.state.pageNumber+1}/{this.state.totalPages}
+<button onClick={()=>this.pageHandler(1)}>{"  >>"}</button></>
+:"No DATA Yet"}       </>
      }
 
 
     return (
-       perCountry
+       <> {this.state.loading?"Loading...":perCountry}</>
          )
    }
  }

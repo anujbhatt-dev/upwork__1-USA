@@ -58,10 +58,10 @@ toast.configure();
        let url= `http://safe-headland-47190.herokuapp.com/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${this.props.code}`;
        console.log(url);
         if(this.state.isVerified){
-          axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email)
-          .then(res=>{
-            // toast.success("done");
-          });
+          // axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email)
+          // .then(res=>{
+          //   // toast.success("done");
+          // });
           this.props.history.push("/checkEmail")
           // window.location=
           //                  // "https://ancient-woodland-30225.herokuapp.com/map"

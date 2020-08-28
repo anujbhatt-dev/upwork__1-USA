@@ -30,7 +30,7 @@ import logo from "../../../../assets/images/logo.jpg"
             <div><i onClick={this.sideDrawerToggleHandler} className="fa fa-bars adminHeader__menuIcon" aria-hidden="true"></i>
            <Link to="/" className="logo adminHeader__logo"><img className="logo__img" src={logo} alt=""/></Link>
            <AdminBackdrop show={this.state.open} clicked={this.sideDrawerToggleHandler}/>
-           <SideDrawer selectHandler={this.props.selectHandler} data={this.props.data} clicked={this.sideDrawerToggleHandler} toggler={this.state.open?"sideDrawer__open":"sideDrawer__close"}/>
+           <SideDrawer selectHandler={this.props.selectHandler} countries={this.props.countries} clicked={this.sideDrawerToggleHandler} toggler={this.state.open?"sideDrawer__open":"sideDrawer__close"}/>
            </div>
            <div className="socialMedia">
                <div className="instagram"> <a rel="noopener noreferrer" target="_blank" href="https://www.google.com">{""}<i className="fa fa-instagram" aria-hidden="true"></i></a> </div>

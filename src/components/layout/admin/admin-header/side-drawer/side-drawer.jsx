@@ -5,38 +5,61 @@ import Flag from "react-world-flags"
 
    state={
      stage:true,
-     data:[],
-     char:[],
+     char:{},
      selected:[],
      //selectedCharIndex:-1,
     }
 
-componentDidUpdate(prevProps, prevState){
-  let char=Object.keys(this.props.data);
-  //console.log(char)
-
-  if(prevState.char.length===this.state.char.length && Object.keys(prevProps.data).length===char.length)
+    componentWillMount(){
+      if(this.props.countries.length===0)
   return ;
-    let ch=[];
-        char.sort();
-        console.log(char)
   
-this.setState({char:char,data:this.props.data});
-  console.log("123"+JSON.stringify(ch[0]));
+  let hashSet={};
+  let set= new Set();
+  this.props.countries.map(country=>{
+                             if(country.charAt(0) in hashSet)
+                             hashSet[country.charAt(0)].list.push({name:country.substring(0,country.indexOf(',')),code:country.substring(country.indexOf(',')+1)});
+                              else{
+                                set.add(country.charAt(0));
+                                hashSet[country.charAt(0)]={list:[{name:country.substring(0,country.indexOf(',')),code:country.substring(country.indexOf(',')+1)}]};
+                              }
+                    });
+
+console.log(hashSet);
+
+  this.setState({char:hashSet})
+    }
+
+componentDidUpdate(prevProps, prevState){
+  if(prevProps.countries.length===this.props.countries.length)
+  return ;
+  console.log("updatin")
+  let hashSet={};
+  let set= new Set();
+  this.props.countries.map(country=>{
+                             if(country.charAt(0) in hashSet)
+                             hashSet[country.charAt(0)].list.push({name:country.substring(0,country.indexOf(',')),code:country.substring(country.indexOf(',')+1)});
+                              else{
+                                set.add(country.charAt(0));
+                                hashSet[country.charAt(0)]={list:[{name:country.substring(0,country.indexOf(',')),code:country.substring(country.indexOf(',')+1)}]};
+                              }
+                    });
+
+console.log(hashSet);
+
+  this.setState({char:hashSet})
 }
 
 
 
    stageHandler=(val)=>{
-     // alert("d")
 if(val===-1){
   this.setState({
     stage:!this.state.stage,
   })
   return ;
 }
-console.log(JSON.stringify(this.props.data[val])+"  "+val)
-     let selected=[... this.props.data[val]];
+     let selected=[... this.state.char[val].list];
 
      this.setState({
        stage:!this.state.stage,
@@ -59,12 +82,12 @@ console.log(JSON.stringify(this.props.data[val])+"  "+val)
      let stage1 = null
      let stage2 = null
     stage1 =<>
-       <div onClick={()=>{this.props.selectHandler(-1);this.props.clicked();}}
+       <div onClick={()=>{this.props.selectHandler("all");this.props.clicked();}}
        className="sideDrawer__container-stage1 sideDrawer__container-stage">
          ALL
          <i className="fa fa-angle-right" aria-hidden="true"></i></div>
 
-          {this.state.char.map((char,index)=>{
+          {Object.keys( this.state.char).map((char,index)=>{
               return  <div onClick={()=>this.stageHandler(char)}
              className="sideDrawer__container-stage1 sideDrawer__container-stage">
                 {char}
@@ -73,9 +96,11 @@ console.log(JSON.stringify(this.props.data[val])+"  "+val)
 
 
     stage2 =  this.state.selected.map((country,index)=>{
-      return <div onClick={()=>this.onClickHandler(country[0])}
+      return <div onClick={()=>this.onClickHandler(country.name)}
             className="sideDrawer__container-stage2 sideDrawer__container-stage">
-              <div>{country[0]}</div><div><Flag code={country[1]} height={32}/></div></div>
+              <div>{country.name}</div><div>
+                <Flag code={country.code} height={32}/>
+              </div></div>
     })
 
 
