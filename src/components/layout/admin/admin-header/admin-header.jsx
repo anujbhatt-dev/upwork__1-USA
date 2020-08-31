@@ -1,8 +1,8 @@
  import React, {Component} from "react"
 import {Link } from "react-router-dom"
+import logo from "../../../../assets/images/logo.jpg"
 import SideDrawer from "./side-drawer/side-drawer"
 import AdminBackdrop from "./admin-backdrop/admin-backdrop"
-import logo from "../../../../assets/images/logo.jpg"
 
  class AdminHeader extends Component{
 
@@ -33,6 +33,7 @@ import logo from "../../../../assets/images/logo.jpg"
            <SideDrawer selectHandler={this.props.selectHandler} countries={this.props.countries} clicked={this.sideDrawerToggleHandler} toggler={this.state.open?"sideDrawer__open":"sideDrawer__close"}/>
            </div>
            <div className="socialMedia">
+               <div className="instagram"> <Link to="/admin/claims"><i className="fa fa-bell" aria-hidden="true"></i></Link> </div>
                <div className="instagram"> <a rel="noopener noreferrer" target="_blank" href="https://www.google.com">{""}<i className="fa fa-instagram" aria-hidden="true"></i></a> </div>
                <div className="facebook"> <a rel="noopener noreferrer" target="_blank" href="https://www.google.com">{""}<i className="fa fa-facebook" aria-hidden="true"></i></a> </div>
                <div className="twitter"> <a rel="noopener noreferrer" target="_blank" href="https://www.google.com">{""}<i className="fa fa-twitter" aria-hidden="true"></i></a> </div>

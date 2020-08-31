@@ -7,7 +7,9 @@ import axios from "axios";
 import LayoutContext from "../../../layoutcontext";
 import AdminBackdrop from "../admin-header/admin-backdrop/admin-backdrop";
 import Modal from "../../../../UI/modal/modal";
+import Backdrop from "../../../../UI/backdrop/backdrop";
 import ModalView from "./modal-view/modal-view";
+
 
 toast.configure()
 
@@ -157,9 +159,9 @@ toast.configure()
          this.setState({search:val,loading:true});
       }
 
-      
+
       modalShowTrueHandler=(index)=>{
-         
+
          let selected={...this.state.data[index]};
            selected.index=index;
 
@@ -313,15 +315,15 @@ toast.configure()
 
 
     return (
-       
+
        <>
           {/* <AdminBackdrop clicked={this.modalShowFalseHandler} show={this.state.modalShow}></AdminBackdrop> */}
-          <Modal clicked={this.modalShowFalseHandler}show={this.state.modalShow}>
+          <Modal clicked={this.modalShowFalseHandler} show={this.state.modalShow}>
              <ModalView  verifyToggler={this.verifyTooglehandler}
                           delete={this.deleteHandler}
                            data={this.state.selectedClient}
                            closeModal={this.modalShowFalseHandler} />
-          </Modal>
+          </Modal><Backdrop  clicked={this.modalShowFalseHandler} show={this.state.modalShow}/>
 
        <AdminHeader  selectHandler={this.selectHandler}  countries={this.state.countries}/>
        {this.state.loading?

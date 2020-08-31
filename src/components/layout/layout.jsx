@@ -11,6 +11,9 @@ import EmailCheck from "./email-check/email-check"
 import LayoutContext from "../layoutcontext"
 import axios from "axios"
 import PublicFigure from "./public-figure/public-figure"
+import Claims from "./admin/claims/claims"
+
+
 
 document.addEventListener('popstate', function (event) {
   this.alert("changed")}
@@ -21,7 +24,7 @@ document.addEventListener('popstate', function (event) {
     state={
       authenticated:false,
     }
-  
+
     componentDidMount=()=>{
       axios.interceptors.response.use(response =>{
         let authorization=response.headers.authorization;
@@ -67,6 +70,9 @@ document.addEventListener('popstate', function (event) {
               </Route>
               <Route exact  path="/publicFigure">
                  <PublicFigure/>
+              </Route>
+              <Route exact  path="/admin/claims">
+                 <Claims />
               </Route>
            </Switch>
         </div>

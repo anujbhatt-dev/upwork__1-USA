@@ -10,17 +10,17 @@ class PublicFigure extends Component {
         loading:false,
     }
 
-  
+
       componentWillUnmount() {
         window.removeEventListener("scroll", this.onScroll, false);
       }
-    
+
       onScroll = () => {
         if (this.hasReachedBottom()) {
           this.pageHandler();
         }
       };
-    
+
       hasReachedBottom() {
         return (
             (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight-30
@@ -64,9 +64,12 @@ axios.get("/v1/client/publicFigure/0").then(res=>{
 
 
     render() {
+      console.log(this.state.data);
         return (
-            <div>
-                {this.state.data.map(d=><><span>{d.firstName}</span><br/><br/><br/><br/><br/><br/><br/><br/></>)}
+            <div className="notable">
+                {this.state.data.map(d=><>
+                  <div className="notable__name">{d.firstName+" "+d.lastName}</div>
+                  <br/><br/><br/><br/><br/><br/><br/><br/></>)}
                  {this.state.loading?"LOADING...":null}
 
             </div>
