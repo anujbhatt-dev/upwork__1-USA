@@ -25,7 +25,7 @@ import Flag from "react-world-flags"
                               }
                     });
 
-console.log(hashSet);
+//console.log(hashSet);
 
   this.setState({char:hashSet})
     }

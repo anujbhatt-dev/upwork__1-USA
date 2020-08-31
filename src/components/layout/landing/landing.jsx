@@ -16,6 +16,8 @@ import "aos/dist/aos.css"
 
 
    componentDidMount=()=>{
+
+    
      let viewportHeight = window.innerHeight;
      setTimeout(()=>{
          window.scrollTo({top:viewportHeight,behavior:"smooth"})

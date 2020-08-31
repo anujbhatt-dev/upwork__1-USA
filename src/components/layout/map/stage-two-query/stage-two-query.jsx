@@ -17,7 +17,8 @@ toast.configure();
         lastName:"",
         email:"",
         city:"",
-        country:""
+        country:"",
+        publicFigure:"",
       },
        isVerified:false
     }
@@ -55,7 +56,9 @@ toast.configure();
 
 
 
-       let url= `http://safe-headland-47190.herokuapp.com/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${this.props.code}`;
+      // let url= `http://safe-headland-47190.herokuapp.com/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${this.props.code}`;
+       let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${client.publicFigure}/${this.props.code}`;
+
        console.log(url);
         if(this.state.isVerified){
           // axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email)
@@ -104,7 +107,8 @@ verifyCallback=()=>{
          <input value={this.state.client.lastName} name="lastName" placeholder="Last Name" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
          <input value={this.state.client.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="email"/>
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
-         <input disabled value={this.state.client.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
+         <input value={this.state.client.publicFigure} name="publicFigure" placeholder="publicFigure" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
+ <input disabled value={this.state.client.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
          <Recaptcha
            className="form__captcha"
            sitekey="6LcqJcIZAAAAAAOKFbP32-bG7HMQCFAxYTgS5kTQ"
@@ -122,6 +126,7 @@ verifyCallback=()=>{
          <input value={this.state.client.lastName} name="lastName" placeholder="Last Name" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input value={this.state.client.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="email"/>
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
+         <input value={this.state.client.publicFigure} name="publicFigure" placeholder="publicFigure" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <Recaptcha
            className="form__captcha"
@@ -146,7 +151,8 @@ verifyCallback=()=>{
          <input  value={this.state.client.lastName} name="lastName" placeholder="Last Name" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <input value={this.state.client.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="email"/>
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
-         <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
+         <input value={this.state.client.publicFigure} name="publicFigure" placeholder="publicFigure" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
+       <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <Recaptcha
            className="form__captcha"
            sitekey="6LcqJcIZAAAAAAOKFbP32-bG7HMQCFAxYTgS5kTQ"

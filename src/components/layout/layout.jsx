@@ -10,6 +10,7 @@ import Verified from "./verified/verified"
 import EmailCheck from "./email-check/email-check"
 import LayoutContext from "../layoutcontext"
 import axios from "axios"
+import PublicFigure from "./public-figure/public-figure"
 
 
 document.addEventListener('popstate', function (event) {
@@ -59,11 +60,14 @@ document.addEventListener('popstate', function (event) {
               <Route exact  path="/admin/list">
                   <List adminVerified={this.state.adminVerified} />
               </Route>
-              <Route exact  path="/verified/:email/:firstName/:lastName/:date/:city/:country/:category/:code">
+              <Route exact  path="/verified/:email/:firstName/:lastName/:date/:city/:country/:category/:publicFigure/:code">
                  <Verified/>
               </Route>
               <Route exact  path="/checkEmail">
                  <EmailCheck/>
+              </Route>
+              <Route exact  path="/publicFigure">
+                 <PublicFigure/>
               </Route>
            </Switch>
         </div>
