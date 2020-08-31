@@ -16,9 +16,7 @@ import axios from 'axios'
  }
 
  backgroundSaveHandler=()=>{
-
-      if(this.state.background.length!=0)
-      axios.post("/v1/admin/client/background",null,{params:{background:this.state.background}})
+      axios.post("/v1/admin/client/background",null,{params:{background:this.state.background,email:this.props.data.email}})
        .then(res=>{ alert("saved")})
 
  }
@@ -32,7 +30,7 @@ import axios from 'axios'
                 <button onClick={()=>this.props.verifyToggler(this.props.data.email,this.props.data.index)} className="list__body-row-column-btn-check" ><i className="fa fa-check" aria-hidden="true"></i></button>
                 :<button onClick={()=>this.props.verifyToggler(this.props.data.email,this.props.data.index)} className="list__body-row-column-btn-cross" ><i className="fa fa-times" aria-hidden="true"></i></button>}
                 <input onChange={(e)=>this.inputHandler(e)} name="background" value={this.state.background} type="text-field" placeholder="background" name="" id=""/>
-                <button >save</button>
+                <button onClick={this.backgroundSaveHandler}>save</button>
                 <div  className="list__body-row-column list__body-row-column--delete"><i onClick={()=>this.props.delete(this.props.data.index)} class="fa fa-trash" aria-hidden="true"></i></div>
 
             </div>
