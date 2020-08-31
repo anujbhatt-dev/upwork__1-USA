@@ -24,9 +24,7 @@ import axios from 'axios'
  }
 
  backgroundSaveHandler=()=>{
-
-      if(this.state.background.length!=0)
-      axios.post("/v1/admin/client/background",null,{params:{background:this.state.background}})
+      axios.post("/v1/admin/client/background",null,{params:{background:this.state.background,email:this.props.data.email}})
        .then(res=>{ alert("saved")})
 
  }
@@ -43,9 +41,17 @@ import axios from 'axios'
                 <div className="modalView__form"><textarea  className="modalView__input" onChange={(e)=>this.inputHandler(e)} name="background" value={this.state.background} type="text" placeholder="background"></textarea>
                 <button  className="modalView__btn">save</button></div>
                 {!this.props.data.verified?
+<<<<<<< HEAD
                 <button onClick={()=>this.props.verifyToggler(this.props.data.email,this.props.data.index)} className="modalView__verify" ><i className="fa fa-check" aria-hidden="true">verify</i></button>
                 :<button onClick={()=>this.props.verifyToggler(this.props.data.email,this.props.data.index)} className="modalView__unVerify" ><i className="fa fa-times" aria-hidden="true">Unverify</i></button>} <br/>
                 <div  className="modalView__delete"><i onClick={()=>this.props.delete(this.props.data.index)} class="fa fa-trash" aria-hidden="true"></i></div>
+=======
+                <button onClick={()=>this.props.verifyToggler(this.props.data.email,this.props.data.index)} className="list__body-row-column-btn-check" ><i className="fa fa-check" aria-hidden="true"></i></button>
+                :<button onClick={()=>this.props.verifyToggler(this.props.data.email,this.props.data.index)} className="list__body-row-column-btn-cross" ><i className="fa fa-times" aria-hidden="true"></i></button>}
+                <input onChange={(e)=>this.inputHandler(e)} name="background" value={this.state.background} type="text-field" placeholder="background" name="" id=""/>
+                <button onClick={this.backgroundSaveHandler}>save</button>
+                <div  className="list__body-row-column list__body-row-column--delete"><i onClick={()=>this.props.delete(this.props.data.index)} class="fa fa-trash" aria-hidden="true"></i></div>
+>>>>>>> 9d54e34069526c8431ef82366de43222b1dd12ba
 
             </div>
         )
