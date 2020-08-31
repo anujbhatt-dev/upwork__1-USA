@@ -1,0 +1,51 @@
+.adminSearch{
+
+   position: absolute;
+   transform: translateX(-50%);
+   left: 50%;
+   height: 5rem;
+   display: flex;
+   flex-wrap: nowrap;
+  &__input{
+    height: 100%;
+    width:40rem;
+    border: none;
+    padding:1rem;
+    transition: all .2s;
+    background:  rgba($color-grey,.2);
+    border-left: 5px solid transparent;
+    &:hover{
+
+    }
+    &:focus{
+      outline: none;
+      border-left: 5px solid $color-orangered;
+      & ~ button{
+        border-right: 5px solid $color-orangered;
+      }
+    }
+  }
+  &__btn{
+    border-right: 5px solid transparent;
+    height: 100%;
+    transition: all .2s;
+    border: none;
+    background:  rgba($color-grey,.2);
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover{
+      background:  $color-orangered;
+    }
+    &:focus{
+      outline: none;
+    }
+  }
+  &__icon{
+    font-size: 2rem;
+    font-weight: bold;
+
+  }
+}

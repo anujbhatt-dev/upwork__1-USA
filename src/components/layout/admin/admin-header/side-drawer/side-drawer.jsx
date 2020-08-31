@@ -12,8 +12,8 @@ import Flag from "react-world-flags"
 
     componentWillMount(){
       if(this.props.countries.length===0)
-  return ;
-  
+           return ;
+
   let hashSet={};
   let set= new Set();
   this.props.countries.map(country=>{
@@ -25,7 +25,7 @@ import Flag from "react-world-flags"
                               }
                     });
 
-console.log(hashSet);
+//console.log(hashSet);
 
   this.setState({char:hashSet})
     }

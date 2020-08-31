@@ -67,7 +67,7 @@ class Map extends Component {
 
     componentDidMount(){
 
-
+    
       this.props.history.push("/map")
       axios.get("/v1/client/country/count").then(res=>{
                       this.setState({count:res.data})

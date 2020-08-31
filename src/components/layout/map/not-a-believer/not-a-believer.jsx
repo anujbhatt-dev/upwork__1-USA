@@ -7,6 +7,7 @@ class NotABeliever extends Component{
   }
 
   componentDidMount=()=>{
+    if(this.props.count)
     this.props.count.map(data=>{
       if(data[1]===this.props.country && data[2]==="no"){
           this.setState({

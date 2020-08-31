@@ -13,6 +13,8 @@ import axios from 'axios';
      var city = atob(this.props.match.params.city);
      var country = atob(this.props.match.params.country);
      var category = atob(this.props.match.params.category);
+     var publicFigure = atob(this.props.match.params.publicFigure);
+
      var  code=this.props.match.params.code;
 
      let client={
@@ -23,6 +25,7 @@ import axios from 'axios';
          city:city,
          country:country,
          category:category,
+         publicFigure:publicFigure,
          code:code,
      }
 

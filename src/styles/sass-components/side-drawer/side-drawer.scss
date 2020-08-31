@@ -2,7 +2,7 @@
   color:$color-black;
   &__backdrop{
     background: rgba($color-black,.5);
-    z-index: 99;
+    z-index: 1100;
   }
   &__container{
     background: $color-white;
@@ -107,15 +107,16 @@
   justify-content: center;
   align-items: center;
   background: $color-white;
-  z-index: 100;
+  z-index: 1300;
   top:0;
   left: 0;
   &__open{
     height: 100vh;
-    width: 40rem;
+    width: 0rem;
     font-size: 1.5rem;
     // transform: rotate(-90deg);
     animation: open .5s ease-out;
+    animation-fill-mode:forwards;  
   }
   &__close{
     opacity: 0;
