@@ -13,6 +13,7 @@ class PublicFigure extends Component {
         country:"all",
         countries:[],
         searchedCountries:[],
+        search:"all",
     }
 
   
@@ -50,7 +51,7 @@ class PublicFigure extends Component {
 
 
 
-axios.get("/v1/client/publicFigure/all/0").then(res=>{
+axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
     console.log(res.data.totalPages)
                 this.setState({data:res.data.content,totalPages:res.data.totalPages})
 })
@@ -60,7 +61,7 @@ axios.get("/v1/client/publicFigure/all/0").then(res=>{
     componentDidUpdate(){
           console.log(this.state.page)
         if(this.state.loading)
-        axios.get("/v1/client/publicFigure/"+this.state.country+"/"+this.state.page).then(res=>{
+        axios.get("/v1/client/publicFigure/"+this.state.country+"/"+this.state.search+"/"+this.state.page).then(res=>{
             setTimeout(()=>{ this.setState((state)=>{return {data:state.data.concat(res.data.content),loading:false,totalPages:res.data.totalPages}});
         },1000)
 })
@@ -93,10 +94,15 @@ axios.get("/v1/client/publicFigure/all/0").then(res=>{
     countrySelectHandler=(val)=>{
       
       if(val==="")
-      this.setState({country:"all",loading:true,data:[]})
+      this.setState({country:"all",loading:true,data:[],search:"all"})
 
-      this.setState({country:val,loading:true,data:[]})
+      this.setState({country:val,loading:true,data:[],search:"all"})
 
+    }
+
+        
+    searchInputHandler=(e)=>{
+   this.setState({search:e.target.value});
     }
 
 
@@ -104,7 +110,7 @@ axios.get("/v1/client/publicFigure/all/0").then(res=>{
     render() {
         return (
             <div>
-
+              <input type="text" value={this.state.search} onChange={(e)=>this.searchInputHandler(e)}  placeholder="search" name="" id=""/><button onClick={()=>{this.setState({loading:true,data:[]})}} > Search</button>
               <input type="text"  onChange={(e)=>this.searchedCountriesHandler(e)} name="" id=""/>
               {this.state.searchedCountries.map(c=>
                                    <div onClick={()=>this.countrySelectHandler(c.substring(0,c.indexOf(',')))}>
