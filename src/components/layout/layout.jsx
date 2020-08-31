@@ -11,7 +11,6 @@ import EmailCheck from "./email-check/email-check"
 import LayoutContext from "../layoutcontext"
 import axios from "axios"
 
-
 document.addEventListener('popstate', function (event) {
   this.alert("changed")}
   );

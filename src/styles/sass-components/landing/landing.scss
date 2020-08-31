@@ -111,6 +111,9 @@
            // font-size: 2rem;
            width: 60%;
            text-align: center;
+           // @include respond(phone){
+           //   width: 80%;
+           // }
          }
        }
        &-3{
@@ -150,11 +153,17 @@
              align-self: flex-start;
              width:50%;
              display: inline-block;
+             @include respond(tab-land){
+               width:75%;
+             }
           }
           &-span2{
              width:50%;
              align-self: flex-end;
              display: inline-block;
+             @include respond(tab-land){
+               width:75%;
+             }
           }
         }
      }
@@ -205,11 +214,17 @@
              align-self: flex-start;
              width:50%;
              display: inline-block;
+             @include respond(tab-land){
+               width:75%;
+             }
           }
           &-span2{
              width:50%;
              align-self: flex-end;
              display: inline-block;
+             @include respond(tab-land){
+               width:75%;
+             }
           }
         }
      }
@@ -236,11 +251,17 @@
             align-self: flex-start;
             width:50%;
             display: inline-block;
+            @include respond(tab-land){
+              width:75%;
+            }
          }
          &-span2{
             width:50%;
             align-self: flex-end;
             display: inline-block;
+            @include respond(tab-land){
+              width:75%;
+            }
          }
          @include respond(tab-land){
            width:80%;
@@ -278,6 +299,9 @@
              font-size: 2.5rem;
              font-weight: bolder;
              display: inline-block;
+             @include respond(tab-land){
+               font-size: 1rem;
+             }
           }
           &-span2{
              // width:50%;
@@ -285,6 +309,9 @@
              font-size: 5rem;
              font-weight: bolder;
              display: inline-block;
+             @include respond(tab-land){
+               font-size: 3rem;
+             }
           }
         }
 

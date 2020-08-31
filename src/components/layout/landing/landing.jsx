@@ -14,55 +14,65 @@ import "aos/dist/aos.css"
 
  class Landing extends Component{
 
+    state= {
+      height:"",
+      width:""
+    }
 
    componentDidMount=()=>{
-     let viewportHeight = window.innerHeight;
-     setTimeout(()=>{
-         window.scrollTo({top:viewportHeight,behavior:"smooth"})
-     }, 6000);
-     setTimeout(()=>{
-         window.scrollTo({top:2*viewportHeight,behavior:"smooth"})
-     }, 12000);
-     setTimeout(()=>{
-         window.scrollTo({top:3*viewportHeight,behavior:"smooth"})
-     }, 18000);
-     setTimeout(()=>{
-         window.scrollTo({top:4*viewportHeight,behavior:"smooth"})
-     }, 24000);
+     // let viewportHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+     // let viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+     //  this.setState({
+     //    height:viewportHeight,
+     //    width:viewportWidth
+     //  })
+     // alert(viewportHeight+","+viewportWidth);
+     // setTimeout(()=>{
+     //     window.scrollTo({top:viewportHeight,behavior:"smooth"})
+     // }, 6000);
+     // setTimeout(()=>{
+     //     window.scrollTo({top:2*viewportHeight,behavior:"smooth"})
+     // }, 12000);
+     // setTimeout(()=>{
+     //     window.scrollTo({top:3*viewportHeight,behavior:"smooth"})
+     // }, 18000);
+     // setTimeout(()=>{
+     //     window.scrollTo({top:4*viewportHeight,behavior:"smooth"})
+     // }, 24000);
     Aos.init({duration:2000,delay:100})
     let lastScrollTop = 0;
-    $(window).scroll(function(e){
-       let st = $(this).scrollTop();
-       let pageY = null;
-       if (st > lastScrollTop){
-            pageY = window.pageYOffset
-            if(pageY>=1&& pageY<=50){
-                window.scrollTo({top:viewportHeight, behavior:"smooth"})
-            }else if(pageY>=viewportHeight+1 && pageY<=viewportHeight+50){
-                window.scrollTo({top:2*viewportHeight, behavior:"smooth"})
-            }else if(pageY>=2*viewportHeight+1 && pageY<=2*viewportHeight+50){
-                window.scrollTo({top:3*viewportHeight, behavior:"smooth"})
-            }else if(pageY>=3*viewportHeight+1 && pageY<=3*viewportHeight+50){
-                window.scrollTo({top:4*viewportHeight, behavior:"smooth"})
-            }else if(pageY>=4*viewportHeight+1 && pageY<=4*viewportHeight+50){
-                window.scrollTo({top:5*viewportHeight, behavior:"smooth"})
-            }
-       } else {
-            pageY = window.pageYOffset
-            if(pageY>=viewportHeight-50 && pageY<=viewportHeight-1){
-                window.scrollTo({top:0, behavior:"smooth"})
-            }else if(pageY>=2*viewportHeight-50 && pageY<=2*viewportHeight-1){
-                window.scrollTo({top:viewportHeight, behavior:"smooth"})
-            }else if(pageY>=3*viewportHeight-50 && pageY<=3*viewportHeight-1){
-                window.scrollTo({top:2*viewportHeight, behavior:"smooth"})
-            }else if(pageY>=4*viewportHeight-50 && pageY<=4*viewportHeight-1){
-                window.scrollTo({top:3*viewportHeight, behavior:"smooth"})
-            }else if(pageY>=5*viewportHeight-50 && pageY<=5*viewportHeight-1){
-                window.scrollTo({top:4*viewportHeight, behavior:"smooth"})
-            }
-       }
-       lastScrollTop = st;
-    });
+    // $(window).scroll(function(e){
+    //    let st = $(this).scrollTop();
+    //    let pageY = null;
+    //    if (st > lastScrollTop){
+    //         pageY = window.pageYOffset
+    //         if(pageY>=1&& pageY<=20){
+    //             window.scrollTo({top:viewportHeight, behavior:"smooth"})
+    //         }else if(pageY>=viewportHeight+1 && pageY<=viewportHeight+20){
+    //             window.scrollTo({top:2*viewportHeight, behavior:"smooth"})
+    //         }else if(pageY>=2*viewportHeight+1 && pageY<=2*viewportHeight+20){
+    //             window.scrollTo({top:3*viewportHeight, behavior:"smooth"})
+    //         }else if(pageY>=3*viewportHeight+1 && pageY<=3*viewportHeight+20){
+    //             window.scrollTo({top:4*viewportHeight, behavior:"smooth"})
+    //         }else if(pageY>=4*viewportHeight+1 && pageY<=4*viewportHeight+20){
+    //             window.scrollTo({top:5*viewportHeight, behavior:"smooth"})
+    //         }
+    //    } else {
+    //         pageY = window.pageYOffset
+    //         if(pageY>=viewportHeight-20 && pageY<=viewportHeight-1){
+    //             window.scrollTo({top:0, behavior:"smooth"})
+    //         }else if(pageY>=2*viewportHeight-20 && pageY<=2*viewportHeight-1){
+    //             window.scrollTo({top:viewportHeight, behavior:"smooth"})
+    //         }else if(pageY>=3*viewportHeight-20 && pageY<=3*viewportHeight-1){
+    //             window.scrollTo({top:2*viewportHeight, behavior:"smooth"})
+    //         }else if(pageY>=4*viewportHeight-20 && pageY<=4*viewportHeight-1){
+    //             window.scrollTo({top:3*viewportHeight, behavior:"smooth"})
+    //         }else if(pageY>=5*viewportHeight-20 && pageY<=5*viewportHeight-1){
+    //             window.scrollTo({top:4*viewportHeight, behavior:"smooth"})
+    //         }
+    //    }
+    //    lastScrollTop = st;
+    // });
   }
 
 
