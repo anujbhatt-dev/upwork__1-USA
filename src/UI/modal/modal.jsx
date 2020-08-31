@@ -11,8 +11,8 @@
      if(this.props.show){
        modal=<div
         className="modal">
-                  {this.props.children}
-                  <i onClick={this.props.clicked} className="fa fa-times modalCross" aria-hidden="true"></i>
+                  <span style={{color:"black"}} >{this.props.children}</span>
+                  <i onClick={this.props.clicked}  className="fa fa-times modalCross" aria-hidden="true"></i>
               </div>
      }
      return (
