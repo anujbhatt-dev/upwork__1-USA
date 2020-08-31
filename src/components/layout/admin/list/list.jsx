@@ -5,8 +5,9 @@ import Flag from "react-world-flags"
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import LayoutContext from "../../../layoutcontext";
-import { Dropdown } from 'react-bootstrap';
-
+import AdminBackdrop from "../admin-header/admin-backdrop/admin-backdrop";
+import Modal from "../../../../UI/modal/modal";
+import ModalView from "./modal-view/modal-view";
 
 toast.configure()
 
@@ -28,6 +29,8 @@ toast.configure()
       selectedPublicFigure:"all",
       search:"all",
       countries:[],
+      modalShow:false,
+      selectedClient:null,
    }
 
    static contextType=LayoutContext;
@@ -117,7 +120,8 @@ toast.configure()
 // then((res)=>{
    let data=[... this.state.data];
    data.splice(index,1);
-      this.setState({data:data})
+      this.setState({data:data});
+      this.modalShowFalseHandler();
 //    }).
 // catch(err=>alert("an alert occured try again"));
       }
@@ -128,15 +132,18 @@ toast.configure()
 
       }
 
-      verifyTooglehandler(email,index){
+      verifyTooglehandler=(email,index)=>{
          // alert(email+" "+this.state.data[index].verified)
          // let data=[ ... this.state.data];
          // data[index].verified=data[index].verified==="true"?"false":"true";
          // this.setState({data:data});
          axios.post("/v1/admin/verifyToggle",null,{params:{email:email}}).then(res=>{
+            console.log(this.state)
             let data=[ ... this.state.data];
             data[index].verified=!data[index].verified
-            this.setState({data:data});
+            let selected={... this.state.selectedClient}
+            selected.verified=!selected.verified;
+            this.setState({data:data,selectedClient:selected});
             })
       }
 
@@ -148,6 +155,19 @@ toast.configure()
        //alert(val);
 
          this.setState({search:val,loading:true});
+      }
+
+      
+      modalShowTrueHandler=(index)=>{
+         
+         let selected={...this.state.data[index]};
+           selected.index=index;
+
+       this.setState((state)=>{return {selectedClient:selected,modalShow:true}});
+       }
+
+      modalShowFalseHandler=()=>{
+         this.setState((state)=>{return {selectedClient:null,modalShow:false}});
       }
 
 
@@ -168,67 +188,67 @@ toast.configure()
 
        <div className="dropdown">FILTER
              <div className="dropdown__all">ALL
-                  <div className="dropdown__all-all">All</div>
-                  <div className="dropdown__all-verified">All Verified</div>
-                  <div className="dropdown__all-unVerified">All Unverified</div>
-                  <div className="dropdown__all-other">All Others</div>
+                  <div className="dropdown__all-all"  onClick={()=>this.filterHandler("all","all","all")} >All</div>
+                  <div className="dropdown__all-verified"  onClick={()=>this.filterHandler("all","all","true")}> Verified</div>
+                  <div className="dropdown__all-unVerified"  onClick={()=>this.filterHandler("all","all","false")}> Unverified</div>
+                  <div className="dropdown__all-other"  onClick={()=>this.filterHandler("all","other","false")}> Others</div>
              </div>
-             <div className="dropdown__believer">BELIEVERS
-                  <div className="dropdown__believer-all">ALL
-                       <div className="dropdown__believer-all-all">All Believers</div>
-                       <div className="dropdown__believer-all-verified">Verified Believers</div>
-                       <div className="dropdown__believer-all-unVerified">Unverified Believers</div>
+             <div className="dropdown__believer"  >BELIEVERS
+                  <div className="dropdown__believer-all"  >ALL
+                       <div className="dropdown__believer-all-all"  onClick={()=>this.filterHandler("yes","all","all")}>All </div>
+                       <div className="dropdown__believer-all-verified"  onClick={()=>this.filterHandler("yes","all","true")}>Verified </div>
+                       <div className="dropdown__believer-all-unVerified"  onClick={()=>this.filterHandler("yes","all","false")}>Unverified </div>
                   </div>
                   <div className="dropdown__believer-publicFigure">PUBLIC FIGURES
-                       <div  className="dropdown__believer-publicFigure-all">All Public Figure</div>
-                       <div  className="dropdown__believer-publicFigure-verified">All Verified Public Figure</div>
-                       <div  className="dropdown__believer-publicFigure-unVerified">All Unverified Public Figure</div>
+                       <div  className="dropdown__believer-publicFigure-all"  onClick={()=>this.filterHandler("yes","pf1","all")}> All</div>
+                       <div  className="dropdown__believer-publicFigure-verified"  onClick={()=>this.filterHandler("yes","pf1","true")}> Verified  </div>
+                       <div  className="dropdown__believer-publicFigure-unVerified"  onClick={()=>this.filterHandler("yes","pf1","false")}> Unverified  </div>
                   </div>
                   <div className="dropdown__believer-scientist">SCIENTISTS
-                       <div  className="dropdown__believer-scientist-all">All Scientist</div>
-                       <div  className="dropdown__believer-scientist-verified">All Verified Scientist</div>
-                       <div  className="dropdown__believer-scientist-unVerified">All Unverified Scientist</div>
+                       <div  className="dropdown__believer-scientist-all"  onClick={()=>this.filterHandler("yes","pf2","all")}>All </div>
+                       <div  className="dropdown__believer-scientist-verified"  onClick={()=>this.filterHandler("yes","pf2","true")}> Verified </div>
+                       <div  className="dropdown__believer-scientist-unVerified"  onClick={()=>this.filterHandler("yes","pf2","false")}> Unverified </div>
                   </div>
-                  <div className="dropdown__believer-other">OTHER BELIEVERS</div>
+                  <div className="dropdown__believer-other"  onClick={()=>this.filterHandler("yes","other","all")}>OTHER </div>
              </div>
 
 
-             <div className="dropdown__nonBeliever">NON BELIEVERS
+             <div className="dropdown__nonBeliever" >NON BELIEVERS
                   <div className="dropdown__nonBeliever-all">ALL
-                       <div className="dropdown__nonBeliever-all-all">All Believers</div>
-                       <div className="dropdown__nonBeliever-all-verified">Verified Believers</div>
-                       <div className="dropdown__nonBeliever-all-unVerified">Unverified Believers</div>
+                       <div className="dropdown__nonBeliever-all-all"  onClick={()=>this.filterHandler("no","all","all")}>All</div>
+                       <div className="dropdown__nonBeliever-all-verified"  onClick={()=>this.filterHandler("no","all","true")}>Verified</div>
+                       <div className="dropdown__nonBeliever-all-unVerified"  onClick={()=>this.filterHandler("no","all","false")}>Unverified</div>
                   </div>
-                  <div className="dropdown__nonBeliever-publicFigure">PUBLIC FIGURES
-                       <div  className="dropdown__nonBeliever-publicFigure-all">All Public Figure</div>
-                       <div  className="dropdown__nonBeliever-publicFigure-verified">All Verified Public Figure</div>
-                       <div  className="dropdown__nonBeliever-publicFigure-unVerified">All Unverified Public Figure</div>
+                  <div className="dropdown__nonBeliever-publicFigure" >PUBLIC FIGURES
+                       <div  className="dropdown__nonBeliever-publicFigure-all"  onClick={()=>this.filterHandler("no","pf1","all")}>All  </div>
+                       <div  className="dropdown__nonBeliever-publicFigure-verified"  onClick={()=>this.filterHandler("no","pf1","true")}> Verified  </div>
+                       <div  className="dropdown__nonBeliever-publicFigure-unVerified"  onClick={()=>this.filterHandler("no","pf1","false")}> Unverified  </div>
                   </div>
                   <div className="dropdown__nonBeliever-scientist">SCIENTISTS
-                       <div  className="dropdown__nonBeliever-scientist-all">All Scientist</div>
-                       <div  className="dropdown__nonBeliever-scientist-verified">All Verified Scientist</div>
-                       <div  className="dropdown__nonBeliever-scientist-unVerified">All Unverified Scientist</div>
+                       <div  className="dropdown__nonBeliever-scientist-all"  onClick={()=>this.filterHandler("no","pf2","all")}>All </div>
+                       <div  className="dropdown__nonBeliever-scientist-verified"  onClick={()=>this.filterHandler("no","pf2","true")}> Verified </div>
+                       <div  className="dropdown__nonBeliever-scientist-unVerified"  onClick={()=>this.filterHandler("no","pf2","false")}> Unverified </div>
                   </div>
-                  <div className="dropdown__nonBeliever-other">OTHER NON BELIEVERS</div>
+                  <div className="dropdown__nonBeliever-other"  onClick={()=>this.filterHandler("no","other","all")}>OTHER</div>
              </div>
 
              <div className="dropdown__unDecided">UNDECIDED
-                  <div className="dropdown__unDecided-all">ALL
-                       <div className="dropdown__unDecided-all-all">All Believers</div>
-                       <div className="dropdown__unDecided-all-verified">Verified Believers</div>
-                       <div className="dropdown__unDecided-all-unVerified">Unverified Believers</div>
+                  <div className="dropdown__unDecided-all" >ALL
+                       <div className="dropdown__unDecided-all-all"  onClick={()=>this.filterHandler("undecided","all","all")}>All </div>
+                       <div className="dropdown__unDecided-all-verified"  onClick={()=>this.filterHandler("undecided","all","true")}>Verified </div>
+                       <div className="dropdown__unDecided-all-unVerified"  onClick={()=>this.filterHandler("undecided","all","false")}>Unverified </div>
                   </div>
                   <div className="dropdown__unDecided-publicFigure">PUBLIC FIGURES
-                       <div  className="dropdown__unDecided-publicFigure-all">All Public Figure</div>
-                       <div  className="dropdown__unDecided-publicFigure-verified">All Verified Public Figure</div>
-                       <div  className="dropdown__unDecided-publicFigure-unVerified">All Unverified Public Figure</div>
+                       <div  className="dropdown__unDecided-publicFigure-all"  onClick={()=>this.filterHandler("undecided","pf1","all")}>All  </div>
+                       <div  className="dropdown__unDecided-publicFigure-verified"  onClick={()=>this.filterHandler("undecided","pf1","true")}> Verified  </div>
+                       <div  className="dropdown__unDecided-publicFigure-unVerified"  onClick={()=>this.filterHandler("undecided","pf1","false")}> Unverified</div>
                   </div>
                   <div className="dropdown__unDecided-scientist">SCIENTISTS
-                       <div  className="dropdown__unDecided-scientist-all">All Scientist</div>
-                       <div  className="dropdown__unDecided-scientist-verified">All Verified Scientist</div>
-                       <div  className="dropdown__unDecided-scientist-unVerified">All Unverified Scientist</div>
+                       <div  className="dropdown__unDecided-scientist-all"  onClick={()=>this.filterHandler("undecided","pf2","all")}>All </div>
+                       <div  className="dropdown__unDecided-scientist-verified"  onClick={()=>this.filterHandler("undecided","pf2","true")}> Verified </div>
+                       <div  className="dropdown__unDecided-scientist-unVerified"  onClick={()=>this.filterHandler("undecided","pf2","false")}> Unverified </div>
                   </div>
-                  <div className="dropdown__unDecided-other">OTHER UNDECIDED</div>
+                  <div className="dropdown__unDecided-other"  onClick={()=>this.filterHandler("undecided","all","all")}>OTHER </div>
              </div>
 {
 
@@ -267,8 +287,8 @@ toast.configure()
                      <tr className="list__body-row">
                          {client.publicFigure!=="OTHER"?
                          <td className="list__body-row-column">{client.verified===true?
-                                <button className="list__body-row-column-btn-check" onClick={()=>this.verifyTooglehandler(client.email,i)}><i className="fa fa-check" aria-hidden="true"></i></button>
-                               :<button className="list__body-row-column-btn-cross" onClick={()=>this.verifyTooglehandler(client.email,i)} ><i className="fa fa-times" aria-hidden="true"></i></button>}</td>:<td className="list__body-row-column">
+                                <button className="list__body-row-column-btn-check" onClick={()=>this.modalShowTrueHandler(i)}><i className="fa fa-eject" aria-hidden="true"></i></button>
+                               :<button className="list__body-row-column-btn-cross" onClick={()=>this.modalShowTrueHandler(i)} ><i className="fa fa-eject" aria-hidden="true"></i></button>}</td>:<td className="list__body-row-column">
                          </td>}
                     <td className="list__body-row-column">{client.firstName+" "}{client.lastName+"  "}{client.publicFigure}</td>
                          <td className="list__body-row-column">{client.createdOn}</td>
@@ -293,7 +313,16 @@ toast.configure()
 
 
     return (
+       
        <>
+          {/* <AdminBackdrop clicked={this.modalShowFalseHandler} show={this.state.modalShow}></AdminBackdrop> */}
+          <Modal clicked={this.modalShowFalseHandler}show={this.state.modalShow}>
+             <ModalView  verifyToggler={this.verifyTooglehandler}
+                          delete={this.deleteHandler}
+                           data={this.state.selectedClient}
+                           closeModal={this.modalShowFalseHandler} />
+          </Modal>
+
        <AdminHeader  selectHandler={this.selectHandler}  countries={this.state.countries}/>
        {this.state.loading?
          <div className="loading"> <div>Loading...</div></div>
