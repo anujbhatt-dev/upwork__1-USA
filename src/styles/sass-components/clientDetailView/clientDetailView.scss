@@ -1,0 +1,111 @@
+.clientDetailViewWrapper{
+  padding-top: 8rem;
+  background: #f1f3f8;
+  padding-bottom: 5rem;
+}
+.clientDetailView{
+    min-height: 90vh;
+    width: 60vw;
+    margin: 0 auto;
+    background: $color-white;
+    border-radius: 20px;
+    box-shadow: 0 0 2rem rgba($color-grey, .2);
+    padding: 5rem;
+    position: relative;
+    padding-bottom: 5rem;
+    @include respond(tab-port){
+       width: 95vw;
+    }
+    &__row{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      & > *{
+
+      }
+    }
+    &__img{
+      position:static;
+      top:3rem;
+      right:3rem;
+      height: 6rem;
+      width: 6rem;
+    }
+
+    &__col{
+      &-country{
+
+        font-weight:bold;
+        text-transform: capitalize;
+        padding: 1rem 0.5rem;
+        & span{
+          font-size: 1.8rem;
+          color: $color-primary-blue;
+          padding-left: .5rem;
+          @include respond(tab-port){
+             font-size: 1.5rem;
+          }
+        }
+      }
+      &-2{
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        align-items:center;
+
+      }
+    }
+  &__name{
+      font-size: 3rem;
+      font-weight:bold;
+      text-transform: uppercase;
+      padding-bottom: .5rem;
+      @include respond(tab-port){
+         font-size: 1.8rem;
+      }
+  }
+  &__notableFor{
+      font-size: 1.2rem;
+      font-weight:bold;
+      text-transform: capitalize;
+      padding: 1rem 0;
+
+      & span{
+        font-size: 2rem;
+        color: $color-grey;
+        padding-left: .5rem;
+        @include respond(tab-port){
+           font-size: 1.5rem;
+        }
+      }
+  }
+  &__verified{
+    padding: 1rem;
+    padding-left: 0;
+    & span{
+       color: $color-green;
+       font-size: 1.5rem;
+       font-weight: bold;
+       @include respond(tab-port){
+          font-size: 1rem;
+       }
+       // & i{
+       //   color: $color-green;
+       //   font-size: 1.2rem;
+       //   padding: .5rem;
+       // }
+    }
+  }
+  &__background{
+    font-size: 1.5rem;
+    font-weight:bold;
+    text-transform: capitalize;
+    padding: 1rem 0;
+    line-height: 2;
+    color: $color-grey-dark-3;
+  }
+}
+.hr{
+   border: none;
+   border-bottom:1px solid rgba($color-grey,.3);
+}

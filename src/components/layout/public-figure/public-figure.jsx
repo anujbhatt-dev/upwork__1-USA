@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import Flag from 'react-world-flags';
-import Header from "../header/header"
 import Aos from "aos"
 import "aos/dist/aos.css"
+import Header from "../header/header"
 import Gravatar from 'react-awesome-gravatar';
 import { NavLink } from 'react-router-dom';
 
@@ -68,7 +68,7 @@ axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
         if(this.state.loading)
         axios.get("/v1/client/publicFigure/"+this.state.country+"/"+(this.state.search.length<=0?"all":this.state.search)+"/"+this.state.page).then(res=>{
              this.setState((state)=>{return {data:state.data.concat(res.data.content),loading:false,totalPages:res.data.totalPages}});
-        
+
 })
     }
 
@@ -117,20 +117,41 @@ axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
             <Header/>
             <div className="notables">
 
+            <div className="searchWrapper">
+             <div className="notables__search">
+                 <input className="notables__search-input" type="text" value={this.state.search} onChange={(e)=>this.searchInputHandler(e)}  placeholder="search" name="" id=""/>
+             </div>
+             <div className="notables__searchByCountry">
+             <input className="notables__searchByCountry-input" type="text"  onChange={(e)=>this.searchedCountriesHandler(e)} name="searchedCahrecterForCountry" placeholder="country search" value={this.state.searchedCahrecterForCountry} id=""/>
+             <div className="notables__searchByCountry-dropdown">
+             {this.state.searchedCountries.map(c=>
+                                  <div style={{zIndex:"1000"}} className="notables__searchByCountry-dropdown-item" onClick={()=> this.countrySelectHandler(c.substring(0,c.indexOf(',')))}>
+                                      <Flag code={c.substring(c.indexOf(',')+1)}height={16} />
+                                      {c.slice(0,c.length-3)}
+                                   </div>
+                                  )}
+                     <div className="notables__searchByCountry-dropdown-item" onClick={()=>this.countrySelectHandler("all")}>
+                         ALL
+                     </div>
+                 </div>
+             </div>
+             </div>
+
+
               <div className="searchfor"> <strong>{this.state.country==="all"?null:this.state.country}</strong></div>
                   <div className="userWrapper">
                 {this.state.data.map((d,i)=><>
                   <div   className={"user "+"user"+(i%2)}>
                        <div data-aos={i%2===0?"fade-right":"fade-left"}  className="userWrapper2">
-                           <div className="userWrapper3">
+
 
                 <div className="user__name"><span>{d.firstName+" "+d.lastName}{d.id}</span></div>
                            <div className="user__field user__field1">Natable as <span>{d.publicFigure==="PF1"?"Public Figure":"Scientist"}</span></div>
                            <div className="user__field user__field2">
                               {d.background===null?
-                                null:
+                                <br/>:
                                 <span>{d.background.length<20?
-                                 <span> {d.background.padEnd(d.background.length+5,'.')} <span> <NavLink  to={{pathname:"/publicFigure/"+d.firstName,state:d}} > read more </NavLink> </span></span>:
+                                 <span>{d.background.padEnd(d.background.length+5,'.')} <span> <NavLink  to={{pathname:"/publicFigure/"+d.firstName,state:d}} > read more </NavLink> </span></span>:
                                   <span>{d.background.substring(0,20).padEnd(25,'.')} <span><NavLink to={{pathname:"/publicFigure/"+d.firstName,state:d}} > read more </NavLink></span></span>}
                                 </span>}
                               </div>
@@ -146,31 +167,16 @@ axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
                              <div className="user__field user__field3">{d.verified?<span className="user__verified"><i className="fa fa-check" aria-hidden="true"></i> verified</span>:null}</div>
                            </div>
 
-                       </div>
+
                     </div>
                   </div>
                   </>)}</div>
                  {this.state.loading?<button className="load__btn load__btn-loading">LOADING...</button>:null}
                  {this.state.totalPages==this.state.page+1 || this.state.loading?null: this.state.data.length<=0?<h1 style={{padding:"50px 50px"}}>No data</h1>:<button className="load__btn" onClick={this.pageHandler}>Load More...</button>}
-                 <div className="searchWrapper">
-                  <div className="notables__search">
-                      <input className="notables__search-input" type="text" value={this.state.search} onChange={(e)=>this.searchInputHandler(e)}  placeholder="search" name="" id=""/>
-                  </div>
-                  <div className="notables__searchByCountry">
-                  <input className="notables__searchByCountry-input" type="text"  onChange={(e)=>this.searchedCountriesHandler(e)} name="searchedCahrecterForCountry" placeholder="country search" value={this.state.searchedCahrecterForCountry} id=""/>
-                  <div className="notables__searchByCountry-dropdown">
-                  {this.state.searchedCountries.map(c=>
-                                       <div style={{zIndex:"1000"}} className="notables__searchByCountry-dropdown-item" onClick={()=> this.countrySelectHandler(c.substring(0,c.indexOf(',')))}>
-                                           <Flag code={c.substring(c.indexOf(',')+1)}height={16} />
-                                           {c.slice(0,c.length-3)}
-                                        </div>
-                                       )}
-                          <div className="notables__searchByCountry-dropdown-item" onClick={()=>this.countrySelectHandler("all")}>
-                              ALL
-                          </div>
-                      </div>
-                  </div>
-                  </div>
+
+
+
+
             </div></>
         )
     }
