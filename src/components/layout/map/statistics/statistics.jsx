@@ -70,7 +70,7 @@ import axios from 'axios';
                      let element = document.getElementById("gradient");
                      let gradient = isNaN(this.state.bPercent)
                      ?`-webkit-linear-gradient(top, black 0%, black 100%)`
-                     :`-webkit-linear-gradient(top, red ${this.state.bPercent}%, green ${(this.state.bPercent+this.state.nbPercent)}%, blue 100%)`
+                     :`-webkit-linear-gradient(top, #F8171C ${this.state.bPercent}%, #8C7A7A ${(this.state.bPercent+this.state.nbPercent)}%, #3D9BE9 100%)`
                      console.log(gradient);
                      element.style.backgroundImage = gradient
      })
@@ -98,7 +98,7 @@ import axios from 'axios';
    //    worldTotal:totalRegion
    //  })
          // '-webkit-linear-gradient('
-         //   + 'left'  + ', ' + 'red 75% ' + ', ' + 'blue 25%' + ')'
+         //   + 'left'  + ', ' + 'red 75% ' + ', ' + '#3D9BE9 25%' + ')'
  }
 
 
@@ -106,7 +106,7 @@ import axios from 'axios';
    let element = document.getElementById("gradient");
    let gradient = isNaN(this.state.bPercent)
    ?`-webkit-linear-gradient(top, black 0%, black 100%)`
-   :`-webkit-linear-gradient(top, red ${(this.state.bPercent)}%, green ${(this.state.bPercent)}%, green ${(this.state.bPercent+this.state.nbPercent)}%,blue ${(this.state.bPercent+this.state.nbPercent)}%, blue 100%)`
+   :`-webkit-linear-gradient(top, #F8171C ${(this.state.bPercent)}%, #8C7A7A ${(this.state.bPercent)}%, #8C7A7A ${(this.state.bPercent+this.state.nbPercent)}%,#3D9BE9 ${(this.state.bPercent+this.state.nbPercent)}%, #3D9BE9 100%)`
    console.log(gradient);
    element.style.backgroundImage = gradient
    if(prevProps.country===this.props.country)
