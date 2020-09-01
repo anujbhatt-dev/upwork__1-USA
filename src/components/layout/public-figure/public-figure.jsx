@@ -5,6 +5,7 @@ import Header from "../header/header"
 import Aos from "aos"
 import "aos/dist/aos.css"
 import Gravatar from 'react-awesome-gravatar';
+import { NavLink } from 'react-router-dom';
 
 
 class PublicFigure extends Component {
@@ -52,21 +53,18 @@ class PublicFigure extends Component {
     // };
     axios.get("/v1/client/country")
      .then(res=>{
-       console.log(res.data)
        this.setState({countries:res.data});
      })
 
 
 
 axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
-    console.log(res.data.totalPages)
                 this.setState({data:res.data.content,totalPages:res.data.totalPages})
 })
 
     }
 
     componentDidUpdate(){
-          console.log(this.state.page)
         if(this.state.loading)
         axios.get("/v1/client/publicFigure/"+this.state.country+"/"+(this.state.search.length<=0?"all":this.state.search)+"/"+this.state.page).then(res=>{
              this.setState((state)=>{return {data:state.data.concat(res.data.content),loading:false,totalPages:res.data.totalPages}});
@@ -113,10 +111,7 @@ axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
    this.setState({search:e.target.value,page:0,loading:true,data:[]});
     }
 
-
-
     render() {
-        console.log(this.state.data);
 
         return (<>
             <Header/>
@@ -131,7 +126,14 @@ axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
 
                 <div className="user__name"><span>{d.firstName+" "+d.lastName}{d.id}</span></div>
                            <div className="user__field user__field1">Natable as <span>{d.publicFigure==="PF1"?"Public Figure":"Scientist"}</span></div>
-                           <div className="user__field user__field2">{d.background?"background "+<span>{d.background}</span>:null}</div>
+                           <div className="user__field user__field2">
+                              {d.background===null?
+                                null:
+                                <span>{d.background.length<20?
+                                 <span> {d.background.padEnd(d.background.length+5,'.')} <span> <NavLink  to={{pathname:"/publicFigure/"+d.firstName,state:d}} > read more </NavLink> </span></span>:
+                                  <span>{d.background.substring(0,20).padEnd(25,'.')} <span><NavLink to={{pathname:"/publicFigure/"+d.firstName,state:d}} > read more </NavLink></span></span>}
+                                </span>}
+                              </div>
 
                            <div className="user__field user__field4"> <Flag code={d.code} height={16} />  <i>{d.country}</i></div>
                            <div className="user__field user__field5">

@@ -12,6 +12,7 @@ import LayoutContext from "../layoutcontext"
 import axios from "axios"
 import PublicFigure from "./public-figure/public-figure"
 import Claims from "./admin/claims/claims"
+import PublicFigureDetail from "./public-figure/public-figure-details/public-figure-detail"
 
 
 
@@ -73,6 +74,9 @@ document.addEventListener('popstate', function (event) {
               </Route>
               <Route exact  path="/admin/claims">
                  <Claims />
+              </Route>
+              <Route exact  path="/publicFigure/:id">
+                 <PublicFigureDetail />
               </Route>
            </Switch>
         </div>
