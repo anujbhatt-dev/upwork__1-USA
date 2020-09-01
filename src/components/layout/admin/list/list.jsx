@@ -5,12 +5,9 @@ import Flag from "react-world-flags"
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import LayoutContext from "../../../layoutcontext";
-import AdminBackdrop from "../admin-header/admin-backdrop/admin-backdrop";
 import Modal from "../../../../UI/modal/modal";
 import Backdrop from "../../../../UI/backdrop/backdrop";
 import ModalView from "./modal-view/modal-view";
-
-
 toast.configure()
 
 
@@ -135,10 +132,6 @@ toast.configure()
       }
 
       verifyTooglehandler=(email,index)=>{
-         // alert(email+" "+this.state.data[index].verified)
-         // let data=[ ... this.state.data];
-         // data[index].verified=data[index].verified==="true"?"false":"true";
-         // this.setState({data:data});
          axios.post("/v1/admin/verifyToggle",null,{params:{email:email}}).then(res=>{
             console.log(this.state)
             let data=[ ... this.state.data];
@@ -172,6 +165,17 @@ toast.configure()
          this.setState((state)=>{return {selectedClient:null,modalShow:false}});
       }
 
+      
+      updatedBackgroundHandler=(index,val)=>{
+         
+         let data=[... this.state.data];
+         data[index].background=val;
+         let selected={... this.state.selectedClient}
+         selected.background=val;
+
+         this.setState({data:data,selectedClient:selected});
+
+      }
 
 
    render(){
@@ -322,7 +326,8 @@ toast.configure()
              <ModalView  verifyToggler={this.verifyTooglehandler}
                           delete={this.deleteHandler}
                            data={this.state.selectedClient}
-                           closeModal={this.modalShowFalseHandler} />
+                           closeModal={this.modalShowFalseHandler}
+                           updatedBackground={this.updatedBackgroundHandler} />
           </Modal><Backdrop  clicked={this.modalShowFalseHandler} show={this.state.modalShow}/>
 
        <AdminHeader  selectHandler={this.selectHandler}  countries={this.state.countries}/>

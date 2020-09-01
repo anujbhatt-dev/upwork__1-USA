@@ -17,15 +17,14 @@ import axios from 'axios'
 
  inputHandler=(e)=>{
 
-   // console.log(e.target.name )
-
     this.setState({background:e.target.value})
 
  }
 
  backgroundSaveHandler=()=>{
       axios.post("/v1/admin/client/background",null,{params:{background:this.state.background,email:this.props.data.email}})
-       .then(res=>{ alert("saved")})
+       .then(res=>{ alert("saved")
+                     this.props.updatedBackground(this.props.data.index,this.state.background)});
 
  }
 
