@@ -133,7 +133,7 @@ import Modal from "../../../../UI/modal/modal";
            </header>
            <div className="claims">
                  <div className="claims__head">claims</div>
-        {this.state.search.length>0?<h1>Search For : {this.state.search}</h1>:null}
+       
                  <table border={1}>
                     <thead>
                         <tr>
