@@ -20,24 +20,34 @@ import "aos/dist/aos.css"
     }
 
    componentDidMount=()=>{
-     let viewportHeight = window.innerHeight;
+
      setTimeout(()=>{
-         window.scrollTo({top:viewportHeight,behavior:"smooth"})
-     }, 6000);
+       $('html, body').animate({
+             scrollTop: $("#screen2").offset().top
+         }, 500);
+     }, 8000);
      setTimeout(()=>{
-         window.scrollTo({top:2*viewportHeight,behavior:"smooth"})
-     }, 12000);
+       $('html, body').animate({
+             scrollTop: $("#screen3").offset().top
+         }, 500);
+     }, 16000);
      setTimeout(()=>{
-         window.scrollTo({top:3*viewportHeight,behavior:"smooth"})
-     }, 18000);
-     setTimeout(()=>{
-         window.scrollTo({top:4*viewportHeight,behavior:"smooth"})
+       $('html, body').animate({
+             scrollTop: $("#screen4").offset().top
+         }, 500);
      }, 24000);
+     setTimeout(()=>{
+       $('html, body').animate({
+             scrollTop: $("#screen5").offset().top
+         }, 500);
+     }, 32000);
 
     Aos.init({duration:2000,delay:100})
     let lastScrollTop = 0;
-    // $(window).scroll(function(e){
+    let viewportHeight = $("#screen1").innerHeight()
+    // $(window).scroll((e)=>{
     //    let st = $(this).scrollTop();
+    //    console.log(st);
     //    let pageY = null;
     //    if (st > lastScrollTop){
     //         pageY = window.pageYOffset
