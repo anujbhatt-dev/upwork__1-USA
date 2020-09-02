@@ -28,8 +28,9 @@ xhr.onload=()=>{
        }
   });
   Object.keys(newData).forEach(data=>{
-       let percentage = Math.round(newData[data][0]/(newData[data][0]+newData[data][1]))*100;
+       let percentage = Math.ceil((newData[data][0]*100)/(newData[data][0]+newData[data][1]));
         let color = null;
+        console.log(data,percentage+"%",newData[data][0],newData[data][1]);
         if(percentage>=80){
           color =  "#F8171C";
         }else if(percentage>=60){

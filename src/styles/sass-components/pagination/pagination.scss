@@ -10,6 +10,8 @@
     width: 5rem;
     background:  $color-orangered;
     transition: all .2s;
+    cursor: pointer;
+    border: 1px solid $color-black;
     &:hover{
       background: rgba($color-orangered,.8);
     }
@@ -25,5 +27,6 @@
     letter-spacing: 2px;
     font-size: 1.8rem;
     font-weight: bold;
+    border-bottom: 1px solid $color-black;
   }
 }

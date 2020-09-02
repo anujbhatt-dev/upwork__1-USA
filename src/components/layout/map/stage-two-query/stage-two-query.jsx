@@ -166,8 +166,8 @@ verifyCallback=()=>{
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <select id="cars" name="publicFigure" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text">
             <option value="volvo">Choose your category</option>
-            <option value="PH1">Public Figure</option>
-            <option value="PH2">Scientist</option>
+            <option value="PF1">Public Figure</option>
+            <option value="PF2">Scientist</option>
             <option value="other">Other</option>
           </select>
        <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>

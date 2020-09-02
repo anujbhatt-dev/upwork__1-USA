@@ -44,7 +44,7 @@
          </select>
         <input value={this.state.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text"/>
          <div>
-             <label htmlFor="verify">Verifiy</label>
+             <label className="label" htmlFor="verify">Verifiy</label>
               <input value={true}   name="verify" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
               <input  value={false}  name="verify" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
           </div>

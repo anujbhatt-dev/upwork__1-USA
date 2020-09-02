@@ -1,13 +1,26 @@
 .add-client{
     height: 100%;
     width: 100%;
-    background: $color-grey;
+    background: rgba($color-black,.5);
     align-self:flex-start;
     display: flex;
     flex-flow: column;
     align-items: center;
     overflow-y: auto;
     padding:  5rem auto;
+    justify-content:center;
+    & > *{
+      width: 25rem;
+    }
+    & div{
+      display:flex;
+      justify-content: space-between;
+      background: $color-white;
+      padding: 1.2rem;
+      & input{
+        font-size: 2rem;
+      }
+    }
 }
 .add-client-background{
     height: 5rem;
@@ -15,7 +28,7 @@
 .add--btn{
   position: absolute;
   top:8rem;
-  right: 35rem;
+  right: 25rem;
   height: 5rem;
   width:5rem;
   border-radius: 100px;
@@ -24,7 +37,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid $color-black;
+  cursor: pointer;
   &:hover{
     background: rgba($color-orangered,.5);
   }
+}
+.label{
+  font-size: 1.5rem;
+  color: $color-grey;
 }

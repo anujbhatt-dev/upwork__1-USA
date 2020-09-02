@@ -282,7 +282,7 @@ toast.configure()
           <div className="adminSearch"><input className="adminSearch__input" id="adminSearch" type="text"/><button className="adminSearch__btn" onClick={this.searchHandler}><i className="adminSearchIcon fa fa-search" aria-hidden="true"></i></button></div>
 
           <div className="list__heading">Do you believe in god ? </div>
-          <div> {this.state.selectedCountry.length===0?null:">>"+this.state.selectedCountry} {(this.state.selectedCategory==="yes"?">> Beleiver":this.state.selectedCategory==="no"?">> Non Beleiver":this.state.selectedCategory==="undecided"?">> Undecided":null)} {(this.state.selectedPublicFigure==="pf1"?">> Public figure":this.state.selectedPublicFigure==="pf2"?">> Scientist":this.state.selectedPublicFigure==="other"?">> other":null)} {(this.state.selectedVerified==="true"?">> verified":this.state.selectedVerified==="false"?">> unverified":null)} </div>
+          <div className="list--location"> {this.state.selectedCountry.length===0?"world":this.state.selectedCountry} {(this.state.selectedCategory==="yes"?">> Beleiver":this.state.selectedCategory==="no"?">> Non Beleiver":this.state.selectedCategory==="undecided"?">> Undecided":null)} {(this.state.selectedPublicFigure==="pf1"?">> Public figure":this.state.selectedPublicFigure==="pf2"?">> Scientist":this.state.selectedPublicFigure==="other"?">> other":null)} {(this.state.selectedVerified==="true"?">> verified":this.state.selectedVerified==="false"?">> unverified":null)} </div>
           <table className="list">
               <thead className="list__head">
                    <tr className="list__head-row">

@@ -124,7 +124,7 @@
   // margin-top: 0rem;
   padding-bottom: 5rem;
   justify-content: center;
-  align-items:flex-start;
+  align-items:stretch;
   flex-wrap: wrap;
   // transform: skewX(-12deg);
   // min-height: 80vh;
@@ -174,6 +174,7 @@
     font-weight: bold;
     font-size: 2rem;
     text-transform: capitalize;
+    width: 21rem;
   }
   &__field{
     font-family: 'Open Sans', sans-serif;
