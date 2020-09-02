@@ -48,6 +48,8 @@ class Map extends Component {
      }
    }
 
+
+
     selectHandler=(val)=>{
         this.setState({s:val});
         this.modaltoggleHandler();
@@ -89,6 +91,15 @@ class Map extends Component {
     }
 
   render(){
+
+    // <div className="landing__item landing__item--11 landing__item--11-1">
+    //      <div style={{left:"0"}} className="landing__item-text"><i className="quote-left fa fa-quote-left" aria-hidden="true"></i>
+    //          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem at quam repudiandae! Repellendus, neque provident. Laborum in ad consequuntur officia.
+    //      <i className="quote-left fa fa-quote-right" aria-hidden="true"></i></div>
+    // </div>
+
+
+
        let modal = [
                   <Modal clicked={this.modaltoggleHandler} show={this.state.show}>
                      {this.state.stage===1?<div className="query query--1">
@@ -130,11 +141,7 @@ class Map extends Component {
             </div>
             </div>
             <Statistics worldHandler={this.worldTotalHandler} count={this.state.count} code={this.state.code} country={this.state.hover}/>
-            <div className="landing__item landing__item--11 landing__item--11-1">
-                 <div style={{left:"0"}} className="landing__item-text"><i className="quote-left fa fa-quote-left" aria-hidden="true"></i>
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem at quam repudiandae! Repellendus, neque provident. Laborum in ad consequuntur officia.
-                 <i className="quote-left fa fa-quote-right" aria-hidden="true"></i></div>
-            </div>
+
             {modal}
           </>
         );

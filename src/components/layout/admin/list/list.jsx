@@ -8,6 +8,8 @@ import LayoutContext from "../../../layoutcontext";
 import Modal from "../../../../UI/modal/modal";
 import Backdrop from "../../../../UI/backdrop/backdrop";
 import ModalView from "./modal-view/modal-view";
+import AddClientForm from "./add-client/add-client";
+
 toast.configure()
 
 
@@ -30,6 +32,7 @@ toast.configure()
       countries:[],
       modalShow:false,
       selectedClient:null,
+      show2:false
    }
 
    static contextType=LayoutContext;
@@ -161,13 +164,19 @@ toast.configure()
        this.setState((state)=>{return {selectedClient:selected,modalShow:true}});
        }
 
+       modalShowHandler2=()=>{
+        this.setState({
+          show2:!this.state.show2
+        });
+        }
+
       modalShowFalseHandler=()=>{
          this.setState((state)=>{return {selectedClient:null,modalShow:false}});
       }
 
-      
+
       updatedBackgroundHandler=(index,val)=>{
-         
+
          let data=[... this.state.data];
          data[index].background=val;
          let selected={... this.state.selectedClient}
@@ -329,6 +338,14 @@ toast.configure()
                            closeModal={this.modalShowFalseHandler}
                            updatedBackground={this.updatedBackgroundHandler} />
           </Modal><Backdrop  clicked={this.modalShowFalseHandler} show={this.state.modalShow}/>
+
+          <Modal clicked={()=>this.modalShowHandler2()} show={this.state.show2}>
+                <AddClientForm />
+
+          </Modal>
+            <Backdrop clicked={this.modalShowHandler2} show={this.state.show2}/>
+
+         <i onClick={()=>this.modalShowHandler2()} style={{fontSize:"2rem"}} className="fa fa-plus add--btn" aria-hidden="true"></i>
 
        <AdminHeader  selectHandler={this.selectHandler}  countries={this.state.countries}/>
        {this.state.loading?

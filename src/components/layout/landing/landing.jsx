@@ -93,21 +93,21 @@ import "aos/dist/aos.css"
           <div className="landing">
               <div id="screen1" className="landing__item landing__item--1">
                    <img className="landing__item-image" src={landscape1} alt="landscape"/>
-                   <div data-aos="fade-down" className="landing__item-text">There is one single question that is fundamental to how you live your life.</div>
+                   <div data-aos="fade-down" className="landing__item-text">There is one,<br/>single question<br/>that is fundamental<br/>to how you live your life...</div>
               </div>
               <div id="screen2" className="landing__item landing__item--2">
                   <img className="landing__item-image" src={landscape2} alt="person swimming"/>
                   <div data-aos="fade-down" className="landing__item-text">
-                      <span data-aos="fade-down" className="landing__item-text-span1">Avoiding it is the easier option...</span><br/>
-                      <span data-aos="fade-up" data-aos-delay={2100} className="landing__item-text-span2">but means ignoring reality, your very existence and the meaning of it all.</span>
+                      <span data-aos="fade-down" className="landing__item-text-span1">Avoiding it<br/>is the easier option...</span><br/>
+                      <span data-aos="fade-up" data-aos-delay={2100} className="landing__item-text-span2">but means ignoring<br/>your reality, existence<br/> and the meaning of it all.</span>
                   </div>
               </div>
               <div id="screen3" className="landing__item landing__item--3">
                   <img className="landing__item-image" src={landscape4} alt="foggy river"/>
                   <div data-aos="fade-down" className="landing__item-text">
-                      <span data-aos="fade-down" className="landing__item-text-span1">Facing it is harder choice...</span><br/>
-                      <span data-aos="fade-down" data-aos-delay={1500} className="landing__item-text-span1">it requires thought and courage...</span><br/>
-                      <span data-aos="fade-up" data-aos-delay={2500} className="landing__item-text-span2">but it gives your life clarity and definition.</span>
+                      <span data-aos="fade-down" className="landing__item-text-span1">Facing it<br/>is harder choice...</span><br/>
+                      <span data-aos="fade-down" data-aos-delay={1500} className="landing__item-text-span1">it requires<br/>thought and courage...</span><br/>
+                      <span data-aos="fade-up" data-aos-delay={2500} className="landing__item-text-span2">but it gives your life<br/>clarity and definition.</span>
                   </div>
               </div>
               <div id="screen4" className="landing__item landing__item--33">
@@ -119,11 +119,11 @@ import "aos/dist/aos.css"
               <div id="screen5" className="landing__item landing__item--4">
                   <img className="landing__item-image" src={landscape5} alt="foggy river"/>
                   <div data-aos="fade-down" className="landing__item-text">
-                      <span data-aos="fade-down" data-aos-delay={1500} className="landing__item-text-span2">DO YOU BELEIVE IN GOD ?</span>
+                      <span data-aos="fade-down" data-aos-delay={1500} className="landing__item-text-span2">DO YOU BELIEVE IN GOD ?</span>
                   </div>
                   <button data-aos="fade-up"  data-aos-delay={3000} onClick={()=>{window.location=
-                                   //"http://safe-headland-47190.herokuapp.com/map"
-                                    "http://localhost:3000/map"
+                                   "http://safe-headland-47190.herokuapp.com/map"
+                                    // "http://localhost:3000/map"
                               }} className="landing__item-button">Decide Here</button>
               </div>
           </div>

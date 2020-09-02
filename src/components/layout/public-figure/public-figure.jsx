@@ -122,7 +122,7 @@ axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
                  <input className="notables__search-input" type="text" value={this.state.search} onChange={(e)=>this.searchInputHandler(e)}  placeholder="search" name="" id=""/>
              </div>
              <div className="notables__searchByCountry">
-             <input className="notables__searchByCountry-input" type="text"  onChange={(e)=>this.searchedCountriesHandler(e)} name="searchedCahrecterForCountry" placeholder="country search" value={this.state.searchedCahrecterForCountry} id=""/>
+             <input className="notables__searchByCountry-input" type="text"  onChange={(e)=>this.searchedCountriesHandler(e)} name="searchedCahrecterForCountry" placeholder="search by country" value={this.state.searchedCahrecterForCountry} id=""/>
              <div className="notables__searchByCountry-dropdown">
              {this.state.searchedCountries.map(c=>
                                   <div style={{zIndex:"1000"}} className="notables__searchByCountry-dropdown-item" onClick={()=> this.countrySelectHandler(c.substring(0,c.indexOf(',')))}>
@@ -131,7 +131,7 @@ axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
                                    </div>
                                   )}
                      <div className="notables__searchByCountry-dropdown-item" onClick={()=>this.countrySelectHandler("all")}>
-                         ALL
+                         WORLD
                      </div>
                  </div>
              </div>
@@ -145,7 +145,8 @@ axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
                        <div data-aos={i%2===0?"fade-right":"fade-left"}  className="userWrapper2">
 
 
-                <div className="user__name"><span>{d.firstName+" "+d.lastName}{d.id}</span></div>
+                <div className="user__name"><span>{d.firstName+" "+d.lastName}</span></div>
+                <div style={{color:"green"}} className="user__field">{d.category==="yes"?"believer":d.category==="no"?"Non Believer":"Undecided"}</div>
                            <div className="user__field user__field1">Natable as <span>{d.publicFigure==="PF1"?"Public Figure":"Scientist"}</span></div>
                            <div className="user__field user__field2">
                               {d.background===null?
@@ -172,7 +173,7 @@ axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
                   </div>
                   </>)}</div>
                  {this.state.loading?<button className="load__btn load__btn-loading">LOADING...</button>:null}
-                 {this.state.totalPages==this.state.page+1 || this.state.loading?null: this.state.data.length<=0?<h1 style={{padding:"50px 50px"}}>No data</h1>:<button className="load__btn" onClick={this.pageHandler}>Load More...</button>}
+                 {this.state.totalPages==this.state.page+1 || this.state.loading?null: this.state.data.length<=0?<h1 style={{padding:"50px 50px",textAlign:"center"}}>No data</h1>:<button className="load__btn" onClick={this.pageHandler}>Load More...</button>}
 
 
 

@@ -64,7 +64,7 @@
           padding: 1rem;
           color: $color-white;
           font-size: 4.5rem;
-          width: 40%;
+          width: 50%;
           // font-weight: 200;
           letter-spacing: 5px;
           position: relative;
@@ -231,7 +231,7 @@
      &--33{
        background: rgba($color-white,1);
        display:flex;
-       justify-content: space-around;
+       justify-content: center;
        flex-wrap: wrap;
        & .landing__item-text{
          padding: 1rem;
@@ -247,8 +247,9 @@
          display: flex;
          justify-content: center;
          flex-flow: column;
+         text-align: center;
          &-span1{
-            align-self: flex-start;
+            align-self: center;
             width:50%;
             display: inline-block;
             @include respond(tab-land){
@@ -257,7 +258,7 @@
          }
          &-span2{
             width:50%;
-            align-self: flex-end;
+            align-self: center;
             display: inline-block;
             @include respond(tab-land){
               width:75%;

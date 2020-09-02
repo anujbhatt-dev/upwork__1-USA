@@ -56,8 +56,8 @@ toast.configure();
 
 
 
-      // let url= `http://safe-headland-47190.herokuapp.com/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${this.props.code}`;
-       let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${client.publicFigure}/${this.props.code}`;
+      let url= `http://safe-headland-47190.herokuapp.com/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${this.props.code}`;
+       // let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${client.publicFigure}/${this.props.code}`;
 
        console.log(url);
         if(this.state.isVerified){
