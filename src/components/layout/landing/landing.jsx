@@ -112,7 +112,8 @@ import "aos/dist/aos.css"
               </div>
               <div id="screen4" className="landing__item landing__item--33">
                   <div data-aos="fade-down" className="landing__item-text">
-                       <span data-aos="fade-down" className="landing__item-text-span1">Make the right choice...</span><br/>
+                       <span data-aos="fade-down" className="landing__item-text-span1">Make the right Decision.</span><br/>
+                       <span data-aos="fade-up" data-aos-delay={1100} className="landing__item-text-span1">Don't be lazy.</span><br/>
                        <span data-aos="fade-up" data-aos-delay={2100} className="landing__item-text-span2">Ask yourself a question !</span>
                   </div>
               </div>
