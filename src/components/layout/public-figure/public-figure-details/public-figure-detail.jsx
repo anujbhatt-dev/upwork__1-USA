@@ -14,7 +14,7 @@ import Flag from 'react-world-flags';
 
        // console.log(this.props.history)
         this.setState({
-            client:this.props.location.state
+            client:this.props.d
         })
     }
 
@@ -28,8 +28,8 @@ import Flag from 'react-world-flags';
          // <Gravatar email={this.state.client.email}
          // { url => (<img className="gravatar__img" src={url} />) }
          // </Gravatar>
-        return (<>
-             <Header />
+         console.log(this.state.client.email);
+        return (
             <div className = "clientDetailViewWrapper" >
                 <div className = "clientDetailView">
                   <div className="clientDetailView__row">
@@ -43,23 +43,24 @@ import Flag from 'react-world-flags';
                            <Flag  code={this.state.client.code} height={25}/>
                       </div>
                       <div className="clientDetailView__col clientDetailView__col-3">
-                      <Gravatar email="anujbhatt023@gmail.com" options={ {
+
+                      {Object.keys(this.state.client).length!==0?<Gravatar email={this.state.client.email} options={ {
                         default:"identicon",
                         size:120,
                       } }>
                             { url => (<img className="gravatar__img clientDetailView__img" src={url} />) }
-                      </Gravatar>
+                      </Gravatar>:null}
                       </div>
                   </div>
 
                     <hr  className="hr"/>
                     <div className="clientDetailView__background">
                         {this.state.client.background}
-                        
+
                     </div>
                 </div>
             </div>
-            </>
+            
         )
     }
 }

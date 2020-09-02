@@ -1,5 +1,5 @@
 .notables{
-   background: #f1f3f8;
+   background: $color-white;
    perspective: 1000px;
    padding-top:12rem;
    min-height: 100vh;
@@ -18,10 +18,10 @@
       }
       &:focus{
         outline: none;
-        border: 2px solid $color-orangered;
+        border: 2px solid $color-primary-blue;
         // border-left:none;
         & ~ button{
-          border: 2px solid $color-orangered;
+          border: 2px solid $color-primary-blue;
           // border-left:none;
         }
       }
@@ -49,7 +49,7 @@
        border: 2px solid transparent;
        &:focus{
          outline: none;
-         border: 2px solid $color-orangered;
+         border: 2px solid $color-primary-blue;
          // border-left:none;
          & ~ .notables__searchByCountry-dropdown{
            display: block;
@@ -228,9 +228,9 @@
    height: 4rem;
    width: 25rem;
    border: none;
-   border: 5px solid $color-orangered;
+   border: 5px solid $color-primary-blue;
    border-bottom: none;
-   background: rgba($color-orangered,.9);
+   background: rgba($color-primary-blue,.9);
    transition: all .5s;
    font-size: 2rem;
    color: $color-white;
@@ -244,9 +244,9 @@
      border-radius: 0;
    }
    &:hover{
-     box-shadow: 0 0 5rem rgba($color-orangered,.1);
-     border-top: 10px solid $color-orangered;
+     box-shadow: 0 0 5rem rgba($color-primary-blue,.1);
+     border-top: 10px solid $color-primary-blue;
      transform: scale(1.1) rotateX(0deg);
-     background: rgba($color-orangered,1);
+     background: rgba($color-primary-blue,1);
    }
 }

@@ -6,7 +6,9 @@ import "aos/dist/aos.css"
 import Header from "../header/header"
 import Gravatar from 'react-awesome-gravatar';
 import { NavLink } from 'react-router-dom';
-
+import PublicFigureDetail from "./public-figure-details/public-figure-detail"
+import Modal from "../../../UI/modal/modal"
+import Backdrop from "../../../UI/backdrop/backdrop"
 
 class PublicFigure extends Component {
 
@@ -19,9 +21,25 @@ class PublicFigure extends Component {
         countries:[],
         searchedCountries:[],
         search:"",
-        searchedCahrecterForCountry:""
+        searchedCahrecterForCountry:"",
+        show:false,
+        d:{}
     }
 
+
+     modalShowHandler=(d)=>{
+       if(this.state.show){
+         this.setState({
+           show:false,
+           d:{}
+         })
+       }else{
+         this.setState({
+           show:true,
+           d:{...d}
+         })
+       }
+     }
 
       componentWillUnmount() {
        // window.removeEventListener("scroll", this.onScroll, false);
@@ -115,6 +133,9 @@ axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
 
         return (<>
             <Header/>
+            <Modal clicked={this.modalShowHandler} show={this.state.show}>
+                    <PublicFigureDetail d={this.state.d}/>
+            </Modal><Backdrop clicked={this.modalShowHandler} show={this.state.show} />
             <div className="notables">
 
             <div className="searchWrapper">
@@ -152,8 +173,8 @@ axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
                               {d.background===null?
                                 <br/>:
                                 <span>{d.background.length<20?
-                                 <span>{d.background.padEnd(d.background.length+5,'.')} <span> <NavLink  to={{pathname:"/publicFigure/"+d.firstName,state:d}} > read more </NavLink> </span></span>:
-                                  <span>{d.background.substring(0,20).padEnd(25,'.')} <span><NavLink to={{pathname:"/publicFigure/"+d.firstName,state:d}} > read more </NavLink></span></span>}
+                                 <span>{d.background.padEnd(d.background.length+5,'.')} <span onClick={()=>this.modalShowHandler(d)} style={{fontWeight:"bold",cursor:"pointer"}} >read more</span></span>:
+                                  <span>{d.background.substring(0,20).padEnd(25,'.')} <span onClick={()=>this.modalShowHandler(d)}  style={{fontWeight:"bold",cursor:"pointer"}}>read more</span></span>}
                                 </span>}
                               </div>
 

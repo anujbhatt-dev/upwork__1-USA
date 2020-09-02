@@ -1,12 +1,17 @@
 .clientDetailViewWrapper{
   padding-top: 8rem;
-  background: #f1f3f8;
+  background: $color-white;
   padding-bottom: 5rem;
+  height: 100%;
+  width: 100%;
+  align-self: flex-start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .clientDetailView{
-    min-height: 90vh;
-    width: 60vw;
-    margin: 0 auto;
+
+    margin: 0 25%;
     background: $color-white;
     border-radius: 20px;
     box-shadow: 0 0 2rem rgba($color-grey, .2);
@@ -14,7 +19,7 @@
     position: relative;
     padding-bottom: 5rem;
     @include respond(tab-port){
-       width: 95vw;
+       margin: 0 2%;
     }
     &__row{
       display: flex;

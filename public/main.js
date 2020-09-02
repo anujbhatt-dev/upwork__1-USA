@@ -32,15 +32,15 @@ xhr.onload=()=>{
         let color = null;
         console.log(data,percentage+"%",newData[data][0],newData[data][1]);
         if(percentage>=80){
-          color =  "#F8171C";
+          color =  "#3D9BE9";
         }else if(percentage>=60){
-          color =  "#FA454A";
+          color =  "#6EB9F8";
         }else if(percentage>=40) {
           color =  "#8C7A7A";
         }else if(percentage>=20) {
-          color =  "#6EB9F8";
+          color =  "#FA454A";
         }else{
-          color =  "#3D9BE9";
+          color =  "#F8171C";
         }
         simplemaps_worldmap_mapdata.state_specific[data].color= color
         simplemaps_worldmap_mapdata.state_specific[data].description= `<div>Believers: <strong>${newData[data][0]}</strong></div> <div>Non Believers: <strong>${newData[data][1]}</strong></div> <div>undecided: <strong>${newData[data][2]}</strong></div>`;
