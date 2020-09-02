@@ -197,7 +197,7 @@ toast.configure()
                   <div className="dropdown__all-all"  onClick={()=>this.filterHandler("all","all","all")} >All</div>
                   <div className="dropdown__all-verified"  onClick={()=>this.filterHandler("all","all","true")}> Verified</div>
                   <div className="dropdown__all-unVerified"  onClick={()=>this.filterHandler("all","all","false")}> Unverified</div>
-                  <div className="dropdown__all-other"  onClick={()=>this.filterHandler("all","other","false")}> Others</div>
+                  <div className="dropdown__all-other"  onClick={()=>this.filterHandler("all","other","all")}> Others</div>
              </div>
              <div className="dropdown__believer"  >BELIEVERS
                   <div className="dropdown__believer-all"  >ALL
@@ -254,7 +254,7 @@ toast.configure()
                        <div  className="dropdown__unDecided-scientist-verified"  onClick={()=>this.filterHandler("undecided","pf2","true")}> Verified </div>
                        <div  className="dropdown__unDecided-scientist-unVerified"  onClick={()=>this.filterHandler("undecided","pf2","false")}> Unverified </div>
                   </div>
-                  <div className="dropdown__unDecided-other"  onClick={()=>this.filterHandler("undecided","all","all")}>OTHER </div>
+                  <div className="dropdown__unDecided-other"  onClick={()=>this.filterHandler("undecided","other","all")}>OTHER </div>
              </div>
 {
 
@@ -273,6 +273,7 @@ toast.configure()
           <div className="adminSearch"><input className="adminSearch__input" id="adminSearch" type="text"/><button className="adminSearch__btn" onClick={this.searchHandler}><i className="adminSearchIcon fa fa-search" aria-hidden="true"></i></button></div>
 
           <div className="list__heading">Do you believe in god ? </div>
+          <div> {this.state.selectedCountry.length===0?null:">>"+this.state.selectedCountry} {(this.state.selectedCategory==="yes"?">> Beleiver":this.state.selectedCategory==="no"?">> Non Beleiver":this.state.selectedCategory==="undecided"?">> Undecided":null)} {(this.state.selectedPublicFigure==="pf1"?">> Public figure":this.state.selectedPublicFigure==="pf2"?">> Scientist":this.state.selectedPublicFigure==="other"?">> other":null)} {(this.state.selectedVerified==="true"?">> verified":this.state.selectedVerified==="false"?">> unverified":null)} </div>
           <table className="list">
               <thead className="list__head">
                    <tr className="list__head-row">
@@ -301,7 +302,8 @@ toast.configure()
                          <td className="list__body-row-column">{client.email}</td>
                          <td className="list__body-row-column">{client.city}</td>
                          <td className="list__body-row-column">{client.country}</td>
-                         <td className="list__body-row-column">{client.category}</td>
+                         <td className="list__body-row-column">{client.category==="yes"?"Beleiver":client.category==="no"?"Non Beleiver":"Undecided"}</td>
+
                          <td className="list__body-row-column list__body-row-column--delete"><i onClick={()=>this.deleteHandler(i)} class="fa fa-trash" aria-hidden="true"></i></td>
                      </tr>
                 </tbody>)
