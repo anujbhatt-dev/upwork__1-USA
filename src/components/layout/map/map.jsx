@@ -27,7 +27,8 @@ class Map extends Component {
          },
          count:null,
          hover:"",
-         code:""
+         code:"",
+         heading:"click on a continent"
         }
 
 
@@ -90,6 +91,20 @@ class Map extends Component {
             );
     }
 
+    clickHandler=(e)=>{
+       if((e.clientX>=54 && e.clientX<=94) && (e.clientY>=135 && e.clientY<=172)){
+
+           this.setState({
+             heading:"click on a continent"
+           })
+       }else{
+        
+         this.setState({
+           heading:"Hover over a country to see stats"
+         })
+       }
+    }
+
   render(){
 
     // <div className="landing__item landing__item--11 landing__item--11-1">
@@ -133,8 +148,8 @@ class Map extends Component {
         return (
           <>
             <div className="map__wrapper">
-              <h2 style={{color:"black",padding:".5rem",textAlign:"center",fontWeight:"bolder",letterSpacing:"2px"}}>choose your country!</h2>
-                <div id="map">
+              <h2 style={{color:"black",padding:".5rem",textAlign:"center",fontWeight:"bolder",letterSpacing:"2px"}}>{this.state.heading}</h2>
+                <div onClick={this.clickHandler} id="map">
                    <div className="branding__remove">
                 </div>
                 <MapDiv count={this.state.count} code={this.state.code} country={this.state.hover}/>

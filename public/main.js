@@ -2,6 +2,8 @@ simplemaps_worldmap.hooks.click_state = function(id){
 window.location.hash="#"+ simplemaps_worldmap_mapdata.state_specific[id].name+"#"+id;
 }
 
+
+
 simplemaps_worldmap.hooks.over_state = function(id){
  window.location.hash="##"+ simplemaps_worldmap_mapdata.state_specific[id].name+"#"+id;
 }
