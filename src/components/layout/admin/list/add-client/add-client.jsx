@@ -1,4 +1,6 @@
  import React, {Component} from "react"
+import axios from "axios"
+import Flag from "react-world-flags"
 
 
  class AddClientForm extends Component{
@@ -18,6 +20,9 @@
 
    onChangeHandler=(e)=>{
 
+    // if(e.target.name==="country")
+    //    console.log(e.target.value);
+
      this.setState({
         [e.target.name]:e.target.value
      })
@@ -25,10 +30,24 @@
 
    onSubmitHandler=(e)=>{
          e.preventDefault();
+
+         let data={... this.state};
+         data.code=data.country.substring(data.country.indexOf(',')+1);
+         data.country=data.country.substring(0,data.country.indexOf(','));
+
+         axios.post("/v1/admin/client",data).then(res=>{alert("saved");this.setState({ firstName:"",
+         lastName:"",
+         category:"",
+         publicFigure:"other",
+         email:"",
+         verified:"",
+         country:"",
+         city:"",
+         background:""})})
    }
 
    render(){
-     const countries = ['Afghanistan','Albania','Algeria','Andorra','Angola','Anguilla','Antigua and Barbuda','Argentina','Armenia','Aruba','Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium','Belize','Benin','Bermuda','Bhutan','Bolivia','Bosnia and Herzegovina','Botswana','Brazil','British Virgin Islands','Brunei Darussalam','Bulgaria','Burkina Faso','Burundi','Cambodia','Cameroon','Canada','Canary Islands (Spain)','Cape Verde','Cayman Islands','Central African Republic','Chad','Chile','China','Colombia','Comoros','Costa Rica','Croatia','Cuba','Curaco (Netherlands)','Cyprus','Czech Republic',"Côte d'Ivoire",'Dem. Rep. Korea','Democratic Republic of the Congo','Denmark','Djibouti','Dominica','Dominican Republic','Ecuador','Egypt','El Salvador','Equatorial Guinea','Eritrea','Estonia','Ethiopia','Faeroe Islands','Falkland Islands','Fiji','Finland','France','France','French Polynesia','Gabon','Georgia','Germany','Ghana','Greece','Greenland','Grenada','Guadeloupe (France)','Guatemala','Guinea','Guinea-Bissau','Guyana','Haiti','Honduras','Hong Kong','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Israel','Italy','Jamaica','Japan','Jordan','Kazakhstan','Kenya','Kosovo','Kuwait','Kyrgyzstan','Lao PDR','Latvia','Lebanon','Lesotho','Liberia','Libya','Liechtenstein','Lithuania','Luxembourg','Macedonia','Madagascar','Malawi','Malaysia','Maldives','Mali','Malta','Martinique (France)','Mauritania','Mauritius','Mayotte (France)','Mexico','Moldova','Mongolia','Montenegro','Montserrat','Morocco','Mozambique','Myanmar','Namibia','Nauru','Nepal','Netherlands','New Caledonia','New Zealand','Nicaragua','Niger','Nigeria','Norway','Oman','Pakistan','Palestine','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Pitcairn Islands','Poland','Portugal','Puerto Rico','Qatar','Republic of Congo','Republic of Korea','Reunion (France)','Romania','Russia','Rwanda','Saint Kitts and Nevis','Saint Lucia','Saint Martin (Dutch)','Saint Martin (French)','Saint Vincent and the Grenadines','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone','Singapore','Slovakia','Slovenia','Solomon Islands','Somalia','South Africa','South Sudan','Spain','Sri Lanka','Sudan','Suriname','Swaziland','Sweden','Switzerland','Syria','São Tomé and Principe','Taiwan','Tajikistan','Tanzania','Thailand','The Gambia','Timor-Leste','Togo','Tonga','Trinidad and Tobago','Tunisia','Turkey','Turkmenistan','Turks and Caicos Islands','Uganda','Ukraine','United Arab Emirates','United Kingdom','United States','United States Virgin Islands','Uruguay','Uzbekistan','Vanuatu','Venezuela','Vietnam','Western Sahara','Yemen','Zambia','Zimbabwe']
+     const countries=[["Afghanistan","AF"],["Albania","AL"],["Algeria","DZ"],["Andorra","AD"],["Angola","AO"],["Anguilla","AI"],["Antigua and Barbuda","AG"],["Argentina","AR"],["Armenia","AM"],["Aruba","AW"],["Australia","AU"],["Austria","AT"],["Azerbaijan","AZ"],["Bahamas","BS"],["Bahrain","BH"],["Bangladesh","BD"],["Barbados","BB"],["Belarus","BY"],["Belgium","BE"],["Belize","BZ"],["Benin","BJ"],["Bermuda","BM"],["Bhutan","BT"],["Bolivia","BO"],["Bosnia and Herzegovina","BA"],["Botswana","BW"],["Brazil","BR"],["British Virgin Islands","VG"],["Brunei Darussalam","BN"],["Bulgaria","BG"],["Burkina Faso","BF"],["Burundi","BI"],["Cambodia","KH"],["Cameroon","CM"],["Canada","CA"],["Canary Islands (Spain)","IC"],["Cape Verde","CV"],["Cayman Islands","KY"],["Central African Republic","CF"],["Chad","TD"],["Chile","CL"],["China","CN"],["Colombia","CO"],["Comoros","KM"],["Costa Rica","CR"],["Croatia","HR"],["Cuba","CU"],["Curaco (Netherlands)","CW"],["Cyprus","CY"],["Czech Republic","CZ"],["Côte d'Ivoire","CI"],["Dem. Rep. Korea","KP"],["Democratic Republic of the Congo","CD"],["Denmark","DK"],["Djibouti","DJ"],["Dominica","DM"],["Dominican Republic","DO"],["Ecuador","EC"],["Egypt","EG"],["El Salvador","SV"],["Equatorial Guinea","GQ"],["Eritrea","ER"],["Estonia","EE"],["Ethiopia","ET"],["Faeroe Islands","FO"],["Falkland Islands","FK"],["Fiji","FJ"],["Finland","FI"],["France","GF"],["France","FR"],["French Polynesia","PF"],["Gabon","GA"],["Georgia","GE"],["Germany","DE"],["Ghana","GH"],["Greece","GR"],["Greenland","GL"],["Grenada","GD"],["Guadeloupe (France)","GP"],["Guatemala","GT"],["Guinea","GN"],["Guinea-Bissau","GW"],["Guyana","GY"],["Haiti","HT"],["Honduras","HN"],["Hong Kong","HK"],["Hungary","HU"],["Iceland","IS"],["India","IN"],["Indonesia","ID"],["Iran","IR"],["Iraq","IQ"],["Ireland","IE"],["Israel","IL"],["Italy","IT"],["Jamaica","JM"],["Japan","JP"],["Jordan","JO"],["Kazakhstan","KZ"],["Kenya","KE"],["Kosovo","XK"],["Kuwait","KW"],["Kyrgyzstan","KG"],["Lao PDR","LA"],["Latvia","LV"],["Lebanon","LB"],["Lesotho","LS"],["Liberia","LR"],["Libya","LY"],["Liechtenstein","LI"],["Lithuania","LT"],["Luxembourg","LU"],["Macedonia","MK"],["Madagascar","MG"],["Malawi","MW"],["Malaysia","MY"],["Maldives","MV"],["Mali","ML"],["Malta","MT"],["Martinique (France)","MQ"],["Mauritania","MR"],["Mauritius","MU"],["Mayotte (France)","YT"],["Mexico","MX"],["Moldova","MD"],["Mongolia","MN"],["Montenegro","ME"],["Montserrat","MS"],["Morocco","MA"],["Mozambique","MZ"],["Myanmar","MM"],["Namibia","NA"],["Nauru","NR"],["Nepal","NP"],["Netherlands","NL"],["New Caledonia","NC"],["New Zealand","NZ"],["Nicaragua","NI"],["Niger","NE"],["Nigeria","NG"],["Norway","NO"],["Oman","OM"],["Pakistan","PK"],["Palestine","PS"],["Panama","PA"],["Papua New Guinea","PG"],["Paraguay","PY"],["Peru","PE"],["Philippines","PH"],["Pitcairn Islands","PN"],["Poland","PL"],["Portugal","PT"],["Puerto Rico","PR"],["Qatar","QA"],["Republic of Congo","CG"],["Republic of Korea","KR"],["Reunion (France)","RE"],["Romania","RO"],["Russia","RU"],["Rwanda","RW"],["Saint Kitts and Nevis","KN"],["Saint Lucia","LC"],["Saint Martin (Dutch)","SX"],["Saint Martin (French)","MF"],["Saint Vincent and the Grenadines","VC"],["Saudi Arabia","SA"],["Senegal","SN"],["Serbia","RS"],["Seychelles","SC"],["Sierra Leone","SL"],["Singapore","SG"],["Slovakia","SK"],["Slovenia","SI"],["Solomon Islands","SB"],["Somalia","SO"],["South Africa","ZA"],["South Sudan","SS"],["Spain","ES"],["Sri Lanka","LK"],["Sudan","SD"],["Suriname","SR"],["Swaziland","SZ"],["Sweden","SE"],["Switzerland","CH"],["Syria","SY"],["São Tomé and Principe","ST"],["Taiwan","TW"],["Tajikistan","TJ"],["Tanzania","TZ"],["Thailand","TH"],["The Gambia","GM"],["Timor-Leste","TL"],["Togo","TG"],["Tonga","TO"],["Trinidad and Tobago","TT"],["Tunisia","TN"],["Turkey","TR"],["Turkmenistan","TM"],["Turks and Caicos Islands","TC"],["Uganda","UG"],["Ukraine","UA"],["United Arab Emirates","AE"],["United Kingdom","GB"],["United States","US"],["United States Virgin Islands","VI"],["Uruguay","UY"],["Uzbekistan","UZ"],["Vanuatu","VU"],["Venezuela","VE"],["Vietnam","VN"],["Western Sahara","EH"],["Yemen","YE"],["Zambia","ZM"],["Zimbabwe","ZW"]]
 
      return (
         <form className="add-client" onSubmit={this.onSubmitHandler}>
@@ -38,22 +57,22 @@
         <input value={this.state.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text"/>
         <textarea  value={this.state.background} name="background" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="form__input add-client-background" type="text"/>
         <select value={this.state.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text">
-         {countries.map(c=> <option value={c}>{c}</option>)}
+         {countries.map(c=> <option value={c}>{c[0]}</option>)}
 
         </select>
         <select id="cars" name="publicFigure" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text">
-           <option value="">Choose your category</option>
-           <option value="PH1">Public Figure</option>
-           <option value="PH2">Scientist</option>
            <option value="other">Other</option>
+           <option value="PF1">Public Figure</option>
+           <option value="PF2">Scientist</option>
+           
          </select>
 
 
          <div>
              <h1 className="label" htmlFor="verify">Verifiy</h1>
-              <input id="verify" value={true}   name="verify" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
+              <input id="verify" value={true}   name="verified" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
               <label className="label" htmlFor="verify">yes</label>
-              <input id="unverify" value={false}  name="verify" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
+              <input id="unverify" value={false}  name="verified" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
               <label className="label" htmlFor="unverify">no</label>
           </div>
           <button type="submit" className="form__btn">Submit</button>
