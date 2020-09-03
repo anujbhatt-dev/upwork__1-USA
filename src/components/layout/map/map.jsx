@@ -98,7 +98,7 @@ class Map extends Component {
              heading:"click on a continent"
            })
        }else{
-        
+
          this.setState({
            heading:"Hover over a country to see stats"
          })
@@ -151,7 +151,15 @@ class Map extends Component {
               <h2 style={{color:"black",padding:".5rem",textAlign:"center",fontWeight:"bolder",letterSpacing:"2px"}}>{this.state.heading}</h2>
                 <div onClick={this.clickHandler} id="map">
                    <div className="branding__remove">
-                </div>
+                   </div>
+                   <div className="map__legend">
+                       <div className="map__legend-div map__legend-div-1">
+                            <span className="map__legend-div-1-span-1">1</span><span className="map__legend-div-1-span-2">Believer</span>
+                       </div>
+                       <div className="map__legend-div map__legend-div-2">
+                            <span className="map__legend-div-2-span-1">2</span><span className="map__legend-div-2-span-2">Non Believer</span>
+                       </div>
+                   </div>
                 <MapDiv count={this.state.count} code={this.state.code} country={this.state.hover}/>
             </div>
             </div>

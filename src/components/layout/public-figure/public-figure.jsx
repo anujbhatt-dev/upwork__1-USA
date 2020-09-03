@@ -49,16 +49,14 @@ class PublicFigure extends Component {
        }
      }
 
-     modalShowHandler2=(d)=>{
+     modalShowHandler2=(d)=>{ 
        if(this.state.show2){
          this.setState({
-           show2:false,
-           d:{}
+           show2:false
          })
        }else{
          this.setState({
-           show2:true,
-           d:{...d}
+           show2:true
          })
        }
      }
@@ -183,7 +181,7 @@ class PublicFigure extends Component {
                           <div >
                                <h6 className="claim__form-terms-head">Terms</h6>
                                <p className="claim__form-terms-para">
-                                 likhde jo likhna hai 
+                                 likhde jo likhna hai
                                </p>
                           </div>
                       </form>
