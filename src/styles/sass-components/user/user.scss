@@ -6,22 +6,23 @@
    position: relative;
    &__search{
      &-input{
-       color: $color-white;
+       color: $color-black;
        font-weight: bold;;
       height: 3rem;
-      width: 50vh;
-      background: rgba($color-grey,.5);
+      width: 20rem;
+      background: rgba($color-white,.5);
       padding: 1rem 2rem;
-      border: 2px solid transparent;
+      border: 1px solid rgba($color-grey,.5);
+      margin-right: 2rem;
       @include respond(tab-port){
         margin-top: 6rem;
       }
       &:focus{
         outline: none;
-        border: 2px solid $color-primary-blue;
+        border: 1px solid rgba($color-primary-blue,.5);
         // border-left:none;
         & ~ button{
-          border: 2px solid $color-primary-blue;
+          border: 1px solid rgba($color-primary-blue,.5);
           // border-left:none;
         }
       }
@@ -40,16 +41,16 @@
       right: 0;
 
       &-input{
-        color: $color-white;
+        color: $color-black;
         font-weight: bold;;
        height: 3rem;
-       width: 50vh;
-       background: rgba($color-grey-dark-3,1);
+       width: 20rem;
+       background: rgba($color-white,1);
        padding: 1rem 2rem;
-       border: 2px solid transparent;
+       border: 1px solid rgba($color-grey,.5);
        &:focus{
          outline: none;
-         border: 2px solid $color-primary-blue;
+         border: 1px solid rgba($color-primary-blue,.5);
          // border-left:none;
          & ~ .notables__searchByCountry-dropdown{
            display: block;
@@ -63,13 +64,13 @@
       &-dropdown{
          display: none;
          position: absolute;
-         width: 50vh;
+         width: 20rem;
          transition: all .6s;
          &:hover{
            display: block;
          }
         &-item{
-          background: $color-grey-dark-3;
+          background: $color-white;
           z-index: 100;
           height: 3rem;
            font-size: 1.5rem;
@@ -95,19 +96,75 @@
 
 .searchWrapper{
   // z-index: 100000;
-
-  position: absolute;
-  transform: translateX(-50%);
-  left: 50%;
-  top: 8rem;
+ display: flex;
+ justify-content: space-between;
+ align-items:center;
   z-index: 10010;
   color: $color-white;
-  font-weight: bold;;
+  font-weight: bold;
+  padding: 0 15rem;
   @include respond(tab-port){
      top: 2rem;
   }
 }
 
+.notables__filter{
+  color: $color-black;
+  display:flex;
+  justify-content: space-between;
+  align-items:baseline;
+  flex-wrap: wrap;
+  font-size: 1.5rem;
+  position: relative;
+  flex-grow: 1;
+
+  & > label{
+    cursor: pointer;
+     background: $color-primary-blue;
+     padding: 1rem 2rem;
+     color: $color-white;
+  }
+  & > input:checked ~ .notables__filter-option{
+      display: flex;
+  }
+  &-option{
+    position: absolute;
+    top:111%;
+    left: 0;
+    display: flex;
+    display: none;
+    justify-content: space-between;
+    box-shadow: 0 0 2rem rgba($color-grey,.3);
+    &-category{
+      cursor: pointer;
+       margin: 0.5rem 2rem;
+       min-width: 12rem;
+       & label{
+         cursor: pointer;
+         padding: 0 .5rem;
+       }
+
+    }
+    &-type{
+      margin: 0.5rem 2rem;
+      min-width: 12rem;
+      cursor: pointer;
+      & label{
+        cursor: pointer;
+         padding: 0 .5rem;
+      }
+    }
+    &-verified{
+      min-width: 12rem;
+     margin: 0.5rem 2rem;
+     cursor: pointer;
+     & label{
+       cursor: pointer;
+         padding: 0 .5rem;
+     }
+    }
+  }
+}
 
 .gravatar__img{
  position: absolute;
@@ -119,7 +176,7 @@
 .userWrapper{
   display: flex;
   // flex-flow: column;
-  margin: 6rem 5rem;
+  margin: 8rem 5rem;
   margin-bottom: 0;
   // margin-top: 0rem;
   padding-bottom: 5rem;

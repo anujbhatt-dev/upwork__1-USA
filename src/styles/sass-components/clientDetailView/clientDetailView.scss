@@ -1,25 +1,22 @@
 .clientDetailViewWrapper{
-  padding-top: 8rem;
+  padding-top: 0rem;
   background: $color-white;
-  padding-bottom: 5rem;
+  padding: 1rem;
   height: 100%;
   width: 100%;
   align-self: flex-start;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 0 2rem rgba($color-grey, .2);
 }
 .clientDetailView{
 
-    margin: 0 25%;
     background: $color-white;
-    border-radius: 20px;
-    box-shadow: 0 0 2rem rgba($color-grey, .2);
-    padding: 5rem;
+    color: $color-black;
     position: relative;
-    padding-bottom: 5rem;
     @include respond(tab-port){
-       margin: 0 2%;
+
     }
     &__row{
       display: flex;
@@ -39,12 +36,12 @@
 
     &__col{
       &-country{
-
+        line-height: 1;
         font-weight:bold;
         text-transform: capitalize;
         padding: 1rem 0.5rem;
         & span{
-          font-size: 1.8rem;
+          font-size: 1.2rem;
           color: $color-primary-blue;
           padding-left: .5rem;
           @include respond(tab-port){
@@ -61,7 +58,7 @@
       }
     }
   &__name{
-      font-size: 3rem;
+      font-size: 2rem;
       font-weight:bold;
       text-transform: uppercase;
       padding-bottom: .5rem;

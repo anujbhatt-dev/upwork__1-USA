@@ -133,12 +133,39 @@ axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
 
         return (<>
             <Header/>
-            <Modal clicked={this.modalShowHandler} show={this.state.show}>
+            <Modal styles={{width:"40rem",height:"40rem"}} clicked={this.modalShowHandler} show={this.state.show}>
                     <PublicFigureDetail d={this.state.d}/>
-            </Modal><Backdrop clicked={this.modalShowHandler} show={this.state.show} />
+            </Modal>
             <div className="notables">
 
             <div className="searchWrapper">
+              <div className="notables__filter">
+                 <input style={{display:"none"}} name="filter" id="filter" type="checkbox"/>
+                 <label htmlFor="filter"><i className="fa fa-filter" aria-hidden="true"></i> Filter</label>
+                 <div  className="notables__filter-option">
+                     <div className="notables__filter-option-category">
+                       <input name="category" value={"believer"} id="believer" type="radio"/>
+                       <label htmlFor="believer">believers</label><br/>
+                       <input name="category" value={"nonBeliever"} id="nonBeliever" type="radio"/>
+                       <label htmlFor="nonBeliever">non believers</label><br/>
+                     </div>
+                     <div className="notables__filter-option-type">
+                         <input name="type" value={"publicFigure"} id="publicFigure" type="radio"/>
+                         <label htmlFor="publicFigure">public figures</label><br/>
+                         <input name="type" value={"scientist"} id="scientist" type="radio"/>
+                         <label htmlFor="scientist">scientists</label><br/>
+                         <input name="type" value={"other"} id="other" type="radio"/>
+                         <label htmlFor="other">others</label><br/>
+                     </div>
+                     <div className="notables__filter-option-verified">
+                       <input name="verified" value={"verified"} id="verified" type="radio"/>
+                       <label htmlFor="verified">verified</label><br/>
+                       <input name="verified" value={"unverified"} id="unverified" type="radio"/>
+                       <label htmlFor="unverified">unverified</label><br/>
+                     </div>
+                 </div>
+              </div>
+
              <div className="notables__search">
                  <input className="notables__search-input" type="text" value={this.state.search} onChange={(e)=>this.searchInputHandler(e)}  placeholder="search" name="" id=""/>
              </div>
