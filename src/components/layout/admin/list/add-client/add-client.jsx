@@ -35,14 +35,18 @@
         <input value={this.state.lastName} name="lastName" placeholder="Last Name" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text"/>
         <input value={this.state.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="email"/>
         <input value={this.state.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text"/>
-        <input  value={this.state.background} name="background" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="form__input add-client-background" type="text"/>
+        <textarea  value={this.state.background} name="background" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="form__input add-client-background" type="text"/>
         <select id="cars" name="publicFigure" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text">
            <option value="">Choose your category</option>
            <option value="PH1">Public Figure</option>
            <option value="PH2">Scientist</option>
            <option value="other">Other</option>
          </select>
-        <input value={this.state.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text"/>
+
+         <select value={this.state.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text">
+          {this.props.countries.map(c=> <option value={c.substring(c.indexOf(','))}>{c}</option>)}
+          
+         </select>
          <div>
              <label className="label" htmlFor="verify">Verifiy</label>
               <input value={true}   name="verify" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
