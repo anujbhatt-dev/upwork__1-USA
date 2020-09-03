@@ -13,6 +13,7 @@ import axios from "axios"
 import PublicFigure from "./public-figure/public-figure"
 import Claims from "./admin/claims/claims"
 import PublicFigureDetail from "./public-figure/public-figure-details/public-figure-detail"
+import ClaimVerified from "./claim-verified/claim-verified"
 
 
 
@@ -78,7 +79,11 @@ document.addEventListener('popstate', function (event) {
               <Route exact  path="/publicFigure/:id">
                  <PublicFigureDetail />
               </Route>
+              <Route exact  path="/claimVerified/:emailUsed/:email/:phone">
+                 <ClaimVerified />
+              </Route>
            </Switch>
+           
         </div>
         </LayoutContext.Provider>
      )

@@ -18,7 +18,7 @@ class PublicFigure extends Component {
         totalPages:1,
         loading:false,
         country:"",
-        category:"all",
+        category:"yes",
         verified:"all",
         publicFigure:"all",
         countries:[],
@@ -30,7 +30,8 @@ class PublicFigure extends Component {
         show2:false,
         claim:{
           phone:"",
-          email:""
+          email:"",
+          selectedEmail:"",
         }
     }
 
@@ -49,16 +50,18 @@ class PublicFigure extends Component {
        }
      }
 
-     modalShowHandler2=(d)=>{
+     modalShowHandler2=(email)=>{
        if(this.state.show2){
          this.setState({
            show2:false,
-           d:{}
          })
        }else{
+        let claim={... this.state.claim}
+        claim.selectedEmail=email 
+
          this.setState({
            show2:true,
-           d:{...d}
+          claim:claim,
          })
        }
      }
@@ -165,9 +168,26 @@ class PublicFigure extends Component {
    this.setState({search:e.target.value,page:0,loading:true,data:[]});
     }
 
+    claimSubmit=(e)=>{
+
+
+      e.preventDefault();
+      let usedEmail=this.state.claim.email;
+      let email=this.state.claim.selectedEmail;
+      let phone=this.state.claim.phone;
+      let url=`http://localhost:3000/claimVerified/${btoa(usedEmail)}/${btoa(email)}/${btoa(phone)}`;
+
+      console.log(url);
+      axios.post("/v1/client/claim/verification",null,{params:{url:url,to:usedEmail}});
+
+    }
+
+    
+
     render() {
 
         return (<>
+        {this.state.claim.selectedEmail}
             <Header/>
             <Modal styles={{width:"40rem",height:"40rem"}} clicked={this.modalShowHandler} show={this.state.show}>
                     <PublicFigureDetail d={this.state.d}/>
@@ -175,9 +195,9 @@ class PublicFigure extends Component {
             <Modal styles={{width:"40rem",height:"40rem"}} clicked={this.modalShowHandler2} show={this.state.show2}>
                        <form onSubmit={this.claimSubmit} className="claim__form">
                           <label className="claim__form-label" htmlFor="phone">Mobile number</label><br/>
-                          <input className="claim__form-input" onChange={this.onClaimChange} value={this.state.claim.phone} name="phone" id="phone" type="text"/><br/>
+                          <input className="claim__form-input" value={this.state.claim.phone} onChange={(e)=>{let claim={...this.state.claim};claim.phone=e.target.value;this.setState({claim:claim})}} name="phone" id="phone" type="text"/><br/>
                           <label className="claim__form-label" htmlFor="email">Email</label><br/>
-                          <input className="claim__form-input" onChange={this.onClaimChange} value={this.state.claim.email} name="email" id="email" type="text"/><br/>
+                          <input className="claim__form-input" value={this.state.claim.email} onChange={(e)=>{let claim={...this.state.claim};claim.email=e.target.value;this.setState({claim:claim})}} name="email" id="email" type="text"/><br/>
                           <input className="claim__form-btn" type="submit"/>
                           <hr className="hr"/>
                           <div >
@@ -272,8 +292,7 @@ class PublicFigure extends Component {
                                   { url => (<img className="gravatar__img" src={url} />) }
                              </Gravatar>
                              <div className="user__field user__field3">{d.verified?<span className="user__verified"><i className="fa fa-check" aria-hidden="true"></i> verified</span>:null}</div>
-                             <div className="user__field user__claim" id="user__claim"><span id="user__claim-1">Is this you?</span> <spav id="user__claim-2">Contact us to</spav>  <span id="user__claim-3" onClick={()=>this.modalShowHandler2()} >claim</span> <span id="user__claim-2"> this page.</span></div>
-                           </div>
+               {d.verified || d.claimed===true?null:<div className="user__field user__claim" id="user__claim"><span id="user__claim-1">Is this you?</span> <spav id="user__claim-2">Contact us to</spav>  <span id="user__claim-3" onClick={()=>this.modalShowHandler2(d.email)} >claim</span> <span id="user__claim-2"> this page.</span></div>}                           </div>
 
 
                     </div>

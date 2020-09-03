@@ -58,14 +58,14 @@ import Modal from "../../../../UI/modal/modal";
 
    deleteHandler=(index)=>{
 
-      // axios.delete("/v1/admin",{params:{email:this.state.data[i].email}}).
-      // then((res)=>{
+      axios.post("/v1/admin/claim/decline",null,{params:{email:this.state.data[index].email}}).
+      then((res)=>{
          let data=[... this.state.data];
          data.splice(index,1);
             this.setState({data:data});
             this.modalShowFalseHandler();
-      //    }).
-      // catch(err=>alert("an alert occured try again"));
+         }).
+      catch(err=>alert("an alert occured try again"));
             }
 
        modalShowTrueHandler=(index)=>{

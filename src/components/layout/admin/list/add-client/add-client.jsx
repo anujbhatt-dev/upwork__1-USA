@@ -54,11 +54,10 @@ import Flag from "react-world-flags"
         <input value={this.state.firstName} name="firstName" placeholder="First Name" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text"/>
         <input value={this.state.lastName} name="lastName" placeholder="Last Name" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text"/>
         <input value={this.state.email} name="email" placeholder="Email" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="email"/>
-        <input value={this.state.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text"/>
-        <textarea  value={this.state.background} name="background" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="form__input add-client-background" type="text"/>
-        <select value={this.state.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text">
-         {countries.map(c=> <option value={c}>{c[0]}</option>)}
-
+        <select value={this.state.category} name="category" placeholder="category" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text">
+        <option value="yes">Beleiver</option>
+           <option value="no">Non Beleiver</option>
+           <option value="undecided">Un Decided</option>
         </select>
         <select id="cars" name="publicFigure" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text">
            <option value="other">Other</option>
@@ -66,10 +65,15 @@ import Flag from "react-world-flags"
            <option value="PF2">Scientist</option>
            
          </select>
+        <textarea  value={this.state.background} name="background" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="form__input add-client-background" type="text"/>
+        <input value={this.state.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text"/>
+        <select value={this.state.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text">
+         {countries.map(c=> <option value={c}>{c[0]}</option>)}
 
-
+        </select>
+  
          <div>
-             <h1 className="label" htmlFor="verify">Verifiy</h1>
+             <h1 className="label" htmlFor="verify">Verified</h1>
               <input id="verify" value={true}   name="verified" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
               <label className="label" htmlFor="verify">yes</label>
               <input id="unverify" value={false}  name="verified" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
