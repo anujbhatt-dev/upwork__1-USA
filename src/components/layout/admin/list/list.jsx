@@ -32,7 +32,8 @@ toast.configure()
       countries:[],
       modalShow:false,
       selectedClient:null,
-      show2:false
+      show2:false,
+      countries2:[]
    }
 
    static contextType=LayoutContext;
@@ -50,7 +51,15 @@ toast.configure()
             })
          } )
          .catch(err=>{alert("error")})
-         console.log("-->"+res.data);
+
+         axios.get("https://restcountries.eu/rest/v2/all").then(res=>{
+          // console.log(res.data);
+            this.setState({
+              countries2:res.data
+            })
+         } )
+         .catch(err=>{alert("error")})
+
         this.setState({
             totalPages:res.data.totalPages,
             data:res.data.content,
@@ -342,7 +351,7 @@ toast.configure()
           </Modal><Backdrop  clicked={this.modalShowFalseHandler} show={this.state.modalShow}/>
 
           <Modal clicked={()=>this.modalShowHandler2()} show={this.state.show2}>
-                <AddClientForm countries={this.state.countries} />
+                <AddClientForm countries={this.state.countries2} />
 
           </Modal>
             <Backdrop clicked={this.modalShowHandler2} show={this.state.show2}/>

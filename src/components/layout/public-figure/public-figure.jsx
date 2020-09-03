@@ -166,7 +166,7 @@ class PublicFigure extends Component {
                        <input onChange={()=>{this.setState({category:"no",loading:true,data:[],page:0})}} name="category" value={"no"} id="nonBeliever" type="radio"/>
                        <label  htmlFor="nonBeliever">non believers</label><br/>
                        <input onChange={()=>{this.setState({category:"all",loading:true,data:[],page:0})}} name="category" value={"all"} id="allcat" type="radio"/>
-                       <label  htmlFor="nonBeliever">all</label><br/>
+                       <label  htmlFor="allcat">all</label><br/>
                      </div>
                      <div className="notables__filter-option-type">
                          <input onChange={()=>{this.setState({data:[],loading:true,publicFigure:"pf1",page:0})}} name="publicFigure" value={"pf1"} id="publicFigure" type="radio"/>
@@ -176,7 +176,7 @@ class PublicFigure extends Component {
                          <input onChange={()=>{this.setState({data:[],loading:true,publicFigure:"other"})}} name="publicFigure" value={"other"} id="other" type="radio"/>
                          <label htmlFor="other">others</label><br/>
                          <input onChange={()=>{this.setState({data:[],loading:true,publicFigure:"all",page:0})}} defaultChecked name="publicFigure" value={"all"} id="allpf" type="radio"/>
-                         <label  htmlFor="other">all</label><br/>
+                         <label  htmlFor="allpf">all</label><br/>
                      </div>
                      <div className="notables__filter-option-verified">
                        <input onChange={()=>this.setState({data:[],loading:true,page:0,verified:"true"})} name="verified" value={"true"} id="verified" type="radio"/>
@@ -184,7 +184,7 @@ class PublicFigure extends Component {
                        <input onChange={()=>this.setState({data:[],loading:true,page:0,verified:"false"})} name="verified" value={"false"} id="unverified" type="radio"/>
                        <label htmlFor="unverified">unverified</label><br/>
                        <input onChange={()=>this.setState({data:[],loading:true,page:0,verified:"all"})} defaultChecked name="verified" value={"all"} id="allverified" type="radio"/>
-                       <label  htmlFor="unverified">all</label><br/>
+                       <label  htmlFor="allverified">all</label><br/>
                      </div>
                  </div>
               </div>
