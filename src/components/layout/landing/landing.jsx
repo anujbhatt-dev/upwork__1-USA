@@ -50,6 +50,13 @@ import "aos/dist/aos.css"
        clearTimeout(mylet4)
      })
 
+     document.addEventListener("touchmove", ()=>{
+       clearTimeout(mylet)
+       clearTimeout(mylet2)
+       clearTimeout(mylet3)
+       clearTimeout(mylet4)
+     })
+
     Aos.init({duration:2000,delay:100})
     let lastScrollTop = 0;
     let viewportHeight = $("#screen1").innerHeight()
