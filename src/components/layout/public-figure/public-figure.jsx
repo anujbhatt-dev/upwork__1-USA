@@ -18,7 +18,7 @@ class PublicFigure extends Component {
         totalPages:1,
         loading:false,
         country:"",
-        category:"all",
+        category:"yes",
         verified:"all",
         publicFigure:"all",
         countries:[],
@@ -30,8 +30,10 @@ class PublicFigure extends Component {
         show2:false,
         claim:{
           phone:"",
-          email:""
-        }
+          email:"",
+          selectedEmail:"",
+        },
+        stage:false
     }
 
 
@@ -49,14 +51,18 @@ class PublicFigure extends Component {
        }
      }
 
-     modalShowHandler2=(d)=>{ 
+     modalShowHandler2=(email)=>{
        if(this.state.show2){
          this.setState({
-           show2:false
+           show2:false,
          })
        }else{
+        let claim={... this.state.claim}
+        claim.selectedEmail=email
+
          this.setState({
-           show2:true
+           show2:true,
+          claim:claim,
          })
        }
      }
@@ -163,19 +169,44 @@ class PublicFigure extends Component {
    this.setState({search:e.target.value,page:0,loading:true,data:[]});
     }
 
+    claimSubmit=(e)=>{
+
+
+      e.preventDefault();
+      let usedEmail=this.state.claim.email;
+      let email=this.state.claim.selectedEmail;
+      let phone=this.state.claim.phone;
+      let url=`http://godsplan-env.eba-ppuxuhbi.ap-south-1.elasticbeanstalk.com/api/claimVerified/${btoa(usedEmail)}/${btoa(email)}/${btoa(phone)}`;
+
+      console.log(url);
+      axios.post("/v1/client/claim/verification",null,{params:{url:url,to:usedEmail}});
+      this.setState({
+        stage:true
+      })
+      setTimeout(()=>{
+          this.setState({
+            stage:false,
+          })
+          this.modalShowHandler2()
+      },3000)
+    }
+
+
+
     render() {
 
         return (<>
+        {this.state.claim.selectedEmail}
             <Header/>
             <Modal styles={{width:"40rem",height:"40rem"}} clicked={this.modalShowHandler} show={this.state.show}>
                     <PublicFigureDetail d={this.state.d}/>
             </Modal>
             <Modal styles={{width:"40rem",height:"40rem"}} clicked={this.modalShowHandler2} show={this.state.show2}>
-                       <form onSubmit={this.claimSubmit} className="claim__form">
+                       {!this.state.stage?<form onSubmit={this.claimSubmit} className="claim__form">
                           <label className="claim__form-label" htmlFor="phone">Mobile number</label><br/>
-                          <input className="claim__form-input" onChange={this.onClaimChange} value={this.state.claim.phone} name="phone" id="phone" type="text"/><br/>
+                          <input className="claim__form-input" value={this.state.claim.phone} onChange={(e)=>{let claim={...this.state.claim};claim.phone=e.target.value;this.setState({claim:claim})}} name="phone" id="phone" type="text"/><br/>
                           <label className="claim__form-label" htmlFor="email">Email</label><br/>
-                          <input className="claim__form-input" onChange={this.onClaimChange} value={this.state.claim.email} name="email" id="email" type="text"/><br/>
+                          <input className="claim__form-input" value={this.state.claim.email} onChange={(e)=>{let claim={...this.state.claim};claim.email=e.target.value;this.setState({claim:claim})}} name="email" id="email" type="text"/><br/>
                           <input className="claim__form-btn" type="submit"/>
                           <hr className="hr"/>
                           <div >
@@ -184,7 +215,7 @@ class PublicFigure extends Component {
                                  likhde jo likhna hai
                                </p>
                           </div>
-                      </form>
+                      </form>: <h1 className="claim__form" style={{display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{fontSize:"2rem",textAlign:"center"}}>check you email for claim verification.<br/>Thank you!</span></h1>}
             </Modal>
             <div className="notables">
 
@@ -219,11 +250,12 @@ class PublicFigure extends Component {
                        <input onChange={()=>this.setState({data:[],loading:true,page:0,verified:"all"})} defaultChecked name="verified" value={"all"} id="allverified" type="radio"/>
                        <label  htmlFor="allverified">all</label><br/>
                      </div>
+                     <div className="notables__filter-reset">Reset Filter</div>
                  </div>
               </div>
 
              <div className="notables__search">
-                 <input className="notables__search-input" type="text" value={this.state.search} onChange={(e)=>this.searchInputHandler(e)}  placeholder="search" name="" id=""/>
+                 <input className="notables__search-input" type="text" value={this.state.search} onChange={(e)=>this.searchInputHandler(e)}  placeholder="search name / keyword" name="" id=""/>
              </div>
              <div className="notables__searchByCountry">
              <input className="notables__searchByCountry-input" type="text"  onChange={(e)=>this.searchedCountriesHandler(e)} name="searchedCahrecterForCountry" placeholder="search by country" value={this.state.searchedCahrecterForCountry} id=""/>
@@ -242,7 +274,7 @@ class PublicFigure extends Component {
              </div>
 
 
-              <div className="searchfor"> <strong>{this.state.country==="all"?null:this.state.country}</strong></div>
+              {this.state.country===""?<div className="searchfor"> <strong>World</strong></div>:<div className="searchfor"> <strong>{this.state.country}</strong></div>}
                   <div className="userWrapper">
                 {this.state.data.map((d,i)=><>
                   <div   className={"user "+"user"+(i%2)}>
@@ -250,18 +282,19 @@ class PublicFigure extends Component {
 
 
                 <div className="user__name"><span>{d.firstName+" "+d.lastName}</span></div>
-                <div style={{color:"green"}} className="user__field">{d.category==="yes"?"believer":d.category==="no"?"Non Believer":"Undecided"}</div>
-                           <div className="user__field user__field1">Notable as <span>{d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":"Other"}</span></div>
+                <div style={{color:"green"}} className="user__field">{d.category==="yes"?<span style={{color:"#3D9BE9"}}>Believer</span>:d.category==="no"?<span  style={{color:"#F8171C"}}>Non Believer</span>:"Undecided"}</div>
+                <div  className="user__field user__field4 "> <Flag code={d.code} height={16} />  <i>{d.country.length>=15?d.country.slice(0,15)+"...":d.country}</i></div>
+                           <div className="user__field user__field1 " style={{textAlign:"right"}}><span className="user__verified">{d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":"Other"}</span></div>
                            <div className="user__field user__field2">
                               {d.background===null?
                                 <br/>:
                                 <span>{d.background.length<20?
-                                 <span>{d.background.padEnd(d.background.length+5,'.')} <span onClick={()=>this.modalShowHandler(d)} style={{fontWeight:"bold",cursor:"pointer"}} >read more</span></span>:
-                                  <span>{d.background.substring(0,20).padEnd(25,'.')} <span onClick={()=>this.modalShowHandler(d)}  style={{fontWeight:"bold",cursor:"pointer"}}>read more</span></span>}
+                                 <span>{d.background.padEnd(d.background.length+5,'.')} <span onClick={()=>this.modalShowHandler(d)} style={{fontWeight:"bold",cursor:"pointer",color:"blue"}} >read more</span></span>:
+                                  <span>{d.background.substring(0,25).padEnd(25,'.')} <span onClick={()=>this.modalShowHandler(d)}  style={{fontWeight:"bold",cursor:"pointer"}}></span><br/>{d.background.substring(25,50).padEnd(25,'.')} <span onClick={()=>this.modalShowHandler(d)}  style={{fontWeight:"bold",cursor:"pointer",color:"blue"}}>read more</span> </span>}
                                 </span>}
                               </div>
 
-                           <div className="user__field user__field4"> <Flag code={d.code} height={16} />  <i>{d.country}</i></div>
+
                            <div className="user__field user__field5">
                              <Gravatar options={{
                                size:40,
@@ -270,8 +303,7 @@ class PublicFigure extends Component {
                                   { url => (<img className="gravatar__img" src={url} />) }
                              </Gravatar>
                              <div className="user__field user__field3">{d.verified?<span className="user__verified"><i className="fa fa-check" aria-hidden="true"></i> verified</span>:null}</div>
-                             <div className="user__field user__claim" id="user__claim"><span id="user__claim-1">Is this you?</span> <spav id="user__claim-2">Contact us to</spav>  <span id="user__claim-3" onClick={()=>this.modalShowHandler2()} >claim</span> <span id="user__claim-2"> this page.</span></div>
-                           </div>
+               {d.verified || d.claimed===true?null:<div className="user__field user__claim" id="user__claim"><span id="user__claim-1">Is this you? </span><span id="user__claim-3" onClick={()=>this.modalShowHandler2(d.email)} >Claim your profile</span> </div>}                           </div>
 
 
                     </div>

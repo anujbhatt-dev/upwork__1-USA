@@ -38,21 +38,21 @@
        font-weight: 800;
        transition: all .2s;
        z-index: 10;
-       background: rgba($color-primary-blue,.5);
        border: none;
        border-radius: 3px;
+       background: rgba($color-primary-blue,1);
        cursor: pointer;
        &:focus{
          outline: none;
          border: none;
        }
        &:hover{
-           background: rgba($color-primary-blue,1);
+         background: rgba($color-primary-blue,.5);
            color: $color-white;
        }
        @include respond(tab-land){
          // left: 5rem;
-         top: 65%;
+         top: 60%;
          margin: 1rem;
          font-size: 2rem;
          padding: 1.5rem 3rem;
@@ -73,6 +73,7 @@
           @include respond(tab-land){
             right: 0rem;
             font-size: 2.5rem;
+            font-weight: bolder;
             width: 80%;
           }
         }
@@ -127,6 +128,18 @@
            text-align: center;
          }
        }
+       &-4{
+           background-image: url("../../../assets/images/undecided.jpg");
+           background-repeat: no-repeat;
+           background-size:cover;
+           background-position: bottom;
+           & .landing__item-text-1{
+           color: $color-white;
+           // font-size: 2rem;
+           width: 60%;
+           text-align: center;
+         }
+       }
      }
      &--2{
         background: rgba($color-primary-blue,.555);
@@ -142,9 +155,10 @@
           left: 0rem;
           line-height: 1.5;
           display: flex;
-          justify-content: center;
+          justify-content: space-between;
           flex-flow: column;
           @include respond(tab-land){
+            font-weight: 500;
             width:80%;
             left: 0rem;
             font-size: 2.5rem;
@@ -206,6 +220,8 @@
           justify-content: center;
           flex-flow: column;
           @include respond(tab-land){
+            justify-content:space-between;
+            font-weight:500;
             width:80%;
             right: 0rem;
             font-size: 2.5rem;
@@ -253,7 +269,8 @@
             width:50%;
             display: inline-block;
             @include respond(tab-land){
-              width:75%;
+              font-weight: 500;
+              width:95%;
             }
          }
          &-span2{
@@ -261,7 +278,8 @@
             align-self: center;
             display: inline-block;
             @include respond(tab-land){
-              width:75%;
+              width:95%;
+              font-weight: 500;
             }
          }
          @include respond(tab-land){
@@ -290,9 +308,10 @@
           align-items: center;
           flex-flow: column;
           @include respond(tab-land){
+            font-weight: 500;
             width:80%;
             left: 0rem;
-            font-size: 2.5rem;
+            font-size: 2.51rem;
           }
           &-span1{
              // align-self: flex-start;
@@ -311,7 +330,7 @@
              font-weight: bolder;
              display: inline-block;
              @include respond(tab-land){
-               font-size: 3rem;
+               font-size: 2rem;
              }
           }
         }

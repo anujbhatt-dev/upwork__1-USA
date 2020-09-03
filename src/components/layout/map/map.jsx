@@ -95,12 +95,12 @@ class Map extends Component {
        if((e.clientX>=54 && e.clientX<=94) && (e.clientY>=135 && e.clientY<=172)){
 
            this.setState({
-             heading:"click on a continent"
+             heading:"Click on a Continent"
            })
        }else{
 
          this.setState({
-           heading:"Hover over a country to see stats"
+           heading:"Hover over any country to see its stats. Click on your country to join"
          })
        }
     }

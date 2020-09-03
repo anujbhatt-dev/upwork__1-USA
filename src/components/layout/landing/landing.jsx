@@ -21,26 +21,34 @@ import "aos/dist/aos.css"
 
    componentDidMount=()=>{
 
-     setTimeout(()=>{
+     let mylet=setTimeout(()=>{
        $('html, body').animate({
              scrollTop: $("#screen2").offset().top
          }, 500);
      }, 8000);
-     setTimeout(()=>{
+     let mylet2=setTimeout(()=>{
        $('html, body').animate({
              scrollTop: $("#screen3").offset().top
          }, 500);
      }, 16000);
-     setTimeout(()=>{
+     let mylet3=setTimeout(()=>{
        $('html, body').animate({
              scrollTop: $("#screen4").offset().top
          }, 500);
      }, 24000);
-     setTimeout(()=>{
+     let mylet4=setTimeout(()=>{
        $('html, body').animate({
              scrollTop: $("#screen5").offset().top
          }, 500);
      }, 32000);
+
+
+     document.addEventListener("wheel", ()=>{
+       clearTimeout(mylet)
+       clearTimeout(mylet2)
+       clearTimeout(mylet3)
+       clearTimeout(mylet4)
+     })
 
     Aos.init({duration:2000,delay:100})
     let lastScrollTop = 0;

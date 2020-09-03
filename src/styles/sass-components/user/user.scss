@@ -4,6 +4,9 @@
    padding-top:12rem;
    min-height: 100vh;
    position: relative;
+   @include respond(phone){
+     padding-top:14rem;
+   }
    &__search{
      &-input{
        color: $color-black;
@@ -13,9 +16,11 @@
       background: rgba($color-white,.5);
       padding: 1rem 2rem;
       border: 1px solid rgba($color-grey,.5);
+      font-size: 1.3rem;
       margin-right: 2rem;
       @include respond(tab-port){
-        margin-top: 6rem;
+        margin-top: 0rem;
+        margin-right: 0rem;
       }
       &:focus{
         outline: none;
@@ -47,6 +52,7 @@
        width: 20rem;
        background: rgba($color-white,1);
        padding: 1rem 2rem;
+       font-size: 1.3rem;
        border: 1px solid rgba($color-grey,.5);
        &:focus{
          outline: none;
@@ -95,11 +101,22 @@
 
 .searchfor{
   font-size: 2.5rem;
-  // text-align: center;
-  padding-left: 5rem;
+  text-align: right;
+  padding-right: 15rem;
   text-transform: capitalize;
+  margin-top: 2rem;
+  color: $color-white;
+  & strong{
+    background: $color-secondary-blue;
+    padding:.5rem 1rem;
+  }
   @include respond(tab-port){
-    margin-top: 6rem;
+    margin-top: 1rem;
+    padding-right: 2rem;
+    & strong{
+      background: $color-secondary-blue;
+      padding:.1rem .8rem;
+    }
   }
 }
 
@@ -114,6 +131,10 @@
   padding: 0 15rem;
   @include respond(tab-port){
      top: 2rem;
+     justify-content: flex-start;
+     align-items:flex-start;
+     flex-flow: column-reverse;
+     padding: 0 2rem;
   }
 }
 
@@ -126,7 +147,7 @@
   font-size: 1.5rem;
   position: relative;
   flex-grow: 1;
-
+  position: relative;
   & > label{
     cursor: pointer;
      background: $color-primary-blue;
@@ -135,6 +156,15 @@
   }
   & > input:checked ~ .notables__filter-option{
       display: flex;
+  }
+  &-reset{
+    position: absolute;
+    right:0.5rem;
+    bottom: 0.5rem;
+    font-size: 1.5rem;
+    color: $color-primary-blue;
+    font-weight: bolder;
+    cursor: pointer;
   }
   &-option{
     position: absolute;
@@ -174,6 +204,72 @@
     }
   }
 }
+
+
+@include respond(tab-port){
+  .notables__filter{
+    color: $color-black;
+    display:flex;
+    justify-content: flex-start;
+    align-items:flex-start;
+    flex-wrap: wrap;
+    font-size: 1.2rem;
+    position: relative;
+    flex-grow: 1;
+
+    & > label{
+      cursor: pointer;
+       background: $color-primary-blue;
+       padding: 1rem 2rem;
+       color: $color-white;
+    }
+    & > input:checked ~ .notables__filter-option{
+        display: flex;
+    }
+    &-option{
+      background: $color-white;
+      z-index: 100;
+      left: 0rem;
+      top:100%;
+      display: flex;
+      display: none;
+      justify-content: space-between;
+      box-shadow: 0 0 2rem rgba($color-grey,.3);
+      &-category{
+        cursor: pointer;
+         margin: 0.5rem 1rem;
+         min-width: 10rem;
+         & label{
+           cursor: pointer;
+           padding: 0 .5rem;
+         }
+
+      }
+      &-type{
+        margin: 0.5rem 1rem;
+        min-width: 12rem;
+        cursor: pointer;
+        & label{
+          cursor: pointer;
+           padding: 0 .5rem;
+        }
+      }
+      &-verified{
+        min-width: 10rem;
+       margin: 0.5rem 1rem;
+       cursor: pointer;
+       & label{
+         cursor: pointer;
+           padding: 0 .5rem;
+       }
+      }
+    }
+  }
+}
+
+
+
+
 
 .gravatar__img{
  position: absolute;
@@ -247,6 +343,7 @@
     font-weight: bold;
     font-size: 1.2rem;
     padding: .5rem 0;
+
     & span{
       color:$color-grey;
       font-size: 1.5rem;
@@ -270,11 +367,15 @@
     }
     &4{
       color: $color-primary-blue;
-      display:flex;
-      align-items: center;
-      justify-content: space-between;
+      display:inline-block;
+
      & i{max-width: 20rem; text-align: right;}
 
+    }
+    &1{
+      display:inline-block;
+      text-align:right;
+      float: right;
     }
   }
   &__verified{
@@ -327,7 +428,7 @@
 
   }
   &-3{
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     color: $color-primary-blue;
     cursor: pointer;
     &:hover {
