@@ -17,7 +17,10 @@ class PublicFigure extends Component {
         data:[],
         totalPages:1,
         loading:false,
-        country:"all",
+        country:"",
+        category:"all",
+        verified:"all",
+        publicFigure:"all",
         countries:[],
         searchedCountries:[],
         search:"",
@@ -60,35 +63,49 @@ class PublicFigure extends Component {
 
     componentDidMount(){
       Aos.init({duration:2000,delay:100})
-       // window.addEventListener("scroll", this.onScroll, false);
-
-    //       window.onscroll = function(ev) {
-    //     console.log(window.innerHeight + window.pageYOffset+"   "+document.body.offsetHeight);
-    //     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight-30) {
-    //         alert("you're at the bottom of the page");
-    //         this.pageHandler();
-    //     }
-    // };
     axios.get("/v1/client/country")
      .then(res=>{
        this.setState({countries:res.data});
      })
 
-
-
-axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
-                this.setState({data:res.data.content,totalPages:res.data.totalPages})
-})
+     axios.get("/v1/admin/data/yes/all/all/all/0").then(res=>{
+     this.setState({
+         totalPages:res.data.totalPages,
+         data:res.data.content,
+         loading:false,
+      })
+   } )
 
     }
 
     componentDidUpdate(){
-        if(this.state.loading)
-        axios.get("/v1/client/publicFigure/"+this.state.country+"/"+(this.state.search.length<=0?"all":this.state.search)+"/"+this.state.page).then(res=>{
-             this.setState((state)=>{return {data:state.data.concat(res.data.content),loading:false,totalPages:res.data.totalPages}});
 
-})
+      if(this.state.loading==true)
+      if(this.state.country.length==0)
+      axios.get(`/v1/admin/data/${this.state.category}/${this.state.publicFigure}/${this.state.verified}/${this.state.search===""?"all":this.state.search}/${this.state.page}`).then(res=>{
+         console.log("res  "+(res.data.content));
+
+         this.setState((state)=>{return{
+            totalPages:res.data.totalPages,
+            data:state.data.concat(res.data.content),
+            loading:false,}
+
+         })
+      }).catch(err=>alert("error"));
+      else
+     {
+      // console.log(this.state)
+      axios.get(`/v1/admin/data/country/${this.state.country}/${this.state.category}/${this.state.publicFigure}/${this.state.verified}/${this.state.search===""?"all":this.state.search}/${this.state.page}`).then(res=>{
+        this.setState((state)=>{return{
+          totalPages:res.data.totalPages,
+          data:state.data.concat(res.data.content),
+          loading:false,}
+
+       })
+    }).catch(err=>alert("error"));
     }
+
+   }
 
 
     pageHandler=()=>{
@@ -144,24 +161,30 @@ axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
                  <label htmlFor="filter"><i className="fa fa-filter" aria-hidden="true"></i> Filter</label>
                  <div  className="notables__filter-option">
                      <div className="notables__filter-option-category">
-                       <input name="category" value={"believer"} id="believer" type="radio"/>
-                       <label htmlFor="believer">believers</label><br/>
-                       <input name="category" value={"nonBeliever"} id="nonBeliever" type="radio"/>
-                       <label htmlFor="nonBeliever">non believers</label><br/>
+                       <input onChange={()=>{this.setState({category:"yes",loading:true,data:[],page:0})}} defaultChecked name="category" value={"yes"} id="believer" type="radio"/>
+                       <label  htmlFor="believer">believers</label><br/>
+                       <input onChange={()=>{this.setState({category:"no",loading:true,data:[],page:0})}} name="category" value={"no"} id="nonBeliever" type="radio"/>
+                       <label  htmlFor="nonBeliever">non believers</label><br/>
+                       <input onChange={()=>{this.setState({category:"all",loading:true,data:[],page:0})}} name="category" value={"all"} id="allcat" type="radio"/>
+                       <label  htmlFor="nonBeliever">all</label><br/>
                      </div>
                      <div className="notables__filter-option-type">
-                         <input name="type" value={"publicFigure"} id="publicFigure" type="radio"/>
-                         <label htmlFor="publicFigure">public figures</label><br/>
-                         <input name="type" value={"scientist"} id="scientist" type="radio"/>
-                         <label htmlFor="scientist">scientists</label><br/>
-                         <input name="type" value={"other"} id="other" type="radio"/>
+                         <input onChange={()=>{this.setState({data:[],loading:true,publicFigure:"pf1",page:0})}} name="publicFigure" value={"pf1"} id="publicFigure" type="radio"/>
+                         <label  htmlFor="publicFigure">public figures</label><br/>
+                         <input onChange={()=>{this.setState({data:[],loading:true,publicFigure:"pf2",page:0})}} name="publicFigure" value={"pf2"} id="scientist" type="radio"/>
+                         <label  htmlFor="scientist">scientists</label><br/>
+                         <input onChange={()=>{this.setState({data:[],loading:true,publicFigure:"other"})}} name="publicFigure" value={"other"} id="other" type="radio"/>
                          <label htmlFor="other">others</label><br/>
+                         <input onChange={()=>{this.setState({data:[],loading:true,publicFigure:"all",page:0})}} defaultChecked name="publicFigure" value={"all"} id="allpf" type="radio"/>
+                         <label  htmlFor="other">all</label><br/>
                      </div>
                      <div className="notables__filter-option-verified">
-                       <input name="verified" value={"verified"} id="verified" type="radio"/>
-                       <label htmlFor="verified">verified</label><br/>
-                       <input name="verified" value={"unverified"} id="unverified" type="radio"/>
+                       <input onChange={()=>this.setState({data:[],loading:true,page:0,verified:"true"})} name="verified" value={"true"} id="verified" type="radio"/>
+                       <label  htmlFor="verified">verified</label><br/>
+                       <input onChange={()=>this.setState({data:[],loading:true,page:0,verified:"false"})} name="verified" value={"false"} id="unverified" type="radio"/>
                        <label htmlFor="unverified">unverified</label><br/>
+                       <input onChange={()=>this.setState({data:[],loading:true,page:0,verified:"all"})} defaultChecked name="verified" value={"all"} id="allverified" type="radio"/>
+                       <label  htmlFor="unverified">all</label><br/>
                      </div>
                  </div>
               </div>
@@ -195,7 +218,7 @@ axios.get("/v1/client/publicFigure/all/all/0").then(res=>{
 
                 <div className="user__name"><span>{d.firstName+" "+d.lastName}</span></div>
                 <div style={{color:"green"}} className="user__field">{d.category==="yes"?"believer":d.category==="no"?"Non Believer":"Undecided"}</div>
-                           <div className="user__field user__field1">Natable as <span>{d.publicFigure==="PF1"?"Public Figure":"Scientist"}</span></div>
+                           <div className="user__field user__field1">Natable as <span>{d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":"Other"}</span></div>
                            <div className="user__field user__field2">
                               {d.background===null?
                                 <br/>:

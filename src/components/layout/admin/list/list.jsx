@@ -342,7 +342,7 @@ toast.configure()
           </Modal><Backdrop  clicked={this.modalShowFalseHandler} show={this.state.modalShow}/>
 
           <Modal clicked={()=>this.modalShowHandler2()} show={this.state.show2}>
-                <AddClientForm />
+                <AddClientForm countries={this.state.countries} />
 
           </Modal>
             <Backdrop clicked={this.modalShowHandler2} show={this.state.show2}/>
