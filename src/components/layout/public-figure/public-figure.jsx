@@ -26,7 +26,12 @@ class PublicFigure extends Component {
         search:"",
         searchedCahrecterForCountry:"",
         show:false,
-        d:{}
+        d:{},
+        show2:false,
+        claim:{
+          phone:"",
+          email:""
+        }
     }
 
 
@@ -39,6 +44,20 @@ class PublicFigure extends Component {
        }else{
          this.setState({
            show:true,
+           d:{...d}
+         })
+       }
+     }
+
+     modalShowHandler2=(d)=>{
+       if(this.state.show2){
+         this.setState({
+           show2:false,
+           d:{}
+         })
+       }else{
+         this.setState({
+           show2:true,
            d:{...d}
          })
        }
@@ -153,6 +172,22 @@ class PublicFigure extends Component {
             <Modal styles={{width:"40rem",height:"40rem"}} clicked={this.modalShowHandler} show={this.state.show}>
                     <PublicFigureDetail d={this.state.d}/>
             </Modal>
+            <Modal styles={{width:"40rem",height:"40rem"}} clicked={this.modalShowHandler2} show={this.state.show2}>
+                       <form onSubmit={this.claimSubmit} className="claim__form">
+                          <label className="claim__form-label" htmlFor="phone">Mobile number</label><br/>
+                          <input className="claim__form-input" onChange={this.onClaimChange} value={this.state.claim.phone} name="phone" id="phone" type="text"/><br/>
+                          <label className="claim__form-label" htmlFor="email">Email</label><br/>
+                          <input className="claim__form-input" onChange={this.onClaimChange} value={this.state.claim.email} name="email" id="email" type="text"/><br/>
+                          <input className="claim__form-btn" type="submit"/>
+                          <hr className="hr"/>
+                          <div >
+                               <h6 className="claim__form-terms-head">Terms</h6>
+                               <p className="claim__form-terms-para">
+                                 likhde jo likhna hai 
+                               </p>
+                          </div>
+                      </form>
+            </Modal>
             <div className="notables">
 
             <div className="searchWrapper">
@@ -218,7 +253,7 @@ class PublicFigure extends Component {
 
                 <div className="user__name"><span>{d.firstName+" "+d.lastName}</span></div>
                 <div style={{color:"green"}} className="user__field">{d.category==="yes"?"believer":d.category==="no"?"Non Believer":"Undecided"}</div>
-                           <div className="user__field user__field1">Natable as <span>{d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":"Other"}</span></div>
+                           <div className="user__field user__field1">Notable as <span>{d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":"Other"}</span></div>
                            <div className="user__field user__field2">
                               {d.background===null?
                                 <br/>:
@@ -237,6 +272,7 @@ class PublicFigure extends Component {
                                   { url => (<img className="gravatar__img" src={url} />) }
                              </Gravatar>
                              <div className="user__field user__field3">{d.verified?<span className="user__verified"><i className="fa fa-check" aria-hidden="true"></i> verified</span>:null}</div>
+                             <div className="user__field user__claim" id="user__claim"><span id="user__claim-1">Is this you?</span> <spav id="user__claim-2">Contact us to</spav>  <span id="user__claim-3" onClick={()=>this.modalShowHandler2()} >claim</span> <span id="user__claim-2"> this page.</span></div>
                            </div>
 
 

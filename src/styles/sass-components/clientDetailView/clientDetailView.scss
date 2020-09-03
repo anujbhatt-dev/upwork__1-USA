@@ -1,7 +1,7 @@
 .clientDetailViewWrapper{
   padding-top: 0rem;
   background: $color-white;
-  padding: 1rem;
+  padding: 1.5rem;
   height: 100%;
   width: 100%;
   align-self: flex-start;
@@ -9,6 +9,8 @@
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 2rem rgba($color-grey, .2);
+  outline: 2px solid rgba($color-black, .2);
+  outline-offset: -6px;
 }
 .clientDetailView{
 

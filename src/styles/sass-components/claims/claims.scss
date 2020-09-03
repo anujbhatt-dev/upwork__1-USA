@@ -36,3 +36,56 @@
     }
   }
 }
+
+.claim__form{
+  height: 100%;
+  width: 100%;
+  align-self: flex-start;
+  background: $color-white;
+  color: $color-black;
+  outline: 2px solid rgba($color-black,.2);
+  outline-offset:-4px;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  &-input{
+    margin-bottom: 1.5rem;
+    height: 3rem;
+    padding-left: 1rem;
+    width: 100%;
+  }
+  &-label{
+    font-weight: bolder;
+    margin-bottom: .5rem;
+  }
+  &-btn{
+    margin-bottom: 1.5rem;
+    border: none;
+    font-size: 1.6rem;
+    background: rgba($color-primary-blue,1);
+    padding: .5rem 1.5rem;
+    color:$color-white;
+    transition: all .2s;
+
+    &:focus{
+      outline: none;
+    }
+    &:hover{
+      background: rgba($color-primary-blue,.5);
+    }
+  }
+  & hr{
+    margin-bottom: 1.5rem;
+  }
+  &-terms{
+
+    &-head{
+       font-size: 2rem;
+       font-weight: bold;
+       margin-bottom: .5rem;
+    }
+    &-para{
+        font-size: 1.5rem;
+
+    }
+  }
+}
