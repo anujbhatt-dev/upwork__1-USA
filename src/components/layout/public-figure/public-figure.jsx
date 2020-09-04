@@ -176,6 +176,8 @@ class PublicFigure extends Component {
       let usedEmail=this.state.claim.email;
       let email=this.state.claim.selectedEmail;
       let phone=this.state.claim.phone;
+      
+      // Heroku ka link ayega yah !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       let url=`http://localhost:3000/claimVerified/${btoa(usedEmail)}/${btoa(email)}/${btoa(phone)}`;
 
       console.log(url);
@@ -196,7 +198,6 @@ class PublicFigure extends Component {
     render() {
 
         return (<>
-        {this.state.claim.selectedEmail}
             <Header/>
             <Modal styles={{width:"40rem",height:"40rem"}} clicked={this.modalShowHandler} show={this.state.show}>
                     <PublicFigureDetail d={this.state.d}/>
