@@ -156,8 +156,8 @@ class PublicFigure extends Component {
 
     countrySelectHandler=(val)=>{
 
-      if(val==="")
-      this.setState({country:"all",loading:true,data:[],search:"",page:0,searchedCahrecterForCountry:""})
+      // if(val==="")
+      // this.setState({country:"all",loading:true,data:[],search:"",page:0,searchedCahrecterForCountry:""})
 
       this.setState({country:val,loading:true,data:[],search:"",page:0,searchedCahrecterForCountry:""})
 
@@ -250,7 +250,7 @@ class PublicFigure extends Component {
                        <input onChange={()=>this.setState({data:[],loading:true,page:0,verified:"all"})} defaultChecked name="verified" value={"all"} id="allverified" type="radio"/>
                        <label  htmlFor="allverified">all</label><br/>
                      </div>
-                     <div className="notables__filter-reset">Reset Filter</div>
+                     <div className="notables__filter-reset" onClick={()=>this.setState({data:[],loading:true,page:0,verified:"all",category:"yes",publicFigure:"all"})}   >Reset Filter</div>
                  </div>
               </div>
 
@@ -266,7 +266,7 @@ class PublicFigure extends Component {
                                       {c.slice(0,c.length-3)}
                                    </div>
                                   )}
-                     <div className="notables__searchByCountry-dropdown-item" onClick={()=>this.countrySelectHandler("all")}>
+                     <div className="notables__searchByCountry-dropdown-item" onClick={()=>this.countrySelectHandler("")} >
                          WORLD
                      </div>
                  </div>
@@ -274,7 +274,7 @@ class PublicFigure extends Component {
              </div>
 
 
-              {this.state.country===""?<div className="searchfor"> <strong>World</strong></div>:<div className="searchfor"> <strong>{this.state.country}</strong></div>}
+              {this.state.country===""?<div className="searchfor" > <strong>World</strong></div>:<div className="searchfor"> <strong>{this.state.country}</strong></div>}
                   <div className="userWrapper">
                 {this.state.data.map((d,i)=><>
                   <div   className={"user "+"user"+(i%2)}>
