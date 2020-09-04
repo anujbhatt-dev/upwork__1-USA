@@ -35,7 +35,8 @@ import axios from 'axios'
             <div className="modalView">
                 <div className="modalView__name">NAME: <span>{this.props.data.firstName+" "+this.props.data.lastName}</span></div>
                 <div className="modalView__name">EMAIL: <span>{this.props.data.email}</span></div>
-                <div className="modalView__name">ADDED ON: <span>{this.props.data.createdOn}</span></div>
+               {this.props.data.phone!==null?<div className="modalView__name">MOBILE: <span>{this.props.data.phone}</span></div>:null}
+                 <div className="modalView__name">ADDED ON: <span>{this.props.data.createdOn}</span></div>
                 <div className="modalView__name">NOTABLE AS: <span>{this.props.data.publicFigure==="PF1"?"Public Figure":"Scientist"}</span></div>
                 <div className="modalView__name modalView__name-last">CATEGORY: <span>{this.props.data.category}</span></div>
                 <div className="modalView__form"><textarea  className="modalView__input" onChange={(e)=>this.inputHandler(e)} name="background" value={this.state.background} type="text" placeholder="background"></textarea>
