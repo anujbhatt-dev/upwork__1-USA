@@ -178,7 +178,7 @@ class PublicFigure extends Component {
       let phone=this.state.claim.phone;
 
       // Heroku ka link ayega yah !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      let url=`http://localhost:3000/claimVerified/${btoa(usedEmail)}/${btoa(email)}/${btoa(phone)}`;
+      let url=`http://safe-headland-47190.herokuapp.com/claimVerified/${btoa(usedEmail)}/${btoa(email)}/${btoa(phone)}`;
 
       console.log(url);
       axios.post("/v1/client/claim/verification",null,{params:{url:url,to:usedEmail}});
@@ -196,7 +196,7 @@ class PublicFigure extends Component {
 
     resetFilter=()=>{
 
-        this.setState({data:[],loading:true,page:0,verified:"all",category:"yes",publicFigure:"all"})
+        this.setState({data:[],loading:true,page:0,verified:"all",category:"yes",publicFigure:"all",country:"",search:""})
         document.getElementById("believer").checked= true
         document.getElementById("allpf").checked= true
         document.getElementById("allverified").checked= true
@@ -238,8 +238,8 @@ class PublicFigure extends Component {
                        <label  htmlFor="believer">believers</label><br/>
                        <input onChange={()=>{this.setState({category:"no",loading:true,data:[],page:0})}} name="category" value={"no"} id="nonBeliever" type="radio"/>
                        <label  htmlFor="nonBeliever">non believers</label><br/>
-                       <input onChange={()=>{this.setState({category:"all",loading:true,data:[],page:0})}} name="category" value={"all"} id="allcat" type="radio"/>
-                       <label  htmlFor="allcat">all</label><br/>
+                       {/* <input onChange={()=>{this.setState({category:"all",loading:true,data:[],page:0})}} name="category" value={"all"} id="allcat" type="radio"/>
+                       <label  htmlFor="allcat">all</label><br/> */}
                      </div>
                      <div className="notables__filter-option-type">
                          <input onChange={()=>{this.setState({data:[],loading:true,publicFigure:"pf1",page:0})}} name="publicFigure" value={"pf1"} id="publicFigure" type="radio"/>

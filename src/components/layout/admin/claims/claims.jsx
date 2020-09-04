@@ -30,6 +30,7 @@ import Modal from "../../../../UI/modal/modal";
 
 
    componentDidUpdate(){
+
       
       if(this.state.loading)
       axios.get(`/v1/admin/claim/${this.state.search.length==0?"all":this.state.search}/${this.state.page}`).then(res=>{
@@ -106,6 +107,8 @@ import Modal from "../../../../UI/modal/modal";
 
 
    render(){
+      if(!this.props.authenticated)
+      window.location=("http://safe-headland-47190.herokuapp.com/admin");
 
      return (<>
      {this.state.modalShow? <Modal clicked={this.modalShowFalseHandler} show={this.state.modalShow}>

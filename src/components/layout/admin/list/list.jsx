@@ -334,8 +334,11 @@ catch(err=>alert("an alert occured try again"));
        </>
      }
 
+     if(!this.props.authenticated)
+      window.location=("http://safe-headland-47190.herokuapp.com/admin");
 
     return (
+
 
        <>
           {/* <AdminBackdrop clicked={this.modalShowFalseHandler} show={this.state.modalShow}></AdminBackdrop> */}

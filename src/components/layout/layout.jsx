@@ -14,6 +14,7 @@ import PublicFigure from "./public-figure/public-figure"
 import Claims from "./admin/claims/claims"
 import PublicFigureDetail from "./public-figure/public-figure-details/public-figure-detail"
 import ClaimVerified from "./claim-verified/claim-verified"
+import { ThemeProvider } from "react-bootstrap"
 
 
 
@@ -59,28 +60,28 @@ document.addEventListener('popstate', function (event) {
               </Route>
               <Route exact  path="/admin">
                   <Header />
-                  <Admin/>
+                  <Admin authenticated={this.props.authenticated} />
               </Route>
               <Route exact  path="/admin/list">
-                  <List adminVerified={this.state.adminVerified} />
+                  <List authenticated={this.props.authenticated} adminVerified={this.state.adminVerified} />
               </Route>
               <Route exact  path="/verified/:email/:firstName/:lastName/:date/:city/:country/:category/:publicFigure/:code">
                  <Verified/>
               </Route>
               <Route exact  path="/checkEmail">
-                 <EmailCheck/>
+                 <EmailCheck />
               </Route>
               <Route exact  path="/publicFigure">
-                 <PublicFigure/>
+                 <PublicFigure />
               </Route>
               <Route exact  path="/admin/claims">
-                 <Claims />
+                 <Claims authenticated={this.props.authenticated} />
               </Route>
               <Route exact  path="/publicFigure/:id">
-                 <PublicFigureDetail />
+                 <PublicFigureDetail authenticated={this.props.authenticated} />
               </Route>
               <Route exact  path="/claimVerified/:emailUsed/:email/:phone">
-                 <ClaimVerified />
+                 <ClaimVerified  />
               </Route>
            </Switch>
            

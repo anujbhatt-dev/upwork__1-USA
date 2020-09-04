@@ -20,7 +20,6 @@ import Flag from 'react-world-flags';
 
 
     render() {
-         console.log(this.state.client);
          //   size:40,
          //   default:"identicon"
          // }} email={this.state.client.email}>
@@ -28,7 +27,7 @@ import Flag from 'react-world-flags';
          // <Gravatar email={this.state.client.email}
          // { url => (<img className="gravatar__img" src={url} />) }
          // </Gravatar>
-         console.log(this.state.client.email);
+         
         return (
             <div className = "clientDetailViewWrapper" >
                 <div className = "clientDetailView">
