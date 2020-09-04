@@ -176,7 +176,7 @@ class PublicFigure extends Component {
       let usedEmail=this.state.claim.email;
       let email=this.state.claim.selectedEmail;
       let phone=this.state.claim.phone;
-      let url=`http://godsplan-env.eba-ppuxuhbi.ap-south-1.elasticbeanstalk.com/api/claimVerified/${btoa(usedEmail)}/${btoa(email)}/${btoa(phone)}`;
+      let url=`http://localhost:3000/claimVerified/${btoa(usedEmail)}/${btoa(email)}/${btoa(phone)}`;
 
       console.log(url);
       axios.post("/v1/client/claim/verification",null,{params:{url:url,to:usedEmail}});
@@ -303,7 +303,7 @@ class PublicFigure extends Component {
                                   { url => (<img className="gravatar__img" src={url} />) }
                              </Gravatar>
                              <div className="user__field user__field3">{d.verified?<span className="user__verified"><i className="fa fa-check" aria-hidden="true"></i> verified</span>:null}</div>
-               {d.verified || d.claimed===true?null:<div className="user__field user__claim" id="user__claim"><span id="user__claim-1">Is this you? </span><span id="user__claim-3" onClick={()=>this.modalShowHandler2(d.email)} >Claim your profile</span> </div>}                           </div>
+               {d.verified || d.claimed===true|| d.publicFigure==="OTHER"?null:<div className="user__field user__claim" id="user__claim"><span id="user__claim-1">Is this you? </span><span id="user__claim-3" onClick={()=>this.modalShowHandler2(d.email)} >Claim your profile</span> </div>}                           </div>
 
 
                     </div>
