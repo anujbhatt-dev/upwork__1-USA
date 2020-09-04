@@ -176,7 +176,7 @@ class PublicFigure extends Component {
       let usedEmail=this.state.claim.email;
       let email=this.state.claim.selectedEmail;
       let phone=this.state.claim.phone;
-      
+
       // Heroku ka link ayega yah !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       let url=`http://localhost:3000/claimVerified/${btoa(usedEmail)}/${btoa(email)}/${btoa(phone)}`;
 
@@ -193,6 +193,14 @@ class PublicFigure extends Component {
       },3000)
     }
 
+
+    resetFilter=()=>{
+
+        this.setState({data:[],loading:true,page:0,verified:"all",category:"yes",publicFigure:"all"})
+        document.getElementById("believer").checked= true
+        document.getElementById("allpf").checked= true
+        document.getElementById("allverified").checked= true
+    }
 
 
     render() {
@@ -251,7 +259,7 @@ class PublicFigure extends Component {
                        <input onChange={()=>this.setState({data:[],loading:true,page:0,verified:"all"})} defaultChecked name="verified" value={"all"} id="allverified" type="radio"/>
                        <label  htmlFor="allverified">all</label><br/>
                      </div>
-                     <div className="notables__filter-reset" onClick={()=>this.setState({data:[],loading:true,page:0,verified:"all",category:"yes",publicFigure:"all"})}   >Reset Filter</div>
+                     <div className="notables__filter-reset" onClick={this.resetFilter}   >Reset Filter</div>
                  </div>
               </div>
 

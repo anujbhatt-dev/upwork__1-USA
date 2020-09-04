@@ -11,6 +11,7 @@ class Admin extends Component{
    state={
      adminId:"",
      adminSecret:"",
+     verified:false
    }
 
    onChangeHandler=(e)=>{
@@ -27,8 +28,12 @@ class Admin extends Component{
      axios.post("/v1/admin/authenticate",{adminId:this.state.adminId,adminSecret:this.state.adminSecret}).
         then(res=>{
                     toast.info("verified");
-                   // console.log(this.props.history);
-                    this.props.history.push("/admin/list")}).
+                   // console.log(this.props.history);\
+                   // this.setState({
+                   //   verified:true
+                   // })
+                    this.props.history.push("/admin/list",{verified:this.state.verified})
+                  }).
         catch(err=>
        toast.error("invalid credentials")
         )

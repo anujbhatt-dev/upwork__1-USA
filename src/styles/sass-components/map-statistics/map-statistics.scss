@@ -58,7 +58,9 @@
           font-size: 20rem;
           // color:blue;
           transition: all .2s;
-
+          @include respond(tab-port){
+            display: none ;
+          }
         }
       }
       &-item3{

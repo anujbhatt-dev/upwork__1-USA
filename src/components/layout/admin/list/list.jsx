@@ -9,6 +9,7 @@ import Modal from "../../../../UI/modal/modal";
 import Backdrop from "../../../../UI/backdrop/backdrop";
 import ModalView from "./modal-view/modal-view";
 import AddClientForm from "./add-client/add-client";
+import {withRouter} from "react-router-dom"
 
 toast.configure()
 
@@ -32,7 +33,7 @@ toast.configure()
       countries:[],
       modalShow:false,
       selectedClient:null,
-      show2:false,
+      show2:false
    }
 
    static contextType=LayoutContext;
@@ -42,6 +43,8 @@ toast.configure()
    currentCountry=null;
 
    componentDidMount=()=>{
+
+
 
       axios.get("/v1/client/data/all/all/all/all/0").then(res=>{
          axios.get("/v1/admin/country").then(res=>{
@@ -189,9 +192,12 @@ catch(err=>alert("an alert occured try again"));
 
    render(){
 
+     // console.log(this.props.history.location.state.verified)
+      // if(!this.props.history.location.state.verified){
+      //   console.log("in list");
+      //   window.location.href="http://localhost:3000/admin"
+      // }
 
-
-      //console.log(this.state)
 
 
      let perCountry = "No DATA Yet";
@@ -360,4 +366,4 @@ catch(err=>alert("an alert occured try again"));
  }
 
 
-export default List;
+export default withRouter(List);

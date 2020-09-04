@@ -168,19 +168,19 @@ import axios from 'axios';
                <div className="map__statistics--body-item map__statistics--body-item3">
                     <div className="map__statistics--body-item3-believer">
                           <i className="fa fa-male map__statistics--body-item3-believer-icon" aria-hidden="true"></i>
-                          <div className="map__statistics--body-item3-text"><div className="map__statistics--body-item3-text1">believer</div><div>{isNaN(this.state.bPercent)?"no data":this.state.bPercent+"%"}</div></div>
+                          <div className="map__statistics--body-item3-text"><div className="map__statistics--body-item3-text1">Believer</div><div>{isNaN(this.state.bPercent)?"no data":this.state.bPercent+"%"}</div></div>
                     </div>
                     <div className="map__statistics--body-item3-nonBeliever">
                           <i className="fa fa-male map__statistics--body-item3-nonBeliever-icon" aria-hidden="true"></i>
-                          <div className="map__statistics--body-item3-text"><div className="map__statistics--body-item3-text1">non believer</div><div>{isNaN(this.state.nbPercent)?"no data":this.state.nbPercent+"%"}</div></div>
+                          <div className="map__statistics--body-item3-text"><div className="map__statistics--body-item3-text1">Non Believer</div><div>{isNaN(this.state.nbPercent)?"no data":this.state.nbPercent+"%"}</div></div>
                     </div>
                     <div className="map__statistics--body-item3-undecided">
                           <i className="fa fa-male map__statistics--body-item3-undecided-icon" aria-hidden="true"></i>
-                          <div className="map__statistics--body-item3-text"><div className="map__statistics--body-item3-text1">undecided</div><div>{isNaN(this.state.uPercent)?"no data":this.state.uPercent+"%"}</div></div>
+                          <div className="map__statistics--body-item3-text"><div className="map__statistics--body-item3-text1">Undecided</div><div>{isNaN(this.state.uPercent)?"no data":this.state.uPercent+"%"}</div></div>
                     </div>
                     <div className="map__statistics--body-item3-undecided">
                           <i style={{color:"black"}} className="fa fa-male map__statistics--body-item3-undecided-icon" aria-hidden="true"></i>
-                          <div className="map__statistics--body-item3-text"><div className="map__statistics--body-item3-text1">no data</div></div>
+                          <div className="map__statistics--body-item3-text"><div className="map__statistics--body-item3-text1">No Data</div></div>
                     </div>
                </div>
           </div>

@@ -13,6 +13,11 @@
   // @include respond(tab-port){
     // height: 30vh;
   // }
+  @include respond(phone){
+    padding: 0rem;
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+  }
 }
 #map{
   overflow: visible;

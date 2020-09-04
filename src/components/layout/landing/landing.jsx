@@ -97,7 +97,6 @@ import "aos/dist/aos.css"
 
 
 
-
   componentDidUpdate=()=>{
     Aos.init({duration:2000,delay:100})
   }
@@ -108,28 +107,28 @@ import "aos/dist/aos.css"
           <div className="landing">
               <div id="screen1" className="landing__item landing__item--1">
                    <img className="landing__item-image" src={landscape1} alt="landscape"/>
-                   <div data-aos="fade-down" className="landing__item-text">There is one,<br/>single question<br/>that is fundamental<br/>to how you live your life...</div>
+                   <div data-aos="fade-down" className="landing__item-text">There is one,<br/>SINGLE question<br/>that is fundamental<br/>to how you live your life...</div>
               </div>
               <div id="screen2" className="landing__item landing__item--2">
                   <img className="landing__item-image" src={landscape2} alt="person swimming"/>
                   <div data-aos="fade-down" className="landing__item-text">
                       <span data-aos="fade-down" className="landing__item-text-span1">Avoiding it<br/>is the easier option...</span><br/>
-                      <span data-aos="fade-up" data-aos-delay={2100} className="landing__item-text-span2">but means ignoring<br/>your reality, existence<br/> and the meaning of it all.</span>
+                      <span data-aos="fade-up" data-aos-delay={2100} className="landing__item-text-span2">but means ignoring<br/>your reality, existence<br/>and the meaning of it all.</span>
                   </div>
               </div>
               <div id="screen3" className="landing__item landing__item--3">
                   <img className="landing__item-image" src={landscape4} alt="foggy river"/>
                   <div data-aos="fade-down" className="landing__item-text">
                       <span data-aos="fade-down" className="landing__item-text-span1">Facing it<br/>is harder choice...</span><br/>
-                      <span data-aos="fade-down" data-aos-delay={1500} className="landing__item-text-span1">it requires<br/>thought and courage...</span><br/>
-                      <span data-aos="fade-up" data-aos-delay={2500} className="landing__item-text-span2">but it gives your life<br/>clarity and definition.</span>
+                      <span data-aos="fade-down" data-aos-delay={1500} className="landing__item-text-span1">It requires<br/>thought and courage...</span><br/>
+                      <span data-aos="fade-up" data-aos-delay={2500} className="landing__item-text-span2">But it gives your life<br/>clarity and definition.</span>
                   </div>
               </div>
               <div id="screen4" className="landing__item landing__item--33">
                   <div data-aos="fade-down" className="landing__item-text">
-                       <span data-aos="fade-down" className="landing__item-text-span1">Make the right Decision.</span><br/>
+                       <span data-aos="fade-down" className="landing__item-text-span1">Make the right decision.</span><br/>
                        <span data-aos="fade-up" data-aos-delay={1100} className="landing__item-text-span1">Don't be lazy.</span><br/>
-                       <span data-aos="fade-up" data-aos-delay={2100} className="landing__item-text-span2">Ask yourself a question !</span>
+                       <span data-aos="fade-up" data-aos-delay={2100} className="landing__item-text-span2">Ask yourself THE question !</span>
                   </div>
               </div>
               <div id="screen5" className="landing__item landing__item--4">
