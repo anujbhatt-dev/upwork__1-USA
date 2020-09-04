@@ -91,7 +91,7 @@ class PublicFigure extends Component {
        this.setState({countries:res.data});
      })
 
-     axios.get("/v1/admin/data/yes/all/all/all/0").then(res=>{
+     axios.get("/v1/client/data/yes/all/all/all/0").then(res=>{
      this.setState({
          totalPages:res.data.totalPages,
          data:res.data.content,
@@ -105,7 +105,7 @@ class PublicFigure extends Component {
 
       if(this.state.loading==true)
       if(this.state.country.length==0)
-      axios.get(`/v1/admin/data/${this.state.category}/${this.state.publicFigure}/${this.state.verified}/${this.state.search===""?"all":this.state.search}/${this.state.page}`).then(res=>{
+      axios.get(`/v1/client/data/${this.state.category}/${this.state.publicFigure}/${this.state.verified}/${this.state.search===""?"all":this.state.search}/${this.state.page}`).then(res=>{
          console.log("res  "+(res.data.content));
 
          this.setState((state)=>{return{
@@ -118,7 +118,7 @@ class PublicFigure extends Component {
       else
      {
       // console.log(this.state)
-      axios.get(`/v1/admin/data/country/${this.state.country}/${this.state.category}/${this.state.publicFigure}/${this.state.verified}/${this.state.search===""?"all":this.state.search}/${this.state.page}`).then(res=>{
+      axios.get(`/v1/client/data/country/${this.state.country}/${this.state.category}/${this.state.publicFigure}/${this.state.verified}/${this.state.search===""?"all":this.state.search}/${this.state.page}`).then(res=>{
         this.setState((state)=>{return{
           totalPages:res.data.totalPages,
           data:state.data.concat(res.data.content),

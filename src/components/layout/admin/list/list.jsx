@@ -33,7 +33,6 @@ toast.configure()
       modalShow:false,
       selectedClient:null,
       show2:false,
-      countries2:[]
    }
 
    static contextType=LayoutContext;
@@ -44,18 +43,10 @@ toast.configure()
 
    componentDidMount=()=>{
 
-      axios.get("/v1/admin/data/all/all/all/all/0").then(res=>{
+      axios.get("/v1/client/data/all/all/all/all/0").then(res=>{
          axios.get("/v1/admin/country").then(res=>{
             this.setState({
               countries:res.data
-            })
-         } )
-         .catch(err=>{alert("error")})
-
-         axios.get("https://restcountries.eu/rest/v2/all").then(res=>{
-          // console.log(res.data);
-            this.setState({
-              countries2:res.data
             })
          } )
          .catch(err=>{alert("error")})
@@ -76,7 +67,7 @@ toast.configure()
 
          if(this.state.loading==true)
          if(this.state.selectedCountry.length==0)
-         axios.get(`/v1/admin/data/${this.state.selectedCategory}/${this.state.selectedPublicFigure}/${this.state.selectedVerified}/${this.state.search}/${this.state.pageNumber}`).then(res=>{
+         axios.get(`/v1/client/data/${this.state.selectedCategory}/${this.state.selectedPublicFigure}/${this.state.selectedVerified}/${this.state.search}/${this.state.pageNumber}`).then(res=>{
             console.log("res  "+(res.data.content));
 
             this.setState({
@@ -89,7 +80,7 @@ toast.configure()
          else
         {
          // console.log(this.state)
-         axios.get(`/v1/admin/data/country/${this.state.selectedCountry}/${this.state.selectedCategory}/${this.state.selectedPublicFigure}/${this.state.selectedVerified}/${this.state.search}/${this.state.pageNumber}`).then(res=>{
+         axios.get(`/v1/client/data/country/${this.state.selectedCountry}/${this.state.selectedCategory}/${this.state.selectedPublicFigure}/${this.state.selectedVerified}/${this.state.search}/${this.state.pageNumber}`).then(res=>{
             console.log("res  "+(res.data.content));
             this.setState({
                totalPages:res.data.totalPages,
@@ -351,7 +342,7 @@ catch(err=>alert("an alert occured try again"));
           </Modal><Backdrop  clicked={this.modalShowFalseHandler} show={this.state.modalShow}/>
 
           <Modal clicked={()=>this.modalShowHandler2()} show={this.state.show2}>
-                <AddClientForm countries={this.state.countries2} />
+                <AddClientForm  />
 
           </Modal>
             <Backdrop clicked={this.modalShowHandler2} show={this.state.show2}/>
