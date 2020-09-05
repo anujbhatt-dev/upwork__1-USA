@@ -190,7 +190,7 @@ class PublicFigure extends Component {
             stage:false,
           })
           this.modalShowHandler2()
-      },3000)
+      },6000)
     }
 
 
@@ -200,6 +200,13 @@ class PublicFigure extends Component {
         document.getElementById("believer").checked= true
         document.getElementById("allpf").checked= true
         document.getElementById("allverified").checked= true
+    }
+
+    closeFilter=()=>{
+
+
+        document.getElementById("filter").checked= false
+
     }
 
 
@@ -220,11 +227,11 @@ class PublicFigure extends Component {
                           <hr className="hr"/>
                           <div >
                                <h6 className="claim__form-terms-head">Terms</h6>
-                               <p className="claim__form-terms-para">
-                                 likhde jo likhna hai
+                               <p className="claim__form-terms-para" style={{fontWeight:"bold"}}>
+                                 Please note: We will use the information you provide above to verify that you are the correct person in this profile.
                                </p>
                           </div>
-                      </form>: <h1 className="claim__form" style={{display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{fontSize:"2rem",textAlign:"center"}}>check you email for claim verification.<br/>Thank you!</span></h1>}
+                      </form>: <h1 className="claim__form" style={{display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{fontSize:"2rem",textAlign:"center"}}>Check you email for claim verification.<br/>Thank you! 😊</span></h1>}
             </Modal>
             <div className="notables">
 
@@ -260,7 +267,13 @@ class PublicFigure extends Component {
                        <label  htmlFor="allverified">all</label><br/>
                      </div>
                      <div className="notables__filter-reset" onClick={this.resetFilter}   >Reset Filter</div>
+                     <div style={{top:".1rem",color:"black"}} className="notables__filter-reset" onClick={this.closeFilter}   ><i class="fa fa-times" aria-hidden="true"></i></div>
                  </div>
+              </div>
+
+              <div style={{color:"black",marginRight:"1rem"}} className="notables__total">
+                   <h2>Total Filter</h2>
+                   <h1><strong>{this.state.data.length}</strong></h1>
               </div>
 
              <div className="notables__search">
@@ -283,7 +296,7 @@ class PublicFigure extends Component {
              </div>
 
 
-              {this.state.country===""?<div className="searchfor" > <strong>World</strong></div>:<div className="searchfor"> <strong>{this.state.country}</strong></div>}
+              {this.state.country===""?<div className="searchfor" > <strong>World</strong></div>:<div className="searchfor"> <strong style={{position:"relative"}}>{this.state.country} <i onClick={()=>this.countrySelectHandler("")} style={{position:"absolute",top:".2rem",fontSize:"1.5rem",right:".2rem",cursor:"pointer"}}  className="fa fa-times" aria-hidden="true"></i></strong></div>}
                   <div className="userWrapper">
                 {this.state.data.map((d,i)=><>
                   <div   className={"user "+"user"+(i%2)}>
@@ -293,7 +306,7 @@ class PublicFigure extends Component {
                 <div className="user__name"><span>{d.firstName+" "+d.lastName}</span></div>
                 <div style={{color:"green"}} className="user__field">{d.category==="yes"?<span style={{color:"#3D9BE9"}}>Believer</span>:d.category==="no"?<span  style={{color:"#F8171C"}}>Non Believer</span>:"Undecided"}</div>
                 <div  className="user__field user__field4 "> <Flag code={d.code} height={16} />  <i>{d.country.length>=15?d.country.slice(0,15)+"...":d.country}</i></div>
-                           <div className="user__field user__field1 " style={{textAlign:"right"}}><span className="user__verified">{d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":"Other"}</span></div>
+                           <div className="user__field user__field1 " style={{textAlign:"right"}}><span className="user__verified">{d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":""}</span></div>
                            <div className="user__field user__field2">
                               {d.background===null?
                                 <br/>:

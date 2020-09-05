@@ -107,14 +107,13 @@
   margin-top: 2rem;
   color: $color-white;
   & strong{
-    background: $color-secondary-blue;
+    background: $color-primary-blue;
     padding:.5rem 1rem;
   }
   @include respond(tab-port){
     margin-top: 1rem;
     padding-right: 2rem;
     & strong{
-      background: $color-secondary-blue;
       padding:.1rem .8rem;
     }
   }

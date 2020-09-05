@@ -9,7 +9,7 @@
 
      return (
        <div className="query__item query__undecided" onClick={this.props.clicked}>
-         <div>I do not know enough to decide</div>
+         <div style={{textTransform:"underline"}}>I do not know enough to decide</div>
        </div>
      )
    }

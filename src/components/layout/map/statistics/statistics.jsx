@@ -103,6 +103,9 @@ import axios from 'axios';
 
 
  componentDidUpdate(prevProps, prevState){
+   if(window.innerWidth<= 700){
+     return null;
+   }
    let element = document.getElementById("gradient");
    let gradient = isNaN(this.state.bPercent)
    ?`-webkit-linear-gradient(top, black 0%, black 100%)`

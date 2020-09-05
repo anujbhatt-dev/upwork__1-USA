@@ -10,7 +10,8 @@
   position:fixed;
   transform: translate(-50%,-50%);
   // background: linear-gradient(90deg, rgba(237,233,233,1) 0%, rgba(255,255,255,1) 50%, rgba(237,233,233,1) 100%);
-  background: rgba($color-white,.3);
+  background: rgba($color-white,1);
+  border: 8px solid $color-primary-blue;
   // background: transparent;
   color: $color-white;
   width:70%;
@@ -39,11 +40,9 @@
   position: absolute;
   font-size: 2.5rem;
   font-weight: bolder;
-  background:$color-white;
   bottom: 1rem;
   right:1rem;
   padding: 1rem 1.3rem;
-  box-shadow: 0 0 1rem $color-black;
   border-radius: 50%;
   transition: all .2s;
   color:black;

@@ -52,7 +52,7 @@
        }
        @include respond(tab-land){
          // left: 5rem;
-         top: 60%;
+         top: 50%;
          margin: 1rem;
          font-size: 2rem;
          padding: 1.5rem 3rem;
@@ -133,6 +133,7 @@
            background-repeat: no-repeat;
            background-size:cover;
            background-position: bottom;
+
            & .landing__item-text-1{
            color: $color-white;
            // font-size: 2rem;
@@ -172,7 +173,7 @@
              }
           }
           &-span2{
-             width:50%;
+             width:60%;
              align-self: flex-end;
              display: inline-block;
              @include respond(tab-land){
@@ -330,7 +331,10 @@
              font-weight: bolder;
              display: inline-block;
              @include respond(tab-land){
+               text-align: center;
                font-size: 2rem;
+               position: relative;
+               bottom: 5rem;
              }
           }
         }
