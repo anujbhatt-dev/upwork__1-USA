@@ -161,10 +161,10 @@ verifyCallback=()=>{
        <div className="query__item query__fixer query__non-believer">
            <div className="query__item-text query__non-believer-text">WOULD YOU LIKE TO LEARN MORE?</div>
            <div style={{fontSize:"1.5rem"}}>
-               <input type="radio" name="knowMore" id="learnMoreYes" value="yes"/>
-               <label style={{padding:"0 1.5rem"}} htmlFor="learnMoreYes">Yes</label>
-               <input defaultChecked type="radio" name="knowMore" id="learnMoreNo" value="yes"/>
-               <label style={{padding:"0 1.5rem"}} htmlFor="learnMoreNo">No</label>
+               <input onChange={(e)=>{let client={...this.state.client};client.knowMore=true; this.setState({client:client})}}  type="radio" name="knowMore" id="learnMoreYes" value="yes"/>
+               <label  style={{padding:"0 1.5rem"}} htmlFor="learnMoreYes">Yes</label>
+               <input onChange={(e)=>{let client={...this.state.client};client.knowMore=false; this.setState({client:client})}}  defaultChecked type="radio" name="knowMore" id="learnMoreNo" value="yes"/>
+               <label  style={{padding:"0 1.5rem"}} htmlFor="learnMoreNo">No</label>
            </div>
        </div>
        <form onSubmit={this.onSubmitHandler} className="form query__item query__fixer query__non-believer">
