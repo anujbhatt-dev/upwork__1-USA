@@ -19,6 +19,7 @@ toast.configure();
         city:"",
         country:"",
         publicFigure:"",
+        knowMore:""
       },
        isVerified:false
     }
@@ -114,7 +115,7 @@ verifyCallback=()=>{
             <option value="volvo">Choose your category</option>
             <option value="PH1">Public Figure</option>
             <option value="PH2">Scientist</option>
-            <option value="other">Other</option>
+            <option value="other">Neither</option>
           </select>
          <input disabled value={this.state.client.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
          <Recaptcha
@@ -138,7 +139,7 @@ verifyCallback=()=>{
             <option value="volvo">Choose your category</option>
             <option value="PH1">Public Figure</option>
             <option value="PH2">Scientist</option>
-            <option value="other">Other</option>
+            <option value="other">Neither</option>
           </select>
          <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <Recaptcha
@@ -159,9 +160,9 @@ verifyCallback=()=>{
        <div className="query__item query__fixer query__non-believer">
            <div className="query__item-text query__non-believer-text">WOULD YOU LIKE TO LEARN MORE?</div>
            <div style={{fontSize:"1.5rem"}}>
-               <input type="radio" name="learnMore" id="learnMoreYes" value="yes"/>
+               <input type="radio" name="knowMore" id="learnMoreYes" value="yes"/>
                <label style={{padding:"0 1.5rem"}} htmlFor="learnMoreYes">Yes</label>
-               <input type="radio" name="learnMore" id="learnMoreNo" value="yes"/>
+               <input type="radio" name="knowMore" id="learnMoreNo" value="yes"/>
                <label style={{padding:"0 1.5rem"}} htmlFor="learnMoreNo">No</label>
            </div>
        </div>
@@ -174,7 +175,7 @@ verifyCallback=()=>{
             <option value="volvo">Choose your category</option>
             <option value="PF1">Public Figure</option>
             <option value="PF2">Scientist</option>
-            <option value="other">Other</option>
+            <option value="other">Neither</option>
           </select>
        <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <Recaptcha
