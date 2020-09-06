@@ -14,6 +14,7 @@ import axios from 'axios';
      var country = atob(this.props.match.params.country);
      var category = atob(this.props.match.params.category);
      var publicFigure = atob(this.props.match.params.publicFigure);
+     var knowMore=atob(this.props.match.params.knowMore)
 
      var  code=this.props.match.params.code;
 
@@ -27,15 +28,8 @@ import axios from 'axios';
          category:category,
          publicFigure:publicFigure,
          code:code,
+         knowMore:knowMore,
      }
-
-
-
-    //  let key=email.replace('.','DOT');
-    //  fireDb.child("client/"+key).on('value',res=>{
-
-    //     fireDb.child("client").child(key).set(client);
-     //}
 
        axios.post("/v1/client",client);
 
