@@ -61,7 +61,7 @@ toast.configure();
 
        console.log(url);
         if(this.state.isVerified){
-          axios.post("/v1/client/verify?url="+url+"&to="+this.state.client.email)
+          axios.post("/v1/client/verify",null,{params:{url:url,to:this.state.client.email,name:this.state.client.firstName,category:this.props.believer}})
           .then(res=>{
             toast.success("done");
           });

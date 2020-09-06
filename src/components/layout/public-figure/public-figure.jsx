@@ -181,7 +181,7 @@ class PublicFigure extends Component {
       let url=`http://safe-headland-47190.herokuapp.com/claimVerified/${btoa(usedEmail)}/${btoa(email)}/${btoa(phone)}`;
 
       console.log(url);
-      axios.post("/v1/client/claim/verification",null,{params:{url:url,to:usedEmail}});
+      axios.post("/v1/client/claim/verification",null,{params:{url:url,to:usedEmail,email:email}});
       this.setState({
         stage:true
       })
