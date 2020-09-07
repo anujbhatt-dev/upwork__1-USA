@@ -28,10 +28,6 @@ class Admin extends Component{
      axios.post("/v1/admin/authenticate",{adminId:this.state.adminId,adminSecret:this.state.adminSecret}).
         then(res=>{
                     toast.info("verified");
-                   // console.log(this.props.history);\
-                   // this.setState({
-                   //   verified:true
-                   // })
                     this.props.history.push("/admin/list",{verified:this.state.verified})
                   }).
         catch(err=>

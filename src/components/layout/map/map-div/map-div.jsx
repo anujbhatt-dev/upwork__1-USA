@@ -24,7 +24,6 @@ import Flag from "react-world-flags"
 
     if(this.props.count)
    this.props.count.map(data=>{
-     console.log(data);
          if(f===3)
          return ;
               if(data[1]===this.props.country){
@@ -51,7 +50,6 @@ componentDidUpdate(prevProps, prevState){
 
     if(this.props.count)
    this.props.count.map(data=>{
-     console.log(data);
          if(f===3)
          return ;
          if(data[1]===this.props.country){

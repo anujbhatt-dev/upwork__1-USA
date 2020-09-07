@@ -37,7 +37,6 @@ xhr.onload=()=>{
          percentage = 50;
        }
         let color = null;
-        console.log(data,percentage+"%",newData[data][0],newData[data][1]);
         if(percentage>=80){
           color =  "#3D9BE9";
         }else if(percentage>=60){

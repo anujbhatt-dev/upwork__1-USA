@@ -1,7 +1,6 @@
  import React, {Component} from "react"
 import {Link} from 'react-router-dom'
 import logo from "../../../assets/images/logo.jpg"
-import info from "../../../assets/images/info.jpg"
 import Modal from "../../../UI/modal/modal"
 
  class Header extends Component{
@@ -26,8 +25,8 @@ import Modal from "../../../UI/modal/modal"
         <header className="header">
             <Link to="/" className="logo"><img className="logo__img" src={logo} alt="The big QUESTION"/></Link>
             <div className="socialMedia">
-                <div className="instagram"><a href="http://safe-headland-47190.herokuapp.com/map" style={{textDecoration:"none"}} >Join</a></div>
-                <div className="instagram"><a href="http://safe-headland-47190.herokuapp.com/publicFigure" style={{textDecoration:"none"}} >Joined</a></div>
+                <div className="instagram"><a href="http://peaceful-temple-48896.herokuapp.com/map" style={{textDecoration:"none"}} >Join</a></div>
+                <div className="instagram"><a href="http://peaceful-temple-48896.herokuapp.com/publicFigure" style={{textDecoration:"none"}} >Joined</a></div>
                 <div className="twitter info" onClick={this.modalShowHandler2}><i className="fa fa-info" aria-hidden="true"></i></div>
                 <div className="instagram"> <a rel="noopener noreferrer" target="_blank" href="https://www.google.com">{""}<i className="fa fa-instagram" aria-hidden="true"></i></a> </div>
                 <div className="facebook"> <a rel="noopener noreferrer" target="_blank" href="https://www.google.com">{""}<i className="fa fa-facebook" aria-hidden="true"></i></a> </div>

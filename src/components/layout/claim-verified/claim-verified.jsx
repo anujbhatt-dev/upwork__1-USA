@@ -12,8 +12,6 @@ import { withRouter } from 'react-router-dom';
          let email=atob(this.props.match.params.email);
          let phone=atob(this.props.match.params.phone);
 
-       console.log(usedEmail+"  "+phone+"  "+email)
-    //   console.log(this.props.match)
          axios.post("/v1/client/claim",null,{params:{usedEmail:usedEmail,email:email,phone:phone}});
     }
 
@@ -26,8 +24,7 @@ import { withRouter } from 'react-router-dom';
                Congrats Your Claim has been initialed.<br/>we will reach out to you soon.
                <i className="quote-left fa fa-quote-right" aria-hidden="true"></i></div>
                <button onClick={()=>{window.location=
-                                "http://safe-headland-47190.herokuapp.com/publicFigure"
-                                // "http://localhost:3000/map"
+                                "http://peaceful-temple-48896.herokuapp.com/publicFigure"
                            }} className="landing__item-button">Go Back</button>
           </div>
         )

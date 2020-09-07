@@ -8,7 +8,6 @@
   justify-content: space-around;
   align-items: center;
   @include respond(tab-port){
-     // height: 50%;
      justify-content: flex-start;
      padding: 0rem 0rem;
      flex-grow: 1;
@@ -37,7 +36,6 @@
     margin-top: 1rem;
     cursor: pointer;
     height: 4rem;
-    // width: 90%;
     border: none;
     padding: 1rem;
     font-size: 2rem;

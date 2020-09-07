@@ -31,9 +31,7 @@ document.addEventListener('popstate', function (event) {
     componentDidMount=()=>{
       axios.interceptors.response.use(response =>{
         let authorization=response.headers.authorization;
-      //  console.log
         if(authorization){
-           console.log("Auth")
         axios.defaults.headers.common['authorization'] = authorization;
       this.setState({authenticated:true});
          }
@@ -84,7 +82,7 @@ document.addEventListener('popstate', function (event) {
                  <ClaimVerified  />
               </Route>
            </Switch>
-           
+
         </div>
         </LayoutContext.Provider>
      )
@@ -93,5 +91,3 @@ document.addEventListener('popstate', function (event) {
 
 
 export default Layout;
-
-

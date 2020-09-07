@@ -7,8 +7,6 @@
 
    render(){
 
-     // <Link to="div11" smooth="true" duration={500} className="nav__dots"></Link>
-     // <Link to="div22" smooth="true" duration={500} className="nav__dots"></Link>
      return (
         <nav className="nav">
             <Link hashSpy={true} spy={true} activeClass="nav__active" to="screen1" smooth="true" duration={500} className="nav__dots"></Link>

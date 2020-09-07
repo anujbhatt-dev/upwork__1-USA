@@ -24,7 +24,6 @@
       background: $color-grey-light-2;
     }
     &-stage{
-      // text-align: center;
       cursor:pointer;
       font-size: 2rem;
       padding: 1rem 3rem;
@@ -53,20 +52,16 @@
 @keyframes stage1 {
    from{
      transform: translateX(-100%);
-     // background: green;
    }to{
      transform: translateX(0%);
-     // background: yellow;
    }
 }
 
 @keyframes stage2 {
    from{
      transform: translateX(100%);
-     // background: green;
    }to{
      transform: translateX(0%);
-     // background: yellow;
    }
 }
 
@@ -116,7 +111,7 @@
     font-size: 1.5rem;
     // transform: rotate(-90deg);
     animation: open .5s ease-out;
-    animation-fill-mode:forwards;  
+    animation-fill-mode:forwards;
   }
   &__close{
     opacity: 0;

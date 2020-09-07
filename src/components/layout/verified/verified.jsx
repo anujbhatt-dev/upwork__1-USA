@@ -44,7 +44,7 @@ import axios from 'axios';
                  You Are one of a kind
                  <i className="quote-left fa fa-quote-right" aria-hidden="true"></i></div>
                  <button onClick={()=>{window.location=
-                                  "http://safe-headland-47190.herokuapp.com/map"
+                                  "http://peaceful-temple-48896.herokuapp.com/map"
                                   // "http://localhost:3000/map"
                              }} className="landing__item-button">Go Back</button>
             </div>

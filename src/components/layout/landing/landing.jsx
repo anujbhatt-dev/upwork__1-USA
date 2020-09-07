@@ -1,8 +1,3 @@
-// import pic1 from "../../../assets/images/pic1.jpg"
-// import pic2 from "../../../assets/images/pic2.jpg"
-// import pic3 from "../../../assets/images/pic3.jpg"
-// import landscape3 from "../../../assets/images/landscape3.jpg"
-// import {Link} from "react-router-dom"
 import React, {Component} from "react"
 import landscape1 from "../../../assets/images/landscape1.jpg"
 import landscape2 from "../../../assets/images/landscape2.jpg"
@@ -68,39 +63,6 @@ import "aos/dist/aos.css"
     Aos.init({duration:2000,delay:100})
     let lastScrollTop = 0;
     let viewportHeight = $("#screen1").innerHeight()
-    // $(window).scroll((e)=>{
-    //    let st = $(this).scrollTop();
-    //    console.log(st);
-    //    let pageY = null;
-    //    if (st > lastScrollTop){
-    //         pageY = window.pageYOffset
-    //         if(pageY>=1&& pageY<=20){
-    //             window.scrollTo({top:viewportHeight, behavior:"smooth"})
-    //         }else if(pageY>=viewportHeight+1 && pageY<=viewportHeight+20){
-    //             window.scrollTo({top:2*viewportHeight, behavior:"smooth"})
-    //         }else if(pageY>=2*viewportHeight+1 && pageY<=2*viewportHeight+20){
-    //             window.scrollTo({top:3*viewportHeight, behavior:"smooth"})
-    //         }else if(pageY>=3*viewportHeight+1 && pageY<=3*viewportHeight+20){
-    //             window.scrollTo({top:4*viewportHeight, behavior:"smooth"})
-    //         }else if(pageY>=4*viewportHeight+1 && pageY<=4*viewportHeight+20){
-    //             window.scrollTo({top:5*viewportHeight, behavior:"smooth"})
-    //         }
-    //    } else {
-    //         pageY = window.pageYOffset
-    //         if(pageY>=viewportHeight-20 && pageY<=viewportHeight-1){
-    //             window.scrollTo({top:0, behavior:"smooth"})
-    //         }else if(pageY>=2*viewportHeight-20 && pageY<=2*viewportHeight-1){
-    //             window.scrollTo({top:viewportHeight, behavior:"smooth"})
-    //         }else if(pageY>=3*viewportHeight-20 && pageY<=3*viewportHeight-1){
-    //             window.scrollTo({top:2*viewportHeight, behavior:"smooth"})
-    //         }else if(pageY>=4*viewportHeight-20 && pageY<=4*viewportHeight-1){
-    //             window.scrollTo({top:3*viewportHeight, behavior:"smooth"})
-    //         }else if(pageY>=5*viewportHeight-20 && pageY<=5*viewportHeight-1){
-    //             window.scrollTo({top:4*viewportHeight, behavior:"smooth"})
-    //         }
-    //    }
-    //    lastScrollTop = st;
-    // });
   }
 
 
@@ -145,8 +107,7 @@ import "aos/dist/aos.css"
                       <span data-aos="fade-down" data-aos-delay={1500} className="landing__item-text-span2">DO YOU BELIEVE<br/>IN GOD?</span>
                   </div>
                   <button data-aos="fade-up"  data-aos-delay={3000} onClick={()=>{window.location=
-                                   "http://safe-headland-47190.herokuapp.com/map"
-                                    // "http://localhost:3000/map"
+                                   "http://peaceful-temple-48896.herokuapp.com/map"
                               }} className="landing__item-button">Decide Here</button>
               </div>
           </div>

@@ -22,15 +22,11 @@
        text-decoration: none;
        position: absolute;
        top:60%;
-       // left:7.4%;
        margin: 0 auto;
        font-size: 2rem;
        padding: 2rem 4rem;
        margin: 2rem;
        color: $color-white;
-       // left: 50%;
-       // transform: translateX(0%);
-       // margin: 0 auto;
        text-transform: capitalize;
        letter-spacing: 5px;
        font-family: 'Roboto', sans-serif;
@@ -51,7 +47,6 @@
            color: $color-white;
        }
        @include respond(tab-land){
-         // left: 5rem;
          top: 50%;
          margin: 1rem;
          font-size: 2rem;
@@ -65,7 +60,6 @@
           color: $color-white;
           font-size: 4.5rem;
           width: 50%;
-          // font-weight: 200;
           letter-spacing: 5px;
           position: relative;
           right: 35rem;
@@ -90,7 +84,6 @@
          width: 40%;
          font-weight: 100;
          letter-spacing: 5px;
-         // position: relative;
          left: 35rem;
          line-height: 1.5;
          @include respond(tab-land){
@@ -100,21 +93,15 @@
            width: 80%;
          }
        }
-       &-1{
-           background-image: url("../../../assets/images/mapbackground.jpg");
-       }
+
        &-2{
            background-image: url("../../../assets/images/congrats.jpg");
            background-repeat: no-repeat;
            background-size:cover;
            & .landing__item-text-1{
            color: $color-white;
-           // font-size: 2rem;
            width: 60%;
            text-align: center;
-           // @include respond(phone){
-           //   width: 80%;
-           // }
          }
        }
        &-3{
@@ -123,7 +110,6 @@
            background-size:cover;
            & .landing__item-text-1{
            color: $color-white;
-           // font-size: 2rem;
            width: 60%;
            text-align: center;
          }
@@ -136,7 +122,6 @@
 
            & .landing__item-text-1{
            color: $color-white;
-           // font-size: 2rem;
            width: 60%;
            text-align: center;
          }
@@ -150,7 +135,6 @@
           font-size: 4.5rem;
           width: 80%;
           height: 60%;
-          // font-weight: 100;
           letter-spacing: 5px;
           position: relative;
           left: 0rem;
@@ -182,28 +166,7 @@
           }
         }
      }
-     // &--22{
-     //   background: rgba($color-grey-light-2,1);
-     //   display:flex;
-     //   justify-content: space-around;
-     //   flex-wrap: wrap;
-     //   & .landing__item-text{
-     //     padding: 1rem;
-     //     color: $color-black;
-     //     font-size: 4.5rem;
-     //     width: 40%;
-     //     font-weight: 100;
-     //     letter-spacing: 5px;
-     //     // position: relative;
-     //     right: 35rem;
-     //     line-height: 1.5;
-     //     @include respond(tab-land){
-     //       width:80%;
-     //       right: 0rem;
-     //       font-size: 2.5rem;
-     //     }
-     //   }
-     // }
+
      &--3{
         background: rgba($color-primary-blue,.2);
         & .landing__item-text{
@@ -258,7 +221,6 @@
          height:60%;
          font-weight: 100;
          letter-spacing: 5px;
-         // position: relative;
          right: 0rem;
          line-height: 1.5;
          display: flex;
@@ -296,10 +258,8 @@
           padding: 1rem;
           color: $color-white;
           font-size: 4.5rem;
-          // font-weight: bold;
           width: 80%;
           height: 80%;
-          // font-weight: 100;
           letter-spacing: 5px;
           position: relative;
           left: 0rem;
@@ -315,8 +275,6 @@
             font-size: 2.51rem;
           }
           &-span1{
-             // align-self: flex-start;
-             // width:50%;
              font-size: 2.5rem;
              font-weight: bolder;
              display: inline-block;
@@ -325,8 +283,6 @@
              }
           }
           &-span2{
-             // width:50%;
-             // align-self: flex-end;
              font-size: 5rem;
              font-weight: bolder;
              display: inline-block;

@@ -12,7 +12,6 @@ import Flag from 'react-world-flags';
 
     componentDidMount(){
 
-       // console.log(this.props.history)
         this.setState({
             client:this.props.d
         })
@@ -20,14 +19,8 @@ import Flag from 'react-world-flags';
 
 
     render() {
-         //   size:40,
-         //   default:"identicon"
-         // }} email={this.state.client.email}>
-         //options={{
-         // <Gravatar email={this.state.client.email}
-         // { url => (<img className="gravatar__img" src={url} />) }
-         // </Gravatar>
-         
+
+
         return (
             <div className = "clientDetailViewWrapper" >
                 <div className = "clientDetailView">
@@ -59,7 +52,7 @@ import Flag from 'react-world-flags';
                     </div>
                 </div>
             </div>
-            
+
         )
     }
 }

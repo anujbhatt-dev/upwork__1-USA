@@ -7,7 +7,6 @@
   align-items: center;
   border-radius: 8px;
   position: relative;
-  // animation-fill-mode: forwards;
   &--1{
     animation: query--1 1s ease-out;
   }
@@ -49,10 +48,6 @@
       & strong{
         font-size: 1.8rem
       }
-      // &:hover ~ .query__item-image{
-      //    opacity: 1;
-      // }
-      // font-style: italic;
     }
     @include respond(tab-port){
        width: 100%;
@@ -68,18 +63,12 @@
        opacity: .99;
        transition: all .5s;
        cursor: pointer;
-       // &:hover{
-       //   opacity: 1;
-       // }
     }
     &-text{
       padding: 2rem;
       text-align: center;
       cursor: pointer;
       z-index: 1;
-      // &:hover ~ .query__item-image{
-      //    opacity: 1;
-      // }
     }
   }
   &__believer{
@@ -132,9 +121,6 @@
        color: $color-white;
        font-weight: bolder;
        text-decoration: underline;
-       // &:hover ~ .query__item-image{
-       //    opacity: 1;
-       // }
        @include respond(tab-port){
           padding-top: 1rem;
           font-size: 1.8rem;
@@ -150,11 +136,7 @@
   }
 }
 
-.stageTwoWrapper{
-  & > *{
-    // flex-basis: 50%;
-  }
-}
+
 
 @keyframes query--1 {
     from{

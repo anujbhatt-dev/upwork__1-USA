@@ -17,7 +17,7 @@ import Modal from "../../../../UI/modal/modal";
      loading:false,
      modalShow:false,
      selectedClient:null,
-     
+
    }
 
    componentDidMount(){
@@ -31,7 +31,7 @@ import Modal from "../../../../UI/modal/modal";
 
    componentDidUpdate(){
 
-      
+
       if(this.state.loading)
       axios.get(`/v1/admin/claim/${this.state.search.length==0?"all":this.state.search}/${this.state.page}`).then(res=>{
          this.setState((state)=>{return {data:res.data.content,totalPages:res.data.totalPages,loading:false}});
@@ -73,12 +73,11 @@ import Modal from "../../../../UI/modal/modal";
 
           let selected={...this.state.data[index]};
             selected.index=index;
-      
-            console.log(selected)
+
 
         this.setState((state)=>{return {selectedClient:selected,modalShow:true}});
         }
-      
+
             modalShowFalseHandler=()=>{
                this.setState((state)=>{return {selectedClient:null,modalShow:false}});
             }
@@ -89,26 +88,25 @@ import Modal from "../../../../UI/modal/modal";
        data[index].background=val;
        let selected={... this.state.selectedClient}
        selected.background=val;
-      
+
        this.setState({data:data,selectedClient:selected});
-      
+
     }
 
     verifyHandler=(email,index)=>{
       axios.post("/v1/admin/verifyToggle",null,{params:{email:email}}).then(res=>{
-         console.log(this.state)
          let data=[ ... this.state.data];
          data.splice(index,1);
          this.setState({data:data,selectedClient:null,modalShow:false});
          this.modalShowFalseHandler();
          })
    }
-      
+
 
 
    render(){
       if(!this.props.authenticated)
-      window.location=("http://safe-headland-47190.herokuapp.com/admin");
+      window.location=("http://peaceful-temple-48896.herokuapp.com/admin");
 
      return (<>
      {this.state.modalShow? <Modal clicked={this.modalShowFalseHandler} show={this.state.modalShow}>
@@ -119,7 +117,7 @@ import Modal from "../../../../UI/modal/modal";
                            updatedBackground={this.updatedBackgroundHandler} />
           </Modal>:null}
           <Backdrop  clicked={this.modalShowFalseHandler} show={this.state.modalShow}/>
-          
+
        <div style={{top:"8rem",left:"5rem",transform:"translateX(0%)"}} className="adminSearch"><input value={this.state.search} className="adminSearch__input" id="adminClaimSearch" onChange={this.searchHandler} type="text"/><button className="adminSearch__btn" onClick={()=>this.setState({data:[],loading:true})}><i className="adminSearchIcon fa fa-search" aria-hidden="true"></i></button></div>
            <div className="pagination">
                  <button className="pagination__arrow" onClick={()=>this.pageHandler(-1)} >{"<<"}</button>
@@ -136,7 +134,7 @@ import Modal from "../../../../UI/modal/modal";
            </header>
            <div className="claims">
                  <div className="claims__head">claims</div>
-       
+
                  <table border={1}>
                     <thead>
                         <tr>
@@ -151,14 +149,14 @@ import Modal from "../../../../UI/modal/modal";
                         </tr>
                     </thead>
                     <tbody>
-                       
-                       
+
+
                        { this.state.data.map((client,i)=>
                                            <tr>
                     <td className="list__body-row-column">{client.verified===true?
                                 <button className="list__body-row-column-btn-check" onClick={()=>this.modalShowTrueHandler(i)}><i className="fa fa-eject" aria-hidden="true"></i></button>
                                :<button className="list__body-row-column-btn-cross" onClick={()=>this.modalShowTrueHandler(i)} ><i className="fa fa-eject" aria-hidden="true"></i></button>}</td>
-                                                                        
+
                           <td>{client.firstName} {client.lastName}</td>
                                            <td>{client.email} </td>
                                            <td>{client.country}</td>
@@ -168,8 +166,8 @@ import Modal from "../../../../UI/modal/modal";
                                            <td className="list__body-row-column list__body-row-column--delete"><i onClick={()=>this.deleteHandler(i)} class="fa fa-trash" aria-hidden="true"></i></td>
                                            </tr>
                        )}
-                      
-                        
+
+
                     </tbody>
                  </table>
            </div>

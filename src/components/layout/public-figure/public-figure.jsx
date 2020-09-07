@@ -68,7 +68,6 @@ class PublicFigure extends Component {
      }
 
       componentWillUnmount() {
-       // window.removeEventListener("scroll", this.onScroll, false);
        Aos.init({duration:2000,delay:100})
       }
 
@@ -106,7 +105,7 @@ class PublicFigure extends Component {
       if(this.state.loading==true)
       if(this.state.country.length==0)
       axios.get(`/v1/client/data/${this.state.category}/${this.state.publicFigure}/${this.state.verified}/${this.state.search===""?"all":this.state.search}/${this.state.page}`).then(res=>{
-         console.log("res  "+(res.data.content));
+
 
          this.setState((state)=>{return{
             totalPages:res.data.totalPages,
@@ -117,7 +116,6 @@ class PublicFigure extends Component {
       }).catch(err=>alert("error"));
       else
      {
-      // console.log(this.state)
       axios.get(`/v1/client/data/country/${this.state.country}/${this.state.category}/${this.state.publicFigure}/${this.state.verified}/${this.state.search===""?"all":this.state.search}/${this.state.page}`).then(res=>{
         this.setState((state)=>{return{
           totalPages:res.data.totalPages,
@@ -132,7 +130,6 @@ class PublicFigure extends Component {
 
 
     pageHandler=()=>{
-        console.log("Page handler")
         if(this.state.page===this.state.totalPages)
         return;
         this.setState((state)=>{return {page:state.page+1,loading:true}})
@@ -156,8 +153,6 @@ class PublicFigure extends Component {
 
     countrySelectHandler=(val)=>{
 
-      // if(val==="")
-      // this.setState({country:"all",loading:true,data:[],search:"",page:0,searchedCahrecterForCountry:""})
 
       this.setState({country:val,loading:true,data:[],search:"",page:0,searchedCahrecterForCountry:""})
 
@@ -176,11 +171,8 @@ class PublicFigure extends Component {
       let usedEmail=this.state.claim.email;
       let email=this.state.claim.selectedEmail;
       let phone=this.state.claim.phone;
+      let url=`http://peaceful-temple-48896.herokuapp.com/claimVerified/${btoa(usedEmail)}/${btoa(email)}/${btoa(phone)}`;
 
-      // Heroku ka link ayega yah !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      let url=`http://safe-headland-47190.herokuapp.com/claimVerified/${btoa(usedEmail)}/${btoa(email)}/${btoa(phone)}`;
-
-      console.log(url);
       axios.post("/v1/client/claim/verification",null,{params:{url:url,to:usedEmail,email:email}});
       this.setState({
         stage:true
@@ -245,8 +237,6 @@ class PublicFigure extends Component {
                        <label  htmlFor="believer">believers</label><br/>
                        <input onChange={()=>{this.setState({category:"no",loading:true,data:[],page:0})}} name="category" value={"no"} id="nonBeliever" type="radio"/>
                        <label  htmlFor="nonBeliever">non believers</label><br/>
-                       {/* <input onChange={()=>{this.setState({category:"all",loading:true,data:[],page:0})}} name="category" value={"all"} id="allcat" type="radio"/>
-                       <label  htmlFor="allcat">all</label><br/> */}
                      </div>
                      <div className="notables__filter-option-type">
                          <input onChange={()=>{this.setState({data:[],loading:true,publicFigure:"pf1",page:0})}} name="publicFigure" value={"pf1"} id="publicFigure" type="radio"/>

@@ -1,5 +1,4 @@
 import React, {Component} from "react"
-// import notABeliever from "../../../../assets/images/not-a-believer.jpg"
 
 class NotABeliever extends Component{
   state={
@@ -19,7 +18,6 @@ class NotABeliever extends Component{
 
 
   render(){
-    // <img className="query__item-image query__non-beliver-image" src={notABeliever} alt=""/>
 
     return (
        <div className="query__item query__non-believer" onClick={this.props.clicked}>
