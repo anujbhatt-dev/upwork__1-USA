@@ -19,7 +19,7 @@ toast.configure();
         city:"",
         country:"",
         publicFigure:"",
-        knowMore:""
+        knowMore:false
       },
        isVerified:false
     }
@@ -57,8 +57,9 @@ toast.configure();
 
 
 
-      let url= `http://safe-headland-47190.herokuapp.com/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${this.props.code}`;
-       // let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${client.publicFigure}/${this.props.code}`;
+      let url= `http://safe-headland-47190.herokuapp.com/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${client.publicFigure}/${client.knowMore}/${this.props.code}`;
+                                        //<Route exact  path="/verified/:email/:firstName/:lastName/:date/:city/:country/:category/:publicFigure/:knowMore/:code">
+      // let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${client.publicFigure}/${this.props.code}`;
 
        console.log(url);
         if(this.state.isVerified){
@@ -160,10 +161,10 @@ verifyCallback=()=>{
        <div className="query__item query__fixer query__non-believer">
            <div className="query__item-text query__non-believer-text">WOULD YOU LIKE TO LEARN MORE?</div>
            <div style={{fontSize:"1.5rem"}}>
-               <input type="radio" name="knowMore" id="learnMoreYes" value="yes"/>
-               <label style={{padding:"0 1.5rem"}} htmlFor="learnMoreYes">Yes</label>
-               <input type="radio" name="knowMore" id="learnMoreNo" value="no"/>
-               <label style={{padding:"0 1.5rem"}} htmlFor="learnMoreNo">No</label>
+               <input onChange={(e)=>{let client={...this.state.client};client.knowMore=true; this.setState({client:client})}}  type="radio" name="knowMore" id="learnMoreYes" value="yes"/>
+               <label  style={{padding:"0 1.5rem"}} htmlFor="learnMoreYes">Yes</label>
+               <input onChange={(e)=>{let client={...this.state.client};client.knowMore=false; this.setState({client:client})}}  defaultChecked type="radio" name="knowMore" id="learnMoreNo" value="yes"/>
+               <label  style={{padding:"0 1.5rem"}} htmlFor="learnMoreNo">No</label>
            </div>
        </div>
        <form onSubmit={this.onSubmitHandler} className="form query__item query__fixer query__non-believer">
