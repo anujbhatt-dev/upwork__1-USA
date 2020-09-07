@@ -317,7 +317,7 @@ catch(err=>alert("an alert occured try again"));
                          <td className="list__body-row-column">{client.email}</td>
                          <td className="list__body-row-column">{client.city}</td>
                          <td className="list__body-row-column">{client.country}</td>
-                         <td className="list__body-row-column">{client.category==="yes"?"Beleiver":client.category==="no"?"Non Beleiver":"Undecided"}</td>
+                         <td className="list__body-row-column">{client.category==="yes"?"Beleiver":client.category==="no"?"Non Beleiver": <span style={{background:client.knowMore==="yes"?"green":"transparent"}}>Undecided</span>}</td>
 
                          <td className="list__body-row-column list__body-row-column--delete"><i onClick={()=>this.deleteHandler(i)} class="fa fa-trash" aria-hidden="true"></i></td>
                      </tr>

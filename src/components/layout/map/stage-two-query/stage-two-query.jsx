@@ -162,7 +162,7 @@ verifyCallback=()=>{
            <div style={{fontSize:"1.5rem"}}>
                <input type="radio" name="knowMore" id="learnMoreYes" value="yes"/>
                <label style={{padding:"0 1.5rem"}} htmlFor="learnMoreYes">Yes</label>
-               <input type="radio" name="knowMore" id="learnMoreNo" value="yes"/>
+               <input type="radio" name="knowMore" id="learnMoreNo" value="no"/>
                <label style={{padding:"0 1.5rem"}} htmlFor="learnMoreNo">No</label>
            </div>
        </div>
