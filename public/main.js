@@ -9,7 +9,7 @@ simplemaps_worldmap.hooks.over_state = function(id){
 }
 
 const xhr = new XMLHttpRequest();
-xhr.open("GET","http://godsplan-env.eba-ppuxuhbi.ap-south-1.elasticbeanstalk.com/api/v1/client/country/count");
+xhr.open("GET","http://godsplan-env.eba-2hxajddm.us-east-2.elasticbeanstalk.com/api/v1/client/country/count");
 xhr.onload=()=>{
   let dataArray = JSON.parse(xhr.response);
   let countries = [];

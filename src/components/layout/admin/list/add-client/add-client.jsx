@@ -8,8 +8,8 @@ import Flag from "react-world-flags"
    state={
      firstName:"",
      lastName:"",
-     category:"",
-     publicFigure:"",
+     category:"yes",
+     publicFigure:"other",
      email:"",
      verified:"",
      country:"",
@@ -31,7 +31,7 @@ import Flag from "react-world-flags"
          let data={... this.state};
          data.code=data.country.substring(data.country.indexOf(',')+1);
          data.country=data.country.substring(0,data.country.indexOf(','));
-
+         console.log(data);
          axios.post("/v1/admin/client",data).then(res=>{alert("saved");this.setState({ firstName:"",
          lastName:"",
          category:"",
@@ -73,7 +73,7 @@ import Flag from "react-world-flags"
              <h1 className="label" htmlFor="verify">Verified</h1>
               <input id="verify" value={true}   name="verified" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
               <label className="label" htmlFor="verify">yes</label>
-              <input id="unverify" value={false}  name="verified" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
+              <input default  id="unverify" value={false}  name="verified" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
               <label className="label" htmlFor="unverify">no</label>
           </div>
           <button type="submit" className="form__btn">Submit</button>

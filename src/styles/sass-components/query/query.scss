@@ -38,15 +38,19 @@
       padding: 0 10rem;
       z-index: 1;
       text-align: center;
-      font-size: 2rem;
       cursor: pointer;
-      @include respond(tab-port){
-         padding: 0 2rem;
-      }
-      font-size: 1.5rem;
+
+      font-size: 2.2rem;
       font-weight: 500;
       & strong{
-        font-size: 1.8rem
+        font-size: 2.5rem
+      }
+      @include respond(tab-port){
+         padding: 0 2rem;
+         font-size: 1.5rem;
+         & strong{
+           font-size: 1.8rem
+         }
       }
     }
     @include respond(tab-port){

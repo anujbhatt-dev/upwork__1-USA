@@ -157,7 +157,7 @@
              }
           }
           &-span2{
-             width:60%;
+             width:50%;
              align-self: flex-end;
              display: inline-block;
              @include respond(tab-land){
@@ -286,8 +286,8 @@
              font-size: 5rem;
              font-weight: bolder;
              display: inline-block;
+             text-align: center;
              @include respond(tab-land){
-               text-align: center;
                font-size: 2rem;
                position: relative;
                bottom: 5rem;

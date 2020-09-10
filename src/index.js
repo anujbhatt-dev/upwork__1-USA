@@ -4,9 +4,8 @@ import App from './App';
 import {BrowserRouter} from "react-router-dom"
 import Axios from 'axios';
 
-Axios.defaults.baseURL=
-                        "http://godsplan-env.eba-ppuxuhbi.ap-south-1.elasticbeanstalk.com/api";
-                         // "http://localhost:8081/api";
+Axios.defaults.baseURL="http://godsplan-env.eba-2hxajddm.us-east-2.elasticbeanstalk.com/api"
+            
 
 ReactDOM.render(
   <React.StrictMode>

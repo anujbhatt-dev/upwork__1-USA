@@ -119,16 +119,19 @@ toast.configure()
 
 
    deleteHandler=(index)=>{
+   if(window.confirm("Are you sure?")){
 
-axios.delete("/v1/admin",{params:{email:this.state.data[index].email}}).
-then((res)=>{
-   let data=[... this.state.data];
-   data.splice(index,1);
-      this.setState({data:data});
-      this.modalShowFalseHandler();
-   }).
-catch(err=>alert("an alert occured try again"));
-      }
+     axios.delete("/v1/admin/client",{params:{email:this.state.data[index].email}}).
+     then((res)=>{
+       let data=[... this.state.data];
+       data.splice(index,1);
+       this.setState({data:data});
+       this.modalShowFalseHandler();
+     }).catch(err=>alert("an alert occured try again"));
+   }
+
+
+}
 
       filterHandler=(category,publicFigure,verified)=>{
          document.getElementById("adminSearch").value="";

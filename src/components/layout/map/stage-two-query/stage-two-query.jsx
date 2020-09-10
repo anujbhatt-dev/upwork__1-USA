@@ -103,7 +103,7 @@ verifyCallback=()=>{
          <input disabled value={this.state.client.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
          <Recaptcha
            className="form__captcha"
-           sitekey="6LcqJcIZAAAAAAOKFbP32-bG7HMQCFAxYTgS5kTQ"
+           sitekey="6Lc9F8oZAAAAAIcBkFNGNGPfK2pDLcxbi_hUGBMr"
            render="explicit"
            verifyCallback={this.verifyCallback}
            onloadCallback={this.callback}
@@ -127,7 +127,7 @@ verifyCallback=()=>{
          <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <Recaptcha
            className="form__captcha"
-           sitekey="6LcqJcIZAAAAAAOKFbP32-bG7HMQCFAxYTgS5kTQ"
+           sitekey="6Lc9F8oZAAAAAIcBkFNGNGPfK2pDLcxbi_hUGBMr"
            render="explicit"
            verifyCallback={this.verifyCallback}
            onloadCallback={this.callback}
@@ -163,7 +163,7 @@ verifyCallback=()=>{
        <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <Recaptcha
            className="form__captcha"
-           sitekey="6LcqJcIZAAAAAAOKFbP32-bG7HMQCFAxYTgS5kTQ"
+           sitekey="6Lc9F8oZAAAAAIcBkFNGNGPfK2pDLcxbi_hUGBMr"
            render="explicit"
            verifyCallback={this.verifyCallback}
            onloadCallback={this.callback}
