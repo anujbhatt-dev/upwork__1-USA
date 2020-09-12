@@ -31,7 +31,6 @@ import Flag from "react-world-flags"
          let data={... this.state};
          data.code=data.country.substring(data.country.indexOf(',')+1);
          data.country=data.country.substring(0,data.country.indexOf(','));
-         console.log(data);
          axios.post("/v1/admin/client",data).then(res=>{alert("saved");this.setState({ firstName:"",
          lastName:"",
          category:"",

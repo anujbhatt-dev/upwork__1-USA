@@ -104,7 +104,7 @@
   color: $color-white;
   & strong{
     background: $color-primary-blue;
-    padding:.5rem 1rem;
+    padding:1rem 3rem;
   }
   @include respond(tab-port){
     margin-top: 1rem;
@@ -413,4 +413,9 @@
       text-decoration: underline;
     }
   }
+}
+.notables__total{
+  text-align: center;
+  font-weight: bolder;
+  font-size: 2.5rem;
 }

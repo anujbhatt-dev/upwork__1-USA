@@ -35,12 +35,12 @@ class Map extends Component {
      if(this.state.show){
        this.setState({
          show:false,
-         s:"",
-         stage:1,
-         believer:null,
-         hover:null
+         // s:"",
+         // stage:1,
+         // believer:null,
+         // hover:null
        })
-       this.props.history.push("/map")
+       // this.props.history.push("/map")
      }else{
        this.setState({
          show:true

@@ -21,7 +21,7 @@
      return (
         <div className="query__item query__believer" onClick={this.props.clicked}>
           <p>
-             I join <strong>{this.state.count}</strong><br/><br/> others in<br/><strong style={{textTransform:"uppercase"}}>{this.props.country}</strong><br/><br/>
+             I join <br/><br/><strong>{this.state.count}</strong><br/><br/> others in<br/><strong style={{textTransform:"uppercase"}}>{this.props.country}</strong><br/><br/>
              and<br/><strong>{this.props.world.worldTotalBeliever}</strong><br/>others in the<br/><strong>WORLD</strong><br/><br/>
              <strong style={{textDecoration:"underline"}}>ACKNOWLEDGING</strong><br/>that
              the<br/><strong>universe was created by</strong><br/>an

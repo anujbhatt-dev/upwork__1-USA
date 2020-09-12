@@ -8,6 +8,9 @@ import $ from "jquery"
 import Aos from "aos"
 import "aos/dist/aos.css"
 
+
+let mylet,mylet2,mylet3,mylet4;
+
  class Landing extends Component{
 
     state= {
@@ -16,24 +19,27 @@ import "aos/dist/aos.css"
       img:false
     }
 
+
+
+
    componentDidMount=()=>{
 
-     let mylet=setTimeout(()=>{
+      mylet=setTimeout(()=>{
        $('html, body').animate({
              scrollTop: $("#screen2").offset().top
          }, 500);
      }, 10000);
-     let mylet2=setTimeout(()=>{
+      mylet2=setTimeout(()=>{
        $('html, body').animate({
              scrollTop: $("#screen3").offset().top
          }, 500);
      }, 20000);
-     let mylet3=setTimeout(()=>{
+      mylet3=setTimeout(()=>{
        $('html, body').animate({
              scrollTop: $("#screen4").offset().top
          }, 500);
      }, 30000);
-     let mylet4=setTimeout(()=>{
+      mylet4=setTimeout(()=>{
        $('html, body').animate({
              scrollTop: $("#screen5").offset().top
          }, 500);
@@ -67,8 +73,17 @@ import "aos/dist/aos.css"
 
 
 
-  componentDidUpdate=()=>{
+
+
+
+  componentDidUpdate=(prevState, prevProps)=>{
     Aos.init({duration:2000,delay:100})
+    if(prevProps.dots!==this.props.dots){
+      clearTimeout(mylet)
+      clearTimeout(mylet2)
+      clearTimeout(mylet3)
+      clearTimeout(mylet4)
+    }
   }
 
    render(){
@@ -107,7 +122,7 @@ import "aos/dist/aos.css"
                       <span data-aos="fade-down" data-aos-delay={1500} className="landing__item-text-span2">DO YOU BELIEVE<br/>IN GOD?</span>
                   </div>
                   <button data-aos="fade-up"  data-aos-delay={3000} onClick={()=>{window.location=
-                                   "http://peaceful-temple-48896.herokuapp.com/map"
+                                   "http://www.bigq.world/map"
                               }} className="landing__item-button">Decide Here</button>
               </div>
           </div>

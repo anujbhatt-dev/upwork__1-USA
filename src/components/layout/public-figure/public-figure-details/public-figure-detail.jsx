@@ -28,11 +28,11 @@ import Flag from 'react-world-flags';
                       <div className = "clientDetailView__col clientDetailView__col-1">
                           <div className = "clientDetailView__name">{this.state.client.firstName+" "+this.state.client.lastName}</div>
                           <div className="clientDetailView__notableFor">Notable as <span>{this.state.client.publicFigure==="PF1"?"Public Figure":"Scientist"}</span></div>
-                          <div className="clientDetailView__verified">{this.state.client.verified?<span><i class="fa fa-check" aria-hidden="true"></i> verified</span>:null}</div>
-                      </div>
-                      <div className="clientDetailView__col clientDetailView__col-2">
-                            <div className className="clientDetailView__col-country"><span>{this.state.client.country}</span></div>
-                           <Flag  code={this.state.client.code} height={25}/>
+
+                          <div className="clientDetailView__col clientDetailView__col-2">
+                          <Flag  code={this.state.client.code} height={25}/>
+                          <div className className="clientDetailView__col-country"><span>{this.state.client.country}</span></div>
+                          </div>
                       </div>
                       <div className="clientDetailView__col clientDetailView__col-3">
 
@@ -42,6 +42,7 @@ import Flag from 'react-world-flags';
                       } }>
                             { url => (<img className="gravatar__img clientDetailView__img" src={url} />) }
                       </Gravatar>:null}
+                      <div className="clientDetailView__verified">{this.state.client.verified?<span><i class="fa fa-check" aria-hidden="true"></i> verified</span>:null}</div>
                       </div>
                   </div>
 

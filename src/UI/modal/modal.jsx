@@ -10,7 +10,7 @@
      let modal=null
      if(this.props.show){
        modal=<div style={this.props.styles}
-        className="modal">
+        className={"modal "+this.props.classModal}>
                   {this.props.children}
                   <i onClick={this.props.clicked}  className="fa fa-times modalCross" aria-hidden="true"></i>
               </div>

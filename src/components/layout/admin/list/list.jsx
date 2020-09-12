@@ -319,7 +319,7 @@ toast.configure()
      }
 
      if(!this.props.authenticated)
-      window.location=("http://peaceful-temple-48896.herokuapp.com/admin");
+      window.location=("http://www.bigq.world/admin");
 
     return (
 

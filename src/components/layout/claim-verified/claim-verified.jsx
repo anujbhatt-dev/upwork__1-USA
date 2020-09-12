@@ -24,7 +24,7 @@ import { withRouter } from 'react-router-dom';
                Congrats Your Claim has been initialed.<br/>we will reach out to you soon.
                <i className="quote-left fa fa-quote-right" aria-hidden="true"></i></div>
                <button onClick={()=>{window.location=
-                                "http://peaceful-temple-48896.herokuapp.com/publicFigure"
+                                "http://www.bigq.world/publicFigure"
                            }} className="landing__item-button">Go Back</button>
           </div>
         )

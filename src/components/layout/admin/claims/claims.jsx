@@ -106,7 +106,7 @@ import Modal from "../../../../UI/modal/modal";
 
    render(){
       if(!this.props.authenticated)
-      window.location=("http://peaceful-temple-48896.herokuapp.com/admin");
+      window.location=("http://www.bigq.world/admin");
 
      return (<>
      {this.state.modalShow? <Modal clicked={this.modalShowFalseHandler} show={this.state.modalShow}>

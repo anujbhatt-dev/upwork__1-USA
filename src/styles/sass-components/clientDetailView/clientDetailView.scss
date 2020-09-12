@@ -8,12 +8,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 2rem rgba($color-grey, .2);
-  outline: 2px solid rgba($color-black, .2);
+  // box-shadow: 0 0 2rem rgba($color-grey, .2);
+  // outline: 2px solid rgba($color-black, .2);
   outline-offset: -6px;
 }
 .clientDetailView{
-
+    width: 100%;
+    height: 100%;
     background: $color-white;
     color: $color-black;
     position: relative;
@@ -58,9 +59,17 @@
         align-items:center;
 
       }
+      &-3{
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        align-items:center;
+        flex-flow:column;
+        margin-right: 3rem;
+      }
     }
   &__name{
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight:bold;
       text-transform: uppercase;
       padding-bottom: .5rem;

@@ -1,0 +1,44 @@
+.modal2{
+  z-index: 100000;
+  height: 95vh;
+  border: none;
+  width: 45vw;
+  color: $color-black;
+  font-size: 2rem;
+  font-weight: bolder;
+  text-align: center;
+  line-height: 1.5;
+  box-shadow: 0 0 1rem rgba($color-grey,.3);
+  @include respond(phone){
+    padding-top: 5rem;
+    border: none;
+    height: 90vh;
+    width: 95vw;
+    color: $color-black;
+    font-size: 1.8rem;
+    font-weight: bolder;
+    text-align: center;
+    line-height: 1.5;
+  }
+}
+@include respond(phone){
+  .extra-wrapper{
+    padding-top: 5rem;
+  }
+
+}
+
+.modal3{
+  text-align: left;
+
+
+}
+
+.modal4{
+  height: 50rem;
+  width: 35rem;
+  animation: modal2 .5s;
+}
+.form__recaptcha{
+  height: 5rem;
+}

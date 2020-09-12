@@ -46,7 +46,7 @@ toast.configure();
        client.category= this.props.believer;
        client.date=new Date().toLocaleDateString();
 
-       let uri="http://peaceful-temple-48896.herokuapp.com/verified";
+       let uri="http://www.bigq.world/verified";
 
        Object.keys(client).map(k=>{
                client[k]=`${btoa(client[k])}`;
@@ -54,13 +54,14 @@ toast.configure();
 
 
 
-      let url= `http://peaceful-temple-48896.herokuapp.com/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${client.publicFigure}/${client.knowMore}/${this.props.code}`;
+      let url= `http://www.bigq.world/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${client.publicFigure}/${client.knowMore}/${this.props.code}`;
 
 
         if(this.state.isVerified){
           axios.post("/v1/client/verify",null,{params:{url:url,to:this.state.client.email,name:this.state.client.firstName,category:this.props.believer}})
           .then(res=>{
-            toast.success("done");
+            toast.info("done");
+            alert(client.publicFigure)
           });
           this.props.history.push("/checkEmail")
         }else{
@@ -96,8 +97,8 @@ verifyCallback=()=>{
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
          <select id="cars" name="publicFigure" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text">
             <option value="volvo">Choose your category</option>
-            <option value="PH1">Public Figure</option>
-            <option value="PH2">Scientist</option>
+            <option value="PF1">Public Figure</option>
+            <option value="PF2">Scientist</option>
             <option value="other">Neither</option>
           </select>
          <input disabled value={this.state.client.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
@@ -120,8 +121,8 @@ verifyCallback=()=>{
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <select id="cars" name="publicFigure" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text">
             <option value="volvo">Choose your category</option>
-            <option value="PH1">Public Figure</option>
-            <option value="PH2">Scientist</option>
+            <option value="PF1">Public Figure</option>
+            <option value="PF2">Scientist</option>
             <option value="other">Neither</option>
           </select>
          <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
