@@ -1,6 +1,3 @@
-// import believer from "../../../../assets/images/believer.jpg"
-// import undecided from "../../../../assets/images/undecided.jpg"
-// import notABeliever from "../../../../assets/images/not-a-believer.jpg"
  import React, {Component} from "react"
  import Recaptcha from "react-recaptcha"
 import { toast } from 'react-toastify';
@@ -49,7 +46,7 @@ toast.configure();
        client.category= this.props.believer;
        client.date=new Date().toLocaleDateString();
 
-       let uri="http://safe-headland-47190.herokuapp.com/verified";
+       let uri="http://www.bigq.world/verified";
 
        Object.keys(client).map(k=>{
                client[k]=`${btoa(client[k])}`;
@@ -57,20 +54,16 @@ toast.configure();
 
 
 
-      let url= `http://safe-headland-47190.herokuapp.com/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${client.publicFigure}/${client.knowMore}/${this.props.code}`;
-                                        //<Route exact  path="/verified/:email/:firstName/:lastName/:date/:city/:country/:category/:publicFigure/:knowMore/:code"> 
-      // let url= `http://localhost:3000/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${client.publicFigure}/${this.props.code}`;
+      let url= `http://www.bigq.world/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${client.publicFigure}/${client.knowMore}/${this.props.code}`;
 
-       console.log(url);
+
         if(this.state.isVerified){
           axios.post("/v1/client/verify",null,{params:{url:url,to:this.state.client.email,name:this.state.client.firstName,category:this.props.believer}})
           .then(res=>{
-            toast.success("done");
+            toast.info("done");
+            alert(client.publicFigure)
           });
           this.props.history.push("/checkEmail")
-          // window.location=
-          //                  // "https://ancient-woodland-30225.herokuapp.com/map"
-          //                  "http://localhost:3000/map"
         }else{
           toast.warning("Complete the form")
         }
@@ -78,7 +71,6 @@ toast.configure();
 
 
     callback=()=>{
-       console.log("loaded");
     }
 
 
@@ -91,15 +83,6 @@ verifyCallback=()=>{
 
 
    render(){
-     // <img className="query__item-image query__believer-image" src={believer} alt=""/>
-
-     // <img className="query__item-image query__non-believer-image" src={notABeliever} alt=""/>
-
-     // <img className="query__item-image query__non-believer-image" src={undecided} alt=""/>
-
-     // <input value={this.state.client.publicFigure}  placeholder="publicFigure" />
-     // <input value={this.state.client.publicFigure} name="publicFigure" placeholder="publicFigure" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
-     // <input value={this.state.client.publicFigure} name="publicFigure" placeholder="publicFigure" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
 
      return (
        this.props.believer==="yes"?
@@ -114,14 +97,14 @@ verifyCallback=()=>{
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
          <select id="cars" name="publicFigure" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text">
             <option value="volvo">Choose your category</option>
-            <option value="PH1">Public Figure</option>
-            <option value="PH2">Scientist</option>
+            <option value="PF1">Public Figure</option>
+            <option value="PF2">Scientist</option>
             <option value="other">Neither</option>
           </select>
          <input disabled value={this.state.client.country} name="country" placeholder="country" required onChange={(e)=>this.onChangeHandler(e,"believer")} className="form__input" type="text"/>
          <Recaptcha
            className="form__captcha"
-           sitekey="6LcqJcIZAAAAAAOKFbP32-bG7HMQCFAxYTgS5kTQ"
+           sitekey="6Lc9F8oZAAAAAIcBkFNGNGPfK2pDLcxbi_hUGBMr"
            render="explicit"
            verifyCallback={this.verifyCallback}
            onloadCallback={this.callback}
@@ -138,14 +121,14 @@ verifyCallback=()=>{
          <input value={this.state.client.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <select id="cars" name="publicFigure" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text">
             <option value="volvo">Choose your category</option>
-            <option value="PH1">Public Figure</option>
-            <option value="PH2">Scientist</option>
+            <option value="PF1">Public Figure</option>
+            <option value="PF2">Scientist</option>
             <option value="other">Neither</option>
           </select>
          <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <Recaptcha
            className="form__captcha"
-           sitekey="6LcqJcIZAAAAAAOKFbP32-bG7HMQCFAxYTgS5kTQ"
+           sitekey="6Lc9F8oZAAAAAIcBkFNGNGPfK2pDLcxbi_hUGBMr"
            render="explicit"
            verifyCallback={this.verifyCallback}
            onloadCallback={this.callback}
@@ -181,7 +164,7 @@ verifyCallback=()=>{
        <input disabled value={this.state.client.country} name="country" placeholder="Country" required onChange={(e)=>this.onChangeHandler(e,"notABeliever")} className="form__input" type="text"/>
          <Recaptcha
            className="form__captcha"
-           sitekey="6LcqJcIZAAAAAAOKFbP32-bG7HMQCFAxYTgS5kTQ"
+           sitekey="6Lc9F8oZAAAAAIcBkFNGNGPfK2pDLcxbi_hUGBMr"
            render="explicit"
            verifyCallback={this.verifyCallback}
            onloadCallback={this.callback}

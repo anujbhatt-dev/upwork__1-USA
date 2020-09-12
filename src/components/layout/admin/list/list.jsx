@@ -71,7 +71,7 @@ toast.configure()
          if(this.state.loading==true)
          if(this.state.selectedCountry.length==0)
          axios.get(`/v1/client/data/${this.state.selectedCategory}/${this.state.selectedPublicFigure}/${this.state.selectedVerified}/${this.state.search}/${this.state.pageNumber}`).then(res=>{
-            console.log("res  "+(res.data.content));
+
 
             this.setState({
                totalPages:res.data.totalPages,
@@ -82,9 +82,8 @@ toast.configure()
          }).catch(err=>alert("error"));
          else
         {
-         // console.log(this.state)
          axios.get(`/v1/client/data/country/${this.state.selectedCountry}/${this.state.selectedCategory}/${this.state.selectedPublicFigure}/${this.state.selectedVerified}/${this.state.search}/${this.state.pageNumber}`).then(res=>{
-            console.log("res  "+(res.data.content));
+
             this.setState({
                totalPages:res.data.totalPages,
                data:res.data.content,
@@ -120,16 +119,19 @@ toast.configure()
 
 
    deleteHandler=(index)=>{
+   if(window.confirm("Are you sure?")){
 
-axios.delete("/v1/admin",{params:{email:this.state.data[index].email}}).
-then((res)=>{
-   let data=[... this.state.data];
-   data.splice(index,1);
-      this.setState({data:data});
-      this.modalShowFalseHandler();
-   }).
-catch(err=>alert("an alert occured try again"));
-      }
+     axios.delete("/v1/admin/client",{params:{email:this.state.data[index].email}}).
+     then((res)=>{
+       let data=[... this.state.data];
+       data.splice(index,1);
+       this.setState({data:data});
+       this.modalShowFalseHandler();
+     }).catch(err=>alert("an alert occured try again"));
+   }
+
+
+}
 
       filterHandler=(category,publicFigure,verified)=>{
          document.getElementById("adminSearch").value="";
@@ -139,7 +141,7 @@ catch(err=>alert("an alert occured try again"));
 
       verifyTooglehandler=(email,index)=>{
          axios.post("/v1/admin/verifyToggle",null,{params:{email:email}}).then(res=>{
-            console.log(this.state)
+
             let data=[ ... this.state.data];
             data[index].verified=!data[index].verified
             let selected={... this.state.selectedClient}
@@ -153,7 +155,6 @@ catch(err=>alert("an alert occured try again"));
        let val= document.getElementById("adminSearch").value;
        if(val==="")
        val="all";
-       //alert(val);
 
          this.setState({search:val,loading:true});
       }
@@ -191,12 +192,6 @@ catch(err=>alert("an alert occured try again"));
 
 
    render(){
-
-     // console.log(this.props.history.location.state.verified)
-      // if(!this.props.history.location.state.verified){
-      //   console.log("in list");
-      //   window.location.href="http://localhost:3000/admin"
-      // }
 
 
 
@@ -271,24 +266,13 @@ catch(err=>alert("an alert occured try again"));
                   </div>
                   <div className="dropdown__unDecided-other"  onClick={()=>this.filterHandler("undecided","other","all")}>OTHER </div>
              </div>
-{
 
-}
         </div>
-{
-     //
-     //     <div>
-     //       <h1 onClick={()=>this.filterHandler("all","all","all")}>All</h1><h2 onClick={()=>this.filterHandler("all","all","true")}>Verified</h2><h2 onClick={()=>this.filterHandler("all","all","false")}>Not Verified</h2>
-     //        <h1 >BELEIVER</h1><h2 onClick={()=>this.filterHandler("yes","all","all")}>All</h2><h2 onClick={()=>this.filterHandler("yes","all","true")}>All verified</h2><h2 onClick={()=>this.filterHandler("yes","all","false")}>All not verified</h2><h2 onClick={()=>this.filterHandler("yes","PF1","all")}>PF1</h2><h2 onClick={()=>this.filterHandler("yes","PF1","true")}>PF1 verified</h2><h2 onClick={()=>this.filterHandler("yes","PF1","false")}>PF1 not verified</h2><h2 onClick={()=>this.filterHandler("yes","PF2","all")}>PF2 </h2><h2 onClick={()=>this.filterHandler("yes","PF2","true")}>PF2 verified</h2><h2 onClick={()=>this.filterHandler("yes","PF2","false")}>PF2 not verified</h2><h2 onClick={()=>this.filterHandler("yes","Other","all")}>Other</h2>
-     //      <h1 >NONBELEIVER</h1><h2 onClick={()=>this.filterHandler("no","all","all")}>All</h2><h2 onClick={()=>this.filterHandler("no","all","true")}>All verified</h2><h2 onClick={()=>this.filterHandler("no","all","false")}>All not verified</h2><h2 onClick={()=>this.filterHandler("no","PF1","all")}>PF1 </h2><h2 onClick={()=>this.filterHandler("no","PF1","true")}>PF1 verified</h2><h2 onClick={()=>this.filterHandler("no","PF1","false")}>PF1 not verified</h2><h2 onClick={()=>this.filterHandler("no","PF2","all")}>PF2 </h2><h2 onClick={()=>this.filterHandler("no","PF2","true")}>PF2 verified</h2><h2 onClick={()=>this.filterHandler("no","PF2","false")}>PF2 not verified</h2><h2 onClick={()=>this.filterHandler("no","Other","all")}>Other</h2>
-     // <h1 >UnDECIDED</h1><h2 onClick={()=>this.filterHandler("undecided","all","all")}>All</h2><h2 onClick={()=>this.filterHandler("undecided","all","true")}>All verified</h2><h2 onClick={()=>this.filterHandler("undecided","all","false")}>All not verified</h2><h2 onClick={()=>this.filterHandler("undecided","PF1","all")}>PF1 </h2><h2 onClick={()=>this.filterHandler("undecided","PF1","true")}>PF1 verified</h2><h2 onClick={()=>this.filterHandler("undecided","PF1","false")}>PF1 not verified</h2><h2 onClick={()=>this.filterHandler("undecided","PF2","all")}>PF2 </h2><h2 onClick={()=>this.filterHandler("undecided","PF2","true")}>PF2 verified</h2><h2 onClick={()=>this.filterHandler("undecided","PF2","false")}>PF2 not verified</h2><h2 onClick={()=>this.filterHandler("undecided","Other","all")}>Other</h2>
-     //       <input id="adminSearch" type="text"/><button onClick={this.searchHandler}>Search</button>
-     //       </div>
-}
+
           <div className="adminSearch"><input className="adminSearch__input" id="adminSearch" type="text"/><button className="adminSearch__btn" onClick={this.searchHandler}><i className="adminSearchIcon fa fa-search" aria-hidden="true"></i></button></div>
 
           <div className="list__heading">Do you believe in god ? </div>
-          <div className="list--location"> {this.state.selectedCountry.length===0?"world":this.state.selectedCountry} {(this.state.selectedCategory==="yes"?">> Beleiver":this.state.selectedCategory==="no"?">> Non Beleiver":this.state.selectedCategory==="undecided"?">> Undecided":null)} {(this.state.selectedPublicFigure==="pf1"?">> Public figure":this.state.selectedPublicFigure==="pf2"?">> Scientist":this.state.selectedPublicFigure==="other"?">> other":null)} {(this.state.selectedVerified==="true"?">> verified":this.state.selectedVerified==="false"?">> unverified":null)} </div>
+          <div className="list--location"> {this.state.selectedCountry.length===0?"world":this.state.selectedCountry} {(this.state.selectedCategory==="yes"?">> Beleiver":this.state.selectedCategory==="no"?">> Non Beleiver":this.state.selectedCategory==="undecided"?">> Undecided":null)} {(this.state.selectedPublicFigure==="pf1"?">> Public figure":this.state.selectedPublcFigure==="pf2"?">> Scientist":this.state.selectedPublicFigure==="other"?">> other":null)} {(this.state.selectedVerified==="true"?">> verified":this.state.selectedVerified==="false"?">> unverified":null)} </div>
           <table className="list">
               <thead className="list__head">
                    <tr className="list__head-row">
@@ -317,7 +301,7 @@ catch(err=>alert("an alert occured try again"));
                          <td className="list__body-row-column">{client.email}</td>
                          <td className="list__body-row-column">{client.city}</td>
                          <td className="list__body-row-column">{client.country}</td>
-                         <td className="list__body-row-column">{client.category==="yes"?"Beleiver":client.category==="no"?"Non Beleiver":"Undecided"}</td>
+                         <td className="list__body-row-column">{client.category==="yes"?"Beleiver":client.category==="no"?"Non Beleiver": <span style={{padding:".2rem",background:client.knowMore?"#28df99":"transparent"}}>Undecided</span>}</td>
 
                          <td className="list__body-row-column list__body-row-column--delete"><i onClick={()=>this.deleteHandler(i)} class="fa fa-trash" aria-hidden="true"></i></td>
                      </tr>
@@ -335,13 +319,13 @@ catch(err=>alert("an alert occured try again"));
      }
 
      if(!this.props.authenticated)
-      window.location=("http://safe-headland-47190.herokuapp.com/admin");
+      window.location=("http://www.bigq.world/admin");
 
     return (
 
 
        <>
-          {/* <AdminBackdrop clicked={this.modalShowFalseHandler} show={this.state.modalShow}></AdminBackdrop> */}
+
           <Modal clicked={this.modalShowFalseHandler} show={this.state.modalShow}>
              <ModalView  verifyToggler={this.verifyTooglehandler}
                           delete={this.deleteHandler}

@@ -38,14 +38,9 @@
 }
 
 .claim__form{
-  height: 100%;
   width: 100%;
-  align-self: flex-start;
   background: $color-white;
   color: $color-black;
-  outline: 2px solid rgba($color-black,.2);
-  outline-offset:-4px;
-  padding: 1.5rem;
   font-size: 1.5rem;
   &-input{
     margin-bottom: 1.5rem;

@@ -1,18 +1,7 @@
 .map__wrapper{
-  // width: 100vw;
-  // height: 100vh;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
   padding: 5rem;
   padding-top: 10rem;
   background: #FFF;
-  // background-image: url(../../../assets/images/mapbackground.jpg);
-  // overflow: hidden;
-  // padding-bottom: 2rem;
-  // @include respond(tab-port){
-    // height: 30vh;
-  // }
   @include respond(phone){
     padding: 0rem;
     padding-top: 10rem;
@@ -21,11 +10,7 @@
 }
 #map{
   overflow: visible;
-  // margin-bottom: 1rem;
-  // border: 1px dashed $color-black;
-  // box-shadow: .1rem .5rem 5rem rgba($color-black,.3);
   position: relative;
-  // border-radius: 160px;
 }
 
 .map__legend{
@@ -103,7 +88,6 @@
     left: 5px;
     z-index: 1;
     background: rgba($color-white,.7);
-    // padding: 2rem;
     text-align: center;
     display: inline-block;
     &-country{

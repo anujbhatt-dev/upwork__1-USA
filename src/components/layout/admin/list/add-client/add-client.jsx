@@ -8,8 +8,8 @@ import Flag from "react-world-flags"
    state={
      firstName:"",
      lastName:"",
-     category:"",
-     publicFigure:"",
+     category:"yes",
+     publicFigure:"other",
      email:"",
      verified:"",
      country:"",
@@ -19,9 +19,6 @@ import Flag from "react-world-flags"
 
 
    onChangeHandler=(e)=>{
-
-    // if(e.target.name==="country")
-    //    console.log(e.target.value);
 
      this.setState({
         [e.target.name]:e.target.value
@@ -34,7 +31,6 @@ import Flag from "react-world-flags"
          let data={... this.state};
          data.code=data.country.substring(data.country.indexOf(',')+1);
          data.country=data.country.substring(0,data.country.indexOf(','));
-
          axios.post("/v1/admin/client",data).then(res=>{alert("saved");this.setState({ firstName:"",
          lastName:"",
          category:"",
@@ -63,7 +59,7 @@ import Flag from "react-world-flags"
            <option value="other">Other</option>
            <option value="PF1">Public Figure</option>
            <option value="PF2">Scientist</option>
-           
+
          </select>
         <textarea  value={this.state.background} name="background" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="form__input add-client-background" type="text"/>
         <input value={this.state.city} name="city" placeholder="City" required onChange={(e)=>this.onChangeHandler(e)} className="form__input" type="text"/>
@@ -71,12 +67,12 @@ import Flag from "react-world-flags"
          {countries.map(c=> <option value={c}>{c[0]}</option>)}
 
         </select>
-  
+
          <div>
              <h1 className="label" htmlFor="verify">Verified</h1>
               <input id="verify" value={true}   name="verified" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
               <label className="label" htmlFor="verify">yes</label>
-              <input id="unverify" value={false}  name="verified" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
+              <input default  id="unverify" value={false}  name="verified" placeholder="background" required onChange={(e)=>this.onChangeHandler(e)} className="" type="radio"/>
               <label className="label" htmlFor="unverify">no</label>
           </div>
           <button type="submit" className="form__btn">Submit</button>

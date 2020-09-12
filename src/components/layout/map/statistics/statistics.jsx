@@ -19,16 +19,10 @@ import axios from 'axios';
 
 
    componentDidMount(){
-     // let f=0;
-     // let totalRegion = 0;
-     // let bPercent=0,nbPercent=0,uPercent=0;
-
-     // console.log("mapdiv",this.state.count);
      let countries = [];
      let newData = {}
      axios.get("/v1/client/country/count").then(res=>{
                      this.setState({count:res.data})
-                     // console.log("in");
                      this.state.count.forEach(data=>{
                        if(!countries.includes(data[3])){
                          countries.push(data[3])
@@ -66,39 +60,15 @@ import axios from 'axios';
                        uPercent:worldTotalUndecidedPercentage,
                        totalRegion:worldTotalBeliever+worldTotalNonBeliever+worldTotalUndecided
                      })
-                     console.log(this.state.bPercent,this.state.nbPercent,this.state.uPercent);
                      let element = document.getElementById("gradient");
                      let gradient = isNaN(this.state.bPercent)
                      ?`-webkit-linear-gradient(top, black 0%, black 100%)`
                      :`-webkit-linear-gradient(top, #3D9BE9 ${this.state.bPercent}%, #F8171C ${(this.state.bPercent+this.state.nbPercent)}%, #8C7A7A 100%)`
-                     console.log(gradient);
                      element.style.backgroundImage = gradient
      })
 
 
 
-    // this.props.count.forEach(data=>{
-    //   // console.log(data);
-    //       // if(f===3)
-    //       // return ;
-
-    //     })
-   // totalRegion = b + nb + u;
-   //  bPercent = Math.round((b/totalRegion)*100)
-   //  nbPercent = Math.round((nb/totalRegion)*100)
-   //  uPercent = 100 - bPercent - nbPercent;
-   //  this.setState({
-   //    b:b,
-   //    nb:nb,
-   //    u:u,
-   //    totalRegion:totalRegion,
-   //    bPercent:bPercent,
-   //    nbPercent:nbPercent,
-   //    uPercent:uPercent,
-   //    worldTotal:totalRegion
-   //  })
-         // '-webkit-linear-gradient('
-         //   + 'left'  + ', ' + 'red 75% ' + ', ' + '#8C7A7A 25%' + ')'
  }
 
 
@@ -110,7 +80,7 @@ import axios from 'axios';
    let gradient = isNaN(this.state.bPercent)
    ?`-webkit-linear-gradient(top, black 0%, black 100%)`
    :`-webkit-linear-gradient(top, #3D9BE9 ${(this.state.bPercent)}%, #F8171C ${(this.state.bPercent)}%, #F8171C ${(this.state.bPercent+this.state.nbPercent)}%,#8C7A7A ${(this.state.bPercent+this.state.nbPercent)}%, #8C7A7A 100%)`
-   console.log(gradient);
+
    element.style.backgroundImage = gradient
    if(prevProps.country===this.props.country)
    return ;
@@ -121,7 +91,6 @@ import axios from 'axios';
 
      if(this.props.count)
     this.props.count.map(data=>{
-      // console.log(data);
           if(f===3)
           return ;
           if(data[1]===this.props.country){

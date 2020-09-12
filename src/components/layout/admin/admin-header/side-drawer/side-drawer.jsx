@@ -7,7 +7,6 @@ import Flag from "react-world-flags"
      stage:true,
      char:{},
      selected:[],
-     //selectedCharIndex:-1,
     }
 
     componentWillMount(){
@@ -25,7 +24,6 @@ import Flag from "react-world-flags"
                               }
                     });
 
-//console.log(hashSet);
 
   this.setState({char:hashSet})
     }
@@ -33,7 +31,6 @@ import Flag from "react-world-flags"
 componentDidUpdate(prevProps, prevState){
   if(prevProps.countries.length===this.props.countries.length)
   return ;
-  console.log("updatin")
   let hashSet={};
   let set= new Set();
   this.props.countries.map(country=>{
@@ -45,7 +42,6 @@ componentDidUpdate(prevProps, prevState){
                               }
                     });
 
-console.log(hashSet);
 
   this.setState({char:hashSet})
 }
@@ -64,7 +60,6 @@ if(val===-1){
      this.setState({
        stage:!this.state.stage,
        selected:selected,
-      // selectedCharIndex:index
      })
    }
 
@@ -107,7 +102,6 @@ if(val===-1){
      return (
         <div className={"sideDrawer "+this.props.toggler}>
             <div className="sideDrawer__container">
-              {/* <i onClick={this.props.clicked} className="fa fa-times sideDrawer__container-cross" aria-hidden="true"></i> */}
               <div className="sideDrawer__container-logo">{this.state.stage?"Logo":<div onClick={()=>this.stageHandler(-1)}><i style={{cursor:"pointer"}} className="fa fa-angle-left" aria-hidden="true"></i><span  style={{cursor:"pointer",paddingLeft:"2rem"}}>back</span></div>}</div>
                {this.state.stage?stage1:stage2}
             </div>

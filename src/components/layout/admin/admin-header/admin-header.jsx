@@ -11,7 +11,6 @@ import AdminBackdrop from "./admin-backdrop/admin-backdrop"
    }
 
    sideDrawerToggleHandler=()=>{
-     console.log("sideDrawerToggleHandler");
      if(this.state.open){
        this.setState({
          open:false

@@ -18,10 +18,8 @@
       flex-wrap: wrap;
       @include respond(tab-port){
         justify-content: center;
-        // flex-flow: column;
       }
       &-item1{
-         // padding-bottom: 15rem;
          @include respond(tab-port){
            flex-basis: 100%;
            padding: 1rem 0rem;
@@ -34,7 +32,6 @@
             padding: 0rem 0rem;
             text-align: center;
           }
-          // font-weight:800;
         }
         &-text{
           font-size: 2.5rem;
@@ -49,12 +46,10 @@
         text-align:center;
         background-clip: text;
         color:transparent;
-        // background-image: linear-gradient(to right, $color-red 75%,$color-blue 25%);
         @include respond(tab-port){
           padding: 1rem 0rem;
         }
         & .fa-male{
-          // transform: translateX(-150%);
           font-size: 20rem;
           // color:blue;
           transition: all .2s;
@@ -72,8 +67,6 @@
         &-believer{
           display: flex;
           align-items: center;
-          // flex-grow: 1;
-          // justify-content: center;
           &-icon{
             padding: 1rem 2rem;
             font-size: 6rem;
@@ -83,7 +76,6 @@
         &-nonBeliever{
           display: flex;
           align-items: center;
-          // justify-content: center;
           &-icon{
             padding: 1rem 2rem;
             font-size: 6rem;
@@ -93,7 +85,6 @@
         &-undecided{
           display: flex;
           align-items: center;
-          // justify-content: center;
           &-icon{
             padding: 1rem 2rem;
             font-size: 6rem;

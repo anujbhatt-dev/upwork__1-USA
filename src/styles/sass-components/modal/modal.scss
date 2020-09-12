@@ -9,13 +9,12 @@
   align-items: center;
   position:fixed;
   transform: translate(-50%,-50%);
-  // background: linear-gradient(90deg, rgba(237,233,233,1) 0%, rgba(255,255,255,1) 50%, rgba(237,233,233,1) 100%);
   background: rgba($color-white,1);
   border: 8px solid $color-primary-blue;
-  // background: transparent;
   color: $color-white;
   width:70%;
-  height:80%;
+  z-index: 100000;
+  height: 95vh;
   z-index: 500;
   top:50%;
   left: 50%;
@@ -24,32 +23,62 @@
   border-radius: 8px;
   overflow: hidden;
 }
+
+.modal2{
+  width:60rem;
+  height:60rem;
+   animation: modal2 .5s ease-in;
+}
 @keyframes modal {
     0%{
-      border-radius: 100px;
-      width:0%;
-      height:0%;
+      opacity: 0
     }
     100%{
-      border-radius: 8px;
-      width:70%;
-      height:80%;
+     opacity:1;
     }
 }
+@keyframes modal2 {
+    0%{
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .modalCross{
   position: absolute;
-  font-size: 2.5rem;
-  font-weight: bolder;
-  bottom: 1rem;
+  font-size: 3.5rem;
+  font-weight: 100;
+  top: 1rem;
   right:1rem;
   padding: 1rem 1.3rem;
   border-radius: 50%;
   transition: all .2s;
-  color:black;
-  opacity: .5;
+  color:$color-grey-light;
+  opacity: .3;
+  cursor: pointer;
   &:hover,&:active{
     opacity: 1;
-    border-bottom: 20px solid $color-postman-background;
     background: $color-black;
     color: $color-white;
     box-shadow: 0 0 0rem $color-black;
@@ -58,6 +87,6 @@
 @include respond(phone){
   .modal{
     width:85%;
-    height:80%;
+  height: 95vh;
   }
 }

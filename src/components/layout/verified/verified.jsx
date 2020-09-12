@@ -39,12 +39,11 @@ import axios from 'axios';
     render() {
         return (
             <div className="landing__item landing__item--11 landing__item--11-3">
-                 <div style={{left:"0"}} className="landing__item-text landing__item-text-1"><i className="quote-left fa fa-quote-left" aria-hidden="true"></i>
-                 Congrats Your Submission is Accepted
-                 You Are one of a kind
-                 <i className="quote-left fa fa-quote-right" aria-hidden="true"></i></div>
-                 <button onClick={()=>{window.location=
-                                  "http://safe-headland-47190.herokuapp.com/map"
+                 <div style={{left:"0"}} className="landing__item-text landing__item-text-1">
+                 Congratulations! You have now joined with other<br/>like-minded people from around the world!
+                </div>
+                 <button style={{top:"80%"}} onClick={()=>{window.location=
+                                  "http://www.bigq.world/map"
                                   // "http://localhost:3000/map"
                              }} className="landing__item-button">Go Back</button>
             </div>

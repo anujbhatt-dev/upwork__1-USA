@@ -1,0 +1,22 @@
+.footer{
+  position: absolute;
+  bottom: 1rem;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  width: 100%;
+  @include respond(phone){
+
+      display: flex;
+
+  }
+}
+.Layout{
+  position: relative;
+}
+@include respond(phone){
+  .mobileFooter{
+    display: none;
+  }
+}

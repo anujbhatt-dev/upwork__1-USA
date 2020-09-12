@@ -1,6 +1,7 @@
  import React, {Component} from "react"
 import Landing from "./landing/landing"
 import Header from "./header/header"
+import Footer from "./footer/footer"
 import NavigationDots from "./navigation-dots/navigation-dots"
 import  Map from "./map/map"
 import Admin from "./admin/admin"
@@ -26,14 +27,21 @@ document.addEventListener('popstate', function (event) {
 
     state={
       authenticated:false,
+      dots:false
+    }
+
+    dotsHandler=()=>{
+      if(!this.state.dots){
+        this.setState({
+          dots:true
+        })
+      }
     }
 
     componentDidMount=()=>{
       axios.interceptors.response.use(response =>{
         let authorization=response.headers.authorization;
-      //  console.log
         if(authorization){
-           console.log("Auth")
         axios.defaults.headers.common['authorization'] = authorization;
       this.setState({authenticated:true});
          }
@@ -51,16 +59,19 @@ document.addEventListener('popstate', function (event) {
            <Switch>
               <Route exact path="/">
                   <Header />
-                  <Landing />
-                  <NavigationDots/>
+                  <Landing dots={this.state.dots}/>
+                  <NavigationDots  clicked={this.dotsHandler}/>
+                  <Footer/>
               </Route>
               <Route exact  path="/map">
                   <Header />
                   <Map/>
+                  <Footer/>
               </Route>
               <Route exact  path="/admin">
                   <Header />
                   <Admin authenticated={this.props.authenticated} />
+                  <Footer/>
               </Route>
               <Route exact  path="/admin/list">
                   <List authenticated={this.props.authenticated} adminVerified={this.state.adminVerified} />
@@ -84,7 +95,7 @@ document.addEventListener('popstate', function (event) {
                  <ClaimVerified  />
               </Route>
            </Switch>
-           
+
         </div>
         </LayoutContext.Provider>
      )
@@ -93,5 +104,3 @@ document.addEventListener('popstate', function (event) {
 
 
 export default Layout;
-
-

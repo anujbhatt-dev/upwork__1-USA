@@ -37,9 +37,8 @@ import axios from "axios"
 
     componentDidMount(){
 
-       
+
         axios.get("/v1/content").then(res=>{
-            console.log(res);
             this.setState({content:res.data});
         })
         window.scrollTo({top:0,behavior:"smooth"})

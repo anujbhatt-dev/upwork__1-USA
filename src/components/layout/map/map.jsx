@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import {Link} from "react-router-dom"
 import Modal from "../../../UI/modal/modal"
 import Backdrop from "../../../UI/backdrop/backdrop"
 import {withRouter} from "react-router-dom"
@@ -36,12 +35,12 @@ class Map extends Component {
      if(this.state.show){
        this.setState({
          show:false,
-         s:"",
-         stage:1,
-         believer:null,
-         hover:null
+         // s:"",
+         // stage:1,
+         // believer:null,
+         // hover:null
        })
-       this.props.history.push("/map")
+       // this.props.history.push("/map")
      }else{
        this.setState({
          show:true
@@ -73,11 +72,9 @@ class Map extends Component {
       this.props.history.push("/map")
       axios.get("/v1/client/country/count").then(res=>{
                       this.setState({count:res.data})
-                      // console.log(this.state.count);
       })
 
 
-        console.log(123);
         window.addEventListener('hashchange',(event) =>{
         let code=window.location.hash.substring(window.location.hash.indexOf('#',2)+1);
            this.setState({
@@ -107,11 +104,7 @@ class Map extends Component {
 
   render(){
 
-    // <div className="landing__item landing__item--11 landing__item--11-1">
-    //      <div style={{left:"0"}} className="landing__item-text"><i className="quote-left fa fa-quote-left" aria-hidden="true"></i>
-    //          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem at quam repudiandae! Repellendus, neque provident. Laborum in ad consequuntur officia.
-    //      <i className="quote-left fa fa-quote-right" aria-hidden="true"></i></div>
-    // </div>
+
 
 
 
