@@ -42,7 +42,7 @@ import ReactTooltip from 'react-tooltip';
                 <div className="instagram mobileFooter"> <a rel="noopener noreferrer" target="_blank" href="https://www.google.com">{""}<i className="fa fa-instagram" aria-hidden="true"></i></a> </div>
                 <div className="facebook mobileFooter"> <a rel="noopener noreferrer" target="_blank" href="https://www.google.com">{""}<i className="fa fa-facebook" aria-hidden="true"></i></a> </div>
                 <div className="twitter mobileFooter"> <a rel="noopener noreferrer" target="_blank" href="https://www.google.com">{""}<i className="fa fa-twitter" aria-hidden="true"></i></a> </div>
-                <div data-class="tooltip" data-offset="{'bottom':0}" data-event="click" data-tip="admin@bigq.world" className="twitter info mobileFooter"><i className="fa fa-envelope-o" aria-hidden="true"></i></div><ReactTooltip/>
+                <div data-class="tooltip" data-tip="admin@bigq.world" className="twitter info mobileFooter"><i className="fa fa-envelope-o" aria-hidden="true"></i></div><ReactTooltip/>
             </div>
         </header>
 

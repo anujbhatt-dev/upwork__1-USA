@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom';
 import PublicFigureDetail from "./public-figure-details/public-figure-detail"
 import Modal from "../../../UI/modal/modal"
 import Backdrop from "../../../UI/backdrop/backdrop"
+import ReactTooltip from "react-tooltip"
 
 class PublicFigure extends Component {
 
@@ -313,7 +314,7 @@ class PublicFigure extends Component {
                              }} email={d.email}>
                                   { url => (<img className="gravatar__img" src={url} />) }
                              </Gravatar>
-                             {d.publicFigure!=="OTHER"?<div className="user__field user__field3">{d.verified?<span style={{color:"#3398cc"}} className="user__verified"><i style={{color:"green"}} className="fa fa-check" aria-hidden="true"></i> {d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":""}</span>:<span style={{color:"grey"}} className="user__verified">{d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":""}</span>}</div>:null}
+                             {d.publicFigure!=="OTHER"?<div className="user__field user__field3">{d.verified?<span style={{color:"#3398cc"}} className="user__verified"><i data-tip="verified" style={{color:"green"}} className="fa fa-check" aria-hidden="true"></i><ReactTooltip/> {d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":""}</span>:<span style={{color:"grey"}} className="user__verified">{d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":""}</span>}</div>:null}
                {d.verified || d.claimed===true|| d.publicFigure==="OTHER"?null:<div className="user__field user__claim" id="user__claim"><span id="user__claim-1">Is this you? </span><span id="user__claim-3" onClick={()=>this.modalShowHandler2(d.email)} >Claim your profile</span> </div>}                           </div>
 
 
