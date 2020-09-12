@@ -57,15 +57,16 @@ toast.configure();
       let url= `http://www.bigq.world/verified/${client.email}/${client.firstName}/${client.lastName}/${client.date}/${client.city}/${client.country}/${client.category}/${client.publicFigure}/${client.knowMore}/${this.props.code}`;
 
 
-      //  if(this.state.isVerified){
+        if(this.state.isVerified){
           axios.post("/v1/client/verify",null,{params:{url:url,to:this.state.client.email,name:this.state.client.firstName,category:this.props.believer}})
           .then(res=>{
             toast.info("done");
+            alert(client.publicFigure)
           });
           this.props.history.push("/checkEmail")
-      //  }else{
-      //    toast.warning("Complete the form")
-    //    }
+        }else{
+          toast.warning("Complete the form")
+        }
     }
 
 
