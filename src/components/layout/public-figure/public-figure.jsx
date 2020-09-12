@@ -109,7 +109,7 @@ class PublicFigure extends Component {
 
          this.setState((state)=>{return{
             totalPages:res.data.totalPages,
-            data:res.data.content,
+            data:state.data.concat(res.data.content),
             loading:false,}
 
          })
@@ -119,7 +119,7 @@ class PublicFigure extends Component {
       axios.get(`/v1/client/data/country/${this.state.country}/${this.state.category}/${this.state.publicFigure}/${this.state.verified}/${this.state.search===""?"all":this.state.search}/${this.state.page}`).then(res=>{
         this.setState((state)=>{return{
           totalPages:res.data.totalPages,
-          data:res.data.content,
+          data:state.data.concat(res.data.content),
           loading:false,}
 
        })
@@ -129,10 +129,10 @@ class PublicFigure extends Component {
    }
 
 
-    pageHandler=(val)=>{
+    pageHandler=()=>{
         if(this.state.page===this.state.totalPages)
         return;
-        this.setState((state)=>{return {page:state.page+val,loading:true}})
+        this.setState((state)=>{return {page:state.page+1,loading:true}})
     }
 
 
@@ -171,7 +171,7 @@ class PublicFigure extends Component {
       let usedEmail=this.state.claim.email;
       let email=this.state.claim.selectedEmail;
       let phone=this.state.claim.phone;
-      let url=`http://peaceful-temple-48896.herokuapp.com/claimVerified/${btoa(usedEmail)}/${btoa(email)}/${btoa(phone)}`;
+      let url=`http://www.bigq.world/claimVerified/${btoa(usedEmail)}/${btoa(email)}/${btoa(phone)}`;
 
       axios.post("/v1/client/claim/verification",null,{params:{url:url,to:usedEmail,email:email}});
       this.setState({
@@ -204,12 +204,14 @@ class PublicFigure extends Component {
 
     render() {
 
+      console.log(this.state.data);
+
         return (<>
             <Header/>
-            <Modal styles={{width:"40rem",height:"40rem"}} clicked={this.modalShowHandler} show={this.state.show}>
+            <Modal classModal="modal2 modal3" styles={{padding:"1rem"}} clicked={this.modalShowHandler} show={this.state.show}>
                     <PublicFigureDetail d={this.state.d}/>
             </Modal>
-            <Modal styles={{width:"40rem",height:"40rem"}} clicked={this.modalShowHandler2} show={this.state.show2}>
+            <Modal classModal="modal2 modal4" styles={{padding:"1rem"}} clicked={this.modalShowHandler2} show={this.state.show2}>
                        {!this.state.stage?<form onSubmit={this.claimSubmit} className="claim__form">
                           <label className="claim__form-label" htmlFor="phone">Mobile number</label><br/>
                           <input className="claim__form-input" value={this.state.claim.phone} onChange={(e)=>{let claim={...this.state.claim};claim.phone=e.target.value;this.setState({claim:claim})}} name="phone" id="phone" type="text"/><br/>
@@ -261,10 +263,7 @@ class PublicFigure extends Component {
                  </div>
               </div>
 
-              <div style={{color:"black",marginRight:"1rem"}} className="notables__total">
-                   <h2>Total Filter</h2>
-                   <h1><strong>{this.state.data.length}</strong></h1>
-              </div>
+
 
              <div className="notables__search">
                  <input className="notables__search-input" type="text" value={this.state.search} onChange={(e)=>this.searchInputHandler(e)}  placeholder="search name / keyword" name="" id=""/>
@@ -286,7 +285,10 @@ class PublicFigure extends Component {
              </div>
 
 
-              {this.state.country===""?<div className="searchfor" > <strong>World</strong></div>:<div className="searchfor"> <strong style={{position:"relative"}}>{this.state.country} <i onClick={()=>this.countrySelectHandler("")} style={{position:"absolute",top:".2rem",fontSize:"1.5rem",right:".2rem",cursor:"pointer"}}  className="fa fa-times" aria-hidden="true"></i></strong></div>}
+              {this.state.country===""?<div className="searchfor" > <strong>World</strong></div>:<div className="searchfor"> <strong style={{position:"relative"}}>{this.state.country} <i onClick={()=>this.countrySelectHandler("")} style={{position:"absolute",top:".5rem",fontSize:"1.5rem",right:".5rem",cursor:"pointer"}}  className="fa fa-times" aria-hidden="true"></i></strong></div>}
+              <div style={{color:"black",marginRight:"1rem"}} className="notables__total">
+                   <h2>Total Results: {this.state.data.length}</h2>
+              </div>
                   <div className="userWrapper">
                 {this.state.data.map((d,i)=><>
                   <div   className={"user "+"user"+(i%2)}>
@@ -296,13 +298,13 @@ class PublicFigure extends Component {
                 <div className="user__name"><span>{d.firstName+" "+d.lastName}</span></div>
                 <div style={{color:"green"}} className="user__field">{d.category==="yes"?<span style={{color:"#3D9BE9"}}>Believer</span>:d.category==="no"?<span  style={{color:"#F8171C"}}>Non Believer</span>:"Undecided"}</div>
                 <div  className="user__field user__field4 "> <Flag code={d.code} height={16} />  <i>{d.country.length>=15?d.country.slice(0,15)+"...":d.country}</i></div>
-                           <div className="user__field user__field1 " style={{textAlign:"right"}}><span className="user__verified">{d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":""}</span></div>
+
                            <div className="user__field user__field2">
                               {d.background===null?
                                 <br/>:
                                 <span>{d.background.length<20?
-                                 <span>{d.background.padEnd(d.background.length+5,'.')} <span onClick={()=>this.modalShowHandler(d)} style={{fontWeight:"bold",cursor:"pointer",color:"blue"}} >read more</span></span>:
-                                  <span>{d.background.substring(0,25).padEnd(25,'.')} <span onClick={()=>this.modalShowHandler(d)}  style={{fontWeight:"bold",cursor:"pointer"}}></span><br/>{d.background.substring(25,50).padEnd(25,'.')} <span onClick={()=>this.modalShowHandler(d)}  style={{fontWeight:"bold",cursor:"pointer",color:"blue"}}>read more</span> </span>}
+                                 <span>{d.background.padEnd(d.background.length+5,'.')} <span onClick={()=>this.modalShowHandler(d)} style={{fontWeight:"bold",cursor:"pointer",color:"#3398cc"}} >read more</span></span>:
+                                  <span>{d.background.substring(0,25).padEnd(25,'.')} <span onClick={()=>this.modalShowHandler(d)}  style={{fontWeight:"bold",cursor:"pointer"}}></span><br/>{d.background.substring(25,50).padEnd(25,'.')} <span onClick={()=>this.modalShowHandler(d)}  style={{fontWeight:"bold",cursor:"pointer",color:"#3398cc"}}>read more</span> </span>}
                                 </span>}
                               </div>
 
@@ -314,20 +316,15 @@ class PublicFigure extends Component {
                              }} email={d.email}>
                                   { url => (<img className="gravatar__img" src={url} />) }
                              </Gravatar>
-                             <div className="user__field user__field3">{d.verified?<span className="user__verified"><i className="fa fa-check" aria-hidden="true"></i> verified</span>:null}</div>
+                             {d.publicFigure!=="OTHER"?<div className="user__field user__field3">{d.verified?<span style={{color:"#3398cc"}} className="user__verified"><i style={{color:"green"}} className="fa fa-check" aria-hidden="true"></i> {d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":""}</span>:<span style={{color:"grey"}} className="user__verified">{d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":""}</span>}</div>:null}
                {d.verified || d.claimed===true|| d.publicFigure==="OTHER"?null:<div className="user__field user__claim" id="user__claim"><span id="user__claim-1">Is this you? </span><span id="user__claim-3" onClick={()=>this.modalShowHandler2(d.email)} >Claim your profile</span> </div>}                           </div>
 
 
                     </div>
                   </div>
                   </>)}</div>
-                  {!this.state.loading&& this.state.data.length===0?<h1 style={{padding:"50px 50px",textAlign:"center"}}>No data</h1>:null}
-                 {this.state.loading?<button className="load__btn load__btn-loading">LOADING...</button>:
-                 <>
-                 <button className="load__btn"  disabled={this.state.page===0 || this.state.loading} onClick={()=>this.pageHandler(-1)}>Previous</button>
-                <button className="load__btn"  disabled={this.state.totalPages===this.state.page+1 || this.state.loading} onClick={()=>this.pageHandler(1)}>Next</button>
-               </>
-                }
+                 {this.state.loading?<button className="load__btn load__btn-loading">LOADING...</button>:null}
+                 {this.state.totalPages==this.state.page+1 || this.state.loading?null: this.state.data.length<=0?<h1 style={{padding:"50px 50px",textAlign:"center"}}>No data</h1>:<button className="load__btn" onClick={this.pageHandler}>Load More...</button>}
 
 
 
