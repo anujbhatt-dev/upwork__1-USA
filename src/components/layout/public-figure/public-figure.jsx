@@ -109,7 +109,7 @@ class PublicFigure extends Component {
 
          this.setState((state)=>{return{
             totalPages:res.data.totalPages,
-            data:state.data.concat(res.data.content),
+            data:res.data.content,
             loading:false,}
 
          })
@@ -119,7 +119,7 @@ class PublicFigure extends Component {
       axios.get(`/v1/client/data/country/${this.state.country}/${this.state.category}/${this.state.publicFigure}/${this.state.verified}/${this.state.search===""?"all":this.state.search}/${this.state.page}`).then(res=>{
         this.setState((state)=>{return{
           totalPages:res.data.totalPages,
-          data:state.data.concat(res.data.content),
+          data:res.data.content,
           loading:false,}
 
        })
@@ -323,8 +323,13 @@ class PublicFigure extends Component {
                     </div>
                   </div>
                   </>)}</div>
-                 {this.state.loading?<button className="load__btn load__btn-loading">LOADING...</button>:null}
-                 {this.state.totalPages==this.state.page+1 || this.state.loading?null: this.state.data.length<=0?<h1 style={{padding:"50px 50px",textAlign:"center"}}>No data</h1>:<button className="load__btn" onClick={this.pageHandler}>Load More...</button>}
+                  {!this.state.loading&& this.state.data.length===0?<h1 style={{padding:"50px 50px",textAlign:"center"}}>No data</h1>:null}
+                  {this.state.loading?<button className="load_btn load_btn-loading">LOADING...</button>:
+                  <>
+                  <button className="load__btn"  disabled={this.state.page===0 || this.state.loading} onClick={()=>this.pageHandler(-1)}>Previous</button>
+                 <button className="load__btn"  disabled={this.state.totalPages===this.state.page+1 || this.state.loading} onClick={()=>this.pageHandler(1)}>Next</button>
+                </>
+                 }
 
 
 
