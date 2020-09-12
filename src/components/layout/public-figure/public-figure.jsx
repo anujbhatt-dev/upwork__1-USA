@@ -129,10 +129,11 @@ class PublicFigure extends Component {
    }
 
 
-    pageHandler=()=>{
+    pageHandler=(val)=>{
         if(this.state.page===this.state.totalPages)
         return;
-        this.setState((state)=>{return {page:state.page+1,loading:true}})
+        this.setState((state)=>{return {page:state.page+val,loading:true}})
+        window.scrollTo({top:0,behavior:"smooth"})
     }
 
 
@@ -152,11 +153,7 @@ class PublicFigure extends Component {
     }
 
     countrySelectHandler=(val)=>{
-
-
       this.setState({country:val,loading:true,data:[],search:"",page:0,searchedCahrecterForCountry:""})
-
-
     }
 
 
@@ -325,10 +322,10 @@ class PublicFigure extends Component {
                   </>)}</div>
                   {!this.state.loading&& this.state.data.length===0?<h1 style={{padding:"50px 50px",textAlign:"center"}}>No data</h1>:null}
                   {this.state.loading?<button className="load_btn load_btn-loading">LOADING...</button>:
-                  <>
+                  <div className="load__btns">
                   <button className="load__btn"  disabled={this.state.page===0 || this.state.loading} onClick={()=>this.pageHandler(-1)}>Previous</button>
                  <button className="load__btn"  disabled={this.state.totalPages===this.state.page+1 || this.state.loading} onClick={()=>this.pageHandler(1)}>Next</button>
-                </>
+                </div>
                  }
 
 
