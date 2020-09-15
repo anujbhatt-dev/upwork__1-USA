@@ -60,10 +60,13 @@ toast.configure();
         if(this.state.isVerified){
           axios.post("/v1/client/verify",null,{params:{url:url,to:this.state.client.email,name:this.state.client.firstName,category:this.props.believer}})
           .then(res=>{
+            if(!res.data){
+                toast.danger("Email already exixts.");
+            }
             toast.info("done");
             alert(client.publicFigure)
+            this.props.history.push("/checkEmail")
           });
-          this.props.history.push("/checkEmail")
         }else{
           toast.warning("Complete the form")
         }
