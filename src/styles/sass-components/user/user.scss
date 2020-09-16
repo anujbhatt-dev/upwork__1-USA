@@ -268,7 +268,7 @@
 .gravatar__img{
  position: absolute;
  top:0rem;
- right: .5rem;
+ right: 1rem;
  border-radius: 100px;
 }
 
@@ -369,12 +369,18 @@
 }
 
 
+.load__btns{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .load__btn{
    margin: 5rem auto;
    display: block;
    margin-bottom:0rem;
    height: 4rem;
-   width: 25rem;
+   width: 20rem;
    border: none;
    border: 5px solid $color-primary-blue;
    border-bottom: none;
@@ -414,6 +420,9 @@
     }
   }
 }
+
+
+
 .notables__total{
   text-align: center;
   font-weight: bolder;

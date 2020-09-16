@@ -76,9 +76,9 @@ let mylet,mylet2,mylet3,mylet4;
 
 
 
-  componentDidUpdate=(prevState, prevProps)=>{
+  componentDidUpdate=(prevProps, prevState)=>{
     Aos.init({duration:2000,delay:100})
-    if(prevProps.dots!==this.props.dots){
+    if(prevProps.dots!==this.props.dots){      
       clearTimeout(mylet)
       clearTimeout(mylet2)
       clearTimeout(mylet3)

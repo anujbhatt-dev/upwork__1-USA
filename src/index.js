@@ -6,9 +6,9 @@ import Axios from 'axios';
 
 
 Axios.defaults.baseURL=
-                         "http://godsplan-env.eba-ppuxuhbi.ap-south-1.elasticbeanstalk.com/api";
-                        // "http://localhost:8081/api";
-
+                         
+                        "http://localhost:8081/api";
+                        //  "http://godsplan-env.eba-ppuxuhbi.ap-south-1.elasticbeanstalk.com/api"     //dev
 
 ReactDOM.render(
   <React.StrictMode>

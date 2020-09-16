@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom';
 import PublicFigureDetail from "./public-figure-details/public-figure-detail"
 import Modal from "../../../UI/modal/modal"
 import Backdrop from "../../../UI/backdrop/backdrop"
+import ReactTooltip from "react-tooltip"
 
 class PublicFigure extends Component {
 
@@ -133,6 +134,7 @@ class PublicFigure extends Component {
         if(this.state.page===this.state.totalPages)
         return;
         this.setState((state)=>{return {page:state.page+val,loading:true}})
+        window.scrollTo({top:0,behavior:"smooth"})
     }
 
 
@@ -152,11 +154,7 @@ class PublicFigure extends Component {
     }
 
     countrySelectHandler=(val)=>{
-
-
       this.setState({country:val,loading:true,data:[],search:"",page:0,searchedCahrecterForCountry:""})
-
-
     }
 
 
@@ -316,7 +314,7 @@ class PublicFigure extends Component {
                              }} email={d.email}>
                                   { url => (<img className="gravatar__img" src={url} />) }
                              </Gravatar>
-                             {d.publicFigure!=="OTHER"?<div className="user__field user__field3">{d.verified?<span style={{color:"#3398cc"}} className="user__verified"><i style={{color:"green"}} className="fa fa-check" aria-hidden="true"></i> {d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":""}</span>:<span style={{color:"grey"}} className="user__verified">{d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":""}</span>}</div>:null}
+                             {d.publicFigure!=="OTHER"?<div className="user__field user__field3">{d.verified?<span style={{color:"#3398cc"}} className="user__verified"><i data-tip="verified" style={{color:"green"}} className="fa fa-check" aria-hidden="true"></i><ReactTooltip/> {d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":""}</span>:<span style={{color:"grey"}} className="user__verified">{d.publicFigure==="PF1"?"Public Figure":d.publicFigure==="PF2"?"Scientist":""}</span>}</div>:null}
                {d.verified || d.claimed===true|| d.publicFigure==="OTHER"?null:<div className="user__field user__claim" id="user__claim"><span id="user__claim-1">Is this you? </span><span id="user__claim-3" onClick={()=>this.modalShowHandler2(d.email)} >Claim your profile</span> </div>}                           </div>
 
 
@@ -325,10 +323,10 @@ class PublicFigure extends Component {
                   </>)}</div>
                   {!this.state.loading&& this.state.data.length===0?<h1 style={{padding:"50px 50px",textAlign:"center"}}>No data</h1>:null}
                   {this.state.loading?<button className="load_btn load_btn-loading">LOADING...</button>:
-                  <>
+                  <div className="load__btns">
                   <button className="load__btn"  disabled={this.state.page===0 || this.state.loading} onClick={()=>this.pageHandler(-1)}>Previous</button>
                  <button className="load__btn"  disabled={this.state.totalPages===this.state.page+1 || this.state.loading} onClick={()=>this.pageHandler(1)}>Next</button>
-                </>
+                </div>
                  }
 
 
