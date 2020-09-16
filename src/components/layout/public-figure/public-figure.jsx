@@ -129,10 +129,10 @@ class PublicFigure extends Component {
    }
 
 
-    pageHandler=()=>{
+    pageHandler=(val)=>{
         if(this.state.page===this.state.totalPages)
         return;
-        this.setState((state)=>{return {page:state.page+1,loading:true}})
+        this.setState((state)=>{return {page:state.page+val,loading:true}})
     }
 
 
